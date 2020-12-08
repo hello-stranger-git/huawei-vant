@@ -2,7 +2,7 @@
   <div class="TopMessage">
     <van-row>
       <van-col :span="14">
-        <div class="grid-content bg-purple left">
+        <div class="left">
           <img :src="logoImage" />
           <div>
             <span class="l-title">华为体验店</span>
@@ -11,27 +11,24 @@
         </div>
       </van-col>
       <van-col :span="10" class="r-col">
-        <div class="grid-content bg-purple-light right">
-          <div>
-            <span>兰宇贵</span>
-            <van-icon name="chat-o" badge="9" size="30" />
-          </div>
+        <div class="right">
+          <span class="username">兰宇贵</span>
+          <van-icon name="chat-o" badge="9" size="30" />
         </div>
       </van-col>
     </van-row>
   </div>
 </template>
 <script>
-const logo = require('@/assets/huawei.png')
 export default {
   data() {
     return {
-      logoImage: logo
+      logoImage: require('@/assets/huawei.png')
     }
   }
 }
 </script>
-<style scoped>
+<style lang="less" scoped>
 .TopMessage {
   background-color: #fbfbfb;
   padding: 10px;
@@ -40,14 +37,16 @@ export default {
 .left {
   display: flex;
   align-items: center;
+  .van-icon {
+    vertical-align: middle;
+  }
 }
 .left > img {
   width: 50px;
   height: 45px;
-  /* background-color: brown; */
 }
 .left .l-title {
-  padding: 0 10px;
+  padding: 0 8px;
 }
 .r-col {
   height: 50px;
@@ -59,6 +58,13 @@ export default {
   align-items: center;
   padding-right: 10px;
   position: relative;
+  .username {
+    margin-right: 12px;
+  }
+  .van-info {
+    top: 5px;
+    right: 5px;
+  }
 }
 .messageIcon {
   font-size: 30px;
@@ -66,8 +72,6 @@ export default {
   padding-left: 10px;
 }
 .r-message-count {
-  /* width: 20px;
-    height: 20px; */
   width: 18px;
   height: 18px;
   background-color: #ff3300;
@@ -75,8 +79,6 @@ export default {
   line-height: 18px;
   border-radius: 50%;
   position: absolute;
-  /* right: 2px;
-    top: 5px; */
   right: 3px;
   top: 8px;
   color: #ffffff;

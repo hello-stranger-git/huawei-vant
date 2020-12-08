@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="notice">
     <van-notice-bar
       left-icon="volume-o"
-      text="在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。"
+      text="待整改，厅内卫生-1 厅内地面、桌面有垃圾，未整改，良好的作风，严格的纪律"
     />
   </div>
 </template>
@@ -11,4 +11,11 @@
 export default {}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped>
+.notice {
+  .van-notice-bar {
+    background-color: #ff3b3b;
+    color: #ffffff;
+  }
+}
+</style>

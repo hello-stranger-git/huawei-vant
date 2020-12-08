@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="home">
     <NavBar></NavBar>
-首页
+    <!-- 首页 -->
   </div>
 </template>
 
@@ -14,6 +14,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="less" scoped>
+.home {
+  background-color: #eee;
+}
 </style>
