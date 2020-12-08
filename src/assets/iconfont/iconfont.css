@@ -17,6 +17,22 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.iconchexiao:before {
+  content: '\e6e9';
+}
+
+.iconscreenpingmu:before {
+  content: '\e64c';
+}
+
+.iconbi:before {
+  content: '\e742';
+}
+
+.iconxiala-yuan-tianchong:before {
+  content: '\e7c6';
+}
+
 .iconanquan:before {
   content: '\e60e';
 }
