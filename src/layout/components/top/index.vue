@@ -24,7 +24,7 @@
 <script>
 const logo = require('@/assets/huawei.png')
 export default {
-  data () {
+  data() {
     return {
       logoImage: logo
     }
