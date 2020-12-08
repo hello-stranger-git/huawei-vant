@@ -2,7 +2,6 @@
   <div>
     <Top></Top>
     <Notice></Notice>
-    <NavBar></NavBar>
     <router-view>
 
     </router-view>
@@ -12,13 +11,11 @@
 
 <script>
 import Footer from '@/layout/components/footer'
-import NavBar from '@/layout/components/navBar'
 import Notice from '@/layout/components/notice'
 import Top from '@/layout/components/top'
 export default {
   components: {
     Footer,
-    NavBar,
     Notice,
     Top
   }
