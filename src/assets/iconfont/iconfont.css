@@ -16,6 +16,19 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.iconcanpinhuihuiyuanv6:before {
+  content: '\e6d5';
+}
+
+.iconkaoqinguanlix:before {
+  content: '\e635';
+}
+
+.iconbianpinghuatubiaosheji-:before {
+  content: '\e62d';
+}
+
 .iconshangcheng:before {
   content: '\e620';
 }
