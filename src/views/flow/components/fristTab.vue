@@ -16,7 +16,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import DateSelect from './dateSelect.vue'
 import UserItem from '../../../components/home/userItem'
@@ -79,18 +78,11 @@ export default {
 
 <style lang="less" scoped>
 .van-row {
-  // margin: 0 15px;
-  // display: flex;
-  // justify-content: space-between;
-  // overflow-y: auto;
   background-color: #fff;
   text-align: center;
   padding: 5px 10px;
-  // flex-wrap: wrap;
-  // flex-direction: row;
 }
 .todayCustomer {
-  // border-radius: 0 0 8px 8px;
   .van-row {
     padding-top: 20px;
 

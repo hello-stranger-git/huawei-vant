@@ -5,6 +5,9 @@
         ><div class="notice">{{ notice }}</div></van-col
       >
     </van-row>
+    <!-- 日期 -->
+    <DateSelect></DateSelect>
+
     <!-- 最大客流 -->
     <div class="maxFlow">
       <div class="max">{{ item.maxTitle }}</div>
@@ -100,9 +103,12 @@
 
 <script>
 import FlowEchart from '../../../components/lineChart'
+import DateSelect from './dateSelect.vue'
+
 export default {
   components: {
-    FlowEchart
+    FlowEchart,
+    DateSelect
   },
   data() {
     return {
@@ -113,7 +119,7 @@ export default {
         icon: 'iconrili',
         title: '今日客流走势',
         status: '',
-        label: ['当前', '昨日', '前天'],
+        label: ['当前', '昨天', '前天'],
         xLabel: [
           '8:00',
           '10:00',
@@ -128,7 +134,7 @@ export default {
         xName: '时间',
         yName: '客流',
         type: 'flow',
-        dataName1: '客流',
+        dataName1: '昨天',
         data1: [50, 100, 50, 80, 106, 150, 50, 15],
         dataName2: '前天',
         data2: [25, 50, 75, 50, 120, 75, 25, 30],
@@ -141,7 +147,7 @@ export default {
         icon: 'iconrili',
         title: '近30天客流走势',
         status: '',
-        label: ['月'],
+        // label: ['月'],
         xLabel: [
           '11/1',
           '11/5',
@@ -164,7 +170,7 @@ export default {
         icon: 'iconrili',
         title: '近30天客流走势',
         status: '',
-        label: ['90天'],
+        // label: ['90天'],
         xLabel: [
           '9/1',
           '9/15',
@@ -188,7 +194,7 @@ export default {
         icon: 'iconrili',
         title: '近30天客流走势',
         status: '',
-        label: ['年'],
+        // label: ['年'],
         xLabel: [
           '一月',
           '二月',
