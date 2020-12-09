@@ -135,7 +135,7 @@ export default {
 // 时间轴样式
 .timeAxis {
   margin: 40px 0 62px;
-  background-color: #777777;
+  background-color: #5c5c5c;
 }
 // 点检样式
 .checkBtn {

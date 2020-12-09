@@ -36,9 +36,6 @@ export default {
     time: {
       type: String
     }
-  },
-  mounted() {
-    console.log(this.videoTitle)
   }
 }
 </script>
