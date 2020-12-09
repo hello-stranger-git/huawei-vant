@@ -97,8 +97,6 @@ export default {
 }
 </script>
 <style lang="less" scoped>
-.application {
-}
 // tab选项样式
 /deep/.van-tabs__line {
   height: 0;

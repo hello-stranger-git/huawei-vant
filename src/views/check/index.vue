@@ -70,7 +70,6 @@ export default {
 
 <style lang="less" scoped>
 .check {
-  padding-bottom: 56px;
   background-color: #eeeeee;
 }
 .camera {
