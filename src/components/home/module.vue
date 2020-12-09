@@ -1,3 +1,4 @@
+<!--首页每个模块的模板-->
 <template>
   <div class="module">
     <van-row>

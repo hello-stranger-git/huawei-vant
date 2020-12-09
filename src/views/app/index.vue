@@ -109,7 +109,6 @@ export default {
 /deep/.van-tabs__content {
   padding: 3%;
   background-color: #eee;
-  margin-bottom: 55px;
 }
 /deep/.van-tabs__wrap {
   height: 56px;

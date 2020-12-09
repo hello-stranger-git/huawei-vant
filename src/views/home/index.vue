@@ -67,6 +67,52 @@
               </van-col>
             </van-row>
           </div>
+          <template v-for="(pro, pid) in item.progressDate">
+            <div class="progress" :key="pid">
+              <!-- progress进度条 -->
+              <ProgressItem
+                :leftTitle="pro.leftTitle"
+                :leftIcon="pro.leftIcon"
+                :percentage="pro.percentage"
+                :progressColor="pro.progressColor"
+                :trackColor="pro.trackColor"
+                :sex="pro.sex"
+                :leftIconColor="pro.leftIconColor"
+              ></ProgressItem>
+            </div>
+          </template>
+        </template>
+        <!-- 客流与销售分析 -->
+        <template v-if="item.type == 'sale'" slot="context">
+          <BarCharts
+            :label="item.label"
+            :xLabel="item.xLabel"
+            :xName="item.xName"
+            :yName2="item.yName2"
+            :dataName1="item.dataName1"
+            :data1="item.data1"
+            :dataName2="item.dataName2"
+            :data2="item.data2"
+            :dataName3="item.dataName3"
+            :data3="item.data3"
+          ></BarCharts>
+        </template>
+        <!-- 本店视频 -->
+        <template v-if="item.type == 'video'" slot="context">
+          <div class="video">
+            <van-row>
+              <template v-for="(videoItem, vid) in item.videoData">
+                <van-col span="12" :key="vid">
+                  <VideoItem
+                    :videoImage="videoItem.videoImage"
+                    :videoTitle="videoItem.videoTitle"
+                    :status="videoItem.status"
+                    :time="videoItem.time"
+                  ></VideoItem>
+                </van-col>
+              </template>
+            </van-row>
+          </div>
         </template>
       </Module>
     </template>
@@ -77,8 +123,11 @@
 import Module from '@/components/home/module' // 整体模块
 import NavBar from '@/layout/components/navBar'
 import UserItem from '@/components/home/userItem' // 每个用户
+import VideoItem from '@/components/home/videoItem' // 每个视频
 import LineChart from '@/components/lineChart' // 折线图
 import AnnularChart from '@/components/annularCharts' // 环形图
+import ProgressItem from '@/components/progressItem' // progress进度条
+import BarCharts from '@/components/barCharts' // 柱状图
 export default {
   data() {
     return {
@@ -166,17 +215,74 @@ export default {
             { value: 154, name: '中年', percent: '20.00%' },
             { value: 46, name: '青年', percent: '34.00%' },
             { value: 47, name: '少年', percent: '10.00%' }
+          ],
+          progressDate: [
+            {
+              leftTitle: '男性',
+              leftIcon: 'iconnanren',
+              percentage: 70,
+              trackColor: '#F98181',
+              sex: 'woman'
+            },
+            {
+              leftTitle: '回头客',
+              leftIcon: 'iconnanren',
+              percentage: 80
+            },
+            {
+              leftTitle: '会员',
+              leftIcon: 'iconcanpinhuihuiyuanv6',
+              percentage: 30,
+              progressColor: '#FFCD41',
+              leftIconColor: '#F7B500'
+            }
           ]
         },
+        // 客流与销售分析
         {
           icon: 'iconrili',
           title: '客流与销售分析',
-          status: ''
+          status: '',
+          type: 'sale',
+          label: ['销售额', '客流人数'],
+          xLabel: ['今日', '昨日', '11/10', '11/11', '11/12', '11/13', '11/14'],
+          yName2: '客单价(w)',
+          dataName1: '销售额',
+          data1: [1000, 1200, 1400, 1300, 1200, 1000, 1300],
+          dataName2: '均值',
+          data2: [500, 600, 700, 650, 600, 500, 650],
+          dataName3: '客流人数',
+          data3: [300, 400, 500, 450, 400, 300, 500]
         },
+        // 本店视频
         {
           icon: 'iconrili',
           title: '本店视频',
-          status: '更多>'
+          status: '更多>',
+          type: 'video',
+          videoData: [
+            {
+              videoImage: require('@/assets/videoImage/videoImage1.png'),
+              videoTitle: '大厅1',
+              time: '16:22:30'
+            },
+            {
+              videoImage: require('@/assets/videoImage/videoImage2.png'),
+              videoTitle: '大厅2',
+              time: '16:22:30'
+            },
+            {
+              videoImage: require('@/assets/videoImage/videoImage3.png'),
+              videoTitle: '大厅3',
+              time: '16:22:30'
+            },
+            {
+              videoImage: require('@/assets/videoImage/videoImage3.png'),
+              videoTitle: '人脸识别进门',
+              status: 'offLine',
+              time: '12:30:00'
+            }
+          ]
         }
       ]
     }
@@ -186,7 +292,10 @@ export default {
     Module,
     UserItem,
     LineChart,
-    AnnularChart
+    AnnularChart,
+    ProgressItem,
+    BarCharts,
+    VideoItem
   }
 }
 </script>
@@ -257,6 +366,15 @@ export default {
     }
     .typeCol {
       padding-bottom: 20px;
+    }
+  }
+  .progress {
+    margin-top: 5px;
+  }
+  .video {
+    margin-top: 10px;
+    .videoItem {
+      margin: 2px;
     }
   }
 }

@@ -2,9 +2,8 @@
   <div>
     <Top></Top>
     <Notice></Notice>
-    <router-view>
-
-    </router-view>
+    <router-view> </router-view>
+    <div class="height"></div>
     <Footer></Footer>
   </div>
 </template>
@@ -22,4 +21,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped>
+.height {
+  height: 60px;
+  background-color: #eee;
+}
+</style>
