@@ -20,7 +20,7 @@
       </template>
       <!-- logout -->
     </van-cell>
-    <van-cell title="退出登陆" class="logout" size="large" />
+    <van-cell title="退出登陆" class="logout" />
   </div>
 </template>
 
@@ -132,7 +132,6 @@ export default {
   margin-top: 15px;
   .van-cell__title {
     text-align: center;
-    margin-bottom: 50px;
     border-radius: 5px;
     span {
       color: #ff7272;
