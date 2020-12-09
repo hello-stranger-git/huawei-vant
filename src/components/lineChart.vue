@@ -1,6 +1,6 @@
 <template>
   <div class="lineChart">
-    <div id="lineChart" style="width: 100%; height: 250px"></div>
+    <div :id="lineChartsId" style="width: 100%; height: 250px"></div>
   </div>
 </template>
 
@@ -11,6 +11,10 @@ export default {
       // 所有配置
       type: Object,
       default: null
+    },
+    // 每个图的id，唯一
+    lineChartsId: {
+      type: String
     },
     // 图的label
     label: {
@@ -76,7 +80,9 @@ export default {
   methods: {
     drawChart() {
       // 基于准备好的dom，初始化echarts实例
-      const myChart = this.$echarts.init(document.getElementById('lineChart'))
+      const myChart = this.$echarts.init(
+        document.getElementById(this.lineChartsId)
+      )
       let option = null
       if (this.option) {
         option = this.option

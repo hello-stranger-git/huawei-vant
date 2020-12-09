@@ -26,6 +26,7 @@
         <!-- 客流走势模块 -->
         <template v-if="item.type == 'flow'" slot="context">
           <LineChart
+            lineChartsId="flowId"
             :label="item.label"
             :xLabel="item.xLabel"
             :xName="item.xName"
