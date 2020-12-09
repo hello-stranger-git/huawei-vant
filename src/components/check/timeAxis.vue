@@ -1,76 +1,11 @@
 <template>
   <div class="block">
-    <div class="time">
-      <!-- 右背景 -->
-      <div class="bgright"></div>
-      <div class="timeScale"></div>
-      <span class="timeSpan">15:00:00</span>
-      <div class="bottomOverFlow">
-        <div class="ruler topcm">
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-        </div>
-
-        <div class="ruler bottomcm">
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm">
-            <div class="mm"></div>
-          </div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm">
-            <!-- 每一格刻度线 -->
-            <!-- <div class='mm'></div>
-            <div class='mm'></div>
-            <div class='mm'></div>
-            <div class='mm'></div>
-            <div class='mm'></div> -->
-          </div>
-          <div class="cm"></div>
-
-          <div class="cm"></div>
-          <div class="cm"></div>
-
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-          <div class="cm"></div>
-        </div>
+    <div class="timeScale" ref="timeScale"></div>
+    <div class="mask"></div>
+    <span class="timeSpan">{{ time }}</span>
+    <div class="hiddenScroll">
+      <div class="timeAxis" ref="timeAxis">
+        <img :src="timeAxis" ref="img" />
       </div>
     </div>
   </div>
@@ -80,28 +15,46 @@
 export default {
   data() {
     return {
-      value: 5.5
+      timeAxis: require('@/assets/timeAxis.png'),
+      time: ''
     }
   },
+  mounted() {
+    // 给滚动条注册监听事件
+    window.addEventListener('scroll', this.handleScroll, true)
+    this.handleScroll()
+  },
+  destroyed() {
+    // 销毁scroll事件
+    window.removeEventListener('scroll', this.handleScroll, true)
+  },
   methods: {
-    formatTooltip(val) {
-      let hour = 0
-      let min = 0
-      const ms = val * 3600
-      hour = parseInt(ms / 3600)
-      if (hour < 10) {
-        hour = '0' + hour.toString()
-      } else {
-        hour = hour.toString()
-      }
-      min = ms % 3600
-      if (min === 0) {
-        min = '00'
-      } else {
-        min = '30'
-      }
-      const time = hour + ':' + min
-      return time
+    // 时间轴滑动事件
+    handleScroll() {
+      // 获取指针到父级元素最左边的距离
+      const timeScale = this.$refs.timeScale.offsetLeft - 2
+      // 获取元素滚动的距离
+      const timeAxisScroll = this.$refs.timeAxis.scrollLeft - 30
+      // 获取时间轴的宽度
+      // const timeAxisWidth = this.$refs.img.clientWidth - 60
+      // 时间轴划出去距离指针的距离,总共分钟数
+      const timeWidth = timeScale + timeAxisScroll
+      let hour = parseInt(timeWidth / 60)
+      let minute = timeWidth + 4 - hour * 60
+
+      // 具体小时
+      hour = minute > 59 ? hour + 1 : hour
+      // 判段minute显示是否大于60
+      minute = minute > 59 ? minute - 60 : minute
+
+      // minute补零
+      minute = minute > 9 ? minute : '0' + minute
+
+      // hour补零
+      hour = hour > 9 ? hour : '0' + hour
+
+      // 平凑时间,并且进行补零
+      this.time = `${hour}:${minute}`
     }
   }
 }
@@ -109,239 +62,39 @@ export default {
 
 <style lang="less" scoped>
 .block {
-  width: 100%;
-}
-/deep/.el-slider__button {
-  width: 0px;
-  height: 63px;
-  border-radius: 0%;
-  border: 1px solid #409eff;
-  background-color: #409eff;
-}
-/deep/.el-slider__bar {
-  background-color: #777777;
-  height: 100%;
-}
-/deep/.el-slider__runway {
-  height: 56px;
-  background-color: #aaaaaa;
-}
-/deep/.el-slider__button-wrapper {
-  height: 50px;
-  display: none;
-}
-.ruler {
   position: relative;
-  width: 100%;
-  margin: -16px auto;
-  height: 14px;
-}
-/* .ruler .mm  */
-.ruler .cm {
-  position: absolute;
-  border-left: 1px solid #555;
-  height: 14px;
-}
-.ruler .cm:after {
-  position: absolute;
-  bottom: 20px;
-  font: 11px/1 sans-serif;
-  color: #fff;
-}
-.ruler .cm:nth-of-type(1) {
-  left: 0%;
-}
-.bottomcm.ruler .cm:nth-of-type(1):after {
-  content: '00:00';
-}
-.ruler .cm:nth-of-type(2) {
-  left: 9.09091%;
-}
-.bottomcm.ruler .cm:nth-of-type(2):after {
-  content: '01:00';
-}
-.ruler .cm:nth-of-type(3) {
-  left: 18.1818%;
-}
-.bottomcm.ruler .cm:nth-of-type(3):after {
-  content: '02:00';
-}
-.ruler .cm:nth-of-type(4) {
-  left: 27.2727%;
-}
-.bottomcm.ruler .cm:nth-of-type(4):after {
-  content: '03:00';
-}
-.ruler .cm:nth-of-type(5) {
-  left: 36.3636%;
-}
-.bottomcm.ruler .cm:nth-of-type(5):after {
-  content: '04:00';
-}
-.ruler .cm:nth-of-type(6) {
-  left: 45.4545%;
-}
-.bottomcm.ruler .cm:nth-of-type(6):after {
-  content: '05:00';
-}
-.ruler .cm:nth-of-type(7) {
-  left: 54.5455%;
-}
-.bottomcm.ruler .cm:nth-of-type(7):after {
-  content: '06:00';
-}
-.ruler .cm:nth-of-type(8) {
-  left: 63.6364%;
-}
-.bottomcm.ruler .cm:nth-of-type(8):after {
-  content: '07:00';
-}
-.ruler .cm:nth-of-type(9) {
-  left: 72.7273%;
-}
-.bottomcm.ruler .cm:nth-of-type(9):after {
-  content: '08:00';
-}
-.ruler .cm:nth-of-type(10) {
-  left: 81.8182%;
-}
-.bottomcm.ruler .cm:nth-of-type(10):after {
-  content: '09:00';
-}
-.ruler .cm:nth-of-type(11) {
-  left: 90.9091%;
-}
-.bottomcm.ruler .cm:nth-of-type(11):after {
-  content: '10.00';
-}
-.ruler .cm:nth-of-type(12) {
-  left: 100%;
-}
-.bottomcm.ruler .cm:nth-of-type(12):after {
-  content: '11.00';
-}
+  //竖线
+  .timeScale {
+    position: absolute;
+    height: 58px;
+    background-color: #0000007d;
+    right: 50%;
+    border-right: 2px solid #3299ff;
+  }
+  .hiddenScroll {
+    height: 58px;
+    overflow: hidden;
+    //时间轴图片div
+    .timeAxis {
+      overflow-y: auto;
+    }
+  }
+  .mask {
+    position: absolute;
+    width: calc(50% - 3px);
+    height: 58px;
+    background-color: #0000007d;
+    right: 50%;
+    border-right: 2px solid #3299ff;
+  }
 
-.ruler .cm:nth-of-type(13) {
-  left: 109.09091%;
-}
-.bottomcm.ruler .cm:nth-of-type(13):after {
-  content: '12.00';
-}
-
-.ruler .cm:nth-of-type(14) {
-  left: 118.1818%;
-}
-
-.bottomcm.ruler .cm:nth-of-type(14):after {
-  content: '13.00';
-}
-.ruler .cm:nth-of-type(15) {
-  left: 127.2727%;
-}
-.bottomcm.ruler .cm:nth-of-type(15):after {
-  content: '14.00';
-}
-.ruler .cm:nth-of-type(16) {
-  left: 136.3636%;
-}
-.bottomcm.ruler .cm:nth-of-type(16):after {
-  content: '15.00';
-}
-.ruler .cm:nth-of-type(17) {
-  left: 145.4545%;
-}
-.bottomcm.ruler .cm:nth-of-type(17):after {
-  content: '16.00';
-}
-.ruler .cm:nth-of-type(18) {
-  left: 154.5455%;
-}
-.bottomcm.ruler .cm:nth-of-type(18):after {
-  content: '17.00';
-}
-.ruler .cm:nth-of-type(19) {
-  left: 163.6364%;
-}
-.bottomcm.ruler .cm:nth-of-type(19):after {
-  content: '18.00';
-}
-.ruler .cm:nth-of-type(20) {
-  left: 172.7273%;
-}
-.bottomcm.ruler .cm:nth-of-type(20):after {
-  content: '19.00';
-}
-.ruler .cm:nth-of-type(21) {
-  left: 181.8182%;
-}
-.bottomcm.ruler .cm:nth-of-type(21):after {
-  content: '20.00';
-}
-.ruler .cm:nth-of-type(22) {
-  left: 190.9091%;
-}
-.bottomcm.ruler .cm:nth-of-type(22):after {
-  content: '21.00';
-}
-
-#mentionme {
-  text-align: center;
-  margin-top: 10%;
-}
-.topcm {
-  position: absolute;
-  top: 0;
-  z-index: 1;
-  margin: 0;
-}
-.bottomcm {
-  position: absolute;
-  margin: 0;
-  bottom: 0;
-}
-.el-tooltip__popper {
-  opacity: 0 !important;
-}
-.bottomOverFlow {
-  width: 100%;
-  height: 56px;
-  position: relative;
-  overflow: scroll;
-  // top: -72px;
-}
-.bottomOverFlow::-webkit-scrollbar,
-.topcm::-webkit-scrollbar,
-.topcm::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  background-color: #f5f5f5;
-  opacity: 0;
-}
-.timeScale {
-  position: absolute;
-  width: 2px;
-  height: 108%;
-  background-color: #3299ff;
-  left: 50%;
-  top: -4px;
-}
-.time {
-  position: relative;
-}
-.timeSpan {
-  position: absolute;
-  color: #61afff;
-  left: 50%;
-  transform: translateX(-50%);
-  top: -25px;
-  font-size: 12px;
-}
-.bgright {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 50%;
-  height: 56px;
-  background-color: #aaaaaa;
+  .timeSpan {
+    position: absolute;
+    color: #61afff;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -25px;
+    font-size: 12px;
+  }
 }
 </style>
