@@ -17,11 +17,14 @@
       </div>
       <!-- 日期选择区域 -->
       <div class="detaButton">
-        <i class="iconfont iconxiala-yuan-tianchong" />
+        <i class="iconfont iconxiala-yuan-tianchong" @click="show = true" />
         <van-button v-for="(item, i) of detas" :key="i" type="default">{{
           item
         }}</van-button>
       </div>
+      <!-- 日历开始 -->
+      <van-calendar v-model="show" :show-confirm="false" @confirm="onConfirm" />
+      <!-- 日历结束 -->
       <!-- 时间轴 -->
       <div class="timeAxis">
         <TimeAxis></TimeAxis>
@@ -56,14 +59,29 @@ export default {
       ],
       // 视屏数据
       video: require('@/assets/screenImage/videoImage.png'),
-      detas: ['11-22', '11-23', '11-24', '前天', '昨天', '今天', '现在']
+      detas: ['11-22', '11-23', '11-24', '前天', '昨天', '今天', '现在'],
+      // 日历数据开始
+      date: '', // 接收选择日期
+      show: false
+
+      // 日历数据结束
     }
   },
   methods: {
     // 清除默认选中属性
     btn() {
       this.defaultStyle = false
+    },
+    // 日历事件开始
+    formatDate(date) {
+      return `${date.getMonth() + 1}/${date.getDate()}`
+    },
+    onConfirm(date) {
+      this.show = false
+      this.date = this.formatDate(date)
     }
+
+    // 日历事件结束
   }
 }
 </script>
