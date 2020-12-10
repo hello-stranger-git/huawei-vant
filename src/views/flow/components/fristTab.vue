@@ -1,24 +1,42 @@
 <template>
   <div>
     <DateSelect></DateSelect>
-    <div class="todayCustomer">
-      <van-row type="flex">
-        <van-col span="4" v-for="(item, index) in userArr" :key="index">
-          <UserItem
-            :img="item.img"
-            :date="item.date"
-            :age="item.age"
-            :count="item.count"
-            :sex="item.sex"
-          ></UserItem>
-        </van-col>
-      </van-row>
-    </div>
+    <van-pull-refresh
+      v-model="isLoading"
+      @refresh="onRefresh"
+      success-text="刷新成功"
+    >
+      <div class="todayCustomer">
+        <van-list
+          v-model="loading"
+          finished-text="没有更多了"
+          @load="onLoad"
+          :finished="finished"
+        >
+          <van-row
+            v-for="(item, index) in arr"
+            :key="index"
+            type="flex"
+            justify="space-around"
+          >
+            <van-col span="4" v-for="(item1, i) in item" :key="i">
+              <UserItem
+                :img="item1.img"
+                :date="item1.date"
+                :age="item1.age"
+                :count="item1.count"
+                :sex="item1.sex"
+              ></UserItem>
+            </van-col>
+          </van-row>
+        </van-list>
+      </div>
+    </van-pull-refresh>
   </div>
 </template>
 <script>
 import DateSelect from './dateSelect.vue'
-import UserItem from '../../../components/home/userItem'
+import UserItem from '@/components/home/userItem'
 export default {
   components: {
     DateSelect,
@@ -26,6 +44,11 @@ export default {
   },
   data() {
     return {
+      count: 0,
+      isLoading: false,
+      loading: false,
+      arr: [],
+      finished: false,
       userArr: [
         {
           img: require('@/assets/enterStore/enterStore1.png'),
@@ -66,12 +89,24 @@ export default {
     }
   },
   created() {
-    this.userArr = [
-      ...this.userArr,
-      ...this.userArr,
-      ...this.userArr,
-      ...this.userArr
-    ]
+    this.arr = [this.userArr, this.userArr, this.userArr, this.userArr]
+  },
+  methods: {
+    onRefresh() {
+      console.log('下拉刷新')
+    },
+    onLoad() {
+      this.loading = true
+      setTimeout(() => {
+        this.arr.push(this.userArr)
+        console.log('上划加载')
+        // if (this.arr.length > 8) {
+        this.finished = true
+        // }
+      }, 1000)
+      this.Loading = false
+      console.log(this.Loading)
+    }
   }
 }
 </script>
@@ -85,7 +120,6 @@ export default {
 .todayCustomer {
   .van-row {
     padding-top: 20px;
-
     border-radius: 0 0 8px 8px;
   }
 }

@@ -75,7 +75,7 @@ export default {
 
 <style lang="less" scoped>
 .navBarItem {
-  margin: 10px 20px 0;
+  margin: 10px 15px 0;
   background-color: #eee;
 }
 .tabBox.activeClass {
