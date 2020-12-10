@@ -25,6 +25,14 @@
             @click="changeDay(item.day)"
             >{{ item.day }}</span
           >
+          <!-- 显示每一天总共访问的人数 -->
+          <template v-if="peopleCount">
+            <template v-for="(people, pid) in peopleCount">
+              <p v-if="people.day == item.day" class="peopelCount" :key="pid">
+                {{ people.count }}人
+              </p>
+            </template>
+          </template>
         </span>
       </div>
     </div>
@@ -33,6 +41,15 @@
 
 <script>
 export default {
+  props: {
+    // 每一天的访问总人数
+    peopleCount: {
+      type: Array,
+      default: function() {
+        return []
+      }
+    }
+  },
   data() {
     return {
       weeks: ['一', '二', '三', '四', '五', '六', '日'],
@@ -106,6 +123,7 @@ export default {
   },
   methods: {
     changeDay(day) {
+      this.$emit('getDay', day)
       this.now = day
     },
     preMonth() {
@@ -236,7 +254,14 @@ export default {
   .active {
     padding: 5px;
     background-color: #179bf3;
-    border-radius: 4px;
+    border-radius: 50%;
+  }
+  .peopelCount {
+    margin: 8px 6px;
+    padding: 0;
+    font-size: 12px;
+    background-color: rgb(18 174 185);
+    color: #fff;
   }
 }
 </style>

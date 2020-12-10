@@ -35,7 +35,7 @@
             ><van-progress
               :percentage="Math.ceil((item.male / item.total) * 100)"
               stroke-width="10"
-              track-color="#f98181"
+              :color="item.progressColor"
           /></van-col>
           <van-col span="3">
             <span>{{ item.total }}人</span>
@@ -217,10 +217,41 @@ export default {
         data1: [300, 200, 300, 600, 500, 400, 300, 600, 400, 300, 200, 100]
       },
       sexTimer: [
-        { time: '8:00-12:00', female: 4, male: 10, total: 14 },
-        { time: '12:00-16:00', female: 12, male: 10, total: 22 },
-        { time: '16:00-20:00', female: 109, male: 221, total: 330 },
-        { time: '20:00-24:00', female: 434, male: 566, total: 1000 }
+        {
+          time: '8:00~9:00',
+          female: 4,
+          male: 10,
+          total: 14,
+          progressColor: '#ff0101'
+        },
+        {
+          time: '9:00~10:00',
+          female: 4,
+          male: 10,
+          total: 14,
+          progressColor: '#179bf3'
+        },
+        {
+          time: '10:00~11:00',
+          female: 24,
+          male: 7,
+          total: 31,
+          progressColor: '#ffcd87'
+        },
+        {
+          time: '11:00~12:00',
+          female: 1,
+          male: 15,
+          total: 16,
+          progressColor: '#15d9d2'
+        },
+        {
+          time: '12:00~13:00',
+          female: 8,
+          male: 10,
+          total: 18,
+          progressColor: '#ffcd87'
+        }
       ]
     }
   }
@@ -231,17 +262,20 @@ export default {
 .notice {
   color: #ffda72;
   font-size: 16px;
-  padding: 10px 0 10px 15px;
+  padding: 10px 0 0 15px;
   background-color: #fff;
 }
 .maxFlow {
   background-color: #fff;
   position: relative;
+  border-radius: 0 0 8px 8px;
+  padding-top: 10px;
 }
 .otherFlow {
   background-color: #fff;
   position: relative;
   margin-top: 15px;
+  border-radius: 8px;
 }
 .max,
 .weather {
@@ -255,7 +289,7 @@ export default {
   bottom: 6%;
 }
 .max {
-  top: 10%;
+  top: 15%;
 }
 .tezheng {
   margin-bottom: 15px;
@@ -263,6 +297,7 @@ export default {
   background-color: #fff;
   margin: 15px 0;
   padding-top: 15px;
+  padding-right: 2%;
   .progress {
     padding: 5px 0;
   }
