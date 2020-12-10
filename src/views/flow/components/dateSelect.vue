@@ -26,11 +26,12 @@
         </van-col>
       </van-row>
     </div>
-    <van-overlay :show="show" @click="show = false">
-      <div class="wrapper">
-        <Calendar class="calendar" v-if="calendarShow"></Calendar>
-      </div>
-    </van-overlay>
+    <van-overlay :show="show" @click="overLayClick" />
+    <Calendar
+      @getDay="getDay"
+      class="calendar"
+      v-show="calendarShow"
+    ></Calendar>
   </div>
 </template>
 
@@ -41,7 +42,7 @@ export default {
     return {
       value1: '',
       calendarShow: false,
-      show: false
+      show: false // 控制遮罩层
     }
   },
   components: {
@@ -53,8 +54,17 @@ export default {
     },
     togCalendar() {
       this.calendarShow = !this.calendarShow
-      this.show = true
-      this.calendarShow = true
+      this.show = !this.show // 控制遮罩层
+    },
+    // 点击遮罩层
+    overLayClick() {
+      this.calendarShow = !this.calendarShow
+      this.show = !this.show // 控制遮罩层
+    },
+    // 点击日历的每一天，获取对应时间
+    getDay(day) {
+      this.calendarShow = !this.calendarShow
+      this.show = !this.show // 控制遮罩层
     }
   }
 }
@@ -69,7 +79,6 @@ export default {
 }
 .dateSelect {
   margin: auto;
-  // margin: 0 15px;
   width: 100%;
   height: 50px;
   background: #73e8e4;
@@ -93,16 +102,14 @@ export default {
 }
 .calendar {
   position: absolute;
-  z-index: 1;
-  top: 400px; //
-  width: 100%;
-  left: 0;
+  z-index: 3;
+  top: 66px;
+  width: 90%;
+  left: 5%;
   border-radius: 8px;
-  box-shadow: 0px 0px 10px 5px rgb(20 20 21 / 20%);
+  box-shadow: 0px 0px 10px 5px rgb(20 20 1.05%);
   opacity: 90%;
   background-color: #fff;
-  // padding-bottom: 30px;
-  // margin-bottom: 50px;
 }
 /deep/ .calendar .rowDays {
   height: 30px;
