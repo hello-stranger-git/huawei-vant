@@ -1,7 +1,10 @@
 <template>
   <div>
+    <!-- 日期选择 -->
     <DateSelect></DateSelect>
+    <!-- 饼图 -->
     <div class="annular">
+      <h3>客群分析</h3>
       <van-row class="annularRow">
         <van-col span="12">
           <AnnularChart
@@ -97,10 +100,16 @@ export default {
 .typeData {
   padding-bottom: 5px;
 }
+.annular {
+  background-color: #fff;
+  h3 {
+    padding: 10px 0 0 20px;
+  }
+}
 .annularRow {
   display: flex;
   align-items: center;
-  background-color: #fff;
+  // background-color: #fff;
 }
 .typeData {
   margin: -3px;
