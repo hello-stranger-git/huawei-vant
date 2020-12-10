@@ -3,17 +3,15 @@
     <van-row>
       <van-col :span="14">
         <div class="left">
-          <img :src="logoImage" />
-          <div>
-            <span class="l-title">华为体验店</span>
-            <van-icon name="arrow-down" />
-          </div>
+          <img class="logo" :src="logoImage" />
+          <span class="l-title">龙岗区华为体验店</span>
+          <img :src="dropDown" />
         </div>
       </van-col>
-      <van-col :span="10" class="r-col">
+      <van-col :span="10">
         <div class="right">
           <span class="username">兰宇贵</span>
-          <van-icon name="chat-o" badge="9" size="30" />
+          <van-icon :name="information" badge="9" size="24px" />
         </div>
       </van-col>
     </van-row>
@@ -23,65 +21,50 @@
 export default {
   data() {
     return {
-      logoImage: require('@/assets/huawei.png')
+      logoImage: require('@/assets/top/huawei.png'), // 华为logo
+      dropDown: require('@/assets/top/dropDown.png'), // 下拉箭头
+      information: require('@/assets/top/information.png') //
     }
   }
 }
 </script>
 <style lang="less" scoped>
+.van-row {
+  padding: 49px 21px 0 12px;
+}
 .TopMessage {
   background-color: #fbfbfb;
-  padding: 10px;
+  height: 88px;
+  font-size: 14px;
   box-shadow: 0px 2px 6px #99999924;
 }
+// 左侧样式
 .left {
   display: flex;
   align-items: center;
-  .van-icon {
-    vertical-align: middle;
+  .logo {
+    width: 30px;
+    height: 30px;
+  }
+  .l-title {
+    padding: 0 3px 3px 4px;
   }
 }
-.left > img {
-  width: 50px;
-  height: 45px;
-}
-.left .l-title {
-  padding: 0 8px;
-}
-.r-col {
-  height: 50px;
-}
+
+// 右侧样式
 .right {
-  height: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 10px;
   position: relative;
   .username {
-    margin-right: 12px;
+    margin-right: 30px;
+    padding-top: 3px;
   }
   .van-info {
-    top: 5px;
-    right: 5px;
+    top: 2px;
+    right: 1px;
+    background-color: #e30011;
   }
-}
-.messageIcon {
-  font-size: 30px;
-  vertical-align: middle;
-  padding-left: 10px;
-}
-.r-message-count {
-  width: 18px;
-  height: 18px;
-  background-color: #ff3300;
-  text-align: center;
-  line-height: 18px;
-  border-radius: 50%;
-  position: absolute;
-  right: 3px;
-  top: 8px;
-  color: #ffffff;
-  font-size: 12px;
 }
 </style>
