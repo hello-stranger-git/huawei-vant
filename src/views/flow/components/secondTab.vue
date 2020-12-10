@@ -55,6 +55,7 @@
     </div>
     <!-- 30天客流 -->
     <div class="otherFlow">
+      <p>30天客流走势</p>
       <div class="max">{{ monthFlow.maxTitle }}</div>
       <!-- <div class="weather">{{ monthFlow.weather }}</div> -->
       <FlowEchart
@@ -70,6 +71,7 @@
     </div>
     <!-- 90天客流 -->
     <div class="otherFlow">
+      <p>90天客流走势</p>
       <div class="max">{{ ninetyFlow.maxTitle }}</div>
       <!-- <div class="weather">{{ ninetyFlow.weather }}</div> -->
       <FlowEchart
@@ -85,6 +87,7 @@
     </div>
     <!-- 年客流 -->
     <div class="otherFlow">
+      <p>一年客流走势</p>
       <div class="max">{{ yearFlow.maxTitle }}</div>
       <!-- <div class="weather">{{ yearFlow.weather }}</div> -->
       <FlowEchart
@@ -142,7 +145,7 @@ export default {
         data3: [50, 100, 150, 100, 250]
       },
       monthFlow: {
-        maxTitle: '最大客流11月20日,共1160人',
+        maxTitle: '最大客流11月25日,共150人',
         // weather: '11月16日  多云气温28°',
         icon: 'iconrili',
         title: '近30天客流走势',
@@ -165,7 +168,7 @@ export default {
         data1: [50, 100, 50, 80, 106, 150, 50, 15]
       },
       ninetyFlow: {
-        maxTitle: '最大客流11月20日,共1160人',
+        maxTitle: '最大客流11月15日,共600人',
         // weather: '11月16日  多云气温28°',
         icon: 'iconrili',
         title: '近30天客流走势',
@@ -190,7 +193,7 @@ export default {
         data1: [300, 200, 300, 600, 500, 400, 300, 600, 400]
       },
       yearFlow: {
-        maxTitle: '最大客流四月,共600人',
+        maxTitle: '最大客流八月,共600人',
         icon: 'iconrili',
         title: '近30天客流走势',
         status: '',
@@ -259,6 +262,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.otherFlow {
+  padding-top: 15px;
+}
+.lineChart {
+  margin-top: 10px;
+}
 .notice {
   color: #ffda72;
   font-size: 16px;
@@ -269,13 +278,19 @@ export default {
   background-color: #fff;
   position: relative;
   border-radius: 0 0 8px 8px;
-  padding-top: 10px;
+  padding-top: 4px;
 }
 .otherFlow {
   background-color: #fff;
   position: relative;
   margin-top: 15px;
   border-radius: 8px;
+}
+.otherFlow > p {
+  position: absolute;
+  // top: 8px;
+  width: 100%;
+  text-align: center;
 }
 .max,
 .weather {
@@ -289,7 +304,9 @@ export default {
   bottom: 6%;
 }
 .max {
-  top: 15%;
+  top: 45px;
+  font-size: 14px;
+  color: rgb(121, 121, 121);
 }
 .tezheng {
   margin-bottom: 15px;
