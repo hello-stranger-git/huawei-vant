@@ -77,6 +77,8 @@ export default {
 .navBarItem {
   margin: 10px 15px 0;
   background-color: #eee;
+  border-radius: 8px;
+  overflow: hidden;
 }
 .tabBox.activeClass {
   background-color: #fff;
