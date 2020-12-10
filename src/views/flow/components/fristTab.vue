@@ -1,37 +1,33 @@
 <template>
   <div>
+    <!-- 日期选择 -->
     <DateSelect></DateSelect>
-    <van-pull-refresh
-      v-model="isLoading"
-      @refresh="onRefresh"
-      success-text="刷新成功"
-    >
-      <div class="todayCustomer">
-        <van-list
-          v-model="loading"
-          finished-text="没有更多了"
-          @load="onLoad"
-          :finished="finished"
+    <!-- 懒加载图片列表 -->
+    <div class="todayCustomer">
+      <van-list
+        v-model="loading"
+        finished-text="没有更多了"
+        @load="onLoad"
+        :finished="finished"
+      >
+        <van-row
+          v-for="(item, index) in arr"
+          :key="index"
+          type="flex"
+          justify="space-around"
         >
-          <van-row
-            v-for="(item, index) in arr"
-            :key="index"
-            type="flex"
-            justify="space-around"
-          >
-            <van-col span="4" v-for="(item1, i) in item" :key="i">
-              <UserItem
-                :img="item1.img"
-                :date="item1.date"
-                :age="item1.age"
-                :count="item1.count"
-                :sex="item1.sex"
-              ></UserItem>
-            </van-col>
-          </van-row>
-        </van-list>
-      </div>
-    </van-pull-refresh>
+          <van-col span="4" v-for="(item1, i) in item" :key="i">
+            <UserItem
+              :img="item1.img"
+              :date="item1.date"
+              :age="item1.age"
+              :count="item1.count"
+              :sex="item1.sex"
+            ></UserItem>
+          </van-col>
+        </van-row>
+      </van-list>
+    </div>
   </div>
 </template>
 <script>
@@ -92,35 +88,41 @@ export default {
     this.arr = [this.userArr, this.userArr, this.userArr, this.userArr]
   },
   methods: {
-    onRefresh() {
-      console.log('下拉刷新')
-    },
     onLoad() {
       this.loading = true
       setTimeout(() => {
-        this.arr.push(this.userArr)
-        console.log('上划加载')
-        // if (this.arr.length > 8) {
-        this.finished = true
-        // }
-      }, 1000)
-      this.Loading = false
-      console.log(this.Loading)
+        for (let i = 0; i < 4; i++) {
+          this.arr.push(this.userArr)
+        }
+        if (this.arr.length > 20) {
+          this.finished = true
+        } else {
+          this.loading = false
+        }
+      }, 500)
     }
-  }
+  },
+  mounted() {}
 }
 </script>
 
 <style lang="less" scoped>
-.van-row {
-  background-color: #fff;
-  text-align: center;
-  padding: 5px 10px;
-}
 .todayCustomer {
+  border-radius: 0 0 8px 8px;
   .van-row {
     padding-top: 20px;
-    border-radius: 0 0 8px 8px;
+    text-align: center;
+    padding: 5px 10px;
+    background-color: #fff;
   }
+  .van-row:last-child {
+    border-radius: 0 0 8px 8px;
+    background-color: red;
+  }
+}
+</style>
+<style>
+body {
+  height: 100%;
 }
 </style>
