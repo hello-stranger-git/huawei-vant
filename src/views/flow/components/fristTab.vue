@@ -115,9 +115,8 @@ export default {
     padding: 5px 10px;
     background-color: #fff;
   }
-  .van-row:last-child {
-    border-radius: 0 0 8px 8px;
-    background-color: red;
+  .van-row:first-child {
+    padding-top: 15px;
   }
 }
 </style>

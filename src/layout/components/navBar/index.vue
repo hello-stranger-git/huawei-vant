@@ -9,6 +9,10 @@
         :color="item.color"
       ></NavBarItem>
     </template>
+    <div class="toggleNav">
+      <div class="left"></div>
+      <div class="right"></div>
+    </div>
   </div>
 </template>
 
@@ -19,34 +23,29 @@ export default {
     return {
       navBarItem: [
         {
-          icon: 'iconbaojingshanshuo',
+          icon: '0',
           title: '报警信息',
-          menuCount: '1',
-          color: '#f72525'
+          menuCount: '1'
         },
         {
-          icon: 'iconzhenggaishijian',
+          icon: '1',
           title: '待整改',
-          menuCount: '5',
-          color: '#2735f3'
+          menuCount: '95'
         },
         {
-          icon: 'iconicon_kaoqin',
+          icon: '2',
           title: '9人缺勤',
-          menuCount: '9',
-          color: ' #05d48f'
+          menuCount: '9'
         },
         {
-          icon: 'iconshangcheng',
+          icon: '3',
           title: '商城',
-          menuCount: '2',
-          color: ' #ff4201'
+          menuCount: '2'
         },
         {
-          icon: 'icongongdan1',
+          icon: '4',
           title: '工单',
-          menuCount: '2',
-          color: '#ff9400'
+          menuCount: '2'
         }
       ]
     }
@@ -61,8 +60,25 @@ export default {
 .navbar {
   display: flex;
   background-color: #fff;
-  padding: 20px 0 0px 0;
-  margin: 10px 15px 0 15px;
-  border-radius: 8px;
+  padding: 18px 10px 0px 10px;
+  position: relative;
+}
+.toggleNav {
+  position: absolute;
+  width: 32px;
+  height: 3px;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  .left,
+  .right {
+    flex: 1;
+    background-color: #4a92ff;
+    border-radius: 30%;
+  }
+  .right {
+    background-color: #efefef;
+  }
 }
 </style>

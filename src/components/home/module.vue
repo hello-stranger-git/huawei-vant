@@ -2,12 +2,18 @@
 <template>
   <div class="module">
     <van-row>
-      <van-col span="24">
+      <van-col span="24" class="top">
         <van-col span="12">
-          <i :class="['iconfont', icon]"></i>
+          <img class="icon" :src="icon" />
           <span class="title">{{ title }}</span>
+          <template v-if="smallTitle">
+            <span class="smallTitle">{{ smallTitle }}</span>
+          </template>
         </van-col>
-        <van-col span="12" class="status">{{ status }}</van-col>
+        <van-col span="12" class="status">
+          <span class="more">更多</span>
+          <img :src="arrowIcon" />
+        </van-col>
       </van-col>
       <van-col span="24">
         <slot name="context"></slot>
@@ -20,13 +26,25 @@
 export default {
   props: {
     icon: {
+      // 图标
       type: String
     },
     title: {
+      // 标题
       type: String
     },
     status: {
       type: String
+    },
+    smallTitle: {
+      // 在标题后面是否添加小标题
+      type: String,
+      default: ''
+    }
+  },
+  data() {
+    return {
+      arrowIcon: require('@/assets/icon/arrow.png')
     }
   }
 }
@@ -34,22 +52,38 @@ export default {
 
 <style lang="less" scoped>
 .module {
-  font-size: 18px;
-  padding: 10px 15px;
+  border-radius: 10px;
+  padding: 12px 12px 16px 12px;
   .status {
     text-align: right;
-    font-size: 16px;
   }
-  .van-panel__header-value {
-    color: black;
+  .top {
+    display: flex;
+    align-items: center;
+    .smallTitle {
+      font-size: 12px;
+      color: #000;
+      opacity: 0.5;
+      font-weight: 300;
+      vertical-align: middle;
+      margin-left: 2px;
+    }
   }
-  .iconfont {
-    color: #d04e50;
-    font-size: 14px;
+  .icon {
+    vertical-align: middle;
   }
   .title {
-    margin-left: 10px;
-    font-weight: 600;
+    margin-left: 6px;
+    color: #141414;
+    font-size: 18px;
+    font-weight: 900;
+    vertical-align: middle;
+  }
+  .more {
+    font-size: 12px;
+    font-weight: 300;
+    color: #000;
+    opacity: 0.5;
   }
 }
 </style>
