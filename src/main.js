@@ -5,7 +5,6 @@ import store from './store'
 import Vant from 'vant'
 import 'vant/lib/index.css'
 import '@/assets/css/reset.css'
-// import '@/assets/iconfont/iconfont.css'
 // 引入全局矢量图
 import '@/assets/iconfont/iconfont.css'
 // 引入echarts挂载全局
