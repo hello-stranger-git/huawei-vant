@@ -1,26 +1,29 @@
 <template>
   <div class="progressItem">
     <van-row class="FeaturesProgress">
-      <van-col :span="5" class="leftTitle">
-        {{ leftTitle }}
-        <i
-          :class="['iconfont', leftIcon]"
-          :style="{ color: leftIconColor }"
-        ></i>
+      <!-- 左侧类容 -->
+      <van-col :span="4" class="leftTitle">
+        <span>{{ leftTitle }}</span>
+        <img :src="leftIcon" />
       </van-col>
-      <van-col :span="15">
+      <!-- 中间内容 -->
+      <van-col :span="16" class="strip">
         <van-progress
           :color="progressColor"
           :track-color="trackColor"
-          :stroke-width="8"
+          :stroke-width="14"
           :percentage="percentage"
+          :show-pivot="false"
+          :class="sex == '' ? '' : 'notBorderRadius'"
         ></van-progress>
+        <span class="leftNumber">{{ leftNumber }}</span>
+        <span class="rightNumber">{{ rightNumber }}</span>
       </van-col>
+      <!-- 右侧内容 -->
       <van-col :span="4" class="percent">
-        <span v-if="!sex"> {{ percentage }}% </span>
-        <div v-else class="rightSex">
-          <i class="iconfont iconnvren"></i>
-          <span>女性</span>
+        <div v-if="leftIcon">
+          <span>{{ rightTitle }}</span>
+          <img :src="rightIcon" />
         </div>
       </van-col>
     </van-row>
@@ -35,13 +38,28 @@ export default {
       type: String,
       default: ''
     },
-    // 左边图标颜色
-    leftIconColor: {
+    // 左边人数
+    leftNumber: {
       type: String,
-      default: '#50A6FF'
+      default: ''
     },
     // 左边标题后面的Icon
     leftIcon: {
+      type: String,
+      default: ''
+    },
+    // 右边标题
+    rightTitle: {
+      type: String,
+      default: ''
+    },
+    // 左边人数
+    rightNumber: {
+      type: String,
+      default: ''
+    },
+    // 右边标题后面的Icon
+    rightIcon: {
       type: String,
       default: ''
     },
@@ -71,31 +89,49 @@ export default {
 
 <style lang="less" scoped>
 .progressItem {
-  .iconfont {
-    font-size: 12px;
+  // 右侧样式
+  .percent {
+    // color: #cbcbd7;
+    padding-left: 13px;
+    // text-align: center;
   }
+  // 左侧样式
+  .leftTitle,
   .percent {
     font-size: 12px;
-    color: #cbcbd7;
-    text-align: center;
-    .rightSex {
-      i {
-        color: #f98181;
-      }
+    img {
+      margin-left: 1px;
+      vertical-align: middle;
+    }
+    span {
+      vertical-align: middle;
     }
   }
-  .leftTitle {
-    font-size: 13px;
-  }
   .FeaturesProgress {
-    // margin: 5px 0;
-    margin-bottom: 15px;
-    padding-left: 10px;
     display: flex;
     align-items: center;
   }
-  .FeaturesProgress:last-child {
-    margin-bottom: 0;
+  // 修改默认圆角
+  .van-progress {
+    border-radius: 10px;
+  }
+  /deep/.notBorderRadius .van-progress__portion {
+    border-radius: 10pt 0pt 0pt 10pt;
+  }
+  .strip {
+    position: relative;
+    font-size: 12px;
+    color: #fff;
+    .leftNumber {
+      position: absolute;
+      top: 0;
+      left: 5px;
+    }
+    .rightNumber {
+      position: absolute;
+      top: 0;
+      right: 5px;
+    }
   }
 }
 </style>
