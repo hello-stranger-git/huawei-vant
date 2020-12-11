@@ -51,7 +51,7 @@ div.notice {
       display: inline-block;
       position: absolute;
       right: 19px;
-      top: 0;
+      top: -2px;
     }
   }
 }
