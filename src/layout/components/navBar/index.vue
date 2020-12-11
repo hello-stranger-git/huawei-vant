@@ -40,7 +40,7 @@ export default {
         {
           icon: '3',
           title: '商城',
-          menuCount: '2'
+          menuCount: '0'
         },
         {
           icon: '4',

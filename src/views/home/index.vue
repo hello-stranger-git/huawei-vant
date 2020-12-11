@@ -105,6 +105,7 @@
         <template v-if="item.type == 'video'" slot="context">
           <div class="video">
             <van-row>
+              <!-- 四个视频 -->
               <template v-for="(videoItem, vid) in item.videoData">
                 <van-col span="12" :key="vid">
                   <VideoItem
@@ -188,6 +189,7 @@ export default {
           status: '',
           label: ['当前', '昨日', '前天'],
           xLabel: [
+            '7:00',
             '8:00',
             '10:00',
             '12:00',
@@ -196,17 +198,18 @@ export default {
             '18:00',
             '20:00',
             '22:00',
-            ''
+            '23:00',
+            '24:00'
           ],
           xName: '时间',
           yName: '客流',
           type: 'flow',
           dataName1: '昨日',
-          data1: [50, 100, 50, 80, 106, 150, 50, 15, 10],
+          data1: [50, 100, 50, 80, 106, 150, 50, 15, 10, 5, 8],
           dataName2: '前天',
-          data2: [25, 50, 75, 50, 120, 75, 25, 30, 30],
+          data2: [25, 50, 75, 50, 120, 75, 25, 30, 30, 15, 18],
           dataName3: '当前',
-          data3: [50, 100, 150, 100, 250, 200, 180, 150, 100]
+          data3: [50, 100, 150, 100, 250, 200, 180, 150, 100, 50, 80]
         },
         // 客群特征
         {
@@ -261,7 +264,7 @@ export default {
         },
         // 本店视频
         {
-          icon: 'iconrili',
+          img: require('@/assets/icon/homeVideo.png'),
           title: '本店视频',
           status: '更多>',
           type: 'video',
@@ -289,7 +292,50 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      todayEnter: {
+        img: require('@/assets/icon/enterStoreIcon.png'),
+        title: '今日进店',
+        smallTitle: '(247人)',
+        type: 'enterStore',
+        user: [
+          {
+            img: require('@/assets/enterStore/enterStore1.png'),
+            date: '19:45:21',
+            age: '35~40',
+            count: 1,
+            sex: 'woman'
+          },
+          {
+            img: require('@/assets/enterStore/enterStore2.png'),
+            date: '18:45:21',
+            age: '35~40',
+            count: 8,
+            sex: 'man'
+          },
+          {
+            img: require('@/assets/enterStore/enterStore3.png'),
+            date: '17:45:21',
+            age: '35~40',
+            count: 1,
+            sex: 'man'
+          },
+          {
+            img: require('@/assets/enterStore/enterStore4.png'),
+            date: '16:45:21',
+            age: '35~40',
+            count: 10,
+            sex: 'man'
+          },
+          {
+            img: require('@/assets/enterStore/enterStore5.png'),
+            date: '15:45:21',
+            age: '35~40',
+            count: 3,
+            sex: 'man'
+          }
+        ]
+      }
     }
   },
   components: {

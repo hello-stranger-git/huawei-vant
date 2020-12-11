@@ -3,7 +3,10 @@
     <div class="navBarItemIcon">
       <van-icon :name="iconArr[icon]" />
       <!-- <div class="messageCount">{{ menuCount }}</div> -->
-      <div :class="menuCount >= 10 ? 'moreMessage' : 'messageCount'">
+      <div
+        :class="menuCount >= 10 ? 'moreMessage' : 'messageCount'"
+        v-if="menuCount >= 1"
+      >
         {{ menuCount }}
       </div>
     </div>
