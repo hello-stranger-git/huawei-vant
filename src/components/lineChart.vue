@@ -1,6 +1,6 @@
 <template>
   <div class="lineChart">
-    <div :id="lineChartsId" style="width: 100%; height: 250px"></div>
+    <div :id="lineChartsId" style="width: 100%; height: 212px"></div>
   </div>
 </template>
 
@@ -103,7 +103,7 @@ export default {
                     },
                     {
                       offset: 1,
-                      color: 'rgba(91,179,252,0.2)' // 100% 处的颜色
+                      color: '#848484' // 100% 处的颜色
                     }
                   ]
                 }
@@ -112,16 +112,44 @@ export default {
           },
           // label
           legend: {
-            data: this.label,
-            icon: 'circle', //  这个字段控制形状  类型包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，none
+            // data: this.label,
+            data: [
+              {
+                name: this.label[0],
+                textStyle: {
+                  fontSize: 10,
+                  fontWeight: '300',
+                  color: '#505050'
+                },
+                icon: 'circle'
+              },
+              {
+                name: this.label[1],
+                textStyle: {
+                  fontSize: 10,
+                  fontWeight: '300',
+                  color: '#505050'
+                },
+                icon: 'circle'
+              },
+              {
+                name: this.label[2],
+                textStyle: {
+                  fontSize: 10,
+                  fontWeight: '300',
+                  color: '#505050'
+                },
+                icon: 'circle'
+              }
+            ],
             itemWidth: 10, // 设置宽度
             itemHeight: 10, // 设置高度
-            itemGap: 40 // 设置间距
+            itemGap: 80 // 设置间距
           },
           xAxis: [
             {
               type: 'category',
-              name: this.xName,
+              name: '',
               nameTextStyle: {
                 // 设置坐标轴名字样式
                 padding: [-30, 0, -10, -15]
@@ -131,7 +159,7 @@ export default {
               axisLine: {
                 // 线
                 show: true,
-                symbol: ['none', 'arrow'],
+                // symbol: ['none', 'arrow'],
                 symbolSize: [5, 8],
                 lineStyle: {
                   // 设置坐标轴线的颜色
@@ -155,14 +183,14 @@ export default {
           yAxis: [
             {
               type: 'value',
-              name: this.yName,
+              name: '',
               nameTextStyle: {
                 // 设置坐标轴名字样式
                 padding: [0, -25, -10, 0]
               },
               axisLine: {
                 // 线
-                show: true,
+                show: false, // 是否显示轴线
                 symbol: ['none', 'arrow'], // 设置箭头方向
                 symbolSize: [5, 8], // 设置箭头大小
                 lineStyle: {
@@ -178,7 +206,7 @@ export default {
               axisLabel: {
                 // 设置很坐标label样式
                 textStyle: {
-                  color: '#3D3D3E',
+                  color: 'rgb(0,0,0,0)',
                   fontSize: '13'
                 }
               },
@@ -196,7 +224,7 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     {
                       offset: 0,
-                      color: '#7373D0'
+                      color: '#FEA8C5'
                     },
                     {
                       offset: 1,
@@ -210,7 +238,7 @@ export default {
 
               itemStyle: {
                 normal: {
-                  color: 'rgba(104,104,205,0.8)', // 设置覆盖颜色
+                  color: '#FEA8C5', // 设置覆盖颜色
                   label: {
                     show: false, // 显示值
                     // position: "top", //值在上方显示
@@ -234,7 +262,7 @@ export default {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     {
                       offset: 0,
-                      color: '#39DCD9'
+                      color: '#F1835B'
                     },
                     {
                       offset: 1,
@@ -248,7 +276,7 @@ export default {
 
               itemStyle: {
                 normal: {
-                  color: 'rgba(28,217,211,0.8)', // 设置覆盖颜色
+                  color: '#F1835B', // 设置覆盖颜色
                   label: {
                     show: false, // 显示值
                     // position: "top", //值在上方显示
@@ -264,13 +292,12 @@ export default {
               name: this.dataName3,
               symbol: 'none', // 去掉线上的小圆点
               type: 'line',
-              // stack: "总量",//堆叠
               areaStyle: {
                 normal: {
                   color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
                     {
                       offset: 0,
-                      color: '#1A9DD5'
+                      color: '#15D9D2'
                     },
                     {
                       offset: 1,
@@ -283,7 +310,7 @@ export default {
               smooth: true,
               itemStyle: {
                 normal: {
-                  color: 'rgba(49,163,212,1)', // 设置覆盖颜色
+                  color: '#56BE9B', // 设置覆盖颜色
                   label: {
                     show: false, // 显示值
                     // position: "top", //值在上方显示

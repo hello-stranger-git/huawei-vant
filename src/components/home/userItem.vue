@@ -1,19 +1,23 @@
 <template>
   <div class="userItem">
+    <!-- 头像 -->
     <img class="userImage" :src="img" />
-    <p class="date">{{ date }}</p>
-    <p class="age">
-      <i
-        :class="[
-          sex == 'woman' ? 'woman' : 'man',
-          'iconfont',
-          'iconweibiaoti4'
-        ]"
-      ></i>
-      {{ age }}
+    <!-- 时间 -->
+    <p class="date">
+      <img :src="timeIcon" />
+      <span>{{ date }}</span>
     </p>
-    <p :class="[count == 1 ? 'firstCount' : '', 'count']">
-      <span v-if="count != 1">{{ count }}次到店</span>
+    <!-- 年龄 -->
+    <p class="age">
+      <img :src="sex == 'woman' ? womanIcon : manIcon" />
+      <span>{{ age }}岁</span>
+    </p>
+    <!-- 来店次数 -->
+    <p :class="[count == 1 ? 'textColor' : '', 'frequency']">
+      <img v-if="crossStore" :src="storeIcon" />
+      <span :class="crossStore ? '' : 'marginLeft'" v-if="count != 1"
+        >{{ count }}次到店</span
+      >
       <span v-else>新客</span>
     </p>
   </div>
@@ -41,6 +45,18 @@ export default {
     sex: {
       // 性别
       type: String
+    },
+    crossStore: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data() {
+    return {
+      timeIcon: require('@/assets/icon/timeIcon.png'), // 时间图标
+      manIcon: require('@/assets/icon/manIcon.png'), // 男性图标
+      womanIcon: require('@/assets/icon/womanIcon.png'), // 女性图标
+      storeIcon: require('@/assets/icon/storeIcon.png') // 店铺图标
     }
   }
 }
@@ -48,40 +64,43 @@ export default {
 
 <style lang="less" scoped>
 .userItem {
+  p {
+    font-size: 12px;
+    line-height: 17px;
+    display: flex;
+    img {
+      width: 12px;
+      height: 12px;
+      margin-right: 4px;
+      margin-top: 1px;
+    }
+  }
   .userImage {
-    width: 50px;
-    height: 55px;
-    border-radius: 5px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
   }
-  .date {
-    color: #909090;
-    font-size: 10px;
-  }
+  .date,
   .age {
-    font-size: 10px;
-    .iconfont {
-      font-size: 10px;
-    }
-    .woman {
-      color: #f98181;
-    }
-    .man {
-      color: #2194d1;
+    color: #343434;
+    span {
+      opacity: 0.7;
     }
   }
-  .count {
-    font-size: 10px;
-    text-align: center;
+  .date,
+  .age {
+    margin-top: 3px;
   }
-
-  .firstCount {
-    background-color: #50a6ff;
-    color: #ffffff;
-    border-radius: 5px;
-    font-size: 10px;
-    width: 50px;
-    margin: auto;
-    text-align: center;
+  .frequency {
+    color: #343434;
+    margin-top: 6px;
   }
+  .textColor {
+    color: #4a92ff;
+    margin-left: 16px;
+  }
+}
+.marginLeft {
+  margin-left: 16px;
 }
 </style>

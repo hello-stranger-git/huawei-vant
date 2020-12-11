@@ -20,6 +20,7 @@
                 :age="user.age"
                 :count="user.count"
                 :sex="user.sex"
+                :crossStore="user.crossStore"
               ></UserItem>
             </template>
           </div>
@@ -147,32 +148,28 @@ export default {
               date: '19:45:21',
               age: '35~40',
               count: 1,
-              sex: 'woman'
+              sex: 'woman',
+              crossStore: false
             },
             {
               img: require('@/assets/enterStore/enterStore2.png'),
               date: '18:45:21',
               age: '35~40',
-              count: 8,
-              sex: 'man'
+              count: 2,
+              sex: 'man',
+              crossStore: true
             },
             {
               img: require('@/assets/enterStore/enterStore3.png'),
               date: '17:45:21',
               age: '35~40',
-              count: 1,
-              sex: 'man'
+              count: 6,
+              sex: 'man',
+              crossStore: true
             },
             {
               img: require('@/assets/enterStore/enterStore4.png'),
               date: '16:45:21',
-              age: '35~40',
-              count: 10,
-              sex: 'man'
-            },
-            {
-              img: require('@/assets/enterStore/enterStore5.png'),
-              date: '15:45:21',
               age: '35~40',
               count: 3,
               sex: 'man'
@@ -181,7 +178,7 @@ export default {
         },
         // 今日客流走势
         {
-          icon: 'iconrili',
+          img: require('@/assets/icon/flowTrend.png'),
           title: '今日客流走势',
           status: '',
           label: ['当前', '昨日', '前天'],
@@ -200,11 +197,11 @@ export default {
           yName: '客流',
           type: 'flow',
           dataName1: '昨日',
-          data1: [50, 100, 50, 80, 106, 150, 50, 15],
+          data1: [50, 100, 50, 80, 106, 150, 50, 15, 10],
           dataName2: '前天',
-          data2: [25, 50, 75, 50, 120, 75, 25, 30],
+          data2: [25, 50, 75, 50, 120, 75, 25, 30, 30],
           dataName3: '当前',
-          data3: [50, 100, 150, 100, 250]
+          data3: [50, 100, 150, 100, 250, 200, 180, 150, 100]
         },
         // 客群特征
         {
@@ -430,7 +427,7 @@ export default {
   background-color: #fff;
 }
 .lineChart {
-  margin-top: 15px;
-  height: 200px;
+  margin-top: 14px;
+  height: 158px;
 }
 </style>
