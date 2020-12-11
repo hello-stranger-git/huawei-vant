@@ -180,7 +180,7 @@ export default {
         },
         // 今日客流走势
         {
-          icon: 'iconrili',
+          img: require('@/assets/icon/flowTrend.png'),
           title: '今日客流走势',
           status: '',
           label: ['当前', '昨日', '前天'],
@@ -199,11 +199,11 @@ export default {
           yName: '客流',
           type: 'flow',
           dataName1: '昨日',
-          data1: [50, 100, 50, 80, 106, 150, 50, 15],
+          data1: [50, 100, 50, 80, 106, 150, 50, 15, 10],
           dataName2: '前天',
-          data2: [25, 50, 75, 50, 120, 75, 25, 30],
+          data2: [25, 50, 75, 50, 120, 75, 25, 30, 30],
           dataName3: '当前',
-          data3: [50, 100, 150, 100, 250]
+          data3: [50, 100, 150, 100, 250, 200, 180, 150, 100]
         },
         // 客群特征
         {
@@ -386,7 +386,7 @@ export default {
   background-color: #fff;
 }
 .lineChart {
-  margin-top: 15px;
-  height: 200px;
+  margin-top: 14px;
+  height: 158px;
 }
 </style>
