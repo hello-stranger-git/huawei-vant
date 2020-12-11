@@ -40,7 +40,7 @@ export default {
         {
           icon: '3',
           title: '商城',
-          menuCount: '2'
+          menuCount: '0'
         },
         {
           icon: '4',
@@ -73,7 +73,7 @@ export default {
   display: flex;
   .left,
   .right {
-    flex: 1;
+    //////    flex: 1;
     background-color: #4a92ff;
     border-radius: 30%;
   }

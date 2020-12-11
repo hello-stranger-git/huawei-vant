@@ -103,6 +103,7 @@
         <template v-if="item.type == 'video'" slot="context">
           <div class="video">
             <van-row>
+              <!-- 四个视频 -->
               <template v-for="(videoItem, vid) in item.videoData">
                 <van-col span="12" :key="vid">
                   <VideoItem
@@ -258,7 +259,7 @@ export default {
         },
         // 本店视频
         {
-          icon: 'iconrili',
+          img: require('@/assets/icon/homeVideo.png'),
           title: '本店视频',
           status: '更多>',
           type: 'video',
@@ -286,7 +287,50 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      todayEnter: {
+        img: require('@/assets/icon/enterStoreIcon.png'),
+        title: '今日进店',
+        smallTitle: '(247人)',
+        type: 'enterStore',
+        user: [
+          {
+            img: require('@/assets/enterStore/enterStore1.png'),
+            date: '19:45:21',
+            age: '35~40',
+            count: 1,
+            sex: 'woman'
+          },
+          {
+            img: require('@/assets/enterStore/enterStore2.png'),
+            date: '18:45:21',
+            age: '35~40',
+            count: 8,
+            sex: 'man'
+          },
+          {
+            img: require('@/assets/enterStore/enterStore3.png'),
+            date: '17:45:21',
+            age: '35~40',
+            count: 1,
+            sex: 'man'
+          },
+          {
+            img: require('@/assets/enterStore/enterStore4.png'),
+            date: '16:45:21',
+            age: '35~40',
+            count: 10,
+            sex: 'man'
+          },
+          {
+            img: require('@/assets/enterStore/enterStore5.png'),
+            date: '15:45:21',
+            age: '35~40',
+            count: 3,
+            sex: 'man'
+          }
+        ]
+      }
     }
   },
   components: {
