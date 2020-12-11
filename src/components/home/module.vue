@@ -33,9 +33,6 @@ export default {
       // 标题
       type: String
     },
-    status: {
-      type: String
-    },
     smallTitle: {
       // 在标题后面是否添加小标题
       type: String,

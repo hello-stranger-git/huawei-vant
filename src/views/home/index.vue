@@ -50,17 +50,24 @@
           </div>
           <div class="annular">
             <van-row class="annularRow">
-              <van-col span="12">
+              <van-col span="12" class="annularCol">
                 <AnnularChart
                   :series="item.data"
                   :legend="[]"
                   :seriesName="item.seriesName"
-                ></AnnularChart
-              ></van-col>
+                ></AnnularChart>
+                <div class="annularPeople">
+                  <span class="annularPeopleCount">247人</span>
+                  <p class="annularPeopleCountTitle">总人数</p>
+                </div>
+              </van-col>
               <van-col span="12" class="typeCol">
                 <template v-for="(type, tid) in item.data">
                   <van-col span="24" class="typeData" :key="tid">
-                    <div class="round" style="border: 1px solid #c32c1c;"></div>
+                    <div
+                      class="round"
+                      :style="{ backgroundColor: type.color }"
+                    ></div>
                     <span>{{ type.name }}</span>
                     <span>{{ type.percent }}</span>
                     <span>{{ type.value }}</span>
@@ -180,7 +187,6 @@ export default {
         {
           img: require('@/assets/icon/flowTrend.png'),
           title: '今日客流走势',
-          status: '',
           label: ['当前', '昨日', '前天'],
           xLabel: [
             '7:00',
@@ -207,16 +213,15 @@ export default {
         },
         // 客群特征
         {
-          icon: 'iconkequn',
-          title: '客群特征(今日)',
-          status: '',
+          img: require('@/assets/icon/features.png'),
+          title: '客群特征',
           type: 'features',
           seriesName: '大数据',
           data: [
-            { value: 47, name: '老年', percent: '10.00%' },
-            { value: 154, name: '中年', percent: '20.00%' },
-            { value: 46, name: '青年', percent: '34.00%' },
-            { value: 47, name: '少年', percent: '10.00%' }
+            { value: 47, name: '老年', percent: '10.00%', color: '#F8C498' },
+            { value: 154, name: '中年', percent: '20.00%', color: '#56BE9B' },
+            { value: 46, name: '青年', percent: '34.00%', color: '#F1835B' },
+            { value: 47, name: '少年', percent: '10.00%', color: '#FEA8C5' }
           ],
           progressDate: [
             {
@@ -358,59 +363,76 @@ export default {
     overflow-y: auto;
   }
   .selectDate {
-    text-align: center;
-    margin-top: 15px;
+    margin-top: 12px;
+    padding-left: 7px;
     .nowDay,
     .nowWeek,
     .nowMonth {
-      width: 30%;
-      height: 40px;
+      box-sizing: border-box;
+      width: 90px;
+      height: 30px;
       display: inline-block;
-      line-height: 40px;
-      border: 1px solid #409eff;
+      line-height: 30px;
       text-align: center;
+      border: 1px solid #4a92ff;
       cursor: pointer;
+      border-radius: 5px;
+      color: #4a92ff;
+      font-size: 14px;
+      font-weight: 300;
     }
     .nowWeek:hover,
     .nowMonth:hover,
     .nowDay:hover {
       color: #fff;
-      background-color: #409eff;
+      background-color: #4a92ff;
     }
-    .nowDay {
-      border-right: 0;
-      border-radius: 8px 0 0 8px;
-    }
+    .nowWeek,
     .nowMonth {
-      border-radius: 0 8px 8px 0;
-      border-left: 0;
+      margin-left: 22px;
     }
   }
   .annular {
     .round {
       display: inline-block;
-      border: 1px solid #c32c1c;
-      background-color: #ffffff;
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      margin-right: 2px;
+      margin-right: 8px;
+      background-color: #f8c498;
     }
     .typeData {
-      margin: -3px;
+      margin-top: 7px;
       font-size: 14px;
-      margin-top: 6px;
       color: #909399;
       span {
         margin: 0 4px;
+        color: #343434;
+        font-size: 12px;
       }
     }
     .annularRow {
       display: flex;
       align-items: center;
-    }
-    .typeCol {
-      padding-bottom: 20px;
+      .annularCol {
+        position: relative;
+        .annularPeople {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          .annularPeopleCount,
+          .annularPeopleCountTitle {
+            color: #343434;
+            font-size: 18px;
+            font-weight: bold;
+          }
+          .annularPeopleCountTitle {
+            font-size: 14px;
+            font-weight: 400;
+          }
+        }
+      }
     }
   }
   .progress {
