@@ -104,7 +104,7 @@
         <!-- 本店视频 -->
         <template v-if="item.type == 'video'" slot="context">
           <div class="video">
-            <van-row>
+            <van-row type="flex">
               <!-- 四个视频 -->
               <template v-for="(videoItem, vid) in item.videoData">
                 <van-col span="12" :key="vid">
@@ -116,6 +116,13 @@
                   ></VideoItem>
                 </van-col>
               </template>
+            </van-row>
+            <van-row type="flex" justify="center">
+              <van-col
+                ><div class="updateTime">
+                  数据更新时间：{{ updateTime }}
+                </div></van-col
+              >
             </van-row>
           </div>
         </template>
@@ -136,6 +143,7 @@ import BarCharts from '@/components/barCharts' // 柱状图
 export default {
   data() {
     return {
+      updateTime: new Date().toLocaleString(),
       moduleDate: [
         // 今日进店数据
         {
@@ -270,22 +278,22 @@ export default {
           type: 'video',
           videoData: [
             {
-              videoImage: require('@/assets/videoImage/videoImage1.png'),
+              videoImage: require('@/assets/videoImage/homeVideo1.png'),
               videoTitle: '大厅1',
               time: '16:22:30'
             },
             {
-              videoImage: require('@/assets/videoImage/videoImage2.png'),
+              videoImage: require('@/assets/videoImage/homeVideo2.png'),
               videoTitle: '大厅2',
               time: '16:22:30'
             },
             {
-              videoImage: require('@/assets/videoImage/videoImage3.png'),
+              videoImage: require('@/assets/videoImage/homeVideo3.png'),
               videoTitle: '大厅3',
               time: '16:22:30'
             },
             {
-              videoImage: require('@/assets/videoImage/videoImage3.png'),
+              videoImage: require('@/assets/videoImage/homeVideo1.png'),
               videoTitle: '人脸识别进门',
               status: 'offLine',
               time: '12:30:00'
@@ -400,7 +408,7 @@ export default {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      margin-right: 2px;
+      // margin-right: 2px;
     }
     .typeData {
       margin: -3px;
@@ -424,8 +432,15 @@ export default {
   }
   .video {
     margin-top: 10px;
+    .van-row--flex {
+      display: flex;
+      justify-content: space-evenly;
+    }
     .videoItem {
-      margin: 2px;
+      width: 100%;
+    }
+    .van-col--12 {
+      width: auto;
     }
   }
 }
@@ -433,9 +448,16 @@ export default {
   margin: 10px 12px 0 12px;
   border-radius: 8px;
   background-color: #fff;
+  padding: 12px;
 }
 .lineChart {
   margin-top: 14px;
   height: 158px;
+}
+.updateTime {
+  font-size: 10px;
+  height: 14px;
+  line-height: 14px;
+  opacity: 0.5;
 }
 </style>
