@@ -1,7 +1,10 @@
 <template>
   <div class="userItem">
     <!-- 头像 -->
-    <img class="userImage" :src="img" />
+    <div class="headPortrait ">
+      <img class="userImage" :src="img" />
+      <img v-if="vip" class="vipImage" :src="vipIcon" />
+    </div>
     <!-- 时间 -->
     <p class="date">
       <img :src="timeIcon" />
@@ -47,6 +50,12 @@ export default {
       type: String
     },
     crossStore: {
+      // 跨店
+      type: Boolean,
+      default: false
+    },
+    vip: {
+      // 跨店
       type: Boolean,
       default: false
     }
@@ -56,7 +65,8 @@ export default {
       timeIcon: require('@/assets/icon/timeIcon.png'), // 时间图标
       manIcon: require('@/assets/icon/manIcon.png'), // 男性图标
       womanIcon: require('@/assets/icon/womanIcon.png'), // 女性图标
-      storeIcon: require('@/assets/icon/storeIcon.png') // 店铺图标
+      storeIcon: require('@/assets/icon/storeIcon.png'), // 店铺图标
+      vipIcon: require('@/assets/icon/vipIcon.png') // 店铺图标
     }
   }
 }
@@ -75,10 +85,22 @@ export default {
       margin-top: 1px;
     }
   }
-  .userImage {
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
+  .headPortrait {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    .userImage {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+    }
+    .vipImage {
+      width: 20px;
+      height: 15px;
+      position: absolute;
+      bottom: 0px;
+      right: 2px;
+    }
   }
   .date,
   .age {
@@ -87,7 +109,9 @@ export default {
       opacity: 0.7;
     }
   }
-  .date,
+  .date {
+    margin-top: 4px;
+  }
   .age {
     margin-top: 3px;
   }
