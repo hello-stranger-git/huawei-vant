@@ -21,6 +21,7 @@
                 :count="user.count"
                 :sex="user.sex"
                 :crossStore="user.crossStore"
+                :vip="user.vip"
               ></UserItem>
             </template>
           </div>
@@ -149,7 +150,8 @@ export default {
               age: '35~40',
               count: 1,
               sex: 'woman',
-              crossStore: false
+              crossStore: false,
+              vip: false
             },
             {
               img: require('@/assets/enterStore/enterStore2.png'),
@@ -157,7 +159,8 @@ export default {
               age: '35~40',
               count: 2,
               sex: 'man',
-              crossStore: true
+              crossStore: true,
+              vip: true
             },
             {
               img: require('@/assets/enterStore/enterStore3.png'),
@@ -165,14 +168,17 @@ export default {
               age: '35~40',
               count: 6,
               sex: 'man',
-              crossStore: true
+              crossStore: true,
+              vip: false
             },
             {
               img: require('@/assets/enterStore/enterStore4.png'),
               date: '16:45:21',
               age: '35~40',
               count: 3,
-              sex: 'man'
+              sex: 'man',
+              crossStore: false,
+              vip: true
             }
           ]
         },
@@ -183,6 +189,7 @@ export default {
           status: '',
           label: ['当前', '昨日', '前天'],
           xLabel: [
+            '7:00',
             '8:00',
             '10:00',
             '12:00',
@@ -191,17 +198,18 @@ export default {
             '18:00',
             '20:00',
             '22:00',
-            ''
+            '23:00',
+            '24:00'
           ],
           xName: '时间',
           yName: '客流',
           type: 'flow',
           dataName1: '昨日',
-          data1: [50, 100, 50, 80, 106, 150, 50, 15, 10],
+          data1: [50, 100, 50, 80, 106, 150, 50, 15, 10, 5, 8],
           dataName2: '前天',
-          data2: [25, 50, 75, 50, 120, 75, 25, 30, 30],
+          data2: [25, 50, 75, 50, 120, 75, 25, 30, 30, 15, 18],
           dataName3: '当前',
-          data3: [50, 100, 150, 100, 250, 200, 180, 150, 100]
+          data3: [50, 100, 150, 100, 250, 200, 180, 150, 100, 50, 80]
         },
         // 客群特征
         {
