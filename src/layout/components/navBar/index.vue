@@ -73,7 +73,7 @@ export default {
   display: flex;
   .left,
   .right {
-    //////    flex: 1;
+    flex: 1;
     background-color: #4a92ff;
     border-radius: 30%;
   }
