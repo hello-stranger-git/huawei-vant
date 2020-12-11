@@ -1,6 +1,6 @@
 <template>
   <div class="lineChart">
-    <div :id="lineChartsId" style="width: 100%; height: 212px"></div>
+    <div :id="lineChartsId" style="width: 100%; height: 205px"></div>
   </div>
 </template>
 
@@ -154,12 +154,12 @@ export default {
                 // 设置坐标轴名字样式
                 padding: [-30, 0, -10, -15]
               },
-              boundaryGap: false,
+              // boundaryGap: false,
               data: this.xLabel,
               axisLine: {
                 // 线
                 show: true,
-                // symbol: ['none', 'arrow'],
+                // symbol: ['none', 'arrow'],箭头
                 symbolSize: [5, 8],
                 lineStyle: {
                   // 设置坐标轴线的颜色
@@ -176,7 +176,7 @@ export default {
                   color: '#3D3D3E',
                   fontSize: '13'
                 },
-                padding: [0, 0, 0, 25] // 设置文本离轴的padding
+                padding: [5, 25, 0, 25] // 设置文本离轴的padding
               }
             }
           ],
