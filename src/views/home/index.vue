@@ -422,7 +422,7 @@ export default {
   }
 }
 .module {
-  margin: 10px 15px 0 15px;
+  margin: 10px 12px 0 12px;
   border-radius: 8px;
   background-color: #fff;
 }
