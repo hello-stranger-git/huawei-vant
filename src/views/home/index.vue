@@ -383,7 +383,12 @@ export default {
       line-height: 40px;
       border: 1px solid #409eff;
       text-align: center;
+      border: 1px solid #4a92ff;
       cursor: pointer;
+      border-radius: 5px;
+      color: #4a92ff;
+      font-size: 14px;
+      font-weight: 300;
     }
     .nowWeek:hover,
     .nowMonth:hover,
@@ -413,10 +418,11 @@ export default {
     .typeData {
       margin: -3px;
       font-size: 14px;
-      margin-top: 6px;
       color: #909399;
       span {
         margin: 0 4px;
+        color: #343434;
+        font-size: 12px;
       }
     }
     .annularRow {
