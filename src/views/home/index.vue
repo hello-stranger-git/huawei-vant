@@ -3,10 +3,11 @@
     <NavBar></NavBar>
     <template v-for="(item, index) in moduleDate">
       <Module
-        :icon="item.icon"
+        :icon="item.img"
         :title="item.title"
         :status="item.status"
         :key="index"
+        :smallTitle="item.smallTitle"
       >
         <!-- 每日进店模块 -->
         <template v-if="item.type == 'enterStore'" slot="context">
@@ -135,9 +136,9 @@ export default {
       moduleDate: [
         // 今日进店数据
         {
-          icon: 'iconweibiaoti4',
+          img: require('@/assets/icon/enterStoreIcon.png'),
           title: '今日进店',
-          status: '247人',
+          smallTitle: '(247人)',
           type: 'enterStore',
           user: [
             {
