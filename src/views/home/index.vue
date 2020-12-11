@@ -21,6 +21,7 @@
                 :count="user.count"
                 :sex="user.sex"
                 :crossStore="user.crossStore"
+                :vip="user.vip"
               ></UserItem>
             </template>
           </div>
@@ -156,7 +157,8 @@ export default {
               age: '35~40',
               count: 1,
               sex: 'woman',
-              crossStore: false
+              crossStore: false,
+              vip: false
             },
             {
               img: require('@/assets/enterStore/enterStore2.png'),
@@ -164,7 +166,8 @@ export default {
               age: '35~40',
               count: 2,
               sex: 'man',
-              crossStore: true
+              crossStore: true,
+              vip: true
             },
             {
               img: require('@/assets/enterStore/enterStore3.png'),
@@ -172,14 +175,17 @@ export default {
               age: '35~40',
               count: 6,
               sex: 'man',
-              crossStore: true
+              crossStore: true,
+              vip: false
             },
             {
               img: require('@/assets/enterStore/enterStore4.png'),
               date: '16:45:21',
               age: '35~40',
               count: 3,
-              sex: 'man'
+              sex: 'man',
+              crossStore: false,
+              vip: true
             }
           ]
         },
@@ -446,7 +452,7 @@ export default {
   }
 }
 .module {
-  margin: 10px 15px 0 15px;
+  margin: 10px 12px 0 12px;
   border-radius: 8px;
   background-color: #fff;
 }
