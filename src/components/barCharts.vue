@@ -101,16 +101,22 @@ export default {
             data: this.label, // 轴代表的数据label
             right: 70, // 偏移
             top: 10,
-            icon: 'roundRect', //  这个字段控制形状  类型包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，none
+            icon: 'circle', //  这个字段控制形状  类型包括 circle，rect ，roundRect，triangle，diamond，pin，arrow，none
             itemWidth: 10, // 设置宽度
             itemHeight: 10, // 设置高度
-            itemGap: 40 // 设置间距
+            itemGap: 18 // 设置间距
           },
           xAxis: [
             {
               type: 'category',
               data: this.xLabel,
               name: this.xName,
+              axisLine: {
+                lineStyle: {
+                  // 设置坐标轴线的颜色
+                  color: '#707070'
+                }
+              },
               axisPointer: {
                 type: 'shadow'
               },
@@ -130,10 +136,17 @@ export default {
               max: 1500,
               interval: 500,
               axisLabel: {
-                formatter: '{value}',
+                formatter: function(value) {
+                  const val = value + ''
+                  if (val.length > 3) {
+                    return val.substr(0, 1) + ',' + val.substr(1)
+                  } else {
+                    return val
+                  }
+                },
                 textStyle: {
-                  color: '#818284',
-                  fontSize: '12'
+                  color: '#56565680',
+                  fontSize: '10'
                 },
                 margin: 4
               },
@@ -145,7 +158,12 @@ export default {
                 // 刻度
                 show: false
               },
-              splitLine: { show: false } // 去掉Y轴分割线
+              splitLine: {
+                lineStyle: {
+                  color: '#70707099',
+                  type: 'dashed'
+                }
+              }
             },
             {
               type: 'value',
@@ -155,12 +173,19 @@ export default {
                 padding: [0, 0, 18, 0]
               },
               min: 0,
-              max: 200,
-              interval: 40,
+              max: 2000000,
+              interval: 300000,
               axisLabel: {
+                formatter: function(value) {
+                  if (value > 10000) {
+                    return parseInt(value / 10000) + 'w'
+                  } else {
+                    return value
+                  }
+                },
                 textStyle: {
-                  color: '#818284',
-                  fontSize: '14'
+                  color: '#56565680',
+                  fontSize: '10'
                 }
               },
               axisLine: {
@@ -178,46 +203,57 @@ export default {
             {
               name: this.dataName1,
               type: 'bar',
+              yAxisIndex: 1,
               data: this.data1,
               itemStyle: {
                 normal: {
-                  color: 'rgba(80,208,210,0.8)', // 设置柱子颜色
+                  color: '#F8C498', // 设置柱子颜色
                   label: {
                     show: true, // 柱子上显示值
                     position: 'top', // 值在柱子上方显示
                     textStyle: {
-                      color: '#505152' // 值得颜色
+                      color: '#f1835b80', // 值得颜色
+                      fontSize: '9px'
                     },
-                    formatter: function(a) {
-                      // 设置label格式
-                      return '￥' + a.data
+                    formatter: function(value) {
+                      const val = value.data + ''
+                      if (val.length > 3) {
+                        return (
+                          '￥' +
+                          val.substr(0, val.length - 3) +
+                          ',' +
+                          val.substr(val.length - 3)
+                        )
+                      } else {
+                        return '￥' + val
+                      }
                     }
                   },
-                  barBorderRadius: [5, 5, 0, 0]
+                  barBorderRadius: [4, 4, 0, 0]
                 }
               },
-              barWidth: 20 // 设置柱子宽度，单位为px
+              barWidth: 8 // 设置柱子宽度，单位为px
             },
 
-            {
-              // stack:'1',
-              name: this.dataName2,
-              type: 'bar',
-              data: this.data2,
-              itemStyle: {
-                normal: {
-                  color: 'rgba(43,43,44,0)', // 设置柱子颜色
-                  label: {
-                    show: true, // 柱子上显示值
-                    position: 'top', // 值在柱子上方显示
-                    textStyle: {
-                      color: '#B82B43' // 值得颜色
-                    }
-                  }
-                }
-              },
-              barWidth: 25 // 设置柱子宽度，单位为px
-            },
+            // {
+            //   // stack:'1',
+            //   name: this.dataName2,
+            //   type: 'bar',
+            //   data: this.data2,
+            //   itemStyle: {
+            //     normal: {
+            //       color: 'rgba(43,43,44,0)', // 设置柱子颜色
+            //       label: {
+            //         show: true, // 柱子上显示值
+            //         position: 'top', // 值在柱子上方显示
+            //         textStyle: {
+            //           color: '#B82B43' // 值得颜色
+            //         }
+            //       }
+            //     }
+            //   },
+            //   barWidth: 8 // 设置柱子宽度，单位为px
+            // },
 
             {
               name: this.dataName3,
@@ -225,24 +261,23 @@ export default {
               data: this.data3,
               itemStyle: {
                 normal: {
-                  color: 'rgba(43,43,44,0.3)', // 设置柱子颜色
+                  color: '#56BE9B', // 设置柱子颜色
                   label: {
                     show: false, // 柱子上显示值
                     position: 'top', // 值在柱子上方显示
                     textStyle: {
                       color: '#B82B43' // 值得颜色
-                    },
-                    formatter: function(a) {
-                      // 设置label格式
-                      return a.data + 'w'
                     }
-                  }
-                  // barBorderRadius: [5,5,0,0],//设置柱子的圆角弧度
+                    // formatter: function(a) {
+                    //   // 设置label格式
+                    //   return a.data + 'w'
+                    // }
+                  },
+                  barBorderRadius: [4, 4, 0, 0] // 设置柱子的圆角弧度
                 }
               },
-              barWidth: 30, // 设置柱子宽度，单位为px
-
-              barGap: '-111%' // 设置柱状距离
+              barWidth: 8, // 设置柱子宽度，单位为px
+              barGap: '2%' // 设置柱状距离
             }
           ]
         }
