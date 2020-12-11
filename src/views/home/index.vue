@@ -77,11 +77,14 @@
               <ProgressItem
                 :leftTitle="pro.leftTitle"
                 :leftIcon="pro.leftIcon"
+                :leftNumber="pro.leftNumber"
+                :rightTitle="pro.rightTitle"
+                :rightIcon="pro.rightIcon"
+                :rightNumber="pro.rightNumber"
                 :percentage="pro.percentage"
                 :progressColor="pro.progressColor"
                 :trackColor="pro.trackColor"
                 :sex="pro.sex"
-                :leftIconColor="pro.leftIconColor"
               ></ProgressItem>
             </div>
           </template>
@@ -235,22 +238,28 @@ export default {
           progressDate: [
             {
               leftTitle: '男性',
-              leftIcon: 'iconnanren',
+              leftNumber: '203',
+              leftIcon: require('@/assets/icon/manIcon.png'),
+              rightTitle: '女性',
+              rightNumber: '44',
+              rightIcon: require('@/assets/icon/womanIcon.png'),
               percentage: 70,
               trackColor: '#F98181',
               sex: 'woman'
             },
             {
               leftTitle: '回头客',
-              leftIcon: 'iconnanren',
-              percentage: 80
+              leftNumber: '256',
+              leftIcon: require('@/assets/icon/keHu.png'),
+              percentage: 80,
+              progressColor: '#56BE9B'
             },
             {
               leftTitle: '会员',
-              leftIcon: 'iconcanpinhuihuiyuanv6',
+              leftNumber: '165',
+              leftIcon: require('@/assets/icon/huiYuan.png'),
               percentage: 30,
-              progressColor: '#FFCD41',
-              leftIconColor: '#F7B500'
+              progressColor: '#F8C498'
             }
           ]
         },
@@ -442,7 +451,7 @@ export default {
     }
   }
   .progress {
-    margin-top: 5px;
+    margin: 19px 13px 0;
   }
   .video {
     margin-top: 10px;
