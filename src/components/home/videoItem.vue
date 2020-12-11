@@ -5,13 +5,19 @@
       :src="videoImage"
     />
     <div class="videoTitle">
+      <div :class="status === 'Line' ? 'on' : 'off'"></div>
       <span class="videoTitleSpan">{{ videoTitle }}</span>
       <span :class="[status == 'offLine' ? 'offlineVideoTime' : '', 'time']">{{
         time
       }}</span>
     </div>
     <div class="offLineSpan" v-if="status == 'offLine'">
+      <!-- <span>设备离线</span> -->
+      <van-icon :name="videoOffline" size="34" />
       <span>设备离线</span>
+    </div>
+    <div class="offLineSpan" v-else>
+      <van-icon :name="videoPlay" size="34" />
     </div>
   </div>
 </template>
@@ -36,6 +42,12 @@ export default {
     time: {
       type: String
     }
+  },
+  data() {
+    return {
+      videoPlay: require('@/assets/videoImage/videoPlay.png'),
+      videoOffline: require('@/assets/videoImage/videoOffline.png')
+    }
   }
 }
 </script>
@@ -43,27 +55,44 @@ export default {
 <style lang="less" scoped>
 .videoItem {
   position: relative;
+  margin-bottom: 12px;
 }
 .videoTitle {
   position: absolute;
-  font-size: 12px;
-  bottom: 5px;
+  font-size: 10px;
+  bottom: 4px;
   left: 0;
-  width: 100%;
-  background-color: #30313382;
-  color: #fff;
+  width: 159px;
+  height: 20px;
+  line-height: 20px;
+  background-color: #fff;
+  color: #000;
   border-radius: 0 0 5px 5px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  opacity: 0.8;
 }
 .videoImage {
-  width: 100%;
-  border-radius: 10px;
+  width: 159px;
+  height: 106px;
+  border-radius: 8px;
 }
-.videoTitleSpan {
-  padding-left: 12px;
+
+.on {
+  display: inline-block;
+  opacity: 1;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #4a92ff;
+  margin: 0 6px 0 11px;
+}
+.off {
+  display: inline-block;
+  opacity: 1;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #e60012;
+  margin: 0 6px 0 11px;
 }
 .point {
   width: 10px;
@@ -76,7 +105,6 @@ export default {
   background-color: #5683ff;
 }
 .offline {
-  background-color: #fd3939;
   opacity: 0.5;
 }
 .offlineVideoTime {
@@ -84,16 +112,21 @@ export default {
 }
 .time {
   float: right;
-  padding-right: 10px;
-  font-size: 12px;
+  padding-right: 6px;
+  font-size: 10px;
 }
 .offLineSpan {
-  color: #fd3939;
   position: absolute;
   left: 50%;
   top: 40%;
   transform: translate(-50%, -50%);
-  font-size: 18px;
-  font-weight: 800;
+  font-size: 10px;
+  text-align: center;
+  color: #e60012;
+  span {
+    display: block;
+    line-height: 14px;
+    // width: 40px;
+  }
 }
 </style>
