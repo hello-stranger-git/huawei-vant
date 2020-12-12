@@ -496,10 +496,6 @@ export default {
 .lineChart {
   margin-top: 14px;
   height: 158px;
-  /deep/canvas {
-    left: -16px !important;
-    width: 360px !important;
-  }
 }
 .updateTime {
   font-size: 10px;
