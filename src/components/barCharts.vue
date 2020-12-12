@@ -170,7 +170,8 @@ export default {
               name: this.yName2,
               nameTextStyle: {
                 // 设置坐标轴名字样式
-                padding: [0, 0, 18, 0]
+                padding: [0, 0, 18, 0],
+                color: '#565656'
               },
               min: 0,
               max: 2000000,
