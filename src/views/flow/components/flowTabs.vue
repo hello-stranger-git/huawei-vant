@@ -45,7 +45,7 @@ export default {
           bgc: '#50a6ff'
         },
         {
-          value: '今日客流走势',
+          value: '客流走势',
           background: '#50a6ff',
           icon: 'iconjintian',
           bgc: '#b0eb9b'
@@ -76,7 +76,7 @@ export default {
 
 <style lang="less" scoped>
 .navBarItem {
-  margin: 20px 15px 0;
+  margin: 20px 12px 0;
   background-color: #eee;
   border-radius: 8px;
   overflow: hidden;
@@ -97,7 +97,6 @@ export default {
   .iconBox {
     width: 40px;
     height: 40px;
-    // background-color: #50a6ff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -122,7 +121,7 @@ export default {
   .button {
     font-size: 12px;
     line-height: 17px;
-    border-radius: 8px;
+    border-radius: 5px;
     background-color: #fff;
     border: 0;
     color: #4a92ff;
