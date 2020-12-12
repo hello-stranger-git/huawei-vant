@@ -1,22 +1,23 @@
 <template>
   <div class="navBarItem">
-    <van-row>
-      <van-col span="6" v-for="(item, i) in tabsArr" :key="i">
-        <div
-          :class="['tabBox', activeTabIndex === i ? 'activeClass' : '']"
-          @click="toggleTab(i)"
-        >
-          <div class="iconBox" :style="{ background: item.bgc }">
-            <van-icon
-              :class-prefix="'iconfont ' + item.icon"
-              size="26"
-              color="#d81e06"
-            />
-          </div>
-          <p>{{ item.value }}</p>
+    <van-row type="flex" justify="space-between">
+      <!-- 四个button -->
+      <van-col v-for="(item, i) in tabsArr" :key="i">
+        <div class="navBox">
+          <button
+            @click="toggleTab(i)"
+            class="button"
+            :style="{
+              background: activeTabIndex === i ? ' #50a6ff' : '#fff',
+              color: activeTabIndex === i ? ' #fff' : ''
+            }"
+          >
+            {{ item.value }}
+          </button>
         </div>
       </van-col>
     </van-row>
+    <!-- 动态组件 -->
     <component :is="activeTabArr[activeTabIndex]"></component>
   </div>
 </template>
@@ -75,7 +76,7 @@ export default {
 
 <style lang="less" scoped>
 .navBarItem {
-  margin: 10px 15px 0;
+  margin: 20px 15px 0;
   background-color: #eee;
   border-radius: 8px;
   overflow: hidden;
@@ -114,6 +115,18 @@ export default {
     left: 50%;
     bottom: 50%;
     transform: translate(-50%, -50%);
+  }
+}
+.navBox {
+  margin-bottom: 10px;
+  .button {
+    font-size: 12px;
+    line-height: 17px;
+    border-radius: 8px;
+    background-color: #fff;
+    border: 0;
+    color: #4a92ff;
+    padding: 7px 10px 6px;
   }
 }
 </style>
