@@ -1,23 +1,15 @@
 <template>
   <div class="dateSelectDiv">
     <div class="dateSelect">
-      <van-row>
-        <van-col :span="4">
-          <span class="active">今日</span>
+      <van-row type="flex" justify="space-between">
+        <van-col
+          v-for="(item, i) in dateArr"
+          :key="i"
+          @click="toggleActiveDate(i)"
+        >
+          <span :class="activeDate === i ? 'active' : ''">{{ item }}</span>
         </van-col>
-        <van-col :span="4">
-          <span>昨日</span>
-        </van-col>
-        <van-col :span="4">
-          <span>前日</span>
-        </van-col>
-        <van-col :span="4">
-          <span>11/12</span>
-        </van-col>
-        <van-col :span="4">
-          <span>11/11</span>
-        </van-col>
-        <van-col :span="4" class="togDate">
+        <van-col class="togDate">
           <div class="point" @click="togCalendar">
             <li></li>
             <li></li>
@@ -40,9 +32,10 @@ import Calendar from './calendar.vue'
 export default {
   data() {
     return {
-      value1: '',
+      dateArr: ['今日', '昨日', '前日', '周五', '周四', '周三', '周二'],
       calendarShow: false,
-      show: false // 控制遮罩层
+      show: false, // 控制遮罩层
+      activeDate: 0
     }
   },
   components: {
@@ -65,6 +58,9 @@ export default {
     getDay(day) {
       this.calendarShow = !this.calendarShow
       this.show = !this.show // 控制遮罩层
+    },
+    toggleActiveDate(i) {
+      this.activeDate = i
     }
   }
 }
@@ -74,19 +70,17 @@ export default {
 .dateSelectDiv {
   background-color: #fff;
   position: relative;
-  padding: 15px 15px 0;
-  position: relative;
+  padding: 0px 10px 0;
 }
 .dateSelect {
   margin: auto;
   width: 100%;
   height: 50px;
-  background: #73e8e4;
   border-radius: 5px;
   line-height: 50px;
   text-align: center;
-  color: #ffffff;
-  font-size: 16px;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 14px;
 }
 .point {
   display: flex;
@@ -97,8 +91,19 @@ export default {
   width: 10px;
 }
 .active {
-  padding-bottom: 6px;
-  border-bottom: 3px solid;
+  opacity: 1;
+  position: relative;
+  color: #4a92ff;
+}
+.active::after {
+  content: '';
+  position: absolute;
+  background-color: #4a92ff;
+  bottom: -6px;
+  left: 50%;
+  height: 2px;
+  width: 16px;
+  transform: translateX(-50%);
 }
 .calendar {
   position: absolute;
