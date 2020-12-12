@@ -169,6 +169,7 @@ export default {
           series: [
             {
               name: this.dataName1,
+              showBackground: true,
               type: 'bar',
               data: this.data1,
               itemStyle: {
@@ -202,6 +203,7 @@ export default {
 
             {
               name: this.dataName2,
+              showBackground: true,
               type: 'bar',
               data: this.data2,
               itemStyle: {
@@ -223,6 +225,8 @@ export default {
             {
               name: this.dataName3,
               type: 'bar',
+
+              showBackground: true,
               data: this.data3,
               itemStyle: {
                 normal: {
