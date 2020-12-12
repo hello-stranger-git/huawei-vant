@@ -396,6 +396,8 @@ export default {
   .selectDate {
     margin-top: 12px;
     padding-left: 7px;
+    display: flex;
+    justify-content: center;
     .nowDay,
     .nowWeek,
     .nowMonth {
