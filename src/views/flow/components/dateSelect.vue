@@ -115,6 +115,16 @@ export default {
   box-shadow: 0px 0px 10px 5px rgb(20 20 1.05%);
   opacity: 90%;
   background-color: #fff;
+  /deep/.currentCalender {
+    padding-top: 26px;
+  }
+  /deep/.weekHeader {
+    padding: 32px 12px 9px 12px;
+    .week {
+      font-size: 16px;
+      color: #4a92ff;
+    }
+  }
 }
 /deep/ .calendar .rowDays {
   height: 30px;

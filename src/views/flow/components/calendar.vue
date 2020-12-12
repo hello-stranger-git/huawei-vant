@@ -1,9 +1,9 @@
 <template>
   <div class="calendar">
     <div class="currentCalender">
-      <span @click="preMonth">&lt;</span>
-      <span>{{ currentYear + '/' + currentMonth }}</span>
-      <span @click="nextMonth">&gt;</span>
+      <img :src="lt" @click="preMonth" />
+      <span>{{ currentYear + '-' + currentMonth }}</span>
+      <img :src="gt" @click="nextMonth" />
     </div>
     <div class="weekHeader">
       <span v-for="(week, index) in weeks" class="week" :key="index">
@@ -52,6 +52,8 @@ export default {
   },
   data() {
     return {
+      lt: require('@/assets/icon/lt.png'),
+      gt: require('@/assets/icon/gt.png'),
       weeks: ['一', '二', '三', '四', '五', '六', '日'],
       currentYear: new Date().getFullYear(), // 当前年
       currentMonth: new Date().getMonth() + 1, // 当前月
@@ -213,8 +215,6 @@ export default {
   width: 100%;
   background-color: blanchedalmond;
   .currentCalender {
-    height: 50px;
-    // background-color: #fff;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -222,8 +222,6 @@ export default {
   }
   .weekHeader {
     font-size: 14px;
-    height: 50px;
-    // background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -237,8 +235,8 @@ export default {
     }
   }
   .rowDays {
-    font-size: 12px;
-    height: 50px;
+    font-size: 14px;
+    color: #141414;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -249,19 +247,25 @@ export default {
     text-align: center;
   }
   .vacation {
-    color: red;
+    color: #e60012;
   }
   .active {
+    width: 24px;
+    height: 24px;
     padding: 5px;
-    background-color: #179bf3;
+    background-color: #4a92ff;
     border-radius: 50%;
+    color: #ffffff;
   }
   .peopelCount {
-    margin: 8px 6px;
-    padding: 0;
-    font-size: 12px;
-    background-color: rgb(18 174 185);
+    margin: 6px;
+    margin-top: 7px;
+    margin-bottom: 18px;
+    font-size: 10px;
+    background-color: #56be9b;
+    border-radius: 3px;
     color: #fff;
+    padding: 3px 3px;
   }
 }
 </style>
