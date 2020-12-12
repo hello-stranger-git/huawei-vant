@@ -198,6 +198,7 @@ export default {
             color: #343434;
             font-size: 18px;
             font-weight: bold;
+            text-align: center;
           }
           .annularPeopleCountTitle {
             font-size: 14px;
