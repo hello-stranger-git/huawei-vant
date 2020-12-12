@@ -70,7 +70,7 @@ export default {
 .dateSelectDiv {
   background-color: #fff;
   position: relative;
-  padding: 15px 10px 0;
+  padding: 0px 10px 0;
 }
 .dateSelect {
   margin: auto;

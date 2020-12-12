@@ -116,7 +116,7 @@ export default {
     background-color: #fff;
   }
   .van-row:first-child {
-    padding-top: 15px;
+    padding-top: 18px;
   }
 }
 </style>
