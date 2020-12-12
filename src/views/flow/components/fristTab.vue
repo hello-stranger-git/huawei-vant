@@ -10,22 +10,23 @@
         @load="onLoad"
         :finished="finished"
       >
-        <van-row
-          v-for="(item, index) in arr"
-          :key="index"
-          type="flex"
-          justify="space-around"
-        >
-          <van-col span="4" v-for="(item1, i) in item" :key="i">
+        <ul class="user">
+          <li v-for="(item, i) of arr" :key="i">
             <UserItem
-              :img="item1.img"
-              :date="item1.date"
-              :age="item1.age"
-              :count="item1.count"
-              :sex="item1.sex"
+              :img="item.img"
+              :date="item.date"
+              :age="item.age"
+              :count="item.count"
+              :sex="item.sex"
+              :vip="item.vip"
+              :crossStore="item.crossStore"
             ></UserItem>
-          </van-col>
-        </van-row>
+          </li>
+        </ul>
+        <!-- 加载中图标 -->
+        <template #loading>
+          <van-loading type="spinner" size="24px" />
+        </template>
       </van-list>
     </div>
   </div>
@@ -45,6 +46,7 @@ export default {
       loading: false,
       arr: [],
       finished: false,
+      // 今日进店数据
       userArr: [
         {
           img: require('@/assets/enterStore/enterStore1.png'),
@@ -57,42 +59,41 @@ export default {
           img: require('@/assets/enterStore/enterStore2.png'),
           date: '18:45:21',
           age: '35~40',
-          count: 8,
-          sex: 'man'
+          count: 2,
+          sex: 'man',
+          vip: true,
+          crossStore: true
         },
         {
           img: require('@/assets/enterStore/enterStore3.png'),
           date: '17:45:21',
           age: '35~40',
-          count: 1,
-          sex: 'man'
+          count: 6,
+          sex: 'man',
+          crossStore: true
         },
         {
           img: require('@/assets/enterStore/enterStore4.png'),
           date: '16:45:21',
           age: '35~40',
-          count: 10,
-          sex: 'man'
-        },
-        {
-          img: require('@/assets/enterStore/enterStore5.png'),
-          date: '15:45:21',
-          age: '35~40',
           count: 3,
-          sex: 'man'
+          sex: 'man',
+          vip: true
         }
       ]
     }
   },
   created() {
-    this.arr = [this.userArr, this.userArr, this.userArr, this.userArr]
+    for (var i of this.userArr) {
+      this.arr.push(i)
+    }
   },
   methods: {
     onLoad() {
       this.loading = true
       setTimeout(() => {
-        for (let i = 0; i < 4; i++) {
-          this.arr.push(this.userArr)
+        for (var i of this.userArr) {
+          this.arr.push(i)
         }
         if (this.arr.length > 20) {
           this.finished = true
@@ -108,20 +109,23 @@ export default {
 
 <style lang="less" scoped>
 .todayCustomer {
+  background-color: #fff;
   border-radius: 0 0 8px 8px;
-  .van-row {
-    padding-top: 20px;
-    text-align: center;
-    padding: 5px 10px;
-    background-color: #fff;
+  padding-bottom: 29px;
+  .user {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    li {
+      flex-shrink: 1;
+      margin: 21px 12px 19px;
+    }
   }
-  .van-row:first-child {
-    padding-top: 18px;
+  /deep/.van-list__finished-text {
+    height: 19px;
+    line-height: 19px;
+    margin-top: 23px;
   }
-}
-</style>
-<style>
-body {
-  height: 100%;
 }
 </style>

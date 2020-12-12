@@ -55,7 +55,7 @@ export default {
       default: false
     },
     vip: {
-      // 跨店
+      // vip
       type: Boolean,
       default: false
     }
