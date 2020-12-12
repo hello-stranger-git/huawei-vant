@@ -1,10 +1,5 @@
 <template>
   <div class="notice">
-    <!-- <van-notice-bar
-      left-icon="volume-o"
-      text="待整改，厅内卫生-1 厅内地面、桌面有垃圾，未整改，良好的作风，严格的纪律"
-      mode="closeable"
-    /> -->
     <van-notice-bar
       color="#fff"
       background="#e60012"
