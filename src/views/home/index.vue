@@ -8,6 +8,7 @@
         :status="item.status"
         :key="index"
         :smallTitle="item.smallTitle"
+        :nav="item.nav"
       >
         <!-- 每日进店模块 -->
         <template v-if="item.type == 'enterStore'" slot="context">
@@ -105,8 +106,6 @@
             :yName2="item.yName2"
             :dataName1="item.dataName1"
             :data1="item.data1"
-            :dataName2="item.dataName2"
-            :data2="item.data2"
             :dataName3="item.dataName3"
             :data3="item.data3"
           ></BarCharts>
@@ -161,6 +160,7 @@ export default {
           title: '今日进店',
           smallTitle: '(247人)',
           type: 'enterStore',
+          nav: 'home',
           user: [
             {
               img: require('@/assets/enterStore/enterStore1.png'),
@@ -205,6 +205,7 @@ export default {
           img: require('@/assets/icon/flowTrend.png'),
           title: '今日客流走势',
           label: ['当前', '昨日', '前天'],
+          nav: 'home',
           xLabel: [
             '7:00',
             '8:00',
@@ -234,6 +235,7 @@ export default {
           title: '客群特征',
           type: 'features',
           seriesName: '大数据',
+          nav: 'home',
           data: [
             { value: 47, name: '老年', percent: '10.00%', color: '#F8C498' },
             { value: 154, name: '中年', percent: '20.00%', color: '#56BE9B' },
@@ -274,6 +276,7 @@ export default {
           title: '客流与销售分析',
           type: 'sale',
           label: ['销售额', '客流人数'],
+          nav: 'home',
           xLabel: [
             '今日',
             '日',
@@ -287,8 +290,6 @@ export default {
           yName2: '---客单价',
           dataName1: '销售额',
           data1: [1336081, 1003681, 1603681, 1903681, 903681, 606584, 903681],
-          // dataName2: '均值',
-          // data2: [500, 600, 700, 650, 600, 500, 650],
           dataName3: '客流人数',
           data3: [300, 400, 500, 450, 400, 300, 500]
         },
@@ -296,8 +297,8 @@ export default {
         {
           img: require('@/assets/icon/homeVideo.png'),
           title: '本店视频',
-          status: '更多>',
           type: 'video',
+          nav: 'home',
           videoData: [
             {
               videoImage: require('@/assets/videoImage/homeVideo1.png'),
@@ -407,10 +408,10 @@ export default {
       display: inline-block;
       line-height: 30px;
       text-align: center;
-      border: 1px solid #4a92ff;
+      border: 1px solid rgba(74, 146, 255, 0.7);
       cursor: pointer;
       border-radius: 5px;
-      color: #4a92ff;
+      color: rgba(74, 146, 255, 0.7);
       font-size: 14px;
       font-weight: 300;
     }
@@ -419,6 +420,7 @@ export default {
     .nowDay:hover {
       color: #fff;
       background-color: #4a92ff;
+      border: 1px solid #4a92ff;
     }
     .nowWeek,
     .nowMonth {
@@ -494,6 +496,10 @@ export default {
 .lineChart {
   margin-top: 14px;
   height: 158px;
+  /deep/canvas {
+    left: -16px !important;
+    width: 360px !important;
+  }
 }
 .updateTime {
   font-size: 10px;

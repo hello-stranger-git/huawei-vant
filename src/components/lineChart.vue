@@ -174,7 +174,7 @@ export default {
                 textStyle: {
                   // 设置文本样式
                   color: '#3D3D3E',
-                  fontSize: '13'
+                  fontSize: '10'
                 },
                 padding: [5, 25, 0, 25] // 设置文本离轴的padding
               }

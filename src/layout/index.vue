@@ -1,8 +1,10 @@
 <template>
   <div>
-    <Top></Top>
-    <Notice></Notice>
-    <router-view> </router-view>
+    <div class="top">
+      <Top></Top>
+      <Notice></Notice>
+    </div>
+    <router-view class="routerView"> </router-view>
     <div class="height"></div>
     <Footer></Footer>
   </div>
@@ -25,5 +27,14 @@ export default {
 .height {
   height: 60px;
   background-color: #eee;
+}
+.top {
+  position: fixed;
+  z-index: 4;
+  width: 100%;
+  top: 0;
+}
+.routerView {
+  margin-top: 134px;
 }
 </style>

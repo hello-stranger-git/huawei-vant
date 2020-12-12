@@ -10,7 +10,7 @@
             <span class="smallTitle">{{ smallTitle }}</span>
           </template>
         </van-col>
-        <van-col span="12" class="status">
+        <van-col span="12" class="status" v-if="nav == 'home'">
           <span class="more">更多</span>
           <img :src="arrowIcon" />
         </van-col>
@@ -35,6 +35,11 @@ export default {
     },
     smallTitle: {
       // 在标题后面是否添加小标题
+      type: String,
+      default: ''
+    },
+    nav: {
+      // 通过导航路由，判断是否显示更多
       type: String,
       default: ''
     }
