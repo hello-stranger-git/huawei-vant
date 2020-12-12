@@ -23,7 +23,7 @@ export default {
 
 <style lang="less" scoped>
 .height {
-  height: 60px;
+  height: 95px;
   background-color: #eee;
 }
 </style>
