@@ -36,14 +36,30 @@ export default {
       // 获取元素滚动的距离
       const timeAxisScroll = this.$refs.timeAxis.scrollLeft - 30
       // 获取时间轴的宽度
-      // const timeAxisWidth = this.$refs.img.clientWidth - 60
       // 时间轴划出去距离指针的距离,总共分钟数
       const timeWidth = timeScale + timeAxisScroll
-      let hour = parseInt(timeWidth / 60)
-      let minute = timeWidth + 4 - hour * 60
-
+      let hour = 0
+      let minute = 0
+      hour = parseInt(timeWidth / 60)
+      minute = timeWidth + 3 - hour * 60
+      if (timeWidth < 177) {
+        // 在0点的左边
+        hour = hour - 27
+        if (hour < 0) {
+          hour = 48 + hour
+        }
+      } else if (timeWidth >= 177 && timeWidth < 1618) {
+        // 判断时间是否在0到24小时整轴上
+        hour -= 3
+      }
       // 具体小时
       hour = minute > 59 ? hour + 1 : hour
+      if (hour === 24) {
+        hour = 0
+      }
+      if (hour > 24) {
+        hour -= 27
+      }
       // 判段minute显示是否大于60
       minute = minute > 59 ? minute - 60 : minute
 
