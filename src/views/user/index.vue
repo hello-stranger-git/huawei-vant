@@ -92,7 +92,6 @@ export default {
 }
 .box {
   height: 134px;
-  width: 100%;
 }
 .store {
   margin-top: 12px;
