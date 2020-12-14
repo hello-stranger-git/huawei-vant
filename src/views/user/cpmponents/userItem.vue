@@ -18,16 +18,16 @@
 </template>
 
 <script>
-import huawei from '@/assets/icon/huawei.png'
+import huawei from '@/assets/icon/user/userHuawei.png'
 import arrow from '@/assets/icon/arrow14px.png'
-import iconStatu from '@/assets/icon/userStoreStatu.png'
-import iconAdress from '@/assets/icon/userAdress.png'
-import iconTime from '@/assets/icon/userTime.png'
-import iconSale from '@/assets/icon/userSale.png'
-import iconAlaarm from '@/assets/icon/userAlarm.png'
-import iconLock from '@/assets/icon/userLock.png'
-import iconOrder from '@/assets/icon/userOrder.png'
-import iconAbout from '@/assets/icon/userAbout.png'
+import iconStatu from '@/assets/icon/user/userStoreStatu.png'
+import iconAdress from '@/assets/icon/user/userAdress.png'
+import iconTime from '@/assets/icon/user/userTime.png'
+import iconSale from '@/assets/icon/user/userSale.png'
+import iconAlarm from '@/assets/icon/user/userAlarm.png'
+import iconLock from '@/assets/icon/user/userLock.png'
+import iconOrder from '@/assets/icon/user/userOrder.png'
+import iconAbout from '@/assets/icon/user/userAbout.png'
 
 export default {
   props: {
@@ -46,7 +46,7 @@ export default {
         iconAdress,
         iconTime,
         iconSale,
-        iconAlaarm,
+        iconAlarm,
         iconLock,
         iconOrder,
         iconAbout
@@ -61,12 +61,12 @@ export default {
 
 <style lang="less" scoped>
 .container1 {
-  margin-top: 24px;
+  margin-top: 18px;
   border-radius: 10px;
   background-color: #fff;
   .cell {
-    height: 47px;
-    line-height: 49px;
+    height: 46px;
+    line-height: 48px;
     display: flex;
     border: 1px;
     position: relative;
@@ -80,7 +80,7 @@ export default {
       flex: 1;
       color: #343434;
       font-size: 14px;
-      // border-bottom: 0.3px solid rgba(112, 112, 112, 0.5);
+      border-bottom: 0.3px solid rgba(112, 112, 112, 0.5);
     }
     .noBorder {
       border: 0;

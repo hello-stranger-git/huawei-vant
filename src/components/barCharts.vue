@@ -159,6 +159,7 @@ export default {
                 show: false
               },
               splitLine: {
+                show: false,
                 lineStyle: {
                   color: '#70707099',
                   type: 'dashed'
@@ -197,7 +198,14 @@ export default {
                 // 刻度
                 show: false
               },
-              splitLine: { show: false } // 去掉Y轴分割线
+              splitLine: {
+                show: true,
+
+                lineStyle: {
+                  color: '#70707099',
+                  type: 'dashed'
+                }
+              } // 去掉Y轴分割线
             }
           ],
           series: [

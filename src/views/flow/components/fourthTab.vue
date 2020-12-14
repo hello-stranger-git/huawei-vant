@@ -1,43 +1,32 @@
 <template>
   <div class="flowPrice">
     <Calendar :peopleCount="peopleCount"></Calendar>
-    <Module
-      :title="item.title"
-      :status="item.status"
-      :smallTitle="item.smallTitle"
-    >
-      <template slot="context">
-        <BarCharts
-          :label="item.label"
-          :xLabel="item.xLabel"
-          :xName="item.xName"
-          :yName2="item.yName2"
-          :dataName1="item.dataName1"
-          :data1="item.data1"
-          :dataName3="item.dataName3"
-          :data3="item.data3"
-        ></BarCharts>
-      </template>
-    </Module>
+    <BarCharts
+      :label="item.label"
+      :xLabel="item.xLabel"
+      :xName="item.xName"
+      :yName2="item.yName2"
+      :dataName1="item.dataName1"
+      :data1="item.data1"
+      :dataName3="item.dataName3"
+      :data3="item.data3"
+    ></BarCharts>
   </div>
 </template>
 
 <script>
-import Module from '@/components/home/module' // 整体模块
 import Calendar from '../components/calendar'
 import BarCharts from '../../../components/barCharts'
 
 export default {
   components: {
     BarCharts,
-    Calendar,
-    Module
+    Calendar
   },
   data() {
     return {
       // 客流与销售分析
       item: {
-        title: '客流与销售分析',
         type: 'sale',
         label: ['销售额', '客流人数'],
         xLabel: ['今日', '日', '六', '歇', '11/12', '11/11', '11/13', '11/10'],
@@ -94,12 +83,16 @@ export default {
     margin-top: 15px;
   }
   /deep/.barCharts {
-    height: 240px;
+    height: 256px;
     margin-top: 10px;
     background: #fff;
     border-radius: 8px;
     canvas {
       height: 300px !important;
+    }
+    #barCharts {
+      top: 50%;
+      transform: translateY(-50%);
     }
   }
   /deep/.calendar {
