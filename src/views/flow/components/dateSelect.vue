@@ -108,7 +108,6 @@ export default {
 .calendar {
   position: absolute;
   z-index: 3;
-  top: 66px;
   width: 90%;
   left: 5%;
   border-radius: 8px;
@@ -127,7 +126,7 @@ export default {
   }
 }
 /deep/ .calendar .rowDays {
-  height: 30px;
+  padding: 10px 10px;
 }
 .wrapper {
   display: flex;
