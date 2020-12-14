@@ -1,11 +1,13 @@
 <template>
-  <div class="notice">
+  <div class="notice" style="padding-top:88px">
     <van-notice-bar
       color="#fff"
       background="#e60012"
       left-icon="volume-o"
       mode="closeable"
       :scrollable="false"
+      @close="closeNotice"
+      v-show="showNotice"
     >
       <span
         >待整改， 厅内卫生-1
@@ -16,7 +18,18 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      showNotice: true
+    }
+  },
+  methods: {
+    closeNotice() {
+      this.showNotice = false
+    }
+  }
+}
 </script>
 
 <style lang="less" scoped>

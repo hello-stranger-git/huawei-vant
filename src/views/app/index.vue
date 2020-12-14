@@ -99,7 +99,6 @@ export default {
 <style lang="less" scoped>
 .application {
   background-color: #eee;
-  padding-top: 134px;
   height: 100%;
 }
 // tab选项样式

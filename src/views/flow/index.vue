@@ -16,7 +16,6 @@ export default {
 <style lang="less" scoped>
 .flow {
   background-color: #eee;
-  margin-top: 134px;
   padding-bottom: 95px;
 }
 </style>
