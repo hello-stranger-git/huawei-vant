@@ -61,12 +61,12 @@ export default {
 
 <style lang="less" scoped>
 .container1 {
-  margin-top: 24px;
+  margin-top: 18px;
   border-radius: 10px;
   background-color: #fff;
   .cell {
-    height: 47px;
-    line-height: 49px;
+    height: 46px;
+    line-height: 48px;
     display: flex;
     border: 1px;
     position: relative;
@@ -80,7 +80,7 @@ export default {
       flex: 1;
       color: #343434;
       font-size: 14px;
-      // border-bottom: 0.3px solid rgba(112, 112, 112, 0.5);
+      border-bottom: 0.3px solid rgba(112, 112, 112, 0.5);
     }
     .noBorder {
       border: 0;
