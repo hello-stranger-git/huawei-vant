@@ -28,13 +28,12 @@
       <Module
         :title="item.title"
         :status="item.status"
-        :key="index"
         :smallTitle="item.smallTitle"
       >
         <template slot="context">
           <FlowEchart
             class="brokenLine "
-            :lineChartsId="i"
+            :lineChartsId="'' + i"
             :xLabel="item.xLabel"
             :xName="item.xName"
             :yName="item.yName"
