@@ -25,11 +25,7 @@
     </div>
 
     <div class="trend" v-for="(item, i) of monthFlow" :key="i">
-      <Module
-        :title="item.title"
-        :status="item.status"
-        :smallTitle="item.smallTitle"
-      >
+      <Module :title="item.title" :smallTitle="item.smallTitle">
         <template slot="context">
           <FlowEchart
             class="brokenLine "
@@ -43,9 +39,9 @@
         </template>
       </Module>
       <van-row>
-        <van-col span="8">span: 8</van-col>
-        <van-col span="8">span: 8</van-col>
-        <van-col span="8">span: 8</van-col>
+        <van-col span="8">最高 {{ item.max }}人</van-col>
+        <van-col span="8">最低人数 {{ item.min }}人</van-col>
+        <van-col span="8">平均人数 {{ item.avg }}人</van-col>
       </van-row>
     </div>
     <!-- 30天客流 -->
@@ -65,7 +61,6 @@ export default {
     return {
       notice: '活动:两周年庆全场9.5折',
       libao: require('@/assets/icon/libao.png'), // 礼包图标
-
       item: {
         img: require('@/assets/icon/flowTrend.png'),
         title: '今日客流走势',
@@ -94,39 +89,40 @@ export default {
         dataName3: '当前',
         data3: [50, 100, 150, 100, 250, 200, 180, 150, 100, 50, 80]
       },
+      // 30,90,一年客流数据
       monthFlow: [
         {
-          icon: 'iconrili',
           title: '30天客流走势',
-          status: '',
+          max: '746',
+          min: '2765',
+          avg: '583',
           xLabel: ['11/1', '11/5', '11/10', '11/15', '11/20', '11/25', '11/30'],
           xName: '时间',
           yName: '客流',
-          type: 'flow',
           dataName1: '客流',
-          data1: [50, 100, 50, 80, 106, 150, 50, 15]
+          data1: [20, 80, 30, 60, 90, 120, 20]
         },
         {
-          icon: 'iconrili',
           title: '90天客流走势',
-          status: '',
-          xLabel: ['11/1', '11/5', '11/10', '11/15', '11/20', '11/25', '11/30'],
+          max: '912',
+          min: '188',
+          avg: '746',
+          xLabel: ['9/1', '9/15', '11/10', '11/15', '11/20', '11/25', '11/30'],
           xName: '时间',
           yName: '客流',
-          type: 'flow',
           dataName1: '客流',
-          data1: [50, 100, 50, 80, 106, 150, 50, 15]
+          data1: [20, 80, 30, 60, 90, 120, 20, 12]
         },
         {
-          icon: 'iconrili',
           title: '一年客流走势',
-          status: '',
-          xLabel: ['11/1', '11/5', '11/10', '11/15', '11/20', '11/25', '11/30'],
+          max: '10380',
+          min: '5946',
+          avg: '4324',
+          xLabel: ['一月', '三月', '五月', '七月', '九月', '十一月'],
           xName: '时间',
           yName: '客流',
-          type: 'flow',
           dataName1: '客流',
-          data1: [50, 100, 50, 80, 106, 150, 50, 15]
+          data1: [20, 100, 30, 80, 106, 20]
         }
       ]
     }
@@ -166,8 +162,16 @@ export default {
   margin-top: 12px;
   background-color: #fff;
   border-radius: 8px;
-}
-.van-row {
-  text-align: center;
+  .van-row {
+    padding: 0 21px;
+    .van-col {
+      text-align: center;
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+  }
+  .module {
+    padding: 14px 12px 18px;
+  }
 }
 </style>
