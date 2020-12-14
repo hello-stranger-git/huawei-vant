@@ -43,6 +43,11 @@ const routes = [
     path: '/CheckItem',
     name: 'CheckItem',
     component: () => import('../components/check/checkItem.vue')
+  },
+  {
+    path: '/Login',
+    name: 'Login',
+    component: () => import('../views/login/index.vue')
   }
 ]
 

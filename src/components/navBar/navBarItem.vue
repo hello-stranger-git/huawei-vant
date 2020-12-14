@@ -7,7 +7,7 @@
         :class="menuCount >= 10 ? 'moreMessage' : 'messageCount'"
         v-if="menuCount >= 1"
       >
-        {{ menuCount }}
+        {{ menuCount > 99 ? '99+' : menuCount }}
       </div>
     </div>
     <div class="navBarItemTitle">
@@ -61,7 +61,7 @@ export default {
     position: absolute;
   }
   .moreMessage {
-    width: 20px;
+    width: 24px;
     height: 16px;
     font-size: 12px;
     line-height: 16px;

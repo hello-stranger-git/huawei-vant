@@ -133,9 +133,8 @@ export default {
 <style lang="less" scoped>
 .application {
   background-color: #fff;
-  padding: 134px 0 95px;
+  padding-bottom: 95px;
 }
-
 .inUse {
   padding-top: 8px;
 }
