@@ -4,7 +4,13 @@
     <van-row>
       <van-col span="24" class="top">
         <van-col span="12">
-          <img class="icon" :src="icon" width="24px" height="24px" />
+          <img
+            v-if="icon"
+            class="icon"
+            :src="icon"
+            width="24px"
+            height="24px"
+          />
           <span class="title">{{ title }}</span>
           <template v-if="smallTitle">
             <span class="smallTitle">{{ smallTitle }}</span>
