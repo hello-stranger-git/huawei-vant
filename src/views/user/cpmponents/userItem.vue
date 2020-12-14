@@ -3,14 +3,28 @@
     <div class="container1" v-for="(query, index) in data" :key="index">
       <div class="cell" v-for="(item, i) in query" :key="i">
         <div class="icon">
-          <van-icon :name="icons[item.icon]" size="24" />
+          <van-icon :name="item.icon" size="24" />
         </div>
         <div class="main" :class="i === query.length - 1 ? 'noBorder' : ''">
           {{ item.value }}
         </div>
+
         <div class="right">
-          <span>{{ item.label }}</span>
-          <van-icon :name="arrow" size="14" class="arrow" />
+          <div v-if="item.input" class="input">
+            <input type="number" placeholder="今天" />
+            <input type="number" placeholder="昨天" />
+            <input type="number" placeholder="前天" />
+          </div>
+          <div class="rightBox">
+            <span v-if="item.label">{{ item.label }}</span>
+            <span v-if="item.switch">{{ checked ? '营业' : '未营业' }}</span>
+            <van-switch
+              v-model="checked"
+              v-if="item.switch"
+              active-color="#4CD964"
+            />
+            <van-icon :name="arrow" size="14" class="arrow" v-if="item.arrow" />
+          </div>
         </div>
       </div>
     </div>
@@ -18,17 +32,7 @@
 </template>
 
 <script>
-import huawei from '@/assets/icon/user/userHuawei.png'
 import arrow from '@/assets/icon/arrow14px.png'
-import iconStatu from '@/assets/icon/user/userStoreStatu.png'
-import iconAdress from '@/assets/icon/user/userAdress.png'
-import iconTime from '@/assets/icon/user/userTime.png'
-import iconSale from '@/assets/icon/user/userSale.png'
-import iconAlarm from '@/assets/icon/user/userAlarm.png'
-import iconLock from '@/assets/icon/user/userLock.png'
-import iconOrder from '@/assets/icon/user/userOrder.png'
-import iconAbout from '@/assets/icon/user/userAbout.png'
-
 export default {
   props: {
     data: {
@@ -40,20 +44,8 @@ export default {
   },
   data() {
     return {
-      // data: cellData,
-      icons: [
-        iconStatu,
-        iconAdress,
-        iconTime,
-        iconSale,
-        iconAlarm,
-        iconLock,
-        iconOrder,
-        iconAbout
-      ],
-      logo: huawei,
       arrow,
-      items: [{ value: '营业状态', label: '营业' }, { value: '地址' }]
+      checked: false
     }
   }
 }
@@ -80,28 +72,65 @@ export default {
       flex: 1;
       color: #343434;
       font-size: 14px;
-      border-bottom: 0.3px solid rgba(112, 112, 112, 0.5);
+      position: relative;
     }
-    .noBorder {
-      border: 0;
+    .main::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: -50%;
+      width: 200%;
+      height: 1px;
+      background: rgba(112, 112, 112, 0.5);
+      transform: scale(0.5);
+    }
+    .noBorder::after {
+      height: 0;
     }
     .right {
-      // float: right;
+      position: absolute;
+      right: 0;
+      top: 0;
+      .rightBox {
+        height: 46px;
+        .van-switch {
+          margin-right: 12px;
+          float: right;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
       span {
         height: 17px;
         line-height: 17px;
-        position: absolute;
-        right: 32px;
-        top: 50%;
-        transform: translateY(-50%);
+        margin-right: 8px;
         font-size: 12px;
         color: rgba(52, 52, 52, 0.5);
       }
       .arrow {
-        position: absolute;
-        right: 12px;
-        top: 48%;
-        transform: translateY(-50%);
+        margin-right: 12px;
+      }
+      input {
+        width: 51px;
+        height: 24px;
+        font-size: 12px;
+        color: #343434;
+        line-height: 24px;
+        border-radius: 7px;
+        // border: 1px solid rgba(185, 185, 185, 0.5);
+        border: none;
+        border: 1px solid #b9b9b9;
+        text-align: center;
+        margin-right: 12px;
+        padding: 0;
+        outline: none;
+        background-color: #fff;
+      }
+      input::-webkit-input-placeholder {
+        color: #b9b9b9;
+        &:last-child {
+          background-color: pink;
+        }
       }
     }
   }
