@@ -3,15 +3,15 @@
     <!-- tab选项区域 -->
     <van-tabs v-model="active">
       <!-- 使用中 -->
-      <van-tab title="使用中">
+      <van-tab title="使用中" class="inUse ">
         <div v-for="(item, i) of appusedata" :key="i">
           <Appuse :item="item"></Appuse>
         </div>
       </van-tab>
       <!-- 未使用 -->
-      <van-tab title="未使用">
+      <van-tab title="未使用" class="notUsed ">
         <div v-for="(item, i) of appdata" :key="i">
-          <Appnotused :item="item"></Appnotused>
+          <Appuse :item="item"></Appuse>
         </div>
       </van-tab>
     </van-tabs>
@@ -19,12 +19,11 @@
 </template>
 <script>
 import Appuse from '@/components/app/Appuse.vue' // 使用中
-import Appnotused from '@/components/app/AppNotUsed.vue' // 未使用
 
 export default {
   components: {
-    Appuse,
-    Appnotused
+    Appuse
+    // Appnotused
   },
   data() {
     return {
@@ -33,19 +32,30 @@ export default {
       // 使用数据
       appusedata: [
         {
+          title: '',
+          datas: [
+            {
+              icon: require('@/assets/icon/app/saoma.png'),
+              name: '扫一扫'
+            }
+          ]
+        },
+        {
           title: '保险服务',
           datas: [
             {
-              icon: 'icongongdan',
-              name: '保单录入'
+              icon: require('@/assets/icon/app/luru.png'),
+              name: '保单录入',
+              unread: '25'
             },
             {
-              icon: 'iconchaxun',
+              icon: require('@/assets/icon/app/chaxun.png'),
               name: '保单查询'
             },
             {
-              icon: 'icongongyingshangdailishang',
-              name: '代理人信息'
+              icon: require('@/assets/icon/app/daili.png'),
+              name: '代理人信息',
+              unread: '6'
             }
           ]
         },
@@ -53,19 +63,20 @@ export default {
           title: '内部管理',
           datas: [
             {
-              icon: 'iconEmail',
-              name: '工作汇报'
+              icon: require('@/assets/icon/app/huibao.png'),
+              name: '工作汇报',
+              unread: '102'
             },
             {
-              icon: 'icongonggao',
+              icon: require('@/assets/icon/app/gonggao.png'),
               name: '内部公告'
             },
             {
-              icon: 'iconkequn',
+              icon: require('@/assets/icon/app/keHuGuanLi.png'),
               name: '客户管理'
             },
             {
-              icon: 'iconziyuan',
+              icon: require('@/assets/icon/app/renwu.png'),
               name: '任务管理'
             }
           ]
@@ -74,22 +85,45 @@ export default {
       // 未使用数据
       appdata: [
         {
-          name: '安全服务',
-          icon: 'iconanquan',
-          text: '24小时全天候守护你的私人财产',
-          banner: require('@/assets/appimage/appbanner1.png')
+          title: '保险服务',
+          datas: [
+            {
+              icon: require('@/assets/icon/app/luru.png'),
+              name: '保单录入',
+              unread: '25'
+            },
+            {
+              icon: require('@/assets/icon/app/chaxun.png'),
+              name: '保单查询'
+            },
+            {
+              icon: require('@/assets/icon/app/daili.png'),
+              name: '代理人信息',
+              unread: '6'
+            }
+          ]
         },
         {
-          name: '考勤管理',
-          icon: 'iconkaoqinguanlix',
-          text: '多地址设置，多班次考勤，考情数据报表',
-          banner: require('@/assets/appimage/appbanner2.png')
-        },
-        {
-          name: '会员管理',
-          icon: 'iconcanpinhuihuiyuanv6',
-          text: '移动端CRM，会员属性分析，跟踪提醒，精准营销',
-          banner: require('@/assets/appimage/appbanner3.png')
+          title: '内部管理',
+          datas: [
+            {
+              icon: require('@/assets/icon/app/huibao.png'),
+              name: '工作汇报',
+              unread: '102'
+            },
+            {
+              icon: require('@/assets/icon/app/gonggao.png'),
+              name: '内部公告'
+            },
+            {
+              icon: require('@/assets/icon/app/keHuGuanLi.png'),
+              name: '客户管理'
+            },
+            {
+              icon: require('@/assets/icon/app/renwu.png'),
+              name: '任务管理'
+            }
+          ]
         }
       ]
     }
@@ -98,27 +132,41 @@ export default {
 </script>
 <style lang="less" scoped>
 .application {
-  background-color: #eee;
-  padding-top: 134px;
-  height: 100%;
+  background-color: #fff;
+  padding: 134px 0 95px;
 }
-// tab选项样式
+
+.inUse {
+  padding-top: 8px;
+}
+.notUsed {
+  padding-top: 28px;
+}
+// 去除相中横条
 /deep/.van-tabs__line {
   height: 0;
 }
-/deep/.van-tab--active {
-  background-color: #eeeeee;
+/deep/.van-tabs__wrap {
+  height: 70px;
 }
 /deep/.van-tabs__content {
-  padding: 3%;
-  background-color: #eee;
+  margin: 0 23px;
 }
-/deep/.van-tabs__wrap {
-  height: 56px;
+// 未选中样式
+/deep/.van-tab {
+  background-color: #efefef;
+  .van-tab__text {
+    font-size: 16px;
+    color: #959595;
+  }
 }
-/deep/.van-tab__text {
-  color: black;
-  font-weight: bolder;
-  font-size: 16px;
+// 选中样式
+/deep/.van-tab--active {
+  background-color: #fff;
+  .van-tab__text {
+    color: #4a92ff;
+    font-size: 18px;
+    font-weight: bold;
+  }
 }
 </style>

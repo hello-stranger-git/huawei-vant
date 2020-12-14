@@ -1,7 +1,7 @@
 <template>
   <div class="appUse">
     <div>
-      <h3>{{ item.title }}</h3>
+      <h3 v-if="item.title">{{ item.title }}</h3>
       <Project :datas="item.datas"></Project>
     </div>
   </div>
@@ -19,8 +19,16 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.appUse {
+  margin-bottom: 40px;
+}
 .appUse > div > h3 {
   font-size: 16px;
   font-weight: bold;
+  color: #141414;
+  margin-bottom: 20px;
+}
+/deep/.project > dl {
+  margin-top: 16px;
 }
 </style>
