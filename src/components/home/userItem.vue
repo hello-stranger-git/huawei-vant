@@ -62,11 +62,11 @@ export default {
   },
   data() {
     return {
-      timeIcon: require('@/assets/icon/timeIcon.png'), // 时间图标
-      manIcon: require('@/assets/icon/manIcon.png'), // 男性图标
-      womanIcon: require('@/assets/icon/womanIcon.png'), // 女性图标
-      storeIcon: require('@/assets/icon/storeIcon.png'), // 店铺图标
-      vipIcon: require('@/assets/icon/vipIcon.png') // 店铺图标
+      timeIcon: require('@/assets/icon/home/enterStore/timeIcon.png'), // 时间图标
+      manIcon: require('@/assets/icon/home/enterStore/manIcon.png'), // 男性图标
+      womanIcon: require('@/assets/icon/home/enterStore/womanIcon.png'), // 女性图标
+      storeIcon: require('@/assets/icon/home/enterStore/storeIcon.png'), // 店铺图标
+      vipIcon: require('@/assets/icon/home/enterStore/vipIcon.png') // 店铺图标
     }
   }
 }

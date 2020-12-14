@@ -45,8 +45,8 @@ export default {
   },
   data() {
     return {
-      videoPlay: require('@/assets/videoImage/videoPlay.png'),
-      videoOffline: require('@/assets/videoImage/videoOffline.png')
+      videoPlay: require('@/assets/icon/home/video/videoItem/videoPlay.png'),
+      videoOffline: require('@/assets/icon/home/video/videoItem/videoOffline.png')
     }
   }
 }
