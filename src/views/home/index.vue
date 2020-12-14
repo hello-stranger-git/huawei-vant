@@ -46,9 +46,11 @@
         <!-- 客流特征模块 -->
         <template v-if="item.type == 'features'" slot="context">
           <div class="selectDate">
-            <span class="nowDay">今日</span>
-            <span class="nowWeek">本周</span>
-            <span class="nowMonth">本月</span>
+            <span :class="['nowDay', defaultActive ? 'defaultActive' : '']"
+              >今日</span
+            >
+            <span class="nowWeek" @click="btn">本周</span>
+            <span class="nowMonth" @click="btn">本月</span>
           </div>
           <div class="annular">
             <van-row class="annularRow">
@@ -153,6 +155,7 @@ export default {
   data() {
     return {
       updateTime: new Date().toLocaleString(),
+      defaultActive: true, // 客群特征按钮默认选中
       moduleDate: [
         // 今日进店数据
         {
@@ -326,6 +329,11 @@ export default {
       ]
     }
   },
+  methods: {
+    btn() {
+      this.defaultActive = false
+    }
+  },
   components: {
     NavBar,
     Module,
@@ -376,6 +384,11 @@ export default {
     .nowWeek:hover,
     .nowMonth:hover,
     .nowDay:hover {
+      color: #fff;
+      background-color: #4a92ff;
+      border: 1px solid #4a92ff;
+    }
+    .defaultActive {
       color: #fff;
       background-color: #4a92ff;
       border: 1px solid #4a92ff;
