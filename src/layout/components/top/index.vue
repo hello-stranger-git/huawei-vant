@@ -21,9 +21,9 @@
 export default {
   data() {
     return {
-      logoImage: require('@/assets/icon/huawei.png'), // 华为logo
-      dropDown: require('@/assets/icon/dropDown.png'), // 下拉箭头
-      information: require('@/assets/icon/information.png') // 消息图标
+      logoImage: require('@/assets/icon/top/huawei.png'), // 华为logo
+      dropDown: require('@/assets/icon/top/dropDown.png'), // 下拉箭头
+      information: require('@/assets/icon/top/information.png') // 消息图标
     }
   }
 }
