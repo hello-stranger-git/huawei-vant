@@ -18,11 +18,11 @@
 
 <script>
 import NavBarItem from '@/components/navBar/navBarItem.vue'
-import alarm from '@/assets/icon/navAlarm.png'
-import repair from '@/assets/icon/navRepair.png'
-import absence from '@/assets/icon/navAbsence.png'
-import shop from '@/assets/icon/navShop.png'
-import order from '@/assets/icon/navOrder.png'
+import alarm from '@/assets/icon/home/navbar/alarm.png'
+import repair from '@/assets/icon/home/navbar/repair.png'
+import absence from '@/assets/icon/home/navbar/absence.png'
+import shop from '@/assets/icon/home/navbar/shop.png'
+import order from '@/assets/icon/home/navbar/order.png'
 export default {
   data() {
     return {
@@ -30,7 +30,7 @@ export default {
         {
           icon: alarm,
           title: '报警信息',
-          menuCount: '999'
+          menuCount: '100'
         },
         {
           icon: repair,
