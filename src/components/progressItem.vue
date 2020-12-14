@@ -4,7 +4,7 @@
       <!-- 左侧类容 -->
       <van-col :span="4" class="leftTitle">
         <span>{{ leftTitle }}</span>
-        <img :src="leftIcon" />
+        <img :src="leftIcon" width="12px" height="12px" />
       </van-col>
       <!-- 中间内容 -->
       <van-col :span="16" class="strip">
@@ -23,7 +23,7 @@
       <van-col v-if="rightTitle" :span="4" class="percent">
         <div v-if="leftIcon">
           <span>{{ rightTitle }}</span>
-          <img :src="rightIcon" />
+          <img :src="rightIcon" width="12px" height="12px" />
         </div>
       </van-col>
     </van-row>

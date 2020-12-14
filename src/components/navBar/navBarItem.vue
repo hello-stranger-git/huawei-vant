@@ -1,7 +1,7 @@
 <template>
   <div class="navBarItem">
     <div class="navBarItemIcon">
-      <van-icon :name="iconArr[icon]" />
+      <van-icon :name="icon" />
       <!-- <div class="messageCount">{{ menuCount }}</div> -->
       <div
         :class="menuCount >= 10 ? 'moreMessage' : 'messageCount'"
@@ -17,11 +17,6 @@
 </template>
 
 <script>
-import alarm from '@/assets/icon/navAlarm.png'
-import repair from '@/assets/icon/navRepair.png'
-import absence from '@/assets/icon/navAbsence.png'
-import shop from '@/assets/icon/navShop.png'
-import order from '@/assets/icon/navOrder.png'
 export default {
   props: {
     icon: {
@@ -35,10 +30,7 @@ export default {
     }
   },
   data() {
-    return {
-      iconArr: [alarm, repair, absence, shop, order],
-      alarm
-    }
+    return {}
   }
 }
 </script>

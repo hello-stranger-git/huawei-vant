@@ -156,7 +156,7 @@ export default {
       moduleDate: [
         // 今日进店数据
         {
-          img: require('@/assets/icon/enterStoreIcon.png'),
+          img: require('@/assets/icon/home/enterStore/enterStoreIcon.png'),
           title: '今日进店',
           smallTitle: '(247人)',
           type: 'enterStore',
@@ -202,7 +202,7 @@ export default {
         },
         // 今日客流走势
         {
-          img: require('@/assets/icon/flowTrend.png'),
+          img: require('@/assets/icon/home/flow/flowTrend.png'),
           title: '今日客流走势',
           label: ['当前', '昨日', '前天'],
           nav: 'home',
@@ -231,7 +231,7 @@ export default {
         },
         // 客群特征
         {
-          img: require('@/assets/icon/features.png'),
+          img: require('@/assets/icon/home/feature/features.png'),
           title: '客群特征',
           type: 'features',
           seriesName: '大数据',
@@ -246,10 +246,10 @@ export default {
             {
               leftTitle: '男性',
               leftNumber: '203',
-              leftIcon: require('@/assets/icon/manIcon.png'),
+              leftIcon: require('@/assets/icon/home/feature/manIcon.png'),
               rightTitle: '女性',
               rightNumber: '44',
-              rightIcon: require('@/assets/icon/womanIcon.png'),
+              rightIcon: require('@/assets/icon/home/feature/womanIcon.png'),
               percentage: 70,
               trackColor: '#F98181',
               sex: 'woman'
@@ -257,14 +257,14 @@ export default {
             {
               leftTitle: '回头客',
               leftNumber: '256',
-              leftIcon: require('@/assets/icon/keHu.png'),
+              leftIcon: require('@/assets/icon/home/feature/keHu.png'),
               percentage: 80,
               progressColor: '#56BE9B'
             },
             {
               leftTitle: '会员',
               leftNumber: '165',
-              leftIcon: require('@/assets/icon/huiYuan.png'),
+              leftIcon: require('@/assets/icon/home/feature/huiYuan.png'),
               percentage: 30,
               progressColor: '#F8C498'
             }
@@ -272,7 +272,7 @@ export default {
         },
         // 客流与销售分析
         {
-          img: require('@/assets/icon/price.png'),
+          img: require('@/assets/icon/home/price/price.png'),
           title: '客流与销售分析',
           type: 'sale',
           label: ['销售额', '客流人数'],
@@ -295,7 +295,7 @@ export default {
         },
         // 本店视频
         {
-          img: require('@/assets/icon/homeVideo.png'),
+          img: require('@/assets/icon/home/video/homeVideo.png'),
           title: '本店视频',
           type: 'video',
           nav: 'home',
@@ -323,50 +323,7 @@ export default {
             }
           ]
         }
-      ],
-      todayEnter: {
-        img: require('@/assets/icon/enterStoreIcon.png'),
-        title: '今日进店',
-        smallTitle: '(247人)',
-        type: 'enterStore',
-        user: [
-          {
-            img: require('@/assets/enterStore/enterStore1.png'),
-            date: '19:45:21',
-            age: '35~40',
-            count: 1,
-            sex: 'woman'
-          },
-          {
-            img: require('@/assets/enterStore/enterStore2.png'),
-            date: '18:45:21',
-            age: '35~40',
-            count: 8,
-            sex: 'man'
-          },
-          {
-            img: require('@/assets/enterStore/enterStore3.png'),
-            date: '17:45:21',
-            age: '35~40',
-            count: 1,
-            sex: 'man'
-          },
-          {
-            img: require('@/assets/enterStore/enterStore4.png'),
-            date: '16:45:21',
-            age: '35~40',
-            count: 10,
-            sex: 'man'
-          },
-          {
-            img: require('@/assets/enterStore/enterStore5.png'),
-            date: '15:45:21',
-            age: '35~40',
-            count: 3,
-            sex: 'man'
-          }
-        ]
-      }
+      ]
     }
   },
   components: {
