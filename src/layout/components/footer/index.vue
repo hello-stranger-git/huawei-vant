@@ -20,32 +20,32 @@ export default {
         {
           text: '首页',
           to: '/',
-          active: require('@/assets/icon/shouye_active.png'),
-          inactive: require('@/assets/icon/shouye.png')
+          active: require('@/assets/icon/footer/shouye_active.png'),
+          inactive: require('@/assets/icon/footer/shouye.png')
         },
         {
           text: '客流',
           to: '/flow',
-          active: require('@/assets/icon/keliu_active.png'),
-          inactive: require('@/assets/icon/keliu.png')
+          active: require('@/assets/icon/footer/keliu_active.png'),
+          inactive: require('@/assets/icon/footer/keliu.png')
         },
         {
           text: '点检',
           to: '/check',
-          active: require('@/assets/icon/dianjian_active.png'),
-          inactive: require('@/assets/icon/dianjian.png')
+          active: require('@/assets/icon/footer/dianjian_active.png'),
+          inactive: require('@/assets/icon/footer/dianjian.png')
         },
         {
           text: '应用',
           to: '/app',
-          active: require('@/assets/icon/yingyong_active.png'),
-          inactive: require('@/assets/icon/yingyong.png')
+          active: require('@/assets/icon/footer/yingyong_active.png'),
+          inactive: require('@/assets/icon/footer/yingyong.png')
         },
         {
           text: '我的',
           to: '/user',
-          active: require('@/assets/icon/wode_active.png'),
-          inactive: require('@/assets/icon/wode.png')
+          active: require('@/assets/icon/footer/wode_active.png'),
+          inactive: require('@/assets/icon/footer/wode.png')
         }
       ]
     }
@@ -58,6 +58,7 @@ export default {
 /deep/.van-tabbar-item .van-tabbar-item__text {
   font-size: 10px;
   color: #343434;
+  margin-top: 2px;
   opacity: 0.4;
 }
 // 选中字体颜色
@@ -67,8 +68,8 @@ export default {
   opacity: 1;
 }
 .van-tabbar-item__icon > img {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
 }
 .van-tabbar {
   padding-bottom: 34px;
