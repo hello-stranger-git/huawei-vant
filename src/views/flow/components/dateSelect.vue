@@ -11,9 +11,10 @@
         </van-col>
         <van-col class="togDate">
           <div class="point" @click="togCalendar">
+            <!-- <li></li>
             <li></li>
-            <li></li>
-            <li></li>
+            <li></li> -->
+            <img :src="point" width="19px" height="19px" />
           </div>
         </van-col>
       </van-row>
@@ -35,7 +36,8 @@ export default {
       dateArr: ['今日', '昨日', '前日', '周五', '周四', '周三', '周二'],
       calendarShow: false,
       show: false, // 控制遮罩层
-      activeDate: 0
+      activeDate: 0,
+      point: require('@/assets/icon/flow/todayStore/point.png')
     }
   },
   components: {
@@ -82,13 +84,11 @@ export default {
   color: rgba(0, 0, 0, 0.4);
   font-size: 14px;
 }
+.togDate,
 .point {
   display: flex;
   justify-content: center;
-}
-.point > li {
-  float: left;
-  width: 10px;
+  align-items: center;
 }
 .active {
   opacity: 1;
