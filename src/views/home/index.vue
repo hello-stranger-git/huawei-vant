@@ -342,6 +342,8 @@ export default {
 <style lang="less" scoped>
 .home {
   background-color: #eee;
+  margin-top: 134px;
+  padding-bottom: 95px;
   .context {
     margin-top: 10px;
   }

@@ -24,17 +24,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.height {
-  height: 95px;
-  background-color: #eee;
-}
 .top {
   position: fixed;
   z-index: 4;
   width: 100%;
   top: 0;
-}
-.routerView {
-  margin-top: 134px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div style="background:#eee">
+  <div style="background:#eee" class="flow">
     <FlowTabs></FlowTabs>
   </div>
 </template>
@@ -13,4 +13,10 @@ export default {
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.flow {
+  background-color: #eee;
+  margin-top: 134px;
+  padding-bottom: 95px;
+}
+</style>

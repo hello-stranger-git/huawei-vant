@@ -89,6 +89,7 @@ export default {
 <style lang="less" scoped>
 .check {
   background-color: #eeeeee;
+  margin-top: 134px;
 }
 .camera {
   margin: 15px 15px 0;
