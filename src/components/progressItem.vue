@@ -20,7 +20,7 @@
         <span class="rightNumber">{{ rightNumber }}</span>
       </van-col>
       <!-- 右侧内容 -->
-      <van-col :span="4" class="percent">
+      <van-col v-if="rightTitle" :span="4" class="percent">
         <div v-if="leftIcon">
           <span>{{ rightTitle }}</span>
           <img :src="rightIcon" />
