@@ -95,7 +95,7 @@ export default {
         for (var i of this.userArr) {
           this.arr.push(i)
         }
-        if (this.arr.length > 20) {
+        if (this.arr.length > 100) {
           this.finished = true
         } else {
           this.loading = false
