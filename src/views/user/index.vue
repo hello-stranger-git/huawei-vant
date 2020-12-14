@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <div class="box"></div>
     <!-- 店铺信息 -->
     <div class="store">
       <div class="logo">
@@ -106,9 +105,6 @@ export default {
 .container {
   margin: 0 12px 0;
   background-color: #efefef;
-}
-.box {
-  height: 134px;
 }
 .store {
   margin-top: 12px;

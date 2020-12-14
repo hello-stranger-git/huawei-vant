@@ -2,10 +2,9 @@
   <div>
     <div class="top">
       <Top></Top>
-      <Notice></Notice>
     </div>
+    <Notice></Notice>
     <router-view class="routerView"> </router-view>
-    <div class="height"></div>
     <Footer></Footer>
   </div>
 </template>
