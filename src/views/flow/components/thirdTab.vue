@@ -134,7 +134,7 @@ export default {
       // 顾客统计
       customerCount: {
         img: require('@/assets/icon/price.png'),
-        title: '客流与销售分析',
+        title: '到店顾客统计',
         type: 'sale',
         label: ['回头客', '跨店', '会员'],
         nav: 'flow',
