@@ -18,32 +18,37 @@
 
 <script>
 import NavBarItem from '@/components/navBar/navBarItem.vue'
+import alarm from '@/assets/icon/navAlarm.png'
+import repair from '@/assets/icon/navRepair.png'
+import absence from '@/assets/icon/navAbsence.png'
+import shop from '@/assets/icon/navShop.png'
+import order from '@/assets/icon/navOrder.png'
 export default {
   data() {
     return {
       navBarItem: [
         {
-          icon: '0',
+          icon: alarm,
           title: '报警信息',
-          menuCount: '1'
+          menuCount: '999'
         },
         {
-          icon: '1',
+          icon: repair,
           title: '待整改',
           menuCount: '95'
         },
         {
-          icon: '2',
+          icon: absence,
           title: '9人缺勤',
           menuCount: '9'
         },
         {
-          icon: '3',
+          icon: shop,
           title: '商城',
           menuCount: '0'
         },
         {
-          icon: '4',
+          icon: order,
           title: '工单',
           menuCount: '2'
         }
