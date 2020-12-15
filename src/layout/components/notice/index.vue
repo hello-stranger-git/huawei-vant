@@ -1,5 +1,5 @@
 <template>
-  <div class="notice" style="padding-top:88px">
+  <div ref="notice" class="notice" style="padding-top:88px;">
     <van-notice-bar
       color="#fff"
       background="#e60012"
@@ -25,8 +25,10 @@ export default {
     }
   },
   methods: {
+    // 关闭notice触发
     closeNotice() {
       this.showNotice = false
+      this.$refs.notice.style.height = '0px'
     }
   }
 }
@@ -34,8 +36,12 @@ export default {
 
 <style lang="less" scoped>
 div.notice {
+  height: 46px;
   .van-notice-bar {
-    height: 46px;
+    // height: 46px;
+    z-index: 4;
+    position: fixed;
+    width: 100%;
     font-size: 12px;
     line-height: 17px;
     background-color: #e60012;
