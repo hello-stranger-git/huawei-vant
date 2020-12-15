@@ -78,7 +78,6 @@ export default {
     line-height: 17px;
     padding-top: 6px;
     padding-bottom: 19px;
-    font-weight: 700;
     text-align: center;
     color: #303133;
   }

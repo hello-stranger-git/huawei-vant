@@ -35,13 +35,13 @@
           </div>
           <div class="rightBox">
             <span v-if="item.label">{{ item.label }}</span>
-            <span v-if="item.switch">{{ checked ? '营业' : '未营业' }}</span>
-            <van-switch
+            <!-- <span v-if="item.switch">{{ checked ? '营业' : '未营业' }}</span> -->
+            <!-- <van-switch
               v-model="checked"
               v-if="item.switch"
               active-color="#4CD964"
               size="24px"
-            />
+            /> -->
             <van-icon :name="arrow" size="14" class="arrow" v-if="item.arrow" />
           </div>
         </div>
@@ -64,7 +64,6 @@ export default {
   data() {
     return {
       arrow,
-      checked: false,
       saleInput1: '',
       saleInput2: '',
       saleInput3: ''
@@ -118,15 +117,9 @@ export default {
         .van-switch {
           margin-right: 12px;
           float: right;
-          // width: 50px;
-          // height: 25px;
           top: 50%;
           transform: translateY(-50%);
         }
-        // .van-switch__node {
-        //   width: 25px;
-        //   height: 25px;
-        // }
       }
       span {
         height: 17px;
@@ -137,6 +130,7 @@ export default {
       }
       .arrow {
         margin-right: 12px;
+        vertical-align: middle;
       }
       input {
         width: 51px;
@@ -145,8 +139,6 @@ export default {
         color: #343434;
         line-height: 24px;
         border-radius: 7px;
-        // border: 1px solid rgba(185, 185, 185, 0.5);
-        border: none;
         border: 1px solid #b9b9b9;
         text-align: center;
         margin-right: 12px;

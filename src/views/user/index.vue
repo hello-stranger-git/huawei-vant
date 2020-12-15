@@ -14,6 +14,8 @@
     </div>
     <!-- 单元格 -->
     <UserItem :data="cellData"></UserItem>
+    <!-- 地址 -->
+    <div class="adress">深圳市龙岗区龙岗大道桂圆街道345号</div>
     <!-- logout -->
     <div class="logout">
       <span>退出账号</span>
@@ -27,7 +29,6 @@ import UserItem from './cpmponents/userItem'
 import huawei from '@/assets/icon/user/userHuawei.png'
 import arrow from '@/assets/icon/arrow14px.png'
 import iconStatu from '@/assets/icon/user/userStoreStatu.png'
-import iconAdress from '@/assets/icon/user/userAdress.png'
 import iconTime from '@/assets/icon/user/userTime.png'
 import iconSale from '@/assets/icon/user/userSale.png'
 import iconAlarm from '@/assets/icon/user/userAlarm.png'
@@ -52,13 +53,13 @@ export default {
         {
           value: '营业状态',
           icon: iconStatu,
-          // label: '营业',
-          switch: true
+          label: '营业',
+          arrow: true
         },
         {
-          value: '地址',
-          icon: iconAdress,
-          arrow: true
+          value: '销售额补录',
+          icon: iconSale,
+          input: true
         },
         {
           value: '上下班时间',
@@ -69,11 +70,6 @@ export default {
       ],
       [
         {
-          value: '销售额补录',
-          icon: iconSale,
-          input: true
-        },
-        {
           value: '报警主机',
           icon: iconAlarm,
           arrow: true
@@ -82,9 +78,7 @@ export default {
           value: '密码修改',
           icon: iconLock,
           arrow: true
-        }
-      ],
-      [
+        },
         {
           value: '工单',
           icon: iconOrder,
@@ -163,7 +157,12 @@ export default {
 }
 .bottom {
   height: 100px;
-  // height: 83px;
-  // background-color: pink;
+}
+.adress {
+  line-height: 14px;
+  font-size: 10px;
+  color: rgba(52, 52, 52, 0.4);
+  text-align: center;
+  margin-top: 10px;
 }
 </style>
