@@ -2,8 +2,8 @@
   <div class="block">
     <div class="timeScale" ref="timeScale"></div>
     <div class="mask"></div>
-    <span class="timeSpan">{{ time }}</span>
     <div class="hiddenScroll">
+      <span class="timeSpan">{{ time }}</span>
       <div class="timeAxis" ref="timeAxis">
         <img :src="timeAxis" ref="img" />
       </div>
@@ -93,6 +93,7 @@ export default {
     //时间轴图片div
     .timeAxis {
       overflow-y: auto;
+      position: relative;
     }
   }
   .mask {
@@ -102,15 +103,27 @@ export default {
     background-color: #0000007d;
     right: 50%;
     border-right: 2px solid #3299ff;
+    z-index: 1;
   }
 
   .timeSpan {
+    width: 99px;
+    height: 25px;
+    background: #ffffff;
+    box-shadow: 0px 0px 6px rgba(74, 146, 255, 0.36);
+    opacity: 1;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
     position: absolute;
-    color: #61afff;
+    color: #4a92ff;
     left: 50%;
     transform: translateX(-50%);
-    top: -25px;
-    font-size: 12px;
+    top: -12px;
+    font-size: 16px;
   }
 }
 </style>
