@@ -1,6 +1,7 @@
 <template>
   <div class="block">
     <div class="timeScale" ref="timeScale"></div>
+    <!-- 时间轴左半边的遮罩层 -->
     <div class="mask"></div>
     <div class="hiddenScroll">
       <span class="timeSpan">{{ time }}</span>
@@ -98,6 +99,7 @@ export default {
   }
   .mask {
     position: absolute;
+    pointer-events: none;
     width: calc(50% - 3px);
     height: 58px;
     background-color: #0000007d;
