@@ -141,7 +141,7 @@ export default {
 .notUsed {
   padding-top: 28px;
 }
-// 去除相中横条
+// 去除选中横条
 /deep/.van-tabs__line {
   height: 0;
 }

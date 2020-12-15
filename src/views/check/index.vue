@@ -1,37 +1,62 @@
 <template>
   <div class="check">
-    <!-- 摄像头button区域 -->
-    <div class="camera">
-      <div
-        :class="`cameraButton  ${defaultStyle ? 'defaultStyle' : ''}`"
-        @click="btn"
-      >
-        <van-button v-for="(item, i) of cameraData" :key="i">{{
-          item
-        }}</van-button>
-      </div>
-      <!-- 视屏 -->
-      <div class="video">
-        <img :src="video" />
-      </div>
-      <!-- 日期选择区域 -->
-      <div class="detaButton">
-        <i class="iconfont iconxiala-yuan-tianchong" @click="show = true" />
-        <van-button v-for="(item, i) of detas" :key="i" type="default">{{
-          item
-        }}</van-button>
-      </div>
-      <!-- 日历开始 -->
-      <van-calendar v-model="show" :show-confirm="false" @confirm="onConfirm" />
-      <!-- 日历结束 -->
-      <!-- 时间轴 -->
-      <div class="timeAxis">
-        <TimeAxis></TimeAxis>
-      </div>
-      <div class="checkBtn">
-        <van-button to="CheckItem">点检</van-button>
-      </div>
-    </div>
+    <!-- tab选项区域 -->
+    <van-tabs v-model="active">
+      <!-- 点检 -->
+      <van-tab title="点检" class="inUse ">
+        <!-- 摄像头button区域 -->
+        <div class="camera">
+          <div
+            :class="`cameraButton  ${defaultStyle ? 'defaultStyle' : ''}`"
+            @click="camera"
+          >
+            <van-button v-for="(item, i) of cameraData" :key="i">{{
+              item
+            }}</van-button>
+          </div>
+          <!-- 滚动条 -->
+          <div class="roll">
+            <div class="roll-left"></div>
+            <div class="roll-right"></div>
+          </div>
+          <!-- 视屏 -->
+          <div class="video">
+            <img :src="video" />
+          </div>
+          <!-- 日期选择区域 -->
+          <div
+            :class="`detaButton ${datestyle ? 'datestyle' : ''}`"
+            @click="tade"
+          >
+            <div class="calendar" @click="show = true">
+              <img :src="calendar" />
+            </div>
+            <van-button v-for="(item, i) of detas" :key="i" type="default">{{
+              item
+            }}</van-button>
+          </div>
+          <!-- 日历开始 -->
+          <van-calendar
+            v-model="show"
+            :show-confirm="false"
+            @confirm="onConfirm"
+          />
+          <!-- 日历结束 -->
+          <!-- 时间轴 -->
+          <div class="timeAxis">
+            <TimeAxis></TimeAxis>
+          </div>
+          <!-- 点检 -->
+          <div class="checkBtn">
+            <van-button to="CheckItem">点检</van-button>
+          </div>
+        </div>
+      </van-tab>
+      <!-- 考评 -->
+      <van-tab title="考评" class="notUsed ">
+        <div>456</div>
+      </van-tab>
+    </van-tabs>
   </div>
 </template>
 
@@ -43,33 +68,40 @@ export default {
   },
   data() {
     return {
-      // tab选项默认选中项
+      // tab选项区域默认选中项
+      active: 0,
+      // 摄像头选项默认选中项
       defaultStyle: true,
+      // 时间
+      datestyle: true,
       // 摄像头数据
       cameraData: [
-        '大厅摄像头',
-        '主厅摄像头',
-        '副厅摄像头',
+        '大厅-进门摄像头',
+        '大厅-人脸识别摄像头',
+        '大厅-进门摄像头',
         '摄像头1',
         '大厅摄像头背后1',
         '主厅摄像头背后6'
       ],
       // 视屏数据
       video: require('@/assets/screenImage/videoImage.png'),
-      detas: ['11-22', '11-23', '11-24', '前天', '昨天', '今天', '现在'],
-      // 日历数据开始
+      // 日期选择数据
+      detas: ['11-22', '11-23', '前天', '昨天', '零时', '今天', '现在'],
       date: '', // 接收选择日期
-      show: false
-
-      // 日历数据结束
+      show: false,
+      calendar: require('@/assets/icon/check/rili.png')
     }
   },
   methods: {
-    // 清除默认选中属性
-    btn() {
+    // 清除摄像头默认选中属性
+    camera() {
       this.defaultStyle = false
     },
-    // 日历事件开始
+    // 清除时间默认选中属性
+    tade() {
+      this.datestyle = false
+    },
+    // 日历事件
     formatDate(date) {
       return `${date.getMonth() + 1}/${date.getDate()}`
     },
@@ -77,22 +109,44 @@ export default {
       this.show = false
       this.date = this.formatDate(date)
     }
-
-    // 日历事件结束
   }
 }
 </script>
-
 <style lang="less" scoped>
 .check {
   background-color: #eeeeee;
   padding-bottom: 95px;
 }
+// tab选项区域样式
+.van-tabs {
+  /deep/.van-tabs__wrap {
+    height: 70px;
+    // 去除选中下方横条
+    .van-tabs__line {
+      height: 0;
+    }
+  }
+  // 未选中样式
+  /deep/.van-tab {
+    background-color: #efefef;
+    .van-tab__text {
+      font-size: 16px;
+      color: #959595;
+    }
+  }
+  // 选中样式
+  /deep/.van-tab--active {
+    background-color: #fff;
+    .van-tab__text {
+      color: #4a92ff;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+}
 .camera {
-  margin: 15px 15px 0;
-  padding-top: 15px;
+  padding-top: 16px;
   background-color: #fff;
-  border-radius: 8px;
   overflow: hidden;
 }
 // 摄像头button区域样式
@@ -104,27 +158,48 @@ export default {
   width: 0;
   height: 0;
 }
-.cameraButton > .van-button {
-  flex-shrink: 0;
-  font-size: 12px;
-  border: 1px solid #dcdfe6;
-  border-radius: 4px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+.cameraButton {
+  .van-button {
+    flex-shrink: 0;
+    font-size: 12px;
+    height: auto;
+    color: #959595;
+    border: 1px solid #959595;
+    opacity: 0.7;
+    border-radius: 6px;
+    margin-right: 16px;
+    &:first-child {
+      margin-left: 12px;
+    }
+  }
+  .van-button--normal {
+    padding: 8px;
+  }
 }
-
-.van-button:hover {
-  border-bottom: 0;
-  color: #409eff;
+// 滚动条
+.roll {
+  position: relative;
+  width: 32px;
+  height: 3px;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  .roll-left,
+  .roll-right {
+    flex: 1;
+    background-color: #4a92ff;
+    border-radius: 30%;
+  }
+  .roll-right {
+    background-color: #efefef;
+  }
 }
-.defaultStyle > .van-button:first-child {
-  border-bottom: 0;
-  color: #409eff;
-}
-
 // 视屏区域样式
 .video {
-  margin: 15px 0;
+  height: 206px;
+  overflow: hidden;
+  margin-top: 18px;
 }
 .video > img {
   width: 100%;
@@ -132,44 +207,65 @@ export default {
 // 日期选择样式
 .detaButton {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-}
-.detaButton > .van-button {
-  font-size: 12px;
-  padding: 0 8px;
-  height: 32px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-}
-
-// 阿里图标样式
-.iconxiala-yuan-tianchong {
-  color: #4490d2;
-  font-size: 28px;
-  margin-left: 9px;
+  margin-top: 18px;
+  padding: 0 12px 0 9px;
+  .calendar > img {
+    width: 30px;
+    height: 30px;
+  }
+  .van-button {
+    font-size: 12px;
+    width: 42px;
+    height: 20px;
+    border-radius: 4px;
+    opacity: 0.7;
+    color: #959595;
+  }
+  .van-button--normal {
+    padding: 0;
+  }
 }
 // 时间轴样式
 .timeAxis {
-  margin: 40px 0 62px;
+  margin-top: 35px;
   background-color: #5c5c5c;
 }
 // 点检样式
 .checkBtn {
-  background-color: #eff2f5;
-  height: 200px;
+  padding: 52px 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .checkBtn > .van-button {
-  width: 120px;
-  height: 120px;
-  // border: 1px solid red;
+  width: 150px;
+  height: 150px;
+  background-color: #4a92ff;
   border-radius: 50%;
-  box-shadow: 0px 0px 8px #d4cdcd;
+  box-shadow: 0px 0px 22px rgba(74, 146, 255, 0.51);
   color: #3c9dff;
   outline: none;
-  font-size: 30px;
-  color: #3c9dff;
+  font-size: 20px;
+  color: #fff;
+  letter-spacing: 5px;
+}
+// 按钮点击效果
+.cameraButton,
+.detaButton {
+  .van-button:hover {
+    opacity: 1;
+    color: #fff;
+    background-color: #4a92ff;
+    border: none;
+  }
+}
+.defaultStyle > .van-button:first-child,
+.datestyle > .van-button:last-child {
+  opacity: 1;
+  color: #fff;
+  background-color: #4a92ff;
+  border: none;
 }
 </style>
