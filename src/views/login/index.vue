@@ -28,9 +28,11 @@
         </van-button>
       </div>
       <div class="bottom">
-        <span>忘记密码</span>
+        <span style="cursor: pointer;" @click="rePassword">忘记密码</span>
         <span class="line">|</span>
-        <span>立即注册</span>
+        <span style="cursor: pointer;" @click="regist">
+          立即注册
+        </span>
       </div>
     </van-form>
   </div>
@@ -49,7 +51,15 @@ export default {
   },
   methods: {
     // 点击提交按钮
-    onSubmit(values) {}
+    onSubmit(values) {},
+    // 注册跳转
+    regist() {
+      this.$router.push({ name: 'Register', params: { jump: false } })
+    },
+    // 忘记密码
+    rePassword() {
+      this.$router.push({ name: 'Register', params: { jump: true } })
+    }
   }
 }
 </script>
