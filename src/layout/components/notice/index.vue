@@ -38,7 +38,7 @@ export default {
 div.notice {
   height: 46px;
   .van-notice-bar {
-    // height: 46px;
+    height: 46px;
     z-index: 4;
     position: fixed;
     width: 100%;

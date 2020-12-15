@@ -104,6 +104,7 @@ export default {
 .register {
   background-color: #fff;
   height: 100%;
+  overflow: hidden;
   .van-hairline--bottom::after {
     border: none;
   }
