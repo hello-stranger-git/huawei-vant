@@ -162,7 +162,8 @@ export default {
   }
 }
 .bottom {
-  height: 83px;
+  height: 100px;
+  // height: 83px;
   // background-color: pink;
 }
 </style>
