@@ -1,6 +1,5 @@
 <template>
   <div class="check">
-    <NavBar></NavBar>
     <!-- 摄像头button区域 -->
     <div class="camera">
       <div
@@ -37,11 +36,9 @@
 </template>
 
 <script>
-import NavBar from '@/layout/components/navBar'
 import TimeAxis from '@/components/check/timeAxis.vue' // 时间轴
 export default {
   components: {
-    NavBar,
     TimeAxis
   },
   data() {

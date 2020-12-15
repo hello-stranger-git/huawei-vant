@@ -18,13 +18,22 @@
     <div class="logout">
       <span>退出账号</span>
     </div>
+    <div class="bottom"></div>
   </div>
 </template>
 
 <script>
-import huawei from '@/assets/icon/huawei.png'
-import arrow from '@/assets/icon/arrow14px.png'
 import UserItem from './cpmponents/userItem'
+import huawei from '@/assets/icon/user/userHuawei.png'
+import arrow from '@/assets/icon/arrow14px.png'
+import iconStatu from '@/assets/icon/user/userStoreStatu.png'
+import iconAdress from '@/assets/icon/user/userAdress.png'
+import iconTime from '@/assets/icon/user/userTime.png'
+import iconSale from '@/assets/icon/user/userSale.png'
+import iconAlarm from '@/assets/icon/user/userAlarm.png'
+import iconLock from '@/assets/icon/user/userLock.png'
+import iconOrder from '@/assets/icon/user/userOrder.png'
+import iconAbout from '@/assets/icon/user/userAbout.png'
 
 export default {
   components: {
@@ -42,41 +51,49 @@ export default {
       [
         {
           value: '营业状态',
-          icon: 0,
-          label: '营业'
+          icon: iconStatu,
+          // label: '营业',
+          switch: true
         },
         {
           value: '地址',
-          icon: 1
+          icon: iconAdress,
+          arrow: true
         },
         {
           value: '上下班时间',
-          icon: 2,
-          label: '10:00-22:00'
+          icon: iconTime,
+          label: '10:00-22:00',
+          arrow: true
         }
       ],
       [
         {
-          value: '销售额',
-          icon: 3
+          value: '销售额补录',
+          icon: iconSale,
+          input: true
         },
         {
           value: '报警主机',
-          icon: 4
+          icon: iconAlarm,
+          arrow: true
         },
         {
           value: '密码修改',
-          icon: 5
+          icon: iconLock,
+          arrow: true
         }
       ],
       [
         {
           value: '工单',
-          icon: 6
+          icon: iconOrder,
+          arrow: true
         },
         {
           value: '关于',
-          icon: 7
+          icon: iconAbout,
+          arrow: true
         }
       ]
     ]
@@ -143,5 +160,10 @@ export default {
     color: #e60012;
     line-height: 22px;
   }
+}
+.bottom {
+  height: 100px;
+  // height: 83px;
+  // background-color: pink;
 }
 </style>

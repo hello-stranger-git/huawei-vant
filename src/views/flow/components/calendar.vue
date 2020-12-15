@@ -23,7 +23,7 @@
               item.day === now ? 'active' : ''
             ]"
             @click="changeDay(item.day)"
-            >{{ item.day }}</span
+            >{{ item.day > 9 ? item.day : '0' + item.day }}</span
           >
           <!-- 显示每一天总共访问的人数 -->
           <template v-if="peopleCount">
