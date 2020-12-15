@@ -11,9 +11,27 @@
 
         <div class="right">
           <div v-if="item.input" class="input">
-            <input type="number" placeholder="今天" />
-            <input type="number" placeholder="昨天" />
-            <input type="number" placeholder="前天" />
+            <input
+              type="number"
+              placeholder="今天"
+              v-model="saleInput1"
+              onfocus="this.placeholder=''"
+              onblur="this.placeholder='今天'"
+            />
+            <input
+              type="number"
+              placeholder="昨天"
+              v-model="saleInput2"
+              onfocus="this.placeholder=''"
+              onblur="this.placeholder='昨天'"
+            />
+            <input
+              type="number"
+              placeholder="前天"
+              v-model="saleInput3"
+              onfocus="this.placeholder=''"
+              onblur="this.placeholder='前天'"
+            />
           </div>
           <div class="rightBox">
             <span v-if="item.label">{{ item.label }}</span>
@@ -22,6 +40,7 @@
               v-model="checked"
               v-if="item.switch"
               active-color="#4CD964"
+              size="24px"
             />
             <van-icon :name="arrow" size="14" class="arrow" v-if="item.arrow" />
           </div>
@@ -45,7 +64,10 @@ export default {
   data() {
     return {
       arrow,
-      checked: false
+      checked: false,
+      saleInput1: '',
+      saleInput2: '',
+      saleInput3: ''
     }
   }
 }
@@ -96,9 +118,15 @@ export default {
         .van-switch {
           margin-right: 12px;
           float: right;
+          // width: 50px;
+          // height: 25px;
           top: 50%;
           transform: translateY(-50%);
         }
+        // .van-switch__node {
+        //   width: 25px;
+        //   height: 25px;
+        // }
       }
       span {
         height: 17px;
