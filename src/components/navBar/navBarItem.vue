@@ -43,7 +43,8 @@ export default {
   text-align: center;
   color: #ffffff;
   position: relative;
-  margin: auto;
+  // margin: auto;
+  margin: 0 10px;
   .navBarItemIcon {
     border-radius: 10px;
     height: 50px;

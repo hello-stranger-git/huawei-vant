@@ -9,10 +9,10 @@
         :color="item.color"
       ></NavBarItem>
     </template>
-    <div class="toggleNav">
+    <!-- <div class="toggleNav">
       <div class="left"></div>
       <div class="right"></div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -51,6 +51,22 @@ export default {
           icon: order,
           title: '工单',
           menuCount: '2'
+        },
+
+        {
+          icon: order,
+          title: '工单',
+          menuCount: '2'
+        },
+        {
+          icon: order,
+          title: '工单',
+          menuCount: '2'
+        },
+        {
+          icon: order,
+          title: '工单',
+          menuCount: '2'
         }
       ]
     }
@@ -67,23 +83,28 @@ export default {
   background-color: #fff;
   padding: 18px 10px 0px 10px;
   position: relative;
+  overflow: auto;
 }
-.toggleNav {
-  position: absolute;
-  width: 32px;
-  height: 3px;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  .left,
-  .right {
-    flex: 1;
-    background-color: #4a92ff;
-    border-radius: 30%;
-  }
-  .right {
-    background-color: #efefef;
-  }
+//隐藏滚动条
+::-webkit-scrollbar {
+  display: none;
 }
+// .toggleNav {
+//   position: absolute;
+//   width: 32px;
+//   height: 3px;
+//   bottom: 8px;
+//   left: 50%;
+//   transform: translateX(-50%);
+//   display: flex;
+//   .left,
+//   .right {
+//     flex: 1;
+//     background-color: #4a92ff;
+//     border-radius: 30%;
+//   }
+//   .right {
+//     background-color: #efefef;
+//   }
+// }
 </style>
