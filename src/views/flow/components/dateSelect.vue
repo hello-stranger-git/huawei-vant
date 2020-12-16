@@ -107,15 +107,16 @@ export default {
 }
 .calendar {
   position: absolute;
-  z-index: 3;
-  width: 90%;
-  left: 5%;
+  z-index: 4;
+  width: 100%;
+  left: 0;
   border-radius: 8px;
   box-shadow: 0px 0px 10px 5px rgb(20 20 1.05%);
   opacity: 90%;
   background-color: #fff;
   /deep/.currentCalender {
     padding-top: 26px;
+    font-size: 18px;
   }
   /deep/.weekHeader {
     padding: 32px 12px 9px 12px;
@@ -124,6 +125,9 @@ export default {
       color: #4a92ff;
     }
   }
+}
+.van-overlay {
+  z-index: 4;
 }
 /deep/ .calendar .rowDays {
   padding: 10px 10px;
