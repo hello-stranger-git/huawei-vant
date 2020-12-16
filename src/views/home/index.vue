@@ -9,6 +9,7 @@
         :key="index"
         :smallTitle="item.smallTitle"
         :nav="item.nav"
+        :routeIndex="index"
       >
         <!-- 每日进店模块 -->
         <template v-if="item.type == 'enterStore'" slot="context">
