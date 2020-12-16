@@ -66,7 +66,7 @@ export default {
       manIcon: require('@/assets/icon/home/enterStore/manIcon.png'), // 男性图标
       womanIcon: require('@/assets/icon/home/enterStore/womanIcon.png'), // 女性图标
       storeIcon: require('@/assets/icon/home/enterStore/storeIcon.png'), // 店铺图标
-      vipIcon: require('@/assets/icon/home/enterStore/vipIcon.png') // 店铺图标
+      vipIcon: require('@/assets/icon/home/enterStore/vipIcon.png') // vip图标
     }
   }
 }
