@@ -11,9 +11,6 @@
         </van-col>
         <van-col class="togDate">
           <div class="point" @click="togCalendar">
-            <!-- <li></li>
-            <li></li>
-            <li></li> -->
             <img :src="point" width="19px" height="19px" />
           </div>
         </van-col>
@@ -62,13 +59,14 @@ export default {
       this.calendarShow = !this.calendarShow
       this.show = !this.show // 控制遮罩层
       const time = new Date(date.year, date.month - 1, date.day)
-      this.arr = ['今日']
-      for (let i = 0; i < 6; i++) {
-        const month = new Date(Number(time) - 86400000 * (i + 1)).getMonth()
-        const day = new Date(Number(time) - 86400000 * (i + 1)).getDate()
+      this.arr = []
+      for (let i = 0; i < 7; i++) {
+        const month = new Date(Number(time) - 86400000 * i).getMonth()
+        const day = new Date(Number(time) - 86400000 * i).getDate()
         this.arr.push(month + '-' + day)
       }
       this.dateArr = this.arr
+      this.activeDate = 0
     },
     toggleActiveDate(i) {
       this.activeDate = i
