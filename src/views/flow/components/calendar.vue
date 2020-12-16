@@ -125,7 +125,11 @@ export default {
   },
   methods: {
     changeDay(day) {
-      this.$emit('getDay', day)
+      this.$emit('getDay', {
+        year: this.currentYear,
+        month: this.currentMonth,
+        day: day
+      })
       this.now = day
     },
     preMonth() {

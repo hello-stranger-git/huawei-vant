@@ -33,6 +33,7 @@ import Calendar from './calendar.vue'
 export default {
   data() {
     return {
+      arr: [],
       dateArr: ['今日', '昨日', '前日', '周五', '周四', '周三', '周二'],
       calendarShow: false,
       show: false, // 控制遮罩层
@@ -56,10 +57,18 @@ export default {
       this.calendarShow = !this.calendarShow
       this.show = !this.show // 控制遮罩层
     },
-    // 点击日历的每一天，获取对应时间
-    getDay(day) {
+    // 点击日历的每一天，获取这一天的时间
+    getDay(date) {
       this.calendarShow = !this.calendarShow
       this.show = !this.show // 控制遮罩层
+      const time = new Date(date.year, date.month - 1, date.day)
+      this.arr = ['今日']
+      for (let i = 0; i < 6; i++) {
+        const month = new Date(Number(time) - 86400000 * (i + 1)).getMonth()
+        const day = new Date(Number(time) - 86400000 * (i + 1)).getDate()
+        this.arr.push(month + '-' + day)
+      }
+      this.dateArr = this.arr
     },
     toggleActiveDate(i) {
       this.activeDate = i
