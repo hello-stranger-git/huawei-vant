@@ -8,8 +8,8 @@
             @click="toggleTab(i)"
             class="button"
             :style="{
-              background: activeTabIndex === i ? ' #50a6ff' : '#fff',
-              color: activeTabIndex === i ? ' #fff' : ''
+              background: activeTabIndex === i ? '#50a6ff' : '#fff',
+              color: activeTabIndex === i ? '#fff' : ''
             }"
           >
             {{ item.value }}
@@ -60,7 +60,14 @@ export default {
     toggleTab(index) {
       this.activeTabIndex = index
     }
-  }
+  },
+  created() {
+    // 暂定
+    if (this.$route.query.index < 4) {
+      this.activeTabIndex = Number(this.$route.query.index)
+    }
+  },
+  mounted() {}
 }
 </script>
 

@@ -17,7 +17,7 @@
           </template>
         </van-col>
         <van-col span="12" class="status" v-if="nav == 'home'">
-          <span class="more">更多</span>
+          <span class="more" @click="toggleRouter(routeIndex)">更多</span>
           <img :src="arrowIcon" />
         </van-col>
       </van-col>
@@ -48,11 +48,22 @@ export default {
       // 通过导航路由，判断是否显示更多
       type: String,
       default: ''
+    },
+    routeIndex: {
+      type: Number,
+      default: 0
     }
   },
   data() {
     return {
       arrowIcon: require('@/assets/icon/arrow.png')
+    }
+  },
+  methods: {
+    toggleRouter(i) {
+      if (i < 4) {
+        this.$router.push({ path: '/flow', query: { index: i } })
+      }
     }
   }
 }

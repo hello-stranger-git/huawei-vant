@@ -176,7 +176,7 @@ export default {
               },
               min: 0,
               max: 2000000,
-              interval: 300000,
+              interval: 500000,
               axisLabel: {
                 formatter: function(value) {
                   if (value > 10000) {
@@ -199,7 +199,7 @@ export default {
                 show: false
               },
               splitLine: {
-                show: true,
+                show: false,
 
                 lineStyle: {
                   color: '#70707099',

@@ -11,9 +11,6 @@
         </van-col>
         <van-col class="togDate">
           <div class="point" @click="togCalendar">
-            <!-- <li></li>
-            <li></li>
-            <li></li> -->
             <img :src="point" width="19px" height="19px" />
           </div>
         </van-col>
@@ -33,6 +30,7 @@ import Calendar from './calendar.vue'
 export default {
   data() {
     return {
+      arr: [],
       dateArr: ['今日', '昨日', '前日', '周五', '周四', '周三', '周二'],
       calendarShow: false,
       show: false, // 控制遮罩层
@@ -56,10 +54,19 @@ export default {
       this.calendarShow = !this.calendarShow
       this.show = !this.show // 控制遮罩层
     },
-    // 点击日历的每一天，获取对应时间
-    getDay(day) {
+    // 点击日历的每一天，获取这一天的时间
+    getDay(date) {
       this.calendarShow = !this.calendarShow
       this.show = !this.show // 控制遮罩层
+      const time = new Date(date.year, date.month - 1, date.day)
+      this.arr = []
+      for (let i = 0; i < 7; i++) {
+        const month = new Date(Number(time) - 86400000 * i).getMonth()
+        const day = new Date(Number(time) - 86400000 * i).getDate()
+        this.arr.push(month + '-' + day)
+      }
+      this.dateArr = this.arr
+      this.activeDate = 0
     },
     toggleActiveDate(i) {
       this.activeDate = i
@@ -107,15 +114,16 @@ export default {
 }
 .calendar {
   position: absolute;
-  z-index: 3;
-  width: 90%;
-  left: 5%;
+  z-index: 4;
+  width: 100%;
+  left: 0;
   border-radius: 8px;
   box-shadow: 0px 0px 10px 5px rgb(20 20 1.05%);
   opacity: 90%;
   background-color: #fff;
   /deep/.currentCalender {
     padding-top: 26px;
+    font-size: 18px;
   }
   /deep/.weekHeader {
     padding: 32px 12px 9px 12px;
@@ -124,6 +132,9 @@ export default {
       color: #4a92ff;
     }
   }
+}
+.van-overlay {
+  z-index: 4;
 }
 /deep/ .calendar .rowDays {
   padding: 10px 10px;

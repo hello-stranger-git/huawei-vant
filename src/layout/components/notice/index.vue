@@ -39,7 +39,7 @@ div.notice {
   height: 46px;
   .van-notice-bar {
     height: 46px;
-    z-index: 4;
+    z-index: 3;
     position: fixed;
     width: 100%;
     font-size: 12px;
