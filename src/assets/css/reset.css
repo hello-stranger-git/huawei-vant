@@ -35,4 +35,5 @@ h3 {
 /* 全局背景颜色 */
 #app {
   background-color: #eee;
+  height: 100%;
 }
