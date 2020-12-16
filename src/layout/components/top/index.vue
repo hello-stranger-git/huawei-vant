@@ -4,8 +4,8 @@
       <van-col :span="14">
         <div class="left">
           <img class="logo" :src="logoImage" />
-          <span class="l-title">龙岗区华为体验店</span>
-          <img :src="dropDown" />
+          <span class="l-title" @click="show = true">{{ currentStore }}</span>
+          <img :src="dropDown" @click="show = true" />
         </div>
       </van-col>
       <van-col :span="10">
@@ -15,6 +15,20 @@
         </div>
       </van-col>
     </van-row>
+    <van-popup v-model="show" round position="bottom" class="qqq">
+      <div class="cancel"><span @click="show = false">取消</span></div>
+      <!-- 遮罩下的店铺 -->
+      <div class="selecteStore">
+        <div
+          class="storeItem"
+          v-for="(item, i) in storesArr"
+          :key="i"
+          @click="changeStore(item)"
+        >
+          {{ item }}
+        </div>
+      </div>
+    </van-popup>
   </div>
 </template>
 <script>
@@ -23,7 +37,29 @@ export default {
     return {
       logoImage: require('@/assets/icon/top/huawei.png'), // 华为logo
       dropDown: require('@/assets/icon/top/dropDown.png'), // 下拉箭头
-      information: require('@/assets/icon/top/information.png') // 消息图标
+      information: require('@/assets/icon/top/information.png'), // 消息图标
+      currentStore: '龙岗区华为体验店',
+      show: false,
+      storesArr: [
+        '南山区华为体验店',
+        '龙华区华为体验店',
+        '龙岗区华为体验店',
+        '福田区华为体验店',
+        '保安区华为体验店',
+        '盐田区华为体验店',
+        '南山区华为体验店',
+        '龙华区华为体验店',
+        '龙岗区华为体验店',
+        '福田区华为体验店',
+        '宝安区华为体验店',
+        '盐田区华为体验店'
+      ]
+    }
+  },
+  methods: {
+    changeStore(item) {
+      this.currentStore = item
+      this.show = false
     }
   }
 }
@@ -65,6 +101,33 @@ export default {
     top: 2px;
     right: 1px;
     background-color: #e30011;
+  }
+}
+.cancel {
+  height: 54px;
+  background-color: #fff;
+  position: relative;
+  span {
+    position: absolute;
+    right: 24px;
+    top: 14px;
+    font-size: 14px;
+    line-height: 20px;
+    height: 20px;
+    color: rgba(20, 20, 20, 0.5);
+  }
+}
+.selecteStore {
+  margin-bottom: 20px;
+  max-height: 320px;
+  overflow: auto;
+  .storeItem {
+    text-align: center;
+    font-size: 16px;
+    height: 58px;
+    line-height: 58px;
+    color: #141414;
+    background-color: #fff;
   }
 }
 </style>
