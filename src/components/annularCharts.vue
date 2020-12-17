@@ -25,14 +25,6 @@ export default {
       }
     },
     series: {
-      // 数据
-      // 数据格式[
-      //   { value: 335, name: '直接访问' },
-      //   { value: 310, name: '邮件营销' },
-      //   { value: 234, name: '联盟广告' },
-      //   { value: 135, name: '视频广告' },
-      //   { value: 1548, name: '搜索引擎' }
-      // ]
       type: Array,
       default: function() {
         return []
@@ -56,6 +48,7 @@ export default {
       } else {
         option = {
           tooltip: {
+            show: false, // 取消点击显示数据
             trigger: 'item',
             formatter: '{a} <br/>{b}: {c} ({d}%)'
           },
@@ -66,6 +59,8 @@ export default {
           },
           series: [
             {
+              // 取消鼠标移上去饼图放大
+              hoverAnimation: false,
               name: this.seriesName,
               type: 'pie',
               radius: ['50%', '70%'],
@@ -76,7 +71,7 @@ export default {
               },
               emphasis: {
                 label: {
-                  show: true,
+                  show: false, // 不显示值
                   fontSize: '30',
                   fontWeight: 'bold'
                 }
