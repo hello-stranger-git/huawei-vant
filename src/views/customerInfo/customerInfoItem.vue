@@ -50,6 +50,10 @@
         </van-step>
       </van-steps>
     </div>
+    <div class="bottomButton">
+      <van-button round type="info">分配</van-button>
+      <van-button round type="info">补录</van-button>
+    </div>
   </div>
 </template>
 <script>
@@ -84,9 +88,9 @@ export default {
 <style lang="less" scoped>
 .customerInfoItem {
   background-color: #efefef;
-
   color: #141414;
   overflow: hidden;
+  margin-bottom: 83px;
 }
 .customer {
   background-color: #fff;
@@ -181,6 +185,26 @@ export default {
     .van-step--vertical:not(:last-child)::after {
       border-bottom-width: 0;
     }
+  }
+}
+//页尾button区样式
+.bottomButton {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 8px 0 41px;
+  display: flex;
+  z-index: 99;
+  justify-content: flex-end;
+  .van-button {
+    margin-right: 12px;
+    width: 84px;
+    height: 34px;
+    font-size: 14px;
+  }
+  .van-button--normal {
+    padding: 0;
   }
 }
 </style>
