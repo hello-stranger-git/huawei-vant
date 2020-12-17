@@ -1,5 +1,9 @@
 <template>
   <div class="checkItem">
+    <!-- 头部区域 -->
+    <TopMessage></TopMessage>
+    <!-- 通知栏 -->
+    <Notice></Notice>
     <!-- 点检屏幕区域 -->
     <div class="screen">
       <img :src="screen" />
@@ -7,31 +11,26 @@
     <!-- 操作区域 -->
     <van-row>
       <van-col span="2" offset="1">
-        <i class="iconfont iconbi" />
+        <img :src="huaBiIcon" />
       </van-col>
       <van-col span="2" offset="1">
-        <i class="iconfont iconscreenpingmu" />
+        <img :src="xuanKuangIcon" />
       </van-col>
       <van-col span="2" offset="15">
-        <i class="iconfont iconchexiao" />
+        <img :src="cheXiaoIcon" />
       </van-col>
     </van-row>
     <!-- 选项区域 -->
-    <van-tree-select :items="items" :main-active-index.sync="active">
+    <van-tree-select
+      :items="items"
+      :main-active-index.sync="active"
+      height="auto"
+    >
       <template #content>
         <div class="optionContent" v-if="active === 0">
           <van-checkbox-group v-model="checked">
             <van-checkbox v-for="(item, i) of itemsData" :key="i" :name="i">
               {{ item }}
-              <template #icon="props">
-                <i
-                  :class="
-                    `iconfont iconxuanzhong ${
-                      props.checked ? 'Select' : 'Unchecked'
-                    }`
-                  "
-                />
-              </template>
             </van-checkbox>
           </van-checkbox-group>
         </div>
@@ -40,28 +39,52 @@
 
     <!-- 备注 -->
     <van-field
+      class="remarks"
       v-model="message"
       rows="2"
       type="textarea"
       placeholder="备注"
       show-word-limit
     />
+    <!-- 抄送人 -->
+    <van-cell-group>
+      <van-field v-model="value1" label="抄送" left-icon="smile-o" readonly>
+        <template #left-icon>
+          <img :src="fiJiIcon" />
+        </template>
+        <template #right-icon>
+          <img :src="moreIcon" />
+        </template>
+      </van-field>
+    </van-cell-group>
     <!-- 提交按钮 -->
     <div class="Submit">
-      <van-button type="info" block>提交</van-button>
+      <van-button round type="info">不合格 -5</van-button>
+      <van-button round type="info">严重不合格 -10</van-button>
     </div>
   </div>
 </template>
 <script>
+import TopMessage from '@/components/top' // 顶部信息
+import Notice from '@/layout/components/notice' // 通知栏
+
 export default {
+  components: {
+    TopMessage,
+    Notice
+  },
   data() {
     return {
-      // 点检屏幕数据
-      screen: require('@/assets/screenImage/screen1.png'),
-      // 左侧选项默认选中项
-      checked: [],
-      message: '',
+      screen: require('@/assets/screenImage/screen1.png'), // 点检图
+      huaBiIcon: require('@/assets/icon/check/huabi.png'), // 画笔图标
+      xuanKuangIcon: require('@/assets/icon/check/kuang.png'), // 选框图标
+      cheXiaoIcon: require('@/assets/icon/check/chexiao.png'), // 撤销图标
+      fiJiIcon: require('@/assets/icon/check/feiji.png'), // 纸飞机图标
+      moreIcon: require('@/assets/icon/check/more.png'),
+      checked: [], // 选中值
+      message: '', // 备注默认值
       active: 0,
+      value1: '张某某；某某组', // 抄送默认值
       // 选项数据
       items: [
         { text: '店内环境' },
@@ -83,97 +106,124 @@ export default {
 </script>
 <style lang="less" scoped>
 .checkItem {
-  background-color: #eee;
+  background-color: #efefef;
   padding-bottom: 10px;
 }
 // 点检屏幕样式
 .screen {
   font-size: 0;
-}
-.screen > img {
-  width: 100%;
+  margin-top: 12px;
+  height: 206px;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
 }
 // 操作区域样式
 .van-row {
   background-color: #fff;
-  padding: 5px 0;
+  padding: 14px 0;
+  .van-col {
+    width: 24px;
+    height: 24px;
+    line-height: 40px;
+    text-align: center;
+    img {
+      width: 100%;
+    }
+  }
 }
-.van-row > .van-col {
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-}
+// 选型区域
 .van-tree-select {
-  margin: 15px;
-  border-radius: 8px;
-  overflow: hidden;
+  margin: 12px 12px 0 0;
 }
 .van-sidebar-item {
-  height: 60px;
+  height: 53px;
+  line-height: 53px;
   padding: 0;
-  line-height: 60px;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: 2px;
-  color: #909399;
-  font-weight: 500;
+  color: rgba(20, 20, 20, 0.7);
+  background-color: #efefef;
+}
+/deep/.van-tree-select__nav {
+  flex: 0 0 94px;
+  background-color: #efefef;
 }
 // 左侧选中样式
-.van-sidebar-item--select {
-  color: #409eff;
+.van-sidebar-item.van-sidebar-item--select {
+  background-color: #fff;
+  color: #4a92ff;
+  font-weight: bold;
 }
-// 隐藏原样式选中红边
 .van-sidebar-item--select::before {
-  height: 0;
+  height: 23px;
+  width: 2px;
+  background-color: #4a92ff;
+}
+/deep/.van-checkbox__icon {
+  font-size: 17px;
 }
 
-// overflow: hidden;
-.iconxuanzhong {
-  font-size: 25px;
-}
 // 选项右侧样式
+.van-tree-select__content {
+  border-radius: 0px 10px 10px 10px;
+}
 .van-checkbox {
-  margin: 10px 0;
+  margin-bottom: 30px;
   font-size: 14px;
 }
 .van-checkbox-group {
-  padding: 10px;
+  padding: 17px 14px 16px 28px;
 }
-// .optionContent {
-//   border: 1px solid red;
-//    width: 100%;
-// }
-// .optionContent::-webkit-scrollbar {
-//   width: 0;
-//   height: 0;
-// }
-// 阿里图标样式
-.iconbi,
-.iconscreenpingmu,
-.iconchexiao {
-  font-size: 30px;
-  color: #50a6ff;
-}
-// 阿里图标未选中样式
-.Unchecked {
-  color: #dbdbdb;
-}
-// 阿里图标选中样式
-.Select {
-  color: #5eacff;
-}
-// 文本框样式
-.van-cell {
-  margin: 15px;
+// 备注样式
+.remarks {
+  margin: 12px 12px 12px 94px;
   width: auto;
+  height: 42px;
   border-radius: 7px;
 }
+// 抄送样式
+/deep/.van-cell-group {
+  width: 351px;
+  height: 42px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 12px;
+  .van-field__left-icon {
+    width: 17px;
+    height: 17px;
+    img {
+      width: 100%;
+      margin-top: 3px;
+    }
+  }
+  .van-field__right-icon {
+    width: 19px;
+    height: 19px;
+    img {
+      width: 100%;
+    }
+  }
+  .van-cell {
+    input {
+      color: rgba(20, 20, 20, 0.7);
+    }
+    .van-cell__title.van-field__label {
+      width: 70px;
+    }
+  }
+}
+
 // 按钮样式
 .Submit {
   margin: 0 20px;
-}
-.van-button {
-  border-radius: 4px;
-  background-color: #409eff;
+  .van-button {
+    width: 122px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: #409eff;
+  }
 }
 </style>
