@@ -9,6 +9,8 @@ import '@/assets/css/reset.css'
 import '@/assets/iconfont/iconfont.css'
 // 引入echarts挂载全局
 import * as echarts from 'echarts'
+
+export default new Vue()
 Vue.use(Vant)
 Vue.config.productionTip = false
 Vue.prototype.$echarts = echarts
