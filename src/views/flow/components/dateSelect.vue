@@ -56,16 +56,19 @@ export default {
     },
     // 点击日历的每一天，获取这一天的时间
     getDay(date) {
+      console.log(date)
       this.calendarShow = !this.calendarShow
       this.show = !this.show // 控制遮罩层
       const time = new Date(date.year, date.month - 1, date.day)
+      console.log(time.getTime())
       this.arr = []
       for (let i = 0; i < 7; i++) {
-        const month = new Date(Number(time) - 86400000 * i).getMonth()
+        const month = new Date(Number(time) - 86400000 * i).getMonth() + 1
         const day = new Date(Number(time) - 86400000 * i).getDate()
         this.arr.push(month + '-' + day)
       }
       this.dateArr = this.arr
+      console.log(this.arr)
       this.activeDate = 0
     },
     toggleActiveDate(i) {
