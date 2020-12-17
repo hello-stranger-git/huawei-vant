@@ -8,7 +8,7 @@
       <!-- 返回、菜单 -->
       <div class="topNav">
         <div @click="upPage"><img :src="returnIcon" /></div>
-        <div><img :src="menuIcon" /></div>
+        <div><img :src="menuIcon" @click="goDetail" /></div>
       </div>
       <!-- 简介 -->
       <div class="customerInfo">
@@ -81,6 +81,9 @@ export default {
   methods: {
     upPage() {
       this.$router.go(-1)
+    },
+    goDetail() {
+      this.$router.push('/Detail')
     }
   }
 }
