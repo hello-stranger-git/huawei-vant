@@ -61,12 +61,12 @@ export default {
         {
           id: 1,
           title: '所有店',
-          select: true,
+          select: false,
           children: [
             {
               id: 2,
               title: '华南区',
-              select: true
+              select: false
             },
             {
               id: 3,
@@ -81,7 +81,7 @@ export default {
                 {
                   id: 5,
                   title: '广东',
-                  select: true,
+                  select: false,
                   children: [
                     {
                       id: 6,
@@ -96,12 +96,12 @@ export default {
                     {
                       id: 8,
                       title: '深圳',
-                      select: true,
+                      select: false,
                       children: [
                         {
                           id: 9,
                           title: '宝安区华为体验店',
-                          select: true
+                          select: false
                         },
                         {
                           id: 10,

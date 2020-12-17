@@ -58,7 +58,7 @@ export default {
       select: require('@/assets/tree/select.png'), // 未选择
       open: require('@/assets/tree/show.png'), // 展开图标
       close: require('@/assets/tree/hidden.png'), // 收缩图标
-      show: true
+      show: false
     }
   },
   methods: {
