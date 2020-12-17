@@ -54,7 +54,7 @@
       </van-tab>
       <!-- 考评 -->
       <van-tab title="考评" class="notUsed ">
-        <div>456</div>
+        <Assess></Assess>
       </van-tab>
     </van-tabs>
   </div>
@@ -62,9 +62,11 @@
 
 <script>
 import TimeAxis from '@/components/check/timeAxis.vue' // 时间轴
+import Assess from './components/assess' // 考评
 export default {
   components: {
-    TimeAxis
+    TimeAxis,
+    Assess
   },
   data() {
     return {
