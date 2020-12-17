@@ -39,7 +39,6 @@ export default {
   },
   data() {
     return {
-      // userImg: require('@/assets/enterStore/enterStore2.png'), // 用户
       rmbRed: require('@/assets/icon/customerInfo/rmbRed.png'), // 人民币红色图标
       huawei: require('@/assets/icon/customerInfo/huawei.png'), // 华为图标
       jieDaiYuan: require('@/assets/icon/customerInfo/jieDaiYuan.png') // 接待员图标
