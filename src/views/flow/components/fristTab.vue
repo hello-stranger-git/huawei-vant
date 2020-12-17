@@ -11,11 +11,7 @@
         :finished="finished"
       >
         <ul class="user">
-          <li
-            v-for="(item, i) of arr"
-            :key="i"
-            @click="clickDetails(item.details)"
-          >
+          <li v-for="(item, i) of arr" :key="i">
             <UserItem
               :img="item.img"
               :date="item.date"
@@ -24,6 +20,7 @@
               :sex="item.sex"
               :vip="item.vip"
               :crossStore="item.crossStore"
+              :details="item.details"
             ></UserItem>
           </li>
         </ul>
@@ -228,14 +225,6 @@ export default {
           this.loading = false
         }
       }, 500)
-    },
-    clickDetails(e) {
-      this.$router.push({
-        name: 'CustomerInfoItem',
-        params: {
-          detailsData: e
-        }
-      })
     }
   }
 }

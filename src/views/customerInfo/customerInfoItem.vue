@@ -7,7 +7,7 @@
       </div>
       <!-- 返回、菜单 -->
       <div class="topNav">
-        <div><img :src="returnIcon" /></div>
+        <div @click="upPage"><img :src="returnIcon" /></div>
         <div><img :src="menuIcon" /></div>
       </div>
       <!-- 简介 -->
@@ -72,19 +72,25 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$route.params.detailsData.record)
     this.detailsData = this.$route.params.detailsData
+  },
+  methods: {
+    upPage() {
+      this.$router.go(-1)
+    }
   }
 }
 </script>
 <style lang="less" scoped>
 .customerInfoItem {
   background-color: #efefef;
+
   color: #141414;
+  overflow: hidden;
 }
 .customer {
   background-color: #fff;
-  margin-top: 44px;
+  padding-top: 44px;
   position: relative;
   // 头像区域样式
   .customerImage {
@@ -98,7 +104,7 @@ export default {
   .topNav {
     position: absolute;
     width: 100%;
-    top: 1px;
+    top: 45px;
     display: flex;
     justify-content: space-between;
     & > div {
@@ -152,8 +158,9 @@ export default {
 .record {
   margin: 12px;
   padding-top: 16px;
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: #fff;
+  overflow: hidden;
   & > h3 {
     padding-left: 13px;
     font-size: 18px;
