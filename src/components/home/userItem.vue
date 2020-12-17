@@ -1,5 +1,5 @@
 <template>
-  <div class="userItem">
+  <div class="userItem" @click="clickDetails(details)">
     <!-- 头像 -->
     <div class="headPortrait ">
       <img class="userImage" :src="img" />
@@ -58,6 +58,10 @@ export default {
       // vip
       type: Boolean,
       default: false
+    },
+    details: {
+      // 访问记录数据
+      type: Object
     }
   },
   data() {
@@ -67,6 +71,16 @@ export default {
       womanIcon: require('@/assets/icon/home/enterStore/womanIcon.png'), // 女性图标
       storeIcon: require('@/assets/icon/home/enterStore/storeIcon.png'), // 店铺图标
       vipIcon: require('@/assets/icon/home/enterStore/vipIcon.png') // vip图标
+    }
+  },
+  methods: {
+    clickDetails(e) {
+      this.$router.push({
+        name: 'CustomerInfoItem',
+        params: {
+          detailsData: e
+        }
+      })
     }
   }
 }

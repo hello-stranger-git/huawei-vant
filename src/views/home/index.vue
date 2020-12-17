@@ -23,6 +23,7 @@
               :sex="user.sex"
               :crossStore="user.crossStore"
               :vip="user.vip"
+              :details="user.details"
             ></UserItem>
           </template>
         </div>
@@ -210,7 +211,35 @@ export default {
             count: 1,
             sex: 'woman',
             crossStore: false,
-            vip: false
+            vip: false,
+            details: {
+              name: '陈总',
+              sex: '女',
+              age: '23岁',
+              userImg: require('@/assets/enterStore/enterStore1.png'),
+              consume: '10,1411,00',
+              latelyDate: '12月6日 10::22:04',
+              record: [
+                {
+                  recordDate: '12月6日 10:22:04',
+                  userImg: require('@/assets/enterStore/enterStore1.png'),
+                  store: '深圳龙岗区华为体验店',
+                  receptionist: '陈某某',
+                  money: '2,2200,00'
+                },
+                {
+                  recordDate: '12月6日 10:22:04',
+                  userImg: require('@/assets/enterStore/enterStore1.png'),
+                  store: '深圳龙岗区华为体验店'
+                },
+                {
+                  recordDate: '12月6日 10:22:04',
+                  userImg: require('@/assets/enterStore/enterStore1.png'),
+                  store: '深圳龙岗区华为体验店',
+                  receptionist: '李某某'
+                }
+              ]
+            }
           },
           {
             img: require('@/assets/enterStore/enterStore2.png'),
@@ -219,7 +248,47 @@ export default {
             count: 2,
             sex: 'man',
             crossStore: true,
-            vip: true
+            vip: true,
+            details: {
+              name: '刘总',
+              sex: '男',
+              age: '23岁',
+              userImg: require('@/assets/enterStore/enterStore2.png'),
+              consume: '10,1411,00',
+              latelyDate: '12月6日 10::22:04',
+              record: [
+                {
+                  recordDate: '12月6日 10:22:04',
+                  userImg: require('@/assets/enterStore/enterStore2.png'),
+                  store: '深圳龙岗区华为体验店',
+                  receptionist: '李某某',
+                  money: '2,2200,00'
+                },
+                {
+                  recordDate: '12月6日 10:22:04',
+                  userImg: require('@/assets/enterStore/enterStore2.png'),
+                  store: '深圳龙岗区华为体验店'
+                },
+                {
+                  recordDate: '12月6日 10:22:04',
+                  userImg: require('@/assets/enterStore/enterStore2.png'),
+                  store: '深圳龙岗区华为体验店',
+                  receptionist: '李某某',
+                  money: '2,2200,00'
+                },
+                {
+                  recordDate: '12月6日 10:22:04',
+                  userImg: require('@/assets/enterStore/enterStore2.png'),
+                  store: '深圳龙岗区华为体验店',
+                  receptionist: '李某某'
+                },
+                {
+                  recordDate: '12月6日 10:22:04',
+                  userImg: require('@/assets/enterStore/enterStore2.png'),
+                  store: '深圳龙岗区华为体验店'
+                }
+              ]
+            }
           },
           {
             img: require('@/assets/enterStore/enterStore3.png'),
@@ -228,7 +297,31 @@ export default {
             count: 6,
             sex: 'man',
             crossStore: true,
-            vip: false
+            vip: false,
+            details: {
+              name: '吴总',
+              sex: '男',
+              age: '23岁',
+              userImg: require('@/assets/enterStore/enterStore3.png'),
+              consume: '10,1411,00',
+              latelyDate: '12月6日 10::22:04',
+              record: [
+                {
+                  recordDate: '12月6日 10:22:04',
+                  userImg: require('@/assets/enterStore/enterStore3.png'),
+                  store: '深圳龙岗区华为体验店',
+                  receptionist: '李某某',
+                  money: '2,2200,00'
+                },
+                {
+                  recordDate: '12月6日 10:22:04',
+                  userImg: require('@/assets/enterStore/enterStore3.png'),
+                  store: '深圳龙岗区华为体验店',
+                  receptionist: '李某某',
+                  money: '2,2200,00'
+                }
+              ]
+            }
           },
           {
             img: require('@/assets/enterStore/enterStore4.png'),
@@ -237,7 +330,38 @@ export default {
             count: 3,
             sex: 'man',
             crossStore: false,
-            vip: true
+            vip: true,
+            details: {
+              name: '李总',
+              sex: '男',
+              age: '23岁',
+              userImg: require('@/assets/enterStore/enterStore4.png'),
+              consume: '10,1411,00',
+              latelyDate: '12月6日 10::22:04',
+              record: [
+                {
+                  recordDate: '12月6日 10:22:04',
+                  userImg: require('@/assets/enterStore/enterStore4.png'),
+                  store: '深圳龙岗区华为体验店',
+                  receptionist: '李某某',
+                  money: '2,2200,00'
+                },
+                {
+                  recordDate: '12月6日 10:22:04',
+                  userImg: require('@/assets/enterStore/enterStore4.png'),
+                  store: '深圳龙岗区华为体验店',
+                  receptionist: '李某某',
+                  money: '2,2200,00'
+                },
+                {
+                  recordDate: '12月6日 10:22:04',
+                  userImg: require('@/assets/enterStore/enterStore4.png'),
+                  store: '深圳龙岗区华为体验店',
+                  receptionist: '李某某',
+                  money: '2,2200,00'
+                }
+              ]
+            }
           }
         ]
       },

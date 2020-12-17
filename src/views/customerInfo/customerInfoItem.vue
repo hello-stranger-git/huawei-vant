@@ -7,7 +7,7 @@
       </div>
       <!-- 返回、菜单 -->
       <div class="topNav">
-        <div><img :src="returnIcon" /></div>
+        <div @click="upPage"><img :src="returnIcon" /></div>
         <div><img :src="menuIcon" /></div>
       </div>
       <!-- 简介 -->
@@ -50,6 +50,10 @@
         </van-step>
       </van-steps>
     </div>
+    <div class="bottomButton">
+      <van-button round type="info">分配</van-button>
+      <van-button round type="info">补录</van-button>
+    </div>
   </div>
 </template>
 <script>
@@ -72,8 +76,12 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$route.params.detailsData.record)
     this.detailsData = this.$route.params.detailsData
+  },
+  methods: {
+    upPage() {
+      this.$router.go(-1)
+    }
   }
 }
 </script>
@@ -81,10 +89,12 @@ export default {
 .customerInfoItem {
   background-color: #efefef;
   color: #141414;
+  overflow: hidden;
+  margin-bottom: 83px;
 }
 .customer {
   background-color: #fff;
-  margin-top: 44px;
+  padding-top: 44px;
   position: relative;
   // 头像区域样式
   .customerImage {
@@ -98,7 +108,7 @@ export default {
   .topNav {
     position: absolute;
     width: 100%;
-    top: 1px;
+    top: 45px;
     display: flex;
     justify-content: space-between;
     & > div {
@@ -152,8 +162,9 @@ export default {
 .record {
   margin: 12px;
   padding-top: 16px;
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: #fff;
+  overflow: hidden;
   & > h3 {
     padding-left: 13px;
     font-size: 18px;
@@ -174,6 +185,26 @@ export default {
     .van-step--vertical:not(:last-child)::after {
       border-bottom-width: 0;
     }
+  }
+}
+//页尾button区样式
+.bottomButton {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 8px 0 41px;
+  display: flex;
+  z-index: 99;
+  justify-content: flex-end;
+  .van-button {
+    margin-right: 12px;
+    width: 84px;
+    height: 34px;
+    font-size: 14px;
+  }
+  .van-button--normal {
+    padding: 0;
   }
 }
 </style>
