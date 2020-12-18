@@ -48,7 +48,8 @@ export default {
       } else {
         option = {
           tooltip: {
-            show: false, // 取消点击显示数据
+            show: true, // 取消点击显示数据
+            position: [100, -40],
             trigger: 'item',
             formatter: '{a} <br/>{b}: {c} ({d}%)'
           },
@@ -60,7 +61,7 @@ export default {
           series: [
             {
               // 取消鼠标移上去饼图放大
-              hoverAnimation: false,
+              hoverAnimation: true,
               name: this.seriesName,
               type: 'pie',
               radius: ['50%', '70%'],

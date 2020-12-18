@@ -135,6 +135,9 @@ export default {
               min: 0,
               max: 1500,
               interval: 500,
+              nameTextStyle: {
+                padding: [0, 15, 0, 0]
+              },
               axisLabel: {
                 formatter: function(value) {
                   const val = value + ''
@@ -145,7 +148,8 @@ export default {
                   }
                 },
                 textStyle: {
-                  color: '#56565680',
+                  color: '#565656',
+                  opacity: '0.5',
                   fontSize: '10'
                 },
                 margin: 4
@@ -159,6 +163,7 @@ export default {
                 show: false
               },
               splitLine: {
+                show: false,
                 lineStyle: {
                   color: '#70707099',
                   type: 'dashed'
