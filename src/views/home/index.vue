@@ -495,6 +495,9 @@ export default {
     ProgressItem,
     BarCharts,
     VideoItem
+  },
+  created() {
+    window.sessionStorage.setItem('activeTab', 0)
   }
 }
 </script>

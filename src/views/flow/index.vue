@@ -9,6 +9,9 @@ import FlowTabs from './components/flowTabs.vue'
 export default {
   components: {
     FlowTabs
+  },
+  created() {
+    window.sessionStorage.setItem('activeTab', 1)
   }
 }
 </script>

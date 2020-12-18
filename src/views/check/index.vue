@@ -27,6 +27,9 @@ export default {
       // tab选项区域默认选中项
       active: 0
     }
+  },
+  created() {
+    window.sessionStorage.setItem('activeTab', 2)
   }
 }
 </script>

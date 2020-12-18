@@ -3,7 +3,7 @@
     <ul>
       <template v-for="item in data">
         <li :key="item.id" class="treeLi">
-          <div class="tree-title" :style="stylePadding">
+          <div :key="item.id" class="tree-title" :style="stylePadding">
             <img
               :src="item.select ? selected : select"
               width="17px"
@@ -11,11 +11,11 @@
               class="checkImg"
               @click="togCheck(item.id)"
             />
-            <div @click="togTree" style="display:inline-block">
+            <div @click="togTree(item.id)" style="display:inline-block">
               <span class="title">{{ item.title }}</span>
               <img
                 v-if="item.children"
-                :src="show ? open : close"
+                :src="item.expand ? open : close"
                 width="10px"
                 height="22px"
                 class="togger"
@@ -25,9 +25,8 @@
           <transition name="fade">
             <TreeList
               :increment="count"
-              v-if="item.children"
+              v-if="item.expand"
               :data="item.children"
-              v-show="show"
             ></TreeList>
           </transition>
         </li>
@@ -57,17 +56,17 @@ export default {
       selected: require('@/assets/tree/selected.png'), // 选中
       select: require('@/assets/tree/select.png'), // 未选择
       open: require('@/assets/tree/show.png'), // 展开图标
-      close: require('@/assets/tree/hidden.png'), // 收缩图标
-      show: false
+      close: require('@/assets/tree/hidden.png') // 收缩图标
     }
   },
   methods: {
-    togCheck(id, status) {
+    togCheck(id) {
       // 切换check是否选中`
       bus.$emit('getTreeItemId', id) // 将递归组件的所有id用事件总线方式传出去
     },
-    togTree(item) {
-      this.show = !this.show
+    // 改变展开状态
+    togTree(id) {
+      bus.$emit('togger', id)
     }
   },
   computed: {
@@ -91,7 +90,7 @@ export default {
 .treeLi {
   margin-top: 20px;
   &:last-child {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
   }
 }
 .togger {
