@@ -20,13 +20,7 @@ export default {
     return {}
   },
   methods: {
-    foldFn(item) {
-      this.fold = !this.fold
-    },
-    getData(id) {
-      console.log(id)
-      this.changeData(this.data)
-    },
+    // 查找到相应选中的节点，并且改变选中状态
     changeData(data, treeId) {
       for (let i = 0; i < data.length; i++) {
         if (data[i].id === treeId) {
@@ -38,13 +32,29 @@ export default {
           }
         }
       }
-      console.log(this.data)
+    },
+    // 查找到相应选中的节点，并且改变展开状态
+    togger(data, treeId) {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].id === treeId) {
+          data[i].expand = !data[i].expand
+          return
+        } else {
+          if (data[i].children) {
+            this.togger(data[i].children, treeId)
+          }
+        }
+      }
     }
   },
   mounted() {
     // 获取点击每个树结点的id
     bus.$on('getTreeItemId', treeId => {
       this.changeData(this.data, treeId)
+    })
+    // 获取点击每个树结点的id
+    bus.$on('togger', treeId => {
+      this.togger(this.data, treeId)
     })
   },
   components: {

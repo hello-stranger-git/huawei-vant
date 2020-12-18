@@ -38,7 +38,7 @@ export default {
   padding: 49px 21px 0 12px;
 }
 .TopMessage {
-  background-color: #fbfbfb;
+  background-color: #fff;
   height: 88px;
   font-size: 14px;
   box-shadow: 0px 2px 6px #99999924;

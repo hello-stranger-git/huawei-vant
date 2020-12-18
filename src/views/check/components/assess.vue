@@ -18,7 +18,9 @@
         >
           {{ item.value }}
         </div>
-        <img :src="more" />
+        <router-link to="AssessDetails">
+          <img :src="more" />
+        </router-link>
       </div>
     </div>
   </div>
