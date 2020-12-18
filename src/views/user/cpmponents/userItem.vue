@@ -35,13 +35,6 @@
           </div>
           <div class="rightBox">
             <span v-if="item.label">{{ item.label }}</span>
-            <!-- <span v-if="item.switch">{{ checked ? '营业' : '未营业' }}</span> -->
-            <!-- <van-switch
-              v-model="checked"
-              v-if="item.switch"
-              active-color="#4CD964"
-              size="24px"
-            /> -->
             <van-icon :name="arrow" size="14" class="arrow" v-if="item.arrow" />
           </div>
         </div>

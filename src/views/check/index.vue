@@ -111,6 +111,9 @@ export default {
       this.show = false
       this.date = this.formatDate(date)
     }
+  },
+  created() {
+    window.sessionStorage.setItem('activeTab', 2)
   }
 }
 </script>

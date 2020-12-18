@@ -127,6 +127,9 @@ export default {
         }
       ]
     }
+  },
+  created() {
+    window.sessionStorage.setItem('activeTab', 3)
   }
 }
 </script>

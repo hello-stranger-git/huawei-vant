@@ -49,7 +49,22 @@ export default {
         }
       ]
     }
-  }
+  },
+  computed: {},
+  watch: {
+    // 路由变化改变底部选中
+    $route() {
+      this.active = window.sessionStorage.getItem('activeTab')
+        ? Number(window.sessionStorage.getItem('activeTab'))
+        : 0
+    }
+  },
+  created() {
+    this.active = window.sessionStorage.getItem('activeTab')
+      ? Number(window.sessionStorage.getItem('activeTab'))
+      : 0
+  },
+  mounted() {}
 }
 </script>
 
