@@ -64,6 +64,7 @@
           :label="customerCount.label"
           :xLabel="customerCount.xLabel"
           :xName="customerCount.xName"
+          :yName1="customerCount.yName1"
           :dataName1="customerCount.dataName1"
           :data1="customerCount.data1"
           :dataName2="customerCount.dataName2"
@@ -139,6 +140,7 @@ export default {
         label: ['回头客', '跨店', '会员'],
         nav: 'flow',
         xLabel: ['今日', '日', '六', '歇', '11/12', '11/11'],
+        yName1: '单位(人)',
         dataName1: '回头客',
         data1: [306, 1003, 1103, 1321, 100, 300],
         dataName2: '跨店',
