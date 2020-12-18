@@ -42,7 +42,7 @@ const routes = [
   {
     path: '/CheckItem',
     name: 'CheckItem',
-    component: () => import('../components/check/checkItem.vue')
+    component: () => import('../views/check/components/subpage/checkItem.vue')
   },
   {
     path: '/Login',
@@ -63,6 +63,11 @@ const routes = [
     path: '/Detail',
     name: 'Detail',
     component: () => import('../views/customerInfo/customerDetail.vue')
+  },
+  {
+    path: '/AssessDetails',
+    name: 'AssessDetails',
+    component: () => import('../views/check/components/subpage/assessDetails.vue')
   }
 ]
 

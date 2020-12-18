@@ -5,21 +5,7 @@
     <!-- 通知栏 -->
     <Notice></Notice>
     <!-- 点检屏幕区域 -->
-    <div class="screen">
-      <img :src="screen" />
-    </div>
-    <!-- 操作区域 -->
-    <van-row>
-      <van-col span="2" offset="1">
-        <img :src="huaBiIcon" />
-      </van-col>
-      <van-col span="2" offset="1">
-        <img :src="xuanKuangIcon" />
-      </van-col>
-      <van-col span="2" offset="15">
-        <img :src="cheXiaoIcon" />
-      </van-col>
-    </van-row>
+    <VideoImage></VideoImage>
     <!-- 选项区域 -->
     <van-tree-select
       :items="items"
@@ -47,7 +33,7 @@
       show-word-limit
     />
     <!-- 抄送人 -->
-    <van-cell-group>
+    <van-cell-group @click="showPopup">
       <van-field v-model="value1" label="抄送" left-icon="smile-o" readonly>
         <template #left-icon>
           <img :src="fiJiIcon" />
@@ -57,21 +43,46 @@
         </template>
       </van-field>
     </van-cell-group>
+    <!-- 下方弹出层 -->
+    <van-popup
+      v-model="show"
+      round
+      position="bottom"
+      :style="{ height: '50%' }"
+    >
+      <!-- 弹出层头部 -->
+      <div class="popup_top">
+        <div @click="confirm" class="popup_confirm">确认</div>
+        <div class="popup_title">选择抄送人</div>
+        <div @click="cancel" class="popup_cancel">取消</div>
+      </div>
+      <!-- 弹出层内容 -->
+      <van-checkbox-group v-model="result">
+        <van-checkbox v-for="(item, i) of ccPerson" :key="i" :name="item.name">
+          <template #default>
+            <div>{{ item.name }}</div>
+            <div class="post">{{ item.post }}</div>
+          </template>
+        </van-checkbox>
+      </van-checkbox-group>
+    </van-popup>
     <!-- 提交按钮 -->
     <div class="Submit">
-      <van-button round type="info">不合格 -5</van-button>
-      <van-button round type="info">严重不合格 -10</van-button>
+      <van-button class="left_button">不合格 -5</van-button>
+      <van-button class="right_button">严重不合格 -10</van-button>
     </div>
   </div>
 </template>
 <script>
 import TopMessage from '@/components/top' // 顶部信息
 import Notice from '@/layout/components/notice' // 通知栏
+import VideoImage from '@/components/check/subpage/videoImage.vue' // 点检截图
 
 export default {
   components: {
     TopMessage,
-    Notice
+    Notice,
+    VideoImage
   },
   data() {
     return {
@@ -81,10 +92,12 @@ export default {
       cheXiaoIcon: require('@/assets/icon/check/chexiao.png'), // 撤销图标
       fiJiIcon: require('@/assets/icon/check/feiji.png'), // 纸飞机图标
       moreIcon: require('@/assets/icon/check/more.png'),
-      checked: [], // 选中值
+      checked: [], // 选项选中值
       message: '', // 备注默认值
       active: 0,
       value1: '张某某；某某组', // 抄送默认值
+      show: false, // 弹出层默认值
+      result: [], // 弹出层容默认选中值
       // 选项数据
       items: [
         { text: '店内环境' },
@@ -99,7 +112,50 @@ export default {
         '业厅各功能区域应设置醒目标志，业务办理台席应设置清晰的业务指示',
         '业厅各功能区域应设置醒目标志，业务办理台席应设置清晰的业务指示',
         '厅内应有服务标准 服务公约、服务监督牌厅内台席全部开放，有工作人员在现场协助维持秩序分流客户'
+      ],
+      // 弹出层内容数据
+      ccPerson: [
+        {
+          name: '张鹏',
+          post: '店长'
+        },
+        {
+          name: '李某某',
+          post: '区域负责人'
+        },
+        {
+          name: '陈某某',
+          post: '客服中心'
+        },
+        {
+          name: '罗某',
+          post: '巡检主管'
+        },
+        {
+          name: '赵某某',
+          post: '客服主管'
+        },
+        {
+          name: '某某客服组',
+          post: ''
+        },
+        {
+          name: '某某巡检组',
+          post: ''
+        }
       ]
+    }
+  },
+  methods: {
+    showPopup() {
+      this.show = true
+    },
+    confirm() {
+      this.value1 = this.result.join('；')
+      this.show = false
+    },
+    cancel() {
+      this.show = false
     }
   }
 }
@@ -107,11 +163,10 @@ export default {
 <style lang="less" scoped>
 .checkItem {
   background-color: #efefef;
-  padding-bottom: 10px;
+  padding-bottom: 34px;
 }
 // 点检屏幕样式
 .screen {
-  font-size: 0;
   margin-top: 12px;
   height: 206px;
   overflow: hidden;
@@ -122,18 +177,16 @@ export default {
 // 操作区域样式
 .van-row {
   background-color: #fff;
-  padding: 14px 0;
+  padding: 16px 0;
   .van-col {
     width: 24px;
     height: 24px;
-    line-height: 40px;
-    text-align: center;
     img {
       width: 100%;
     }
   }
 }
-// 选型区域
+// 选项区域
 .van-tree-select {
   margin: 12px 12px 0 0;
 }
@@ -186,7 +239,7 @@ export default {
 }
 // 抄送样式
 /deep/.van-cell-group {
-  width: 351px;
+  // width: 351px;
   height: 42px;
   border-radius: 10px;
   overflow: hidden;
@@ -209,21 +262,76 @@ export default {
   .van-cell {
     input {
       color: rgba(20, 20, 20, 0.7);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .van-cell__title.van-field__label {
       width: 70px;
     }
   }
 }
-
+// 弹出层样式
+.van-popup {
+  .popup_top {
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    line-height: 52px;
+    z-index: 99;
+    div {
+      margin: 0 24px;
+    }
+    .popup_confirm {
+      color: #4a92ff;
+    }
+    .popup_title {
+      font-size: 18px;
+      font-weight: 800;
+    }
+    .popup_cancel {
+      color: #b9b9b9;
+    }
+  }
+  .van-checkbox-group {
+    margin-top: 52px;
+    /deep/.van-checkbox__label {
+      display: flex;
+      width: 100%;
+      // border: 1px solid red;
+      div {
+        flex-basis: 50%;
+        color: #000;
+        text-align: center;
+      }
+      .post {
+        font-size: 12px;
+      }
+    }
+  }
+}
 // 按钮样式
 .Submit {
-  margin: 0 20px;
+  margin: 0 53px;
+  margin-top: 24px;
   .van-button {
     width: 122px;
     height: 40px;
     border-radius: 4px;
-    background-color: #409eff;
+    color: #fff;
+    border-radius: 32px;
+  }
+  .van-button--normal {
+    padding: 0;
+  }
+  .left_button {
+    background-color: #ff7b40;
+  }
+  .right_button {
+    background-color: #ff3636;
+    float: right;
   }
 }
 </style>
