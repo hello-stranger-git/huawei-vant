@@ -2,39 +2,74 @@
   <div>
     <div class="container1" v-for="(query, index) in data" :key="index">
       <div class="cell" v-for="(item, i) in query" :key="i">
+        <!-- // 图标 -->
         <div class="icon">
           <van-icon :name="item.icon" size="24" />
         </div>
+        <!-- 描述 -->
         <div class="main" :class="i === query.length - 1 ? 'noBorder' : ''">
           {{ item.value }}
         </div>
-
+        <!-- 所有的右侧内容 -->
         <div class="right">
+          <!-- 补录销售额 -->
           <div v-if="item.input" class="input">
-            <input
-              type="number"
-              placeholder="今天"
-              v-model="saleInput1"
-              onfocus="this.placeholder=''"
-              onblur="this.placeholder='今天'"
-            />
-            <input
-              type="number"
-              placeholder="昨天"
-              v-model="saleInput2"
-              onfocus="this.placeholder=''"
-              onblur="this.placeholder='昨天'"
-            />
-            <input
-              type="number"
-              placeholder="前天"
-              v-model="saleInput3"
-              onfocus="this.placeholder=''"
-              onblur="this.placeholder='前天'"
-            />
+            <div
+              class="sale"
+              @click="
+                ;(showSale = true), (date = '今天销售总额'), (jobTime = false)
+              "
+            >
+              今天
+            </div>
+            <div
+              class="sale"
+              @click=";(showSale = true), (date = '昨天销售总额')"
+            >
+              昨天
+            </div>
+            <div
+              class="sale"
+              @click=";(showSale = true), (date = '前天销售总额')"
+            >
+              前天
+            </div>
+            <!-- 遮罩内容 -->
+            <van-popup v-model="showSale">
+              <div class="total">{{ date }}</div>
+              <!-- 金额补录 -->
+              <div class="saleInput" v-if="!jobTime">
+                <div class="rmb">￥</div>
+                <input
+                  type="number"
+                  placeholder="请输入金额..."
+                  v-model="sale"
+                />
+              </div>
+              <!-- 上班时间选择框 -->
+              <div v-else class="jobTime">
+                <div class="startTime">08:00:00</div>
+                <div class="borderTime"></div>
+                <div class="endTime">21:00:00</div>
+                <div class="work">上班</div>
+                <div class="offWork">下班</div>
+              </div>
+              <!-- 按钮 -->
+              <button class="agreeButton" @click="handle">
+                {{ agree }}
+              </button>
+              <button class="cancelButton" @click="showSale = false">
+                取消
+              </button>
+            </van-popup>
           </div>
+          <!-- 提示和箭头 -->
           <div class="rightBox">
-            <span v-if="item.label">{{ item.label }}</span>
+            <span
+              v-if="item.label"
+              @click="item.value === '上下班时间' ? openTime(item.value) : ''"
+              >{{ item.label }}</span
+            >
             <van-icon :name="arrow" size="14" class="arrow" v-if="item.arrow" />
           </div>
         </div>
@@ -45,6 +80,9 @@
 
 <script>
 import arrow from '@/assets/icon/arrow14px.png'
+import { Toast } from 'vant'
+var last = new Date(0)
+var now = new Date()
 export default {
   props: {
     data: {
@@ -57,11 +95,53 @@ export default {
   data() {
     return {
       arrow,
-      saleInput1: '',
-      saleInput2: '',
-      saleInput3: ''
+      showSale: false,
+      sale: '',
+      agree: '确定',
+      date: '',
+      jobTime: false
     }
-  }
+  },
+  methods: {
+    openTime(a) {
+      this.date = '上下班时间'
+      this.jobTime = true
+      this.showSale = true
+    },
+    handle() {
+      if (this.sale.trim().length > 0) {
+        this.jieliu(this.submit)()
+      } else {
+        if (!this.jobTime) {
+          Toast('请输入金额')
+        }
+      }
+    },
+    submit() {
+      var time = 6
+      time -= 1
+      this.agree = '确定(' + time + ')'
+      var timer = setInterval(() => {
+        time -= 1
+        this.agree = '确定(' + time + ')'
+        console.log(time)
+        if (time === 0) {
+          this.agree = '确定'
+          clearInterval(timer)
+        }
+      }, 1000)
+    },
+    jieliu(fn, delay = 5000) {
+      now = new Date()
+      return function() {
+        if (now - last > delay) {
+          fn()
+          last = now
+        }
+      }
+    }
+  },
+  mounted() {}
 }
 </script>
 
@@ -125,7 +205,8 @@ export default {
         margin-right: 12px;
         vertical-align: middle;
       }
-      input {
+      .sale {
+        display: inline-block;
         width: 51px;
         height: 24px;
         font-size: 12px;
@@ -138,12 +219,121 @@ export default {
         padding: 0;
         outline: none;
         background-color: #fff;
-      }
-      input::-webkit-input-placeholder {
         color: #b9b9b9;
-        &:last-child {
-          background-color: pink;
+      }
+      .van-popup--center {
+        width: 351px;
+        height: 282px;
+        border-radius: 10px;
+      }
+      .total {
+        height: 25px;
+        line-height: 25px;
+        font-size: 18px;
+        font-weight: 900;
+        margin: 16px 0 0 16px;
+      }
+      .saleInput {
+        height: 50px;
+        margin: 57px 16px 0;
+        display: flex;
+        position: relative;
+        .rmb {
+          position: absolute;
+          left: 16px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 16px;
+          height: 22px;
+          line-height: 22px;
+          color: #bebebe;
         }
+        .rmb::after {
+          content: '';
+          height: 24px;
+          border-left: 1px solid #bebebe;
+          margin-left: 16px;
+          transform: scale(0.5);
+        }
+        input {
+          flex: 1;
+          padding: 0 0 0 63px;
+          margin: 0;
+          height: 50px;
+          border: none;
+          font-size: 14px;
+          line-height: 50px;
+          background-color: #e6e6e6;
+          border-radius: 10px;
+        }
+      }
+      .jobTime {
+        height: 50px;
+        margin: 57px 16px 0;
+        position: relative;
+        text-align: center;
+        font-size: 16px;
+        color: #141414;
+        .startTime,
+        .endTime {
+          position: absolute;
+          top: 0;
+          width: 144px;
+          background-color: #bebebe;
+          height: 50px;
+          border-radius: 10px;
+        }
+        .startTime {
+          left: 0;
+        }
+        .endTime {
+          right: 0;
+        }
+        .borderTime {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 21px;
+          height: 1px;
+          background-color: #b9b9b9;
+        }
+
+        .offWork,
+        .work {
+          position: absolute;
+          bottom: -37px;
+          width: 40px;
+          height: 28px;
+          font-size: 12px;
+          line-height: 28px;
+        }
+        .offWork {
+          right: 50px;
+        }
+        .work {
+          left: 50px;
+        }
+      }
+      .agreeButton,
+      .cancelButton {
+        width: 148px;
+        height: 48px;
+        background-color: #4a92ff;
+        text-align: center;
+        line-height: 48px;
+        border: none;
+        border-radius: 24px;
+        position: absolute;
+        bottom: 13px;
+        color: #fff;
+      }
+      .agreeButton {
+        left: 16px;
+      }
+      .cancelButton {
+        background-color: #bebebe;
+        right: 16px;
       }
     }
   }
