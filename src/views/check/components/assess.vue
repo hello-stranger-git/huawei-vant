@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <div class="assess">
+    <!-- 摄像头button区域 -->
+    <CameraOption :cameraData="cameraData"></CameraOption>
     <div class="box" v-for="(query, index) in arr" :key="index">
       <div class="date">{{ date }}</div>
       <div class="video"><img :src="video" /></div>
@@ -23,7 +25,12 @@
 </template>
 
 <script>
+import CameraOption from '@/components/check/cameraOption .vue' // 摄像头选项
+
 export default {
+  components: {
+    CameraOption
+  },
   data() {
     return {
       date: new Date().toLocaleString(),
@@ -49,6 +56,15 @@ export default {
           { value: '地面不整洁', active: false },
           { value: '收银台有杂物', active: true }
         ]
+      ],
+      // 摄像头数据
+      cameraData: [
+        '大厅-进门摄像头',
+        '大厅-人脸识别摄像头',
+        '大厅-进门摄像头',
+        '摄像头1',
+        '大厅摄像头背后1',
+        '主厅摄像头背后6'
       ]
     }
   },
@@ -57,6 +73,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.assess {
+  .cameraOption {
+    background-color: #fff;
+    padding-top: 16px;
+  }
+}
 .box {
   height: 308px;
   width: 100%;
