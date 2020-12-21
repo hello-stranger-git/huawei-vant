@@ -89,7 +89,7 @@ export default {
           value: '关于',
           icon: iconAbout,
           arrow: true,
-          to: '/index'
+          to: '/About'
         }
       ]
     ]
