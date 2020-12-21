@@ -72,6 +72,11 @@ const routes = [
     path: '/Repair',
     name: 'Repair',
     component: () => import('../views/home/navViews/repair')
+  },
+  {
+    path: '/About',
+    name: 'About',
+    component: () => import('../views/user/cpmponents/about.vue')
   }
 ]
 

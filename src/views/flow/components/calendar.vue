@@ -28,9 +28,22 @@
           <!-- 显示每一天总共访问的人数 -->
           <template v-if="peopleCount">
             <template v-for="(people, pid) in peopleCount">
-              <p v-if="people.day == item.day" class="peopelCount" :key="pid">
-                {{ people.count }}人
-              </p>
+              <template v-if="people.day == item.day">
+                <p class="peopelCount" :key="pid" v-if="people.status === '1'">
+                  营业
+                </p>
+                <p
+                  class="peopelCount"
+                  style="background-color:#B9B9B9"
+                  :key="pid"
+                  v-else-if="people.status === '0'"
+                >
+                  未营业
+                </p>
+                <p class="peopelCount" :key="pid" v-else>
+                  {{ people.status }}
+                </p>
+              </template>
             </template>
           </template>
         </span>
@@ -48,6 +61,10 @@ export default {
       default: function() {
         return []
       }
+    },
+    status: {
+      type: String,
+      default: '1'
     }
   },
   data() {

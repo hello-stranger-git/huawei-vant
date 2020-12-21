@@ -36,7 +36,11 @@ export default {
           datas: [
             {
               icon: require('@/assets/icon/app/saoma.png'),
-              name: '扫一扫'
+              name: '设备绑定'
+            },
+            {
+              icon: require('@/assets/icon/app/cardClock.png'),
+              name: '考勤'
             }
           ]
         },

@@ -132,7 +132,7 @@
       :routeIndex="3"
     >
       <template v-if="price.type == 'sale'" slot="context">
-        <BarCharts
+        <!-- <BarCharts
           :label="price.label"
           :xLabel="price.xLabel"
           :xName="price.xName"
@@ -141,7 +141,8 @@
           :data1="price.data1"
           :dataName3="price.dataName3"
           :data3="price.data3"
-        ></BarCharts>
+        ></BarCharts> -->
+        <PriceBar></PriceBar>
       </template>
     </Module>
 
@@ -190,7 +191,8 @@ import VideoItem from '@/components/home/videoItem' // 每个视频
 import LineChart from '@/components/lineChart' // 折线图
 import AnnularChart from '@/components/annularCharts' // 环形图
 import ProgressItem from '@/components/progressItem' // progress进度条
-import BarCharts from '@/components/barCharts' // 柱状图
+// import BarCharts from '@/components/barCharts' // 柱状图
+import PriceBar from '@/components/home/priceBar'
 export default {
   data() {
     return {
@@ -493,8 +495,9 @@ export default {
     LineChart,
     AnnularChart,
     ProgressItem,
-    BarCharts,
-    VideoItem
+    // BarCharts,
+    VideoItem,
+    PriceBar
   },
   created() {
     window.sessionStorage.setItem('activeTab', 0)
