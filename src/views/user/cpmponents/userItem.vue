@@ -17,25 +17,25 @@
             <div
               class="sale"
               @click="
-                ;(showSale = true), (date = '今天销售总额'), (jobTime = false)
+                ;(showDialog = true), (date = '今天销售总额'), (jobTime = false)
               "
             >
               今天
             </div>
             <div
               class="sale"
-              @click=";(showSale = true), (date = '昨天销售总额')"
+              @click=";(showDialog = true), (date = '昨天销售总额')"
             >
               昨天
             </div>
             <div
               class="sale"
-              @click=";(showSale = true), (date = '前天销售总额')"
+              @click=";(showDialog = true), (date = '前天销售总额')"
             >
               前天
             </div>
             <!-- 遮罩内容 -->
-            <van-popup v-model="showSale">
+            <van-popup v-model="showDialog">
               <div class="total">{{ date }}</div>
               <!-- 金额补录 -->
               <div class="saleInput" v-if="!jobTime">
@@ -48,9 +48,33 @@
               </div>
               <!-- 上班时间选择框 -->
               <div v-else class="jobTime">
-                <div class="startTime">08:00:00</div>
+                <div class="startTime">
+                  <input
+                    type="number"
+                    v-model="startHour"
+                    @input="limitStartHour"
+                  />
+                  <span class="move1px">:</span>
+                  <input
+                    type="number"
+                    v-model="startMin"
+                    @input="limitStartMin"
+                  />
+                  <span class="move1px">:</span>
+                  <span>00</span>
+                </div>
                 <div class="borderTime"></div>
-                <div class="endTime">21:00:00</div>
+                <div class="endTime">
+                  <input
+                    type="number"
+                    v-model="endHour"
+                    @input="limitEndHour"
+                  />
+                  <span class="move1px">:</span>
+                  <input type="number" v-model="endMin" @input="limitEndMin" />
+                  <span class="move1px">:</span>
+                  <span>00</span>
+                </div>
                 <div class="work">上班</div>
                 <div class="offWork">下班</div>
               </div>
@@ -58,7 +82,7 @@
               <button class="agreeButton" @click="handle">
                 {{ agree }}
               </button>
-              <button class="cancelButton" @click="showSale = false">
+              <button class="cancelButton" @click="cancel">
                 取消
               </button>
             </van-popup>
@@ -68,9 +92,15 @@
             <span
               v-if="item.label"
               @click="item.value === '上下班时间' ? openTime(item.value) : ''"
-              >{{ item.label }}</span
+              >{{ item.value === '上下班时间' ? fullTime : item.label }}</span
             >
-            <van-icon :name="arrow" size="14" class="arrow" v-if="item.arrow" />
+            <van-icon
+              :name="arrow"
+              size="14"
+              class="arrow"
+              v-if="item.arrow"
+              @click="changeRouter(item.to)"
+            />
           </div>
         </div>
       </div>
@@ -95,25 +125,52 @@ export default {
   data() {
     return {
       arrow,
-      showSale: false,
+      showDialog: false,
       sale: '',
       agree: '确定',
       date: '',
-      jobTime: false
+      confirm: false,
+      jobTime: false,
+      startHour: '',
+      startMin: '',
+      endHour: '',
+      endMin: '',
+      onJobTimeArr: ['08', '00'],
+      offJobTimeArr: ['22', '00']
     }
   },
   methods: {
     openTime(a) {
+      // console.log(a)
       this.date = '上下班时间'
       this.jobTime = true
-      this.showSale = true
+      this.showDialog = true
+      this.startHour = this.onJobTimeArr[0]
+      this.startMin = this.onJobTimeArr[1]
+      this.endHour = this.offJobTimeArr[0]
+      this.endMin = this.offJobTimeArr[1]
     },
+    // 销售额补录
     handle() {
       if (this.sale.trim().length > 0) {
-        this.jieliu(this.submit)()
+        if (!this.confirm) {
+          this.jieliu(this.submit)()
+        } else {
+          Toast('操作成功')
+          this.showDialog = false
+          this.confirm = false
+          this.sale = ''
+        }
       } else {
+        // 销售额补录
         if (!this.jobTime) {
-          Toast('请输入金额')
+          Toast('请输入正确的金额')
+        } else {
+          // 修改上下班时间
+          this.onJobTimeArr = [this.startHour, this.startMin]
+          this.offJobTimeArr = [this.endHour, this.endMin]
+          this.showDialog = false
+          Toast('时间更改成功')
         }
       }
     },
@@ -124,12 +181,16 @@ export default {
       var timer = setInterval(() => {
         time -= 1
         this.agree = '确定(' + time + ')'
-        console.log(time)
         if (time === 0) {
           this.agree = '确定'
+          this.confirm = true
           clearInterval(timer)
         }
       }, 1000)
+    },
+    cancel() {
+      this.showDialog = false
+      this.sale = ''
     },
     jieliu(fn, delay = 5000) {
       now = new Date()
@@ -139,9 +200,57 @@ export default {
           last = now
         }
       }
+    },
+    limitStartHour() {
+      if (this.startHour.length > 2) {
+        this.startHour = this.startHour.slice(0, 2)
+      }
+      if (this.startHour > 23) {
+        this.startHour = 23
+      }
+    },
+    limitStartMin() {
+      if (this.startMin.length > 2) {
+        this.startMin = this.startMin.slice(0, 2)
+      }
+      if (this.startMin > 59) {
+        this.startMin = 59
+      }
+    },
+    limitEndHour() {
+      if (this.endHour.length > 2) {
+        this.endHour = this.endHour.slice(0, 2)
+      }
+      if (this.endHour > 24) {
+        this.startHour = 24
+      }
+    },
+    limitEndMin() {
+      if (this.endMin.length > 2) {
+        this.endMin = this.endMin.slice(0, 2)
+      }
+      if (this.endMin > 59) {
+        this.endMin = 59
+      }
+    },
+    changeRouter(to) {
+      this.$router.push(to)
     }
   },
-  mounted() {}
+  mounted() {},
+  computed: {
+    fullTime() {
+      return (
+        this.onJobTimeArr[0] +
+        ':' +
+        this.onJobTimeArr[1] +
+        '-' +
+        this.offJobTimeArr[0] +
+        ':' +
+        this.offJobTimeArr[1]
+      )
+    }
+  }
 }
 </script>
 
@@ -313,6 +422,27 @@ export default {
         }
         .work {
           left: 50px;
+        }
+        input {
+          width: 22px;
+          padding: 0;
+          margin: 0;
+          height: 22px;
+          line-height: 22px;
+          font-size: 16px;
+          border: none;
+          background-color: #bebebe;
+        }
+        span {
+          display: inline-block;
+          font-size: 16px;
+          margin: 0;
+          color: #141414;
+          height: 22px;
+          line-height: 22px;
+        }
+        .move1px {
+          transform: translateY(-1px);
         }
       }
       .agreeButton,
