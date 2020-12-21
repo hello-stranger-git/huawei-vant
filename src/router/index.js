@@ -68,6 +68,11 @@ const routes = [
     path: '/AssessDetails',
     name: 'AssessDetails',
     component: () => import('../views/check/components/subpage/assessDetails.vue')
+  },
+  {
+    path: '/About',
+    name: 'About',
+    component: () => import('../views/user/cpmponents/about.vue')
   }
 ]
 
