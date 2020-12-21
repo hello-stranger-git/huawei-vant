@@ -1,7 +1,7 @@
 <template>
   <div class="flowPrice">
     <Calendar :peopleCount="peopleCount"></Calendar>
-    <BarCharts
+    <!-- <BarCharts
       :label="item.label"
       :xLabel="item.xLabel"
       :xName="item.xName"
@@ -10,32 +10,35 @@
       :data1="item.data1"
       :dataName3="item.dataName3"
       :data3="item.data3"
-    ></BarCharts>
+    ></BarCharts> -->
+    <PriceBar class="priceBar"></PriceBar>
   </div>
 </template>
 
 <script>
 import Calendar from '../components/calendar'
-import BarCharts from '../../../components/barCharts'
+// import BarCharts from '../../../components/barCharts'
+import PriceBar from '@/components/home/priceBar'
 
 export default {
   components: {
-    BarCharts,
-    Calendar
+    // BarCharts,
+    Calendar,
+    PriceBar
   },
   data() {
     return {
       // 客流与销售分析
-      item: {
-        type: 'sale',
-        label: ['销售额', '客流人数'],
-        xLabel: ['今日', '日', '六', '歇', '11/12', '11/11', '11/13', '11/10'],
-        yName2: '---客单价',
-        dataName1: '销售额',
-        data1: [1336081, 1003681, 1603681, 1903681, 903681, 606584, 903681],
-        dataName3: '客流人数',
-        data3: [300, 400, 500, 450, 400, 300, 500]
-      },
+      // item: {
+      //   type: 'sale',
+      //   label: ['销售额', '客流人数'],
+      //   xLabel: ['今日', '日', '六', '歇', '11/12', '11/11', '11/13', '11/10'],
+      //   yName2: '---客单价',
+      //   dataName1: '销售额',
+      //   data1: [1336081, 1003681, 1603681, 1903681, 903681, 606584, 903681],
+      //   dataName3: '客流人数',
+      //   data3: [300, 400, 500, 450, 400, 300, 500]
+      // },
       peopleCount: [
         // 每天访问的总人数
         { day: 1, count: 200 },
@@ -77,6 +80,11 @@ export default {
 
 <style lang="less" scoped>
 .flowPrice {
+  .priceBar {
+    background-color: #fff;
+    margin-top: 16px;
+    border-radius: 8px;
+  }
   .module {
     background-color: #fff;
     border-radius: 8px;
