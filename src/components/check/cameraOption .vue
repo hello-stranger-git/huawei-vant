@@ -44,11 +44,11 @@ export default {
 // 摄像头button区域样式
 .cameraButton {
   display: flex;
-  overflow-y: scroll;
+  overflow: auto;
 }
-.cameraButton::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+// 影藏滚动条
+::-webkit-scrollbar {
+  display: none;
 }
 .cameraButton {
   .van-button {
@@ -93,13 +93,13 @@ export default {
     opacity: 1;
     color: #fff;
     background-color: #4a92ff;
-    border: none;
+    border: 1px solid #4a92ff;
   }
 }
 .defaultStyle > .van-button:first-child {
   opacity: 1;
   color: #fff;
   background-color: #4a92ff;
-  border: none;
+  border: 1px solid #4a92ff;
 }
 </style>
