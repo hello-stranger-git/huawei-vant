@@ -88,7 +88,8 @@ export default {
         {
           value: '关于',
           icon: iconAbout,
-          arrow: true
+          arrow: true,
+          to: '/index'
         }
       ]
     ]
