@@ -11,7 +11,7 @@
       <van-col :span="10">
         <div class="right">
           <span class="username">兰宇贵</span>
-          <van-icon :name="information" badge="9" size="24px" />
+          <van-icon @click="news" :name="information" badge="9" size="24px" />
         </div>
       </van-col>
     </van-row>
@@ -255,6 +255,10 @@ export default {
     indexSelectStore(title) {
       this.show = false
       this.currentStore = title
+    },
+    // 点击跳转至消息页面
+    news() {
+      this.$router.push('/News')
     }
   },
   components: {
