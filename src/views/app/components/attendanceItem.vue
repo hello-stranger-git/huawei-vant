@@ -30,7 +30,6 @@
     </div>
     <!-- 人员详情 -->
     <div class="staff">
-      <!-- 一 -->
       <van-cell
         v-for="(item, i) of attendanceData"
         :key="i"

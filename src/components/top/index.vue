@@ -18,6 +18,12 @@
 </template>
 <script>
 export default {
+  props: {
+    path: {
+      type: String,
+      default: ''
+    }
+  },
   data() {
     return {
       information: require('@/assets/icon/top/information.png'), // 消息图标
@@ -28,7 +34,13 @@ export default {
   },
   methods: {
     upPage() {
-      this.$router.go(-1)
+      if (this.path) {
+        this.$router.push({
+          name: this.path
+        })
+      } else {
+        this.$router.go(-1)
+      }
     }
   }
 }
