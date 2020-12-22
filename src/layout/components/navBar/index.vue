@@ -7,6 +7,7 @@
         :title="item.title"
         :menuCount="item.menuCount"
         :color="item.color"
+        :to="item.to"
       ></NavBarItem>
     </template>
     <!-- <div class="toggleNav">
@@ -35,7 +36,8 @@ export default {
         {
           icon: repair,
           title: '待整改',
-          menuCount: '95'
+          menuCount: '95',
+          to: '/Repair'
         },
         {
           icon: absence,

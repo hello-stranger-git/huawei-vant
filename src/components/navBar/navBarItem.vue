@@ -1,8 +1,7 @@
 <template>
-  <div class="navBarItem">
+  <div class="navBarItem" @click="changeRouter(to)">
     <div class="navBarItemIcon">
       <van-icon :name="icon" />
-      <!-- <div class="messageCount">{{ menuCount }}</div> -->
       <div
         :class="menuCount >= 10 ? 'moreMessage' : 'messageCount'"
         v-if="menuCount >= 1"
@@ -26,11 +25,23 @@ export default {
       type: String
     },
     menuCount: {
-      type: String
+      type: String,
+      default: ''
+    },
+    to: {
+      type: String,
+      default: '/'
     }
   },
   data() {
     return {}
+  },
+  methods: {
+    changeRouter(to) {
+      if (to.length > 1) {
+        this.$router.push(to)
+      }
+    }
   }
 }
 </script>
