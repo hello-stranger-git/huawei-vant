@@ -82,6 +82,23 @@ const routes = [
     path: '/News',
     name: 'News',
     component: () => import('../views/home/components/news.vue')
+  },
+  {
+    path: '/Attendance',
+    name: 'Attendance',
+    component: () => import('../views/app/components/attendance.vue'),
+    children: [
+      {
+        path: '/Attendance/AttendanceItem',
+        name: 'AttendanceItem',
+        component: () => import('../views/app/components/attendanceItem.vue')
+      },
+      {
+        path: '/Attendance/Statistics',
+        name: 'Statistics',
+        component: () => import('../views/app/components/statistics.vue')
+      }
+    ]
   }
 ]
 
