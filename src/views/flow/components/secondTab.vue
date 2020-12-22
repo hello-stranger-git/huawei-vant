@@ -45,6 +45,16 @@
       </van-row>
     </div>
     <!-- 30天客流 -->
+
+    <div style="text-align:center;margin-top:24px">
+      <span
+        style="display:inline-block;width: 122px;
+        height: 44px;line-height:44px;text-align:center;background: #4A92FF;
+        opacity: 1;border-radius: 32px;color: #FFFFFF;font-size: 14px;"
+      >
+        导出报表</span
+      >
+    </div>
   </div>
 </template>
 <script>
