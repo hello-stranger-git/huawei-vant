@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 整改完成 -->
     <div v-show="flag">
       <div class="box" v-for="(item, i) in repaire" :key="i">
         <div class="title">
@@ -26,7 +27,6 @@
             <div class="time">{{ item.state.time }} 发起申诉</div>
             <div class="role">申诉人：{{ item.state.person }}</div>
             <div class="reason" v-if="item.more">
-              <!-- <div class="reason" v-if="showMore"> -->
               {{ item.state.reason }}
             </div>
           </div>
@@ -34,11 +34,10 @@
             <div class="time">{{ item.result.time }} 驳回申诉</div>
             <div class="role">处理人：{{ item.result.person }}</div>
             <div class="reason" v-if="item.more">
-              <!-- <div class="reason" v-if="showMore"> -->
               {{ item.result.reason }}
             </div>
           </div>
-          <div class="more" @click="toggleMore(item.more, i)">
+          <div class="more" @click="toggleRepairMore(item.more, i)">
             <!-- true显示收起，false显示更多 -->
             {{ item.more ? moreValueArr[1] : moreValueArr[0] }}
             <van-icon :name="item.more ? arrowArr[1] : arrowArr[0]" size="9" />
@@ -46,6 +45,7 @@
         </div>
       </div>
     </div>
+    <!-- 申诉完成 -->
     <div v-show="!flag">
       <div class="box" v-for="(item, i) in state" :key="i">
         <div class="title">
@@ -72,7 +72,6 @@
             <div class="time">{{ item.state.time }} 发起申诉</div>
             <div class="role">申诉人：{{ item.state.person }}</div>
             <div class="reason" v-if="item.more">
-              <!-- <div class="reason" v-if="showMore"> -->
               {{ item.state.reason }}
             </div>
           </div>
@@ -80,11 +79,10 @@
             <div class="time">{{ item.result.time }} 驳回申诉</div>
             <div class="role">处理人：{{ item.result.person }}</div>
             <div class="reason" v-if="item.more">
-              <!-- <div class="reason" v-if="showMore"> -->
               {{ item.result.reason }}
             </div>
           </div>
-          <div class="more" @click="toggleMore(item.more, i)">
+          <div class="more" @click="toggleStateMore(item.more, i)">
             <!-- true显示收起，false显示更多 -->
             {{ item.more ? moreValueArr[1] : moreValueArr[0] }}
             <van-icon :name="item.more ? arrowArr[1] : arrowArr[0]" size="9" />
@@ -118,12 +116,11 @@ export default {
     }
   },
   methods: {
-    toggleMore(more, i) {
-      if (more) {
-        this.data[i].more = false
-      } else {
-        this.data[i].more = true
-      }
+    toggleStateMore(more, i) {
+      this.state[i].more = !more
+    },
+    toggleRepairMore(more, i) {
+      this.repaire[i].more = !more
     }
   },
   created() {
@@ -199,7 +196,6 @@ export default {
         }
       }
     ]
-    this.data = this.flag === 0 ? this.state : this.repaire
   }
 }
 </script>
