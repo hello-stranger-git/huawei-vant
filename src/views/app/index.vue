@@ -36,11 +36,13 @@ export default {
           datas: [
             {
               icon: require('@/assets/icon/app/saoma.png'),
-              name: '设备绑定'
+              name: '设备绑定',
+              path: ''
             },
             {
               icon: require('@/assets/icon/app/cardClock.png'),
-              name: '考勤'
+              name: '考勤',
+              path: ''
             }
           ]
         },
@@ -50,16 +52,19 @@ export default {
             {
               icon: require('@/assets/icon/app/luru.png'),
               name: '保单录入',
-              unread: '25'
+              unread: '25',
+              path: ''
             },
             {
               icon: require('@/assets/icon/app/chaxun.png'),
-              name: '保单查询'
+              name: '保单查询',
+              path: ''
             },
             {
               icon: require('@/assets/icon/app/daili.png'),
               name: '代理人信息',
-              unread: '6'
+              unread: '6',
+              path: ''
             }
           ]
         },
@@ -69,19 +74,23 @@ export default {
             {
               icon: require('@/assets/icon/app/huibao.png'),
               name: '工作汇报',
-              unread: '102'
+              unread: '102',
+              path: ''
             },
             {
               icon: require('@/assets/icon/app/gonggao.png'),
-              name: '内部公告'
+              name: '内部公告',
+              path: ''
             },
             {
               icon: require('@/assets/icon/app/keHuGuanLi.png'),
-              name: '客户管理'
+              name: '客户管理',
+              path: ''
             },
             {
               icon: require('@/assets/icon/app/renwu.png'),
-              name: '任务管理'
+              name: '任务管理',
+              path: ''
             }
           ]
         }
@@ -94,16 +103,19 @@ export default {
             {
               icon: require('@/assets/icon/app/luru.png'),
               name: '保单录入',
-              unread: '25'
+              unread: '25',
+              path: ''
             },
             {
               icon: require('@/assets/icon/app/chaxun.png'),
-              name: '保单查询'
+              name: '保单查询',
+              path: ''
             },
             {
               icon: require('@/assets/icon/app/daili.png'),
               name: '代理人信息',
-              unread: '6'
+              unread: '6',
+              path: ''
             }
           ]
         },
@@ -113,19 +125,23 @@ export default {
             {
               icon: require('@/assets/icon/app/huibao.png'),
               name: '工作汇报',
-              unread: '102'
+              unread: '102',
+              path: ''
             },
             {
               icon: require('@/assets/icon/app/gonggao.png'),
-              name: '内部公告'
+              name: '内部公告',
+              path: ''
             },
             {
               icon: require('@/assets/icon/app/keHuGuanLi.png'),
-              name: '客户管理'
+              name: '客户管理',
+              path: ''
             },
             {
               icon: require('@/assets/icon/app/renwu.png'),
-              name: '任务管理'
+              name: '任务管理',
+              path: ''
             }
           ]
         }

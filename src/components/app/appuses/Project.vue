@@ -1,6 +1,6 @@
 <template>
   <div class="project">
-    <dl v-for="(item, i) of datas" :key="i">
+    <dl v-for="(item, i) of datas" :key="i" @click="details(item.path)">
       <dt>
         <van-icon
           :name="item.icon"
@@ -16,6 +16,16 @@
 export default {
   props: {
     datas: Array
+  },
+  methods: {
+    // 根据传入页面跳转页面
+    details(e) {
+      if (e) {
+        this.$router.push(e)
+      } else {
+        console.log('此页面暂未开发')
+      }
+    }
   }
 }
 </script>
