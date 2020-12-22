@@ -23,8 +23,28 @@ export default {
     // 查找到相应选中的节点，并且改变选中状态
     changeData(data, treeId) {
       for (let i = 0; i < data.length; i++) {
+        // 选中节点
         if (data[i].id === treeId) {
           data[i].select = !data[i].select
+          if (data[i].select) {
+            // 遍历改变其余兄弟元素的状态
+            for (let j = 0; j < data.length; j++) {
+              if (data[j].id !== treeId) {
+                data[j].childrenSelect = true
+              }
+            }
+            // 将选择的title传出去
+            this.$emit('getTreeTitle', data[i].title)
+          } else {
+            // 遍历改变其余兄弟元素的状态
+            for (let j = 0; j < data.length; j++) {
+              if (data[j].id !== treeId) {
+                data[j].childrenSelect = false
+              }
+            }
+            // 将选择的title传出去
+            this.$emit('getTreeTitle', '')
+          }
           return
         } else {
           if (data[i].children) {
@@ -51,6 +71,7 @@ export default {
     // 获取点击每个树结点的id
     bus.$on('getTreeItemId', treeId => {
       this.changeData(this.data, treeId)
+      // 查找子集的父级id
     })
     // 获取点击每个树结点的id
     bus.$on('togger', treeId => {

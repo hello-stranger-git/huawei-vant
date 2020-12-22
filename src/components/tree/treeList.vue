@@ -4,8 +4,19 @@
       <template v-for="item in data">
         <li :key="item.id" class="treeLi">
           <div :key="item.id" class="tree-title" :style="stylePadding">
+            <!-- 选中图标切换 -->
             <img
+              v-if="!item.children && !item.childrenSelect"
               :src="item.select ? selected : select"
+              width="17px"
+              height="17px"
+              class="checkImg"
+              @click="togCheck(item.id)"
+            />
+            <!-- 子集选中图标 -->
+            <img
+              v-if="!item.children && item.childrenSelect"
+              :src="childrenSelect"
               width="17px"
               height="17px"
               class="checkImg"
@@ -56,6 +67,7 @@ export default {
       selected: require('@/assets/tree/selected.png'), // 选中
       select: require('@/assets/tree/select.png'), // 未选择
       open: require('@/assets/tree/show.png'), // 展开图标
+      childrenSelect: require('@/assets/tree/childrenSelect.png'), // 子集选中图标
       close: require('@/assets/tree/hidden.png') // 收缩图标
     }
   },

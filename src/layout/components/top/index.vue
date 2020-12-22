@@ -39,7 +39,11 @@
           >取消</span
         >
       </div>
-      <Tree :data="data" v-if="togger == 'tree'"></Tree>
+      <Tree
+        :data="data"
+        v-if="togger == 'tree'"
+        @getTreeTitle="getTreeTitle"
+      ></Tree>
       <template v-if="togger == 'index'">
         <div class="search">
           <input
@@ -95,6 +99,7 @@ export default {
       treeSelected: require('@/assets/icon/top/treeSelected.png'), // 树选中图标
       magnifierIcon: require('@/assets/icon/top/magnifier.png'), // 放大镜图标图标
       currentStore: '龙岗区华为体验店', // title显示
+      treeTltle: '',
       show: false,
       indexList: ['A', 'G', 'S'], // 索引的右边滑动数据
       serachStore: '',
@@ -142,95 +147,65 @@ export default {
           ]
         }
       ],
-      // 树title（标题）、select（是否选中）、expand（是否展开）、children（子集）
+      // 树title（标题）、select（是否选中）、expand（是否展开）、children（子集）、childrenSelect（是否显示灰色未选中状态）
       data: [
         {
           id: 1,
           title: '所有店',
+          // 是否选中
           select: false,
+          // 是否展开
           expand: false,
           children: [
             {
               id: 2,
-              title: '华南区',
-              select: false,
-              expand: false
-            },
-            {
-              id: 3,
-              title: '华中区',
-              select: false,
-              expand: false
-            },
-            {
-              id: 4,
               title: '西南地区',
               select: false,
               expand: false,
               children: [
                 {
-                  id: 5,
+                  id: 3,
                   title: '广东',
                   select: false,
                   expand: false,
                   children: [
                     {
-                      id: 6,
-                      title: '广州',
-                      select: false,
-                      expand: false
-                    },
-                    {
-                      id: 7,
-                      title: '东莞',
-                      select: false,
-                      expand: false
-                    },
-                    {
-                      id: 8,
+                      id: 4,
                       title: '深圳',
                       select: false,
                       expand: false,
                       children: [
                         {
-                          id: 9,
+                          id: 5,
                           title: '宝安区华为体验店',
                           select: false,
-                          expand: false
+                          expand: false,
+                          childrenSelect: false
                         },
                         {
-                          id: 10,
+                          id: 6,
                           title: '南山区华为体验店',
                           select: false,
-                          expand: false
+                          expand: false,
+                          childrenSelect: false
                         },
                         {
-                          id: 11,
+                          id: 7,
                           title: '龙华区华为体验店',
                           select: false,
-                          expand: false
+                          expand: false,
+                          childrenSelect: false
                         },
                         {
-                          id: 12,
+                          id: 8,
                           title: '盐田区华为体验店',
                           select: false,
-                          expand: false
+                          expand: false,
+                          childrenSelect: false
                         }
                       ]
-                    },
-                    {
-                      id: 13,
-                      title: '汕头',
-                      select: false,
-                      expand: false
                     }
                   ]
-                },
-                {
-                  id: 14,
-                  title: '广西',
-                  select: false,
-                  expand: false
                 }
               ]
             }
@@ -249,12 +224,17 @@ export default {
       this.togger = 'tree'
     },
     certain() {
+      if (!this.treeTltle) return
+      this.currentStore = this.treeTltle
       this.show = false
     },
     // 点击索引获取选中的值
     indexSelectStore(title) {
       this.show = false
       this.currentStore = title
+    },
+    getTreeTitle(title) {
+      this.treeTltle = title
     },
     // 点击跳转至消息页面
     news() {
