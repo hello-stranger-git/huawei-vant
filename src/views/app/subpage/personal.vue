@@ -15,10 +15,67 @@
         <span>11/30-12/06</span>
       </div>
       <!-- 详情 -->
+      <div class="frequency ">
+        <van-cell
+          v-for="(item, i) of detailsData"
+          :key="i"
+          :title="item.title"
+          :value="item.value"
+        />
+      </div>
+      <!-- 考勤详情 -->
       <div class="details_item">
-        <van-cell title="平均工时" value="12.6小时" />
-        <van-cell title="出勤天数" value="5天" />
-        <van-cell title="迟到" value="2天" />
+        <h3>考勤详情</h3>
+        <van-row class="attendance_title">
+          <van-col span="6">日期</van-col>
+          <van-col span="6">班次简称</van-col>
+          <van-col span="6">上班时间</van-col>
+          <van-col span="6">下班时间</van-col>
+        </van-row>
+        <div class="attendance_date">
+          <van-row>
+            <van-col span="6">2020/11/30</van-col>
+            <van-col span="6">
+              <p>午班</p>
+              <p>晚班</p>
+            </van-col>
+            <van-col span="6">
+              <p>08:55:32</p>
+              <p>16:25:32</p>
+            </van-col>
+            <van-col span="6">
+              <p>14:00:35</p>
+              <p>21:32:32</p>
+            </van-col>
+          </van-row>
+          <van-row>
+            <van-col span="6">2020/11/30</van-col>
+            <van-col span="6">
+              <p>午班</p>
+              <p>晚班</p>
+            </van-col>
+            <van-col span="6">
+              <p>08:55:32</p>
+              <p>16:25:32</p>
+            </van-col>
+            <van-col span="6">
+              <p>14:00:35</p>
+              <p>21:32:32</p>
+            </van-col>
+          </van-row>
+          <van-row>
+            <van-col span="6">2020/11/30</van-col>
+            <van-col span="6">
+              <p>休</p>
+            </van-col>
+            <van-col span="6">
+              <p>休</p>
+            </van-col>
+            <van-col span="6">
+              <p>休</p>
+            </van-col>
+          </van-row>
+        </div>
       </div>
     </div>
   </div>
@@ -91,6 +148,7 @@ export default {
 .details_top {
   width: 100%;
   top: 0;
+  z-index: 99;
   background-color: #fff;
   padding-top: 44px;
   position: fixed;
@@ -142,7 +200,7 @@ export default {
       text-align: right;
     }
   }
-  .details_item {
+  .frequency {
     margin-top: 12px;
     padding: 14px 0 16px;
     background: #fff;
@@ -151,6 +209,29 @@ export default {
     .van-cell {
       .van-cell__value {
         font-size: 12px;
+      }
+    }
+  }
+  .details_item {
+    margin-top: 12px;
+    // border: 1px solid red;
+    .van-row {
+      // border: 1px solid red;
+      text-align: center;
+      margin-top: 12px;
+    }
+    .attendance_title {
+      font-size: 14px;
+      color: #141414;
+    }
+    .attendance_date {
+      .van-row {
+        font-size: 12px;
+        p {
+          line-height: 23px;
+          font-size: 12px;
+          // border: 1px solid black;
+        }
       }
     }
   }
