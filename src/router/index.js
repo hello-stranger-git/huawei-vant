@@ -105,6 +105,12 @@ const routes = [
     path: '/videoMore',
     name: 'VideoMore',
     component: () => import('../components/home/videoMore/index.vue')
+  },
+  // 安防
+  {
+    path: '/security',
+    name: 'Security',
+    component: () => import('../views/home/security/index.vue')
   }
 ]
 

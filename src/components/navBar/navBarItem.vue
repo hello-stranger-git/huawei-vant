@@ -37,10 +37,9 @@ export default {
     return {}
   },
   methods: {
+    // 点击对应图标调转到对应的路由
     changeRouter(to) {
-      if (to.length > 1) {
-        this.$router.push(to)
-      }
+      this.$router.push(to)
     }
   }
 }

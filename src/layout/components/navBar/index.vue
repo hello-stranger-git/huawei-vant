@@ -10,10 +10,6 @@
         :to="item.to"
       ></NavBarItem>
     </template>
-    <!-- <div class="toggleNav">
-      <div class="left"></div>
-      <div class="right"></div>
-    </div> -->
   </div>
 </template>
 
@@ -31,7 +27,8 @@ export default {
         {
           icon: alarm,
           title: '报警信息',
-          menuCount: '100'
+          menuCount: '100',
+          to: 'Security'
         },
         {
           icon: repair,
