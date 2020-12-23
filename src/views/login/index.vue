@@ -29,10 +29,10 @@
       </div>
       <div class="bottom">
         <span style="cursor: pointer;" @click="rePassword">忘记密码</span>
-        <span class="line">|</span>
-        <span style="cursor: pointer;" @click="regist">
+        <!-- <span class="line">|</span> -->
+        <!-- <span style="cursor: pointer;" @click="regist">
           立即注册
-        </span>
+        </span> -->
       </div>
     </van-form>
   </div>
