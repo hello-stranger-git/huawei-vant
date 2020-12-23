@@ -1,10 +1,8 @@
 <template>
   <div class="checkItem">
     <!-- 头部区域 -->
-    <TopMessage :title="'点检详情'"></TopMessage>
-    <!-- 通知栏 -->
-    <Notice></Notice>
-    <!-- 点检屏幕区域 -->
+    <TopMessage :title="'点检'"></TopMessage>
+    <!-- 点检截图区域 -->
     <VideoImage></VideoImage>
     <!-- tab选项区域 -->
     <van-tree-select
@@ -42,14 +40,12 @@
 </template>
 <script>
 import TopMessage from '@/components/top' // 顶部信息
-import Notice from '@/layout/components/notice' // 通知栏
 import VideoImage from '@/components/check/subpage/videoImage.vue' // 点检截图
 import SendOut from '@/components/check/subpage/sendOut.vue' // 抄送
 
 export default {
   components: {
     TopMessage,
-    Notice,
     VideoImage,
     SendOut
   },
@@ -85,102 +81,89 @@ export default {
 .checkItem {
   background-color: #efefef;
   padding-bottom: 34px;
-}
-// 点检屏幕样式
-.screen {
-  margin-top: 12px;
-  height: 206px;
-  overflow: hidden;
-  img {
-    width: 100%;
+  // 头部样式
+  .TopMessage {
+    top: 0;
   }
-}
-// 操作区域样式
-.van-row {
-  background-color: #fff;
-  padding: 16px 0;
-  .van-col {
-    width: 24px;
-    height: 24px;
-    img {
-      width: 100%;
+  // 点检截图区域样式
+  .videoImage {
+    margin-top: 88px;
+  }
+  // 选项区域
+  .van-tree-select {
+    margin: 12px 12px 0 0;
+    .van-sidebar-item {
+      height: 53px;
+      line-height: 53px;
+      padding: 0;
+      text-align: center;
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: rgba(20, 20, 20, 0.7);
+      background-color: #efefef;
+    }
+    /deep/.van-tree-select__nav {
+      flex: 0 0 94px;
+      background-color: #efefef;
+    }
+
+    // 左侧选中样式
+    .van-sidebar-item.van-sidebar-item--select {
+      background-color: #fff;
+      color: #4a92ff;
+      font-weight: bold;
+    }
+    .van-sidebar-item--select::before {
+      height: 23px;
+      width: 2px;
+      background-color: #4a92ff;
+    }
+    /deep/.van-checkbox__icon {
+      font-size: 17px;
+    }
+
+    // 选项右侧样式
+    .van-tree-select__content {
+      border-radius: 0px 10px 10px 10px;
+    }
+    .van-checkbox {
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+    .van-checkbox-group {
+      padding: 17px 14px 16px 28px;
     }
   }
-}
-// 选项区域
-.van-tree-select {
-  margin: 12px 12px 0 0;
-  .van-sidebar-item {
-    height: 53px;
-    line-height: 53px;
-    padding: 0;
-    text-align: center;
-    font-size: 14px;
-    letter-spacing: 2px;
-    color: rgba(20, 20, 20, 0.7);
-    background-color: #efefef;
-  }
-  /deep/.van-tree-select__nav {
-    flex: 0 0 94px;
-    background-color: #efefef;
+
+  // 备注样式
+  .remarks {
+    margin: 12px 12px 12px 94px;
+    width: auto;
+    height: 42px;
+    border-radius: 7px;
   }
 
-  // 左侧选中样式
-  .van-sidebar-item.van-sidebar-item--select {
-    background-color: #fff;
-    color: #4a92ff;
-    font-weight: bold;
-  }
-  .van-sidebar-item--select::before {
-    height: 23px;
-    width: 2px;
-    background-color: #4a92ff;
-  }
-  /deep/.van-checkbox__icon {
-    font-size: 17px;
-  }
-
-  // 选项右侧样式
-  .van-tree-select__content {
-    border-radius: 0px 10px 10px 10px;
-  }
-  .van-checkbox {
-    margin-bottom: 30px;
-    font-size: 14px;
-  }
-  .van-checkbox-group {
-    padding: 17px 14px 16px 28px;
-  }
-}
-
-// 备注样式
-.remarks {
-  margin: 12px 12px 12px 94px;
-  width: auto;
-  height: 42px;
-  border-radius: 7px;
-}
-
-// 按钮样式
-.Submit {
-  margin: 0 53px;
-  margin-top: 24px;
-  .van-button {
-    width: 122px;
-    height: 40px;
-    border-radius: 4px;
-    color: #fff;
-    border-radius: 32px;
-  }
-  .van-button--normal {
-    padding: 0;
-  }
-  .left_button {
-    background-color: #ff7b40;
-  }
-  .right_button {
-    background-color: #ff3636;
-    float: right;
+  // 按钮样式
+  .Submit {
+    margin: 0 53px;
+    margin-top: 24px;
+    .van-button {
+      width: 122px;
+      height: 40px;
+      border-radius: 4px;
+      color: #fff;
+      border-radius: 32px;
+    }
+    .van-button--normal {
+      padding: 0;
+    }
+    .left_button {
+      background-color: #ff7b40;
+    }
+    .right_button {
+      background-color: #ff3636;
+      float: right;
+    }
   }
 }
 </style>

@@ -32,7 +32,6 @@ export default {
 </script>
 <style lang="less" scoped>
 .videoImage {
-  padding-top: 12px;
   background-color: #fff;
 }
 // 点检屏幕样式
