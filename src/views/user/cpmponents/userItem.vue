@@ -234,7 +234,9 @@ export default {
       }
     },
     changeRouter(to) {
-      this.$router.push(to)
+      if (to) {
+        this.$router.push({ path: to, params: { jump: true } })
+      }
     }
   },
   mounted() {},

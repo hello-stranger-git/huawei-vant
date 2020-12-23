@@ -78,7 +78,8 @@ export default {
         {
           value: '密码修改',
           icon: iconLock,
-          arrow: true
+          arrow: true,
+          to: '/Register'
         },
         {
           value: '工单',
