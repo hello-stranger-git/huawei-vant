@@ -15,12 +15,26 @@
 
 <script>
 export default {
-  props: {
-    menuData: {
-      type: Array,
-      default: () => {
-        return []
-      }
+  data() {
+    return {
+      menuData: [
+        {
+          img: require('@/assets/icon/home/security/protection.png'),
+          title: '布防中'
+        },
+        {
+          img: require('@/assets/icon/home/security/home.png'),
+          title: '系统留守'
+        },
+        {
+          img: require('@/assets/icon/home/security/alarm.png'),
+          title: '取消警报'
+        },
+        {
+          img: require('@/assets/icon/home/security/timeClock.png'),
+          title: '定时布/撤防'
+        }
+      ]
     }
   }
 }

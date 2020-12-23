@@ -55,7 +55,8 @@ export default {
           value: '营业状态',
           icon: iconStatu,
           label: '营业',
-          arrow: true
+          arrow: true,
+          to: 'BusyStatus'
         },
         {
           value: '销售额补录',
@@ -94,10 +95,29 @@ export default {
         }
       ]
     ]
+    this.changeStatus(this.cellData)
   },
   methods: {
     outLogin() {
       this.$router.push({ name: 'Login' })
+    },
+    // 改变营业状态
+    changeStatus(data) {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].value && data[i].value === '营业状态') {
+          if (this.$route.params.status) {
+            if (this.$route.params.status === '0') {
+              data[i].label = '未营业'
+            } else if (this.$route.params.status === '1') {
+              data[i].label = '营业'
+            } else {
+              data[i].label = this.$route.params.status
+            }
+          }
+        } else if (data[i].length > 0) {
+          this.changeStatus(data[i])
+        }
+      }
     }
   },
   mounted() {}

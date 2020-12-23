@@ -78,11 +78,18 @@ const routes = [
     name: 'About',
     component: () => import('../views/user/cpmponents/about.vue')
   },
+  // 营业状态
+  {
+    path: '/busyStatus',
+    name: 'BusyStatus',
+    component: () => import('../views/user/cpmponents/busyStatus.vue')
+  },
   {
     path: '/News',
     name: 'News',
     component: () => import('../views/home/components/news.vue')
   },
+  // 待整改操作页面
   {
     path: '/Repairing',
     name: 'Repairing',
@@ -132,6 +139,10 @@ const routes = [
     path: '/Assess',
     name: 'Assess',
     component: () => import('../views/check/components/assess.vue')
+  }, {
+    path: '/alarmDetail',
+    name: 'AlarmDetail',
+    component: () => import('../views/home/security/components/newAlarm/alarmDetail.vue')
   }
 ]
 
