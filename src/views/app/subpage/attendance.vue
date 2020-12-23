@@ -1,12 +1,12 @@
 <template>
   <div class="attendance">
     <!-- 头部区域 -->
-    <TopMessage :path="'App'"></TopMessage>
+    <TopMessage :path="'App'" :title="'考勤'"></TopMessage>
     <!-- 通知栏 -->
     <Notice></Notice>
     <!-- tab选项区域 -->
     <div class="tabOption">
-      <van-tabs v-model="active" @change="Jump">
+      <van-tabs v-model="active" @click="Jump">
         <!-- 使用中 -->
         <van-tab title="考勤" class="inUse "> </van-tab>
         <!-- 未使用 -->
@@ -35,13 +35,13 @@ export default {
     }
   },
   methods: {
-    // 出发事件切换页面
+    // 触发事件切换页面
     Jump(e) {
-      if (e) {
+      if (e === 1 && this.$route.name !== 'Statistics') {
         this.$router.push({
           name: 'Statistics'
         })
-      } else {
+      } else if (e === 0 && this.$route.name !== 'AttendanceItem') {
         this.$router.push({
           name: 'AttendanceItem'
         })

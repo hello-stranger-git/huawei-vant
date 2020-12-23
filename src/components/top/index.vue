@@ -4,13 +4,13 @@
       <van-col :span="14">
         <div class="left">
           <img @click="upPage" class="backOff " :src="backOff" />
-          <span class="l-title">{{ currentStore }}</span>
+          <span class="l-title">{{ title }}</span>
         </div>
       </van-col>
       <van-col :span="10">
         <div class="right">
           <span class="username">兰宇贵</span>
-          <van-icon :name="information" badge="9" size="24px" />
+          <van-icon @click="news" :name="information" badge="9" size="24px" />
         </div>
       </van-col>
     </van-row>
@@ -22,13 +22,16 @@ export default {
     path: {
       type: String,
       default: ''
+    },
+    title: {
+      type: String,
+      default: ''
     }
   },
   data() {
     return {
       information: require('@/assets/icon/top/information.png'), // 消息图标
       backOff: require('@/assets/icon/check/huitui.png'), // 回退图标
-      currentStore: '龙岗区华为体验店',
       show: false
     }
   },
@@ -41,6 +44,10 @@ export default {
       } else {
         this.$router.go(-1)
       }
+    },
+    // 点击跳转至消息页面
+    news() {
+      this.$router.push({ name: 'News' })
     }
   }
 }

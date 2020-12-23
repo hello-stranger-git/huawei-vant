@@ -86,17 +86,17 @@ const routes = [
   {
     path: '/Attendance',
     name: 'Attendance',
-    component: () => import('../views/app/components/attendance.vue'),
+    component: () => import('../views/app/subpage/attendance.vue'),
     children: [
       {
         path: '/Attendance/AttendanceItem',
         name: 'AttendanceItem',
-        component: () => import('../views/app/components/attendanceItem.vue')
+        component: () => import('../views/app/subpage/attendanceItem.vue')
       },
       {
         path: '/Attendance/Statistics',
         name: 'Statistics',
-        component: () => import('../views/app/components/statistics.vue')
+        component: () => import('../views/app/subpage/statistics.vue')
       }
     ]
   },
