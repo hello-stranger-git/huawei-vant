@@ -23,7 +23,7 @@
         <van-checkbox v-model="checked" icon-size="12px">记住密码</van-checkbox>
       </div>
       <div style="width:308px;height:52px;margin:auto;margin-top:65px">
-        <van-button round block type="info" native-type="submit">
+        <van-button @click="login" round block type="info" native-type="submit">
           登录
         </van-button>
       </div>
@@ -59,6 +59,9 @@ export default {
     // 忘记密码
     rePassword() {
       this.$router.push({ name: 'Register', params: { jump: true } })
+    },
+    login() {
+      this.$router.push({ name: 'Home' })
     }
   }
 }

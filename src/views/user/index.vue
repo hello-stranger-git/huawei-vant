@@ -17,7 +17,7 @@
     <!-- 地址 -->
     <div class="adress">深圳市龙岗区龙岗大道桂圆街道345号</div>
     <!-- logout -->
-    <div class="logout">
+    <div class="logout" @click="outLogin">
       <span>退出账号</span>
     </div>
     <div class="bottom"></div>
@@ -93,6 +93,11 @@ export default {
         }
       ]
     ]
+  },
+  methods: {
+    outLogin() {
+      this.$router.push({ name: 'Login' })
+    }
   },
   mounted() {}
 }
