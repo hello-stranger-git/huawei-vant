@@ -82,6 +82,12 @@ const routes = [
     path: '/News',
     name: 'News',
     component: () => import('../views/home/components/news.vue')
+  },
+  {
+    path: '/Repairing',
+    name: 'Repairing',
+    component: () => import('../views/home/navViews/repairTab1Son.vue')
+
   }
 ]
 
