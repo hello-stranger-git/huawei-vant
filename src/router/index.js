@@ -83,6 +83,7 @@ const routes = [
     name: 'News',
     component: () => import('../views/home/components/news.vue')
   },
+  // 待整改操作页面
   {
     path: '/Repairing',
     name: 'Repairing',
@@ -122,6 +123,11 @@ const routes = [
     path: '/security',
     name: 'Security',
     component: () => import('../views/home/security/index.vue')
+  },
+  {
+    path: '/alarmDetail',
+    name: 'AlarmDetail',
+    component: () => import('../views/home/security/components/newAlarm/alarmDetail.vue')
   }
 ]
 

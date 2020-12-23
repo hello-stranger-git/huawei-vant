@@ -24,7 +24,7 @@
             <span :class="item.status === '未处理' ? 'colorRed' : ''"
               >状态：{{ item.status }}</span
             >
-            <span class="talk">喊话</span>
+            <span class="talk" @click="goDetail(item, index)">喊话</span>
           </p>
         </div>
       </div>
@@ -40,6 +40,14 @@ export default {
       default: () => {
         return []
       }
+    }
+  },
+  methods: {
+    goDetail(item, i) {
+      this.$router.push({
+        name: 'AlarmDetail',
+        params: { index: i, data: item }
+      })
     }
   }
 }
