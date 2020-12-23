@@ -28,10 +28,18 @@
 <script>
 import Calendar from '@/views/flow/components/calendar.vue'
 export default {
+  props: {
+    dateArr1: {
+      type: Array,
+      default: function() {
+        return ['今日', '昨日', '前日', '周三', '周二']
+      }
+    }
+  },
   data() {
     return {
       arr: [],
-      dateArr: ['今日', '昨日', '前日', '周三', '周二'],
+      dateArr: this.dateArr1,
       calendarShow: false,
       show: false, // 控制遮罩层
       activeDate: 0,
@@ -103,6 +111,7 @@ export default {
   opacity: 1;
   position: relative;
   color: #4a92ff;
+  font-weight: bold;
 }
 .active::after {
   content: '';

@@ -104,6 +104,11 @@ const routes = [
     path: '/videoMore',
     name: 'VideoMore'
     // component: () => import('../views/home/components/news.vue')
+  },
+  {
+    path: '/Personal',
+    name: 'Personal',
+    component: () => import('../views/app/subpage/personal.vue')
   }
 ]
 

@@ -35,6 +35,7 @@
         :key="i"
         :title="item.name"
         is-link
+        :to="{ name: 'Personal', query: { id: item.id } }"
       >
         <template #icon>
           <img :src="item.portrait" width="44px" />
@@ -54,9 +55,6 @@ export default {
     return {
       // tab默认选中项
       active: 0,
-      // 头像
-      touxiang: require('@/assets/icon/app/attendance/touxiang1.png'),
-
       // 考勤数据
       attendanceData: [
         {
@@ -94,6 +92,12 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    // 跳转至个人详情页
+    // details() {
+    //   console.log('Personal')
+    // }
   }
 }
 </script>
