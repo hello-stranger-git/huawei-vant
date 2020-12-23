@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TopMessage></TopMessage>
+    <TopMessage title="待整改"></TopMessage>
     <Notice></Notice>
     <div class="main">
       <div class="title">
