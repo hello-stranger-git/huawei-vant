@@ -1,8 +1,13 @@
 <template>
   <div>
-    <div class="alarm" v-for="(item, index) in newAlarmData" :key="index">
+    <div class="alarm" v-for="(item, index) in alarmData" :key="index">
       <div class="title">
         <span>{{ item.title }}</span>
+        <span
+          style="font-size: 12px;color: #141414;font-weight: 400"
+          v-if="item.deal"
+          >处理人：{{ item.deal }}</span
+        >
       </div>
       <div class="bottom">
         <img :src="item.img" width="148px" height="110px" />
@@ -24,7 +29,12 @@
             <span :class="item.status === '未处理' ? 'colorRed' : ''"
               >状态：{{ item.status }}</span
             >
-            <span class="talk" @click="goDetail(item, index)">喊话</span>
+            <span
+              class="talk"
+              @click="goDetail(item, index)"
+              v-if="item.status !== '已处理'"
+              >喊话</span
+            >
           </p>
         </div>
       </div>
@@ -35,7 +45,7 @@
 <script>
 export default {
   props: {
-    newAlarmData: {
+    alarmData: {
       type: Array,
       default: () => {
         return []
@@ -61,6 +71,9 @@ export default {
   background-color: #fff;
   padding: 18px 10px 10px 16px;
   .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     span {
       font-size: 16px;
       font-weight: bold;
