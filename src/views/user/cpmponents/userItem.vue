@@ -1,7 +1,12 @@
 <template>
   <div>
     <div class="container1" v-for="(query, index) in data" :key="index">
-      <div class="cell" v-for="(item, i) in query" :key="i">
+      <div
+        class="cell"
+        v-for="(item, i) in query"
+        :key="i"
+        @click="changeRouter(item.to)"
+      >
         <!-- // 图标 -->
         <div class="icon">
           <van-icon :name="item.icon" size="24" />
@@ -94,13 +99,7 @@
               @click="item.value === '上下班时间' ? openTime(item.value) : ''"
               >{{ item.value === '上下班时间' ? fullTime : item.label }}</span
             >
-            <van-icon
-              :name="arrow"
-              size="14"
-              class="arrow"
-              v-if="item.arrow"
-              @click="changeRouter(item.to)"
-            />
+            <van-icon :name="arrow" size="14" class="arrow" v-if="item.arrow" />
           </div>
         </div>
       </div>
