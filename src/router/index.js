@@ -84,6 +84,11 @@ const routes = [
     component: () => import('../views/home/components/news.vue')
   },
   {
+    path: '/Repairing',
+    name: 'Repairing',
+    component: () => import('../views/home/navViews/repairTab1Son.vue')
+  },
+  {
     path: '/Attendance',
     name: 'Attendance',
     component: () => import('../views/app/subpage/attendance.vue'),
@@ -100,15 +105,23 @@ const routes = [
       }
     ]
   },
+  // 首页视频更多
   {
     path: '/videoMore',
-    name: 'VideoMore'
+    name: 'VideoMore',
+    component: () => import('../components/home/videoMore/index.vue')
     // component: () => import('../views/home/components/news.vue')
   },
   {
     path: '/Personal',
     name: 'Personal',
     component: () => import('../views/app/subpage/personal.vue')
+  },
+  // 安防
+  {
+    path: '/security',
+    name: 'Security',
+    component: () => import('../views/home/security/index.vue')
   }
 ]
 

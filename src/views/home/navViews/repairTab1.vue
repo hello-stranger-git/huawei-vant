@@ -9,7 +9,11 @@
         <div class="detail">
           禁止抱着胳膊、跷二郎腿、手插口袋
         </div>
-        <div class="statuBox" :style="{ background: colorArr[item.color] }">
+        <div
+          class="statuBox"
+          :style="{ background: colorArr[item.color] }"
+          @click="toRepairing(item)"
+        >
           待整改
         </div>
       </div>
@@ -71,6 +75,9 @@ export default {
       } else {
         this.data[i].more = true
       }
+    },
+    toRepairing(data) {
+      this.$router.push({ name: 'Repairing', params: data })
     }
   },
   created() {
@@ -86,12 +93,12 @@ export default {
           time: '11/30 12:45:16',
           person: '张鹏',
           reason: '申诉理由：不是本店员工，没有产生以下行为'
-        },
-        result: {
-          time: '11/30 12:55:16',
-          person: '陈某某',
-          reason: '申诉理由：不是本店员工，没有产生以下行为'
         }
+        // result: {
+        //   time: '11/30 12:55:16',
+        //   person: '陈某某',
+        //   reason: '申诉理由：不是本店员工，没有产生以下行为'
+        // }
       },
       {
         title: '仓库卫生',
@@ -104,12 +111,12 @@ export default {
           time: '11/30 12:45:16',
           person: '黎明',
           reason: '申诉理由：不是本店员工，没有产生以下行为'
-        },
-        result: {
-          time: '11/30 12:55:16',
-          person: '郭富城',
-          reason: '申诉理由：不是本店员工，没有产生以下行为'
         }
+        // result: {
+        //   time: '11/30 12:55:16',
+        //   person: '郭富城',
+        //   reason: '申诉理由：不是本店员工，没有产生以下行为'
+        // }
       },
       {
         title: '仓库卫生',
