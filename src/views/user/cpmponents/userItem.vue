@@ -234,7 +234,7 @@ export default {
     },
     changeRouter(to) {
       if (to) {
-        this.$router.push({ path: to, params: { jump: true } })
+        this.$router.push({ name: to, params: { jump: true } })
       }
     }
   },
