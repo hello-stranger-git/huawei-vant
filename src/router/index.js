@@ -78,6 +78,12 @@ const routes = [
     name: 'About',
     component: () => import('../views/user/cpmponents/about.vue')
   },
+  // 营业状态
+  {
+    path: '/busyStatus',
+    name: 'BusyStatus',
+    component: () => import('../views/user/cpmponents/busyStatus.vue')
+  },
   {
     path: '/News',
     name: 'News',

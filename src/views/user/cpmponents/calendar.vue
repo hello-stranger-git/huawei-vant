@@ -26,11 +26,24 @@
             >{{ item.day > 9 ? item.day : '0' + item.day }}</span
           >
           <!-- 显示每一天总共访问的人数 -->
-          <template v-for="(people, pid) in peopleCount">
-            <template v-if="people.day == item.day">
-              <p class="peopelCount" :key="pid">
-                {{ people.status }}
-              </p>
+          <template v-if="peopleCount">
+            <template v-for="(people, pid) in peopleCount">
+              <template v-if="people.day == item.day">
+                <p class="peopelCount" :key="pid" v-if="people.status === '1'">
+                  营业
+                </p>
+                <p
+                  class="peopelCount"
+                  style="background-color:#B9B9B9"
+                  :key="pid"
+                  v-else-if="people.status === '0'"
+                >
+                  未营业
+                </p>
+                <p class="peopelCount" :key="pid" v-else>
+                  {{ people.status }}
+                </p>
+              </template>
             </template>
           </template>
         </span>
@@ -48,6 +61,10 @@ export default {
       default: function() {
         return []
       }
+    },
+    status: {
+      type: String,
+      default: '1'
     }
   },
   data() {
@@ -125,6 +142,8 @@ export default {
   },
   methods: {
     changeDay(day) {
+      // 如果不是当天，不能操作
+      if (day !== new Date().getDate()) return
       this.$emit('getDay', {
         year: this.currentYear,
         month: this.currentMonth,
@@ -215,6 +234,7 @@ export default {
 <style lang="less" scoped>
 .calendar {
   font-size: 16px;
+  // height: 300px;
   width: 100%;
   background-color: blanchedalmond;
   .currentCalender {

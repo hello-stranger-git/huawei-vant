@@ -233,8 +233,12 @@ export default {
       }
     },
     changeRouter(to) {
-      if (to) {
+      if (to === 'Register') {
         this.$router.push({ name: to, params: { jump: true } })
+        return
+      }
+      if (to === 'BusyStatus') {
+        this.$router.push({ name: to })
       }
     }
   },
