@@ -153,7 +153,8 @@
       :status="video.status"
       :smallTitle="video.smallTitle"
       :nav="video.nav"
-      :routeIndex="4"
+      :routeIndex="5"
+      :data="video.videoData"
     >
       <template v-if="video.type == 'video'" slot="context">
         <div class="video">
@@ -461,23 +462,28 @@ export default {
           {
             videoImage: require('@/assets/videoImage/homeVideo1.png'),
             videoTitle: '大厅1',
-            time: '16:22:30'
+            time: '16:22:30',
+            // 是否在线
+            line: true
           },
           {
             videoImage: require('@/assets/videoImage/homeVideo2.png'),
             videoTitle: '大厅2',
-            time: '16:22:30'
+            time: '16:22:30',
+            line: true
           },
           {
             videoImage: require('@/assets/videoImage/homeVideo3.png'),
             videoTitle: '大厅3',
-            time: '16:22:30'
+            time: '16:22:30',
+            line: true
           },
           {
             videoImage: require('@/assets/videoImage/homeVideo1.png'),
             videoTitle: '人脸识别进门',
             status: 'offLine',
-            time: '12:30:00'
+            time: '12:30:00',
+            line: false
           }
         ]
       }

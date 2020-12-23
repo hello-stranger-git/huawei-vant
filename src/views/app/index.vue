@@ -42,7 +42,7 @@ export default {
             {
               icon: require('@/assets/icon/app/cardClock.png'),
               name: '考勤',
-              path: ''
+              path: '/Attendance/AttendanceItem'
             }
           ]
         },

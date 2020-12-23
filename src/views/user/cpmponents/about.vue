@@ -5,7 +5,7 @@
     <!-- logo区域 -->
     <div class="logo">
       <img :src="huaweiLogo" />
-      <p>乐客店·好忘（1.4.3）</p>
+      <p>乐客店·好望（1.4.3）</p>
     </div>
     <!-- 文本简介区域 -->
     <div class="synopsis">

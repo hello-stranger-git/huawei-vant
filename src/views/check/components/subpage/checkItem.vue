@@ -1,7 +1,7 @@
 <template>
   <div class="checkItem">
     <!-- 头部区域 -->
-    <TopMessage></TopMessage>
+    <TopMessage :title="'点检详情'"></TopMessage>
     <!-- 通知栏 -->
     <Notice></Notice>
     <!-- 点检屏幕区域 -->

@@ -87,7 +87,29 @@ const routes = [
     path: '/Repairing',
     name: 'Repairing',
     component: () => import('../views/home/navViews/repairTab1Son.vue')
-
+  },
+  {
+    path: '/Attendance',
+    name: 'Attendance',
+    component: () => import('../views/app/subpage/attendance.vue'),
+    children: [
+      {
+        path: '/Attendance/AttendanceItem',
+        name: 'AttendanceItem',
+        component: () => import('../views/app/subpage/attendanceItem.vue')
+      },
+      {
+        path: '/Attendance/Statistics',
+        name: 'Statistics',
+        component: () => import('../views/app/subpage/statistics.vue')
+      }
+    ]
+  },
+  // 首页视频更多
+  {
+    path: '/videoMore',
+    name: 'VideoMore',
+    component: () => import('../components/home/videoMore/index.vue')
   }
 ]
 
