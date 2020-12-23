@@ -48,7 +48,7 @@ export default {
     }
   },
   created() {
-    window.sessionStorage.setItem('activeTab', 4)
+    window.sessionStorage.setItem('activeTab', 3)
     this.cellData = [
       [
         {

@@ -159,7 +159,7 @@ export default {
     }
   },
   created() {
-    window.sessionStorage.setItem('activeTab', 3)
+    window.sessionStorage.setItem('activeTab', 2)
   }
 }
 </script>
