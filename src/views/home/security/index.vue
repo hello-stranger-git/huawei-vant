@@ -4,18 +4,7 @@
     <TopMessage :title="'安防'"></TopMessage>
     <!-- 通知栏 -->
     <Notice></Notice>
-    <!-- 菜单栏 -->
-    <div class="menu">
-      <div class="statusTitle">
-        <span>当前状态：系统布防中</span>
-      </div>
-      <div class="menuNav">
-        <div v-for="(item, index) in menuData" :key="index" class="menuItem">
-          <img :src="item.img" width="50px" height="50px" />
-          <span>{{ item.title }}</span>
-        </div>
-      </div>
-    </div>
+    <Menu :menuData="menuData"></Menu>
     <!-- tab切换 -->
     <div class="tab">
       <van-tabs v-model="active">
@@ -34,6 +23,7 @@
 <script>
 import TopMessage from '@/components/top' // 顶部信息
 import Notice from '@/layout/components/notice' // 通知栏
+import Menu from '@/views/home/security/components/newAlarm/menu.vue'
 import AlarmItem from '@/views/home/security/components/newAlarm/alarmItem.vue'
 export default {
   data() {
@@ -92,44 +82,20 @@ export default {
   components: {
     TopMessage,
     Notice,
-    AlarmItem
+    AlarmItem,
+    Menu
   }
 }
 </script>
 
 <style lang="less" scoped>
-.menu {
-  background-color: #fff;
-  padding: 20px 20px 14px 20px;
-  .statusTitle {
-    span {
-      font-size: 12px;
-      font-weight: 400;
-      color: #343434;
-    }
-  }
-  .menuNav {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    .menuItem {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      span {
-        margin-top: 6px;
-        font-size: 12px;
-        font-weight: 400;
-        color: #000000;
-      }
-    }
-  }
+.security {
+  background-color: #efefef;
 }
 //tab切换样式
 .tab {
   margin-top: 12px;
   margin-left: 12px;
-
   margin-right: 12px;
   /deep/.van-tabs__nav {
     background-color: #efefef;
@@ -161,5 +127,8 @@ export default {
   }
   margin-bottom: 12px;
   border-radius: 10px;
+}
+/deep/.van-tabs__content {
+  padding-bottom: 10px;
 }
 </style>
