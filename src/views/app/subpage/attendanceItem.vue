@@ -127,11 +127,9 @@ export default {
         display: flex;
         padding: 0 22px 32px;
         justify-content: space-around;
-        // border: 1px solid red;
         dl {
           margin: 34px 0 0;
           text-align: center;
-          // border: 1px solid red;
           dt {
             font-size: 20pt;
             color: #4a92ff;
