@@ -52,6 +52,12 @@ export default {
     routeIndex: {
       type: Number,
       default: 0
+    },
+    data: {
+      type: Array,
+      default: () => {
+        return []
+      }
     }
   },
   data() {
@@ -64,9 +70,9 @@ export default {
       if (i < 4) {
         this.$router.push({ path: '/flow', query: { index: i } })
       }
+      // 跳转到视频更多页面
       if (i === 5) {
-        console.log('点击了视频更多')
-        // this.$router.push({ path: '/flow', query: { index: i } })
+        this.$router.push({ name: 'VideoMore', query: this.data })
       }
     }
   }

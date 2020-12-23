@@ -100,10 +100,11 @@ const routes = [
       }
     ]
   },
+  // 首页视频更多
   {
     path: '/videoMore',
-    name: 'VideoMore'
-    // component: () => import('../views/home/components/news.vue')
+    name: 'VideoMore',
+    component: () => import('../components/home/videoMore/index.vue')
   }
 ]
 
