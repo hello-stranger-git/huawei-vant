@@ -89,7 +89,7 @@ export default {
   methods: {
     // 路由跳转至上一页面
     onClickLeft() {
-      this.$router.push({ name: 'Login' })
+      this.$router.go(-1)
     },
     onSubmit(values) {
       console.log('submit', values)
