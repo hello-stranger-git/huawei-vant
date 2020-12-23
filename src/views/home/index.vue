@@ -153,7 +153,7 @@
       :status="video.status"
       :smallTitle="video.smallTitle"
       :nav="video.nav"
-      :routeIndex="4"
+      :routeIndex="5"
     >
       <template v-if="video.type == 'video'" slot="context">
         <div class="video">

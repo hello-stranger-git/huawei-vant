@@ -64,6 +64,10 @@ export default {
       if (i < 4) {
         this.$router.push({ path: '/flow', query: { index: i } })
       }
+      if (i === 5) {
+        console.log('点击了视频更多')
+        // this.$router.push({ path: '/flow', query: { index: i } })
+      }
     }
   }
 }
