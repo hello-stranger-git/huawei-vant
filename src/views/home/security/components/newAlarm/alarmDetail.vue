@@ -4,7 +4,7 @@
     <TopMessage :title="'安防'"></TopMessage>
     <!-- 通知栏 -->
     <Notice></Notice>
-    <Menu :menuData="menuData"></Menu>
+    <Menu></Menu>
   </div>
 </template>
 
@@ -19,28 +19,7 @@ export default {
     Notice,
     Menu
   },
-  data() {
-    return {
-      menuData: [
-        {
-          img: require('@/assets/icon/home/security/protection.png'),
-          title: '布防中'
-        },
-        {
-          img: require('@/assets/icon/home/security/home.png'),
-          title: '系统留守'
-        },
-        {
-          img: require('@/assets/icon/home/security/alarm.png'),
-          title: '取消警报'
-        },
-        {
-          img: require('@/assets/icon/home/security/timeClock.png'),
-          title: '定时布/撤防'
-        }
-      ]
-    }
-  },
+
   created() {
     console.log(this.$route.params)
   }
