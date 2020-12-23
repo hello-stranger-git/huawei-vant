@@ -18,11 +18,11 @@ const routes = [
         name: 'Flow',
         component: () => import('../views/flow/index.vue')
       },
-      {
-        path: '/check',
-        name: 'Check',
-        component: () => import('../views/check/index.vue')
-      },
+      // {
+      //   path: '/check',
+      //   name: 'Check',
+      //   component: () => import('../views/check/index.vue')
+      // },
       {
         path: '/app',
         name: 'App',
@@ -122,6 +122,16 @@ const routes = [
     path: '/security',
     name: 'Security',
     component: () => import('../views/home/security/index.vue')
+  },
+  {
+    path: '/SpotCheck',
+    name: 'SpotCheck',
+    component: () => import('../views/check/components/spotCheck.vue')
+  },
+  {
+    path: '/Assess',
+    name: 'Assess',
+    component: () => import('../views/check/components/assess.vue')
   }
 ]
 
