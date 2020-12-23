@@ -1,7 +1,7 @@
 <template>
   <div class="assessDetails">
     <!-- 头部区域 -->
-    <TopMessage></TopMessage>
+    <TopMessage :title="'考评详情'"></TopMessage>
     <!-- 通知栏 -->
     <Notice></Notice>
     <!-- 点检屏幕区域 -->

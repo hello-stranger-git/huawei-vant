@@ -1,7 +1,7 @@
 <template>
   <div class="attendance">
     <!-- 头部区域 -->
-    <TopMessage :path="'App'"></TopMessage>
+    <TopMessage :path="'App'" :title="'考勤'"></TopMessage>
     <!-- 通知栏 -->
     <Notice></Notice>
     <!-- tab选项区域 -->
