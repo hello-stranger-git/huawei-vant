@@ -239,6 +239,10 @@ export default {
       }
       if (to === 'BusyStatus') {
         this.$router.push({ name: to })
+        return
+      }
+      if (to) {
+        this.$router.push({ name: to })
       }
     }
   },
