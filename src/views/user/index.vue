@@ -79,7 +79,7 @@ export default {
           value: '密码修改',
           icon: iconLock,
           arrow: true,
-          to: '/Register'
+          to: 'Register'
         },
         {
           value: '工单',
@@ -90,7 +90,7 @@ export default {
           value: '关于',
           icon: iconAbout,
           arrow: true,
-          to: '/About'
+          to: 'About'
         }
       ]
     ]
