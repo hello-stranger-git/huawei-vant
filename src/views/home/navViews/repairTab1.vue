@@ -9,7 +9,11 @@
         <div class="detail">
           禁止抱着胳膊、跷二郎腿、手插口袋
         </div>
-        <div class="statuBox" :style="{ background: colorArr[item.color] }">
+        <div
+          class="statuBox"
+          :style="{ background: colorArr[item.color] }"
+          @click="toRepairing(item)"
+        >
           待整改
         </div>
       </div>
@@ -71,6 +75,9 @@ export default {
       } else {
         this.data[i].more = true
       }
+    },
+    toRepairing(data) {
+      this.$router.push({ name: 'Repairing', params: data })
     }
   },
   created() {

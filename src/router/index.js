@@ -84,6 +84,11 @@ const routes = [
     component: () => import('../views/home/components/news.vue')
   },
   {
+    path: '/Repairing',
+    name: 'Repairing',
+    component: () => import('../views/home/navViews/repairTab1Son.vue')
+  },
+  {
     path: '/Attendance',
     name: 'Attendance',
     component: () => import('../views/app/subpage/attendance.vue'),
