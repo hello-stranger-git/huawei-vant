@@ -29,12 +29,12 @@ export default {
           active: require('@/assets/icon/footer/keliu_active.png'),
           inactive: require('@/assets/icon/footer/keliu.png')
         },
-        {
-          text: '点检',
-          to: '/check',
-          active: require('@/assets/icon/footer/dianjian_active.png'),
-          inactive: require('@/assets/icon/footer/dianjian.png')
-        },
+        // {
+        //   text: '点检',
+        //   to: '/check',
+        //   active: require('@/assets/icon/footer/dianjian_active.png'),
+        //   inactive: require('@/assets/icon/footer/dianjian.png')
+        // },
         {
           text: '应用',
           to: '/app',

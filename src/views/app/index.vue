@@ -43,6 +43,16 @@ export default {
               icon: require('@/assets/icon/app/cardClock.png'),
               name: '考勤',
               path: '/Attendance/AttendanceItem'
+            },
+            {
+              icon: require('@/assets/icon/app/kaoping.png'),
+              name: '考评',
+              path: ''
+            },
+            {
+              icon: require('@/assets/icon/app/dianjian.png'),
+              name: '点检',
+              path: '/SpotCheck'
             }
           ]
         },
@@ -149,7 +159,7 @@ export default {
     }
   },
   created() {
-    window.sessionStorage.setItem('activeTab', 3)
+    window.sessionStorage.setItem('activeTab', 2)
   }
 }
 </script>

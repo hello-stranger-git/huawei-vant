@@ -122,7 +122,7 @@ export default {
   left: 0;
   border-radius: 8px;
   box-shadow: 0px 0px 10px 5px rgb(20 20 1.05%);
-  opacity: 90%;
+  opacity: 0.9;
   background-color: #fff;
   /deep/.currentCalender {
     padding-top: 26px;

@@ -19,7 +19,11 @@
         :data3="item.data3"
       ></FlowEchart>
       <div class="radio">
-        <p><img :src="libao" /><span>活动：两周年店庆，全场9.5折</span></p>
+        <p v-if="$store.state.activeContent">
+          <img :src="libao" /><span>{{
+            $store.state.activeContent ? $store.state.activeContent : ''
+          }}</span>
+        </p>
         <span>11月16日</span>
       </div>
     </div>

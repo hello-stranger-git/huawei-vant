@@ -104,6 +104,46 @@
         </div>
       </div>
     </div>
+    <!-- 活动录入dialog -->
+    <div class="activeDialog">
+      <van-overlay :show="activeShow" @click="activeShow = false">
+        <div class="wrapper" @click.stop>
+          <div style="margin:16px 0 0 16px">
+            <span style="font-size: 18px;font-weight: 800;color: #000000;"
+              >活动录入</span
+            >
+          </div>
+          <div style="text-align:center">
+            <input
+              type="text"
+              v-model="activeContent"
+              class="activeInput"
+              placeholder="自定义活动"
+            />
+          </div>
+          <div
+            style="margin-top:73px;display: flex;justify-content: space-around;"
+          >
+            <span
+              style="width: 148px;height: 48px;background: #4A92FF;opacity: 1;
+              border-radius: 24px;display: inline-block;
+              line-height:48px;text-align:center;font-size: 14px;color: #FFFFFF;"
+              @click="certain"
+            >
+              确认
+            </span>
+
+            <span
+              style="width: 148px;height: 48px;background: #E2E2E2;opacity: 1;
+              border-radius: 24px;display: inline-block;
+              line-height:48px;text-align:center;font-size: 14px;color: #FFFFFF;"
+              @click="activeShow = false"
+              >取消</span
+            >
+          </div>
+        </div>
+      </van-overlay>
+    </div>
   </div>
 </template>
 
@@ -135,7 +175,11 @@ export default {
       endHour: '',
       endMin: '',
       onJobTimeArr: ['08', '00'],
-      offJobTimeArr: ['22', '00']
+      offJobTimeArr: ['22', '00'],
+      // 活动录入dialog
+      activeShow: false,
+      // 活动录入内容
+      activeContent: ''
     }
   },
   methods: {
@@ -232,6 +276,11 @@ export default {
         this.endMin = 59
       }
     },
+    // 活动录入diaolg确定
+    certain() {
+      this.$store.state.activeContent = this.activeContent
+      this.activeShow = false
+    },
     changeRouter(to) {
       if (to === 'Register') {
         this.$router.push({ name: to, params: { jump: true } })
@@ -239,6 +288,11 @@ export default {
       }
       if (to === 'BusyStatus') {
         this.$router.push({ name: to })
+        return
+      }
+      // 活动录入
+      if (to === 'active') {
+        this.activeShow = true
         return
       }
       if (to) {
@@ -474,6 +528,36 @@ export default {
         background-color: #bebebe;
         right: 16px;
       }
+    }
+  }
+}
+
+//活动录入dialog
+.activeDialog {
+  .wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 351px;
+    height: 282px;
+    background: #ffffff;
+    opacity: 1;
+    border-radius: 10px;
+  }
+  .activeInput {
+    width: 319px;
+    height: 50px;
+    background: #e6e6e6;
+    border-radius: 10px;
+    border: 0;
+    box-sizing: border-box;
+    margin-top: 57px;
+    padding-left: 16px;
+    &::placeholder {
+      font-size: 16px;
+      font-weight: 400;
+      color: #bebebe;
     }
   }
 }
