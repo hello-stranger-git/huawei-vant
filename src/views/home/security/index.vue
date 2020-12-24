@@ -11,7 +11,12 @@
         <van-tab title="新报警">
           <AlarmItem :alarmData="newAlarmData" class="newItem"></AlarmItem>
         </van-tab>
-        <van-tab title="防区状态">内容 2</van-tab>
+        <van-tab title="防区状态">
+          <DefenseStatus
+            :defenseStatus="defenseStatus"
+            class="defenseStatusCom"
+          ></DefenseStatus>
+        </van-tab>
         <van-tab title="报警记录">
           <AlarmItem :alarmData="historyRecord" class="newItem"></AlarmItem>
         </van-tab>
@@ -26,11 +31,13 @@
 import TopMessage from '@/components/top' // 顶部信息
 import Notice from '@/layout/components/notice' // 通知栏
 import Menu from '@/views/home/security/components/newAlarm/menu.vue'
-import AlarmItem from '@/views/home/security/components/newAlarm/alarmItem.vue'
 import Tab4 from '@/views/home/security/components/newAlarm/alarmTab4.vue'
+import AlarmItem from '@/views/home/security/components/newAlarm/alarmItem.vue' // 新报警
+import DefenseStatus from '@/views/home/security/components/defenseStatus/index.vue' // 防区状态
 export default {
   data() {
     return {
+      // 菜单数据
       menuData: [
         {
           img: require('@/assets/icon/home/security/protection.png'),
@@ -112,6 +119,14 @@ export default {
           deal: '张鹏'
         }
       ],
+      // 防区状态数据
+      defenseStatus: [
+        { id: 1, status: true, title: '左侧大门-红外感应-001' },
+        { id: 2, status: true, title: '右侧大门-红外感应-003' },
+        { id: 3, status: true, title: '大厅展柜-红外感应-003' },
+        { id: 4, status: true, title: '收银台-红外感应-004' },
+        { id: 5, status: false, title: '仓库后方-烟感-005' }
+      ],
       // tab选中
       active: 0
     }
@@ -121,7 +136,8 @@ export default {
     Notice,
     AlarmItem,
     Menu,
-    Tab4
+    Tab4,
+    DefenseStatus
   }
 }
 </script>
@@ -159,6 +175,7 @@ export default {
     border-radius: 10px 10px 0px 0px;
   }
 }
+//新报警
 /deep/.alarm {
   &:first-child {
     border-radius: 0 0 8px 8px;
@@ -168,5 +185,14 @@ export default {
 }
 /deep/.van-tabs__content {
   padding-bottom: 10px;
+}
+//防区状态
+/deep/.defenseStatus {
+  &:last-child {
+    border-radius: 0px 0px 10px 10px;
+    .content {
+      border: 0;
+    }
+  }
 }
 </style>

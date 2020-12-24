@@ -47,7 +47,7 @@ export default {
             {
               icon: require('@/assets/icon/app/kaoping.png'),
               name: '考评',
-              path: ''
+              path: '/Assess'
             },
             {
               icon: require('@/assets/icon/app/dianjian.png'),
