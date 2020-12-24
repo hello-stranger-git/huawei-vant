@@ -3,7 +3,7 @@
     <!-- 头部区域 -->
     <TopMessage :title="'点检'"></TopMessage>
     <!-- 点检截图区域 -->
-    <VideoImage></VideoImage>
+    <VideoImage :image="screen"></VideoImage>
     <!-- tab选项区域 -->
     <van-tree-select
       :items="items"
@@ -40,7 +40,7 @@
 </template>
 <script>
 import TopMessage from '@/components/top' // 顶部信息
-import VideoImage from '@/components/check/subpage/videoImage.vue' // 点检截图
+import VideoImage from '@/components/check/subpage/videoImage.vue' // 点检图操作区
 import SendOut from '@/components/check/subpage/sendOut.vue' // 抄送
 
 export default {
@@ -51,7 +51,7 @@ export default {
   },
   data() {
     return {
-      screen: require('@/assets/screenImage/screen1.png'), // 点检图
+      screen: require('@/assets/videoImage/videoTest.png'), // 点检图
       huaBiIcon: require('@/assets/icon/check/huabi.png'), // 画笔图标
       xuanKuangIcon: require('@/assets/icon/check/kuang.png'), // 选框图标
       cheXiaoIcon: require('@/assets/icon/check/chexiao.png'), // 撤销图标

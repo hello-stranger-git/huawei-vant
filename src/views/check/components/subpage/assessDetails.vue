@@ -3,9 +3,9 @@
     <!-- 头部区域 -->
     <TopMessage :title="'考评详情'"></TopMessage>
     <!-- 通知栏 -->
-    <Notice></Notice>
+    <!-- <Notice></Notice> -->
     <!-- 点检屏幕区域 -->
-    <VideoImage></VideoImage>
+    <VideoImage :image="screen"></VideoImage>
     <!-- 导航选项区域 -->
     <ul
       :class="`evaluationOption ${defaultStyle ? 'defaultStyle' : ''}`"
@@ -55,19 +55,21 @@
 </template>
 <script>
 import TopMessage from '@/components/top' // 顶部信息
-import Notice from '@/layout/components/notice' // 通知栏
+// import Notice from '@/layout/components/notice' // 通知栏
 import VideoImage from '@/components/check/subpage/videoImage.vue' // 点检截图
 import SendOut from '@/components/check/subpage/sendOut.vue' // 抄送
 
 export default {
   components: {
     TopMessage,
-    Notice,
+    // Notice,
     VideoImage,
     SendOut
   },
   data() {
     return {
+      screen: require('@/assets/videoImage/videoTest.png'), // 点检图
+
       // 默认选中项
       defaultStyle: true,
       // tab默认选中项
@@ -99,6 +101,10 @@ export default {
   background-color: #efefef;
   // border: 1px solid red;
   padding-bottom: 36px;
+  // 点检截图区域样式
+  .videoImage {
+    margin-top: 88px;
+  }
 }
 // 影藏滚动条
 ::-webkit-scrollbar {

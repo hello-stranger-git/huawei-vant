@@ -1,5 +1,7 @@
 <template>
   <div class="assess">
+    <!-- 头部区域 -->
+    <TopMessage :title="'考评'"></TopMessage>
     <!-- 摄像头button区域 -->
     <CameraOption :cameraData="cameraData"></CameraOption>
     <div class="box" v-for="(query, index) in arr" :key="index">
@@ -18,7 +20,7 @@
         >
           {{ item.value }}
         </div>
-        <router-link to="AssessDetails">
+        <router-link :to="{ name: 'AssessDetails', query: { id: index } }">
           <img :src="more" />
         </router-link>
       </div>
@@ -27,16 +29,18 @@
 </template>
 
 <script>
+import TopMessage from '@/components/top' // 顶部信息
 import CameraOption from '@/components/check/cameraOption .vue' // 摄像头选项
 
 export default {
   components: {
+    TopMessage,
     CameraOption
   },
   data() {
     return {
-      date: new Date().toLocaleString(),
-      video: require('@/assets/screenImage/videoImage.png'),
+      date: '18:20:02 12-15-2020',
+      video: require('@/assets/videoImage/videoTest.png'),
       more: require('@/assets/icon/check/more.png'), // 菜单图标
       active: 1,
       arr: [
@@ -79,6 +83,7 @@ export default {
   .cameraOption {
     background-color: #fff;
     padding-top: 16px;
+    margin-top: 88px;
   }
 }
 .box {
