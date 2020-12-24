@@ -9,10 +9,12 @@
     <div class="tab">
       <van-tabs v-model="active">
         <van-tab title="新报警">
-          <AlarmItem :newAlarmData="newAlarmData" class="newItem"></AlarmItem>
+          <AlarmItem :alarmData="newAlarmData" class="newItem"></AlarmItem>
         </van-tab>
         <van-tab title="防区状态">内容 2</van-tab>
-        <van-tab title="报警记录">内容 3</van-tab>
+        <van-tab title="报警记录">
+          <AlarmItem :alarmData="historyRecord" class="newItem"></AlarmItem>
+        </van-tab>
         <van-tab title="控制记录">内容 4</van-tab>
         <van-tab title="主机状态">内容 5</van-tab>
       </van-tabs>
@@ -46,6 +48,7 @@ export default {
           title: '定时布/撤防'
         }
       ],
+      // 报警信息数据
       newAlarmData: [
         {
           title: '红外，周界报警（101）',
@@ -73,6 +76,39 @@ export default {
           number: '005',
           region: '仓库',
           status: '未处理'
+        }
+      ],
+      // 历史记录信息
+      historyRecord: [
+        {
+          title: '红外，周界报警（101）',
+          img: require('@/assets/icon/home/security/alarmImg.png'),
+          time: '12/02 19:42:58',
+          videoTitle: '大厅3',
+          number: '002',
+          region: '右门',
+          status: '已处理',
+          deal: '张鹏'
+        },
+        {
+          title: '红外，周界报警（102）',
+          img: require('@/assets/icon/home/security/alarmImg.png'),
+          time: '12/02 19:42:58',
+          videoTitle: '大厅2',
+          number: '002',
+          region: '左门',
+          status: '已处理',
+          deal: '张鹏'
+        },
+        {
+          title: '红外，周界报警（101）',
+          img: require('@/assets/icon/home/security/alarmImg.png'),
+          time: '12/02 19:42:58',
+          videoTitle: '仓库2',
+          number: '005',
+          region: '仓库',
+          status: '已处理',
+          deal: '张鹏'
         }
       ],
       // tab选中

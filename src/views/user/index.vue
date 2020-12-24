@@ -48,7 +48,7 @@ export default {
     }
   },
   created() {
-    window.sessionStorage.setItem('activeTab', 4)
+    window.sessionStorage.setItem('activeTab', 3)
     this.cellData = [
       [
         {
@@ -68,6 +68,12 @@ export default {
           icon: iconTime,
           label: '10:00-22:00',
           arrow: true
+        },
+        {
+          value: '活动录入',
+          icon: require('@/assets/icon/user/active.png'),
+          arrow: true,
+          to: 'active'
         }
       ],
       [
