@@ -90,6 +90,7 @@ export default {
         option = {
           // 提示工具
           tooltip: {
+            extraCssText: 'z-index:1',
             trigger: 'axis',
             axisPointer: {
               type: 'line',
