@@ -20,7 +20,6 @@
               width="17px"
               height="17px"
               class="checkImg"
-              @click="togCheck(item.id)"
             />
             <div @click="togTree(item.id)" style="display:inline-block">
               <span class="title">{{ item.title }}</span>
