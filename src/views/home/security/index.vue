@@ -15,7 +15,7 @@
         <van-tab title="报警记录">
           <AlarmItem :alarmData="historyRecord" class="newItem"></AlarmItem>
         </van-tab>
-        <van-tab title="控制记录">内容 4</van-tab>
+        <van-tab title="控制记录"><Tab4></Tab4></van-tab>
         <van-tab title="主机状态">内容 5</van-tab>
       </van-tabs>
     </div>
@@ -27,6 +27,7 @@ import TopMessage from '@/components/top' // 顶部信息
 import Notice from '@/layout/components/notice' // 通知栏
 import Menu from '@/views/home/security/components/newAlarm/menu.vue'
 import AlarmItem from '@/views/home/security/components/newAlarm/alarmItem.vue'
+import Tab4 from '@/views/home/security/components/newAlarm/alarmTab4.vue'
 export default {
   data() {
     return {
@@ -119,7 +120,8 @@ export default {
     TopMessage,
     Notice,
     AlarmItem,
-    Menu
+    Menu,
+    Tab4
   }
 }
 </script>
