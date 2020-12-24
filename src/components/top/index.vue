@@ -60,8 +60,9 @@ export default {
   background-color: #fff;
   height: 88px;
   font-size: 14px;
-  box-shadow: 0px 2px 6px #99999924;
+  // box-shadow: 0px 2px 6px #99999924;
   position: fixed;
+  top: 0px;
   width: 100%;
   z-index: 2;
 }

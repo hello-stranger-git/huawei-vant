@@ -20,9 +20,15 @@
 </template>
 <script>
 export default {
+  props: {
+    image: {
+      type: String,
+      default: ''
+    }
+  },
   data() {
     return {
-      screen: require('@/assets/screenImage/screen1.png'), // 点检图
+      screen: this.image, // 点检图
       huaBiIcon: require('@/assets/icon/check/huabi.png'), // 画笔图标
       xuanKuangIcon: require('@/assets/icon/check/kuang.png'), // 选框图标
       cheXiaoIcon: require('@/assets/icon/check/chexiao.png') // 撤销图标
