@@ -115,7 +115,8 @@ export default {
         {
           value: '报警主机',
           icon: iconAlarm,
-          arrow: true
+          arrow: true,
+          to: 'Security'
         },
         {
           value: '密码修改',

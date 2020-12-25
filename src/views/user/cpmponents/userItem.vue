@@ -192,7 +192,6 @@ export default {
   },
   methods: {
     openTime(a) {
-      // console.log(a)
       this.date = '上下班时间'
       this.jobTime = true
       this.showDialog = true
@@ -295,7 +294,6 @@ export default {
         return
       }
       if (to === 'BusyStatus') {
-        // console.log('userItem', this.peopleCount)
         this.$router.push({
           name: to,
           params: { peopleCount: this.peopleCount }
@@ -305,6 +303,13 @@ export default {
       // 活动录入
       if (to === 'active') {
         this.activeShow = true
+        return
+      }
+      // 报警主机
+      if (to === 'Security') {
+        this.$router.push({
+          name: to
+        })
         return
       }
       if (to) {
