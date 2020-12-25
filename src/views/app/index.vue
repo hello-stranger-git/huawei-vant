@@ -43,17 +43,17 @@ export default {
               icon: require('@/assets/icon/app/cardClock.png'),
               name: '考勤',
               path: '/Attendance/AttendanceItem'
-            },
-            {
-              icon: require('@/assets/icon/app/kaoping.png'),
-              name: '考评',
-              path: '/Assess'
-            },
-            {
-              icon: require('@/assets/icon/app/dianjian.png'),
-              name: '点检',
-              path: '/SpotCheck'
             }
+            // {
+            //   icon: require('@/assets/icon/app/kaoping.png'),
+            //   name: '考评',
+            //   path: '/Assess'
+            // },
+            // {
+            //   icon: require('@/assets/icon/app/dianjian.png'),
+            //   name: '点检',
+            //   path: '/SpotCheck'
+            // }
           ]
         },
         {

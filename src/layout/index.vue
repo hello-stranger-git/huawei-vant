@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="global">
     <div class="top">
       <Top></Top>
     </div>
@@ -23,6 +23,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.global {
+  height: 100%;
+}
 .top {
   position: fixed;
   z-index: 4;
