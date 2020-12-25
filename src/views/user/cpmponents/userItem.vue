@@ -6,6 +6,7 @@
         v-for="(item, i) in query"
         :key="i"
         @click="changeRouter(item.to)"
+        :peopleCount="peopleCount"
       >
         <!-- // 图标 -->
         <div class="icon">
@@ -154,6 +155,13 @@ var last = new Date(0)
 var now = new Date()
 export default {
   props: {
+    // 每一天的访问总人数
+    peopleCount: {
+      type: Array,
+      default: function() {
+        return []
+      }
+    },
     data: {
       type: Array,
       default: () => {
@@ -287,7 +295,11 @@ export default {
         return
       }
       if (to === 'BusyStatus') {
-        this.$router.push({ name: to })
+        // console.log('userItem', this.peopleCount)
+        this.$router.push({
+          name: to,
+          params: { peopleCount: this.peopleCount }
+        })
         return
       }
       // 活动录入
