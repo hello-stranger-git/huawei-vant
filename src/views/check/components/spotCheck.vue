@@ -17,9 +17,15 @@
         <div class="calendar" @click="show = true">
           <img :src="calendar" />
         </div>
-        <van-button v-for="(item, i) of detas" :key="i" type="default">{{
-          item
-        }}</van-button>
+        <!-- 日期按钮 -->
+        <van-button
+          v-for="(item, i) of detas"
+          :key="i"
+          type="default"
+          @click="changeDate(i)"
+          :class="{ activeDate: i === activeDateIndex ? true : false }"
+          >{{ item }}</van-button
+        >
       </div>
       <!-- 日历开始 -->
       <van-calendar v-model="show" :show-confirm="false" @confirm="onConfirm" />
@@ -62,24 +68,37 @@ export default {
       // 时间
       datestyle: true,
       // 日期选择数据
-      detas: ['11-22', '11-23', '前天', '昨天', '零时', '今天', '现在'],
+      detas: [],
       date: '', // 接收选择日期
       show: false,
-      calendar: require('@/assets/icon/check/rili.png')
+      calendar: require('@/assets/icon/check/rili.png'),
+      activeDateIndex: 0
     }
   },
+  created() {
+    this.onConfirm(new Date())
+  },
   methods: {
+    changeDate(i) {
+      this.activeDateIndex = i
+    },
     // 清除时间默认选中属性
     tade() {
       this.datestyle = false
     },
     // 日历事件
-    formatDate(date) {
-      return `${date.getMonth() + 1}/${date.getDate()}`
-    },
     onConfirm(date) {
+      this.activeDateIndex = 0
       this.show = false
-      this.date = this.formatDate(date)
+      const time = new Date(date)
+      console.log(date.getTime())
+      console.log(date.toLocaleString())
+      this.detas = []
+      for (let i = 0; i < 7; i++) {
+        const month = new Date(Number(time) - 86400000 * i).getMonth() + 1
+        const day = new Date(Number(time) - 86400000 * i).getDate()
+        this.detas.push(month + '-' + day)
+      }
     },
     // 触发事件返回上一页
     backOff() {
@@ -128,6 +147,12 @@ export default {
   justify-content: space-between;
   // margin-top: 18px;
   padding: 0 12px 0 9px;
+  .activeDate {
+    opacity: 1;
+    color: #fff !important;
+    background-color: #4a92ff;
+    border: none;
+  }
   .calendar > img {
     width: 30px;
     height: 30px;
@@ -178,8 +203,7 @@ export default {
     border: none;
   }
 }
-.defaultStyle > .van-button:first-child,
-.datestyle > .van-button:last-child {
+.defaultStyle > .van-button:first-child {
   opacity: 1;
   color: #fff;
   background-color: #4a92ff;
