@@ -13,7 +13,7 @@
       <van-icon size="14" :name="arrow" class="arrow" />
     </div>
     <!-- 单元格 -->
-    <UserItem :data="cellData"></UserItem>
+    <UserItem :data="cellData" :peopleCount="peopleCount"></UserItem>
     <!-- 地址 -->
     <div class="adress">深圳市龙岗区龙岗大道桂圆街道345号</div>
     <!-- logout -->
@@ -44,7 +44,42 @@ export default {
     return {
       cellData: [],
       logo: huawei,
-      arrow
+      arrow,
+
+      peopleCount: [
+        // 每天访问的总人数
+        { day: 1, status: '1' },
+        { day: 2, status: '1' },
+        { day: 3, status: '1' },
+        { day: 4, status: '1' },
+        { day: 5, status: '1' },
+        { day: 6, status: '1' },
+        { day: 7, status: '1' },
+        { day: 8, status: '1' },
+        { day: 9, status: '1' },
+        { day: 10, status: '1' },
+        { day: 11, status: '1' },
+        { day: 12, status: '1' },
+        { day: 13, status: '1' },
+        { day: 14, status: '1' },
+        { day: 15, status: '1' },
+        { day: 16, status: '1' },
+        { day: 17, status: '1' },
+        { day: 18, status: '1' },
+        { day: 19, status: '1' },
+        { day: 20, status: '1' },
+        { day: 21, status: '1' },
+        { day: 22, status: '1' },
+        { day: 23, status: '1' },
+        { day: 24, status: '1' },
+        { day: 25, status: '1' },
+        { day: 26, status: '1' },
+        { day: 27, status: '1' },
+        { day: 28, status: '1' },
+        { day: 29, status: '1' },
+        { day: 30, status: '1' },
+        { day: 31, status: '1' }
+      ]
     }
   },
   created() {
@@ -80,7 +115,8 @@ export default {
         {
           value: '报警主机',
           icon: iconAlarm,
-          arrow: true
+          arrow: true,
+          to: 'Security'
         },
         {
           value: '密码修改',
@@ -109,19 +145,26 @@ export default {
     },
     // 改变营业状态
     changeStatus(data) {
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].value && data[i].value === '营业状态') {
-          if (this.$route.params.status) {
-            if (this.$route.params.status === '0') {
-              data[i].label = '未营业'
-            } else if (this.$route.params.status === '1') {
-              data[i].label = '营业'
-            } else {
-              data[i].label = this.$route.params.status
+      if (this.$route.params.day === new Date().getDate()) {
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].value && data[i].value === '营业状态') {
+            if (this.$route.params.status) {
+              if (this.$route.params.status === '0') {
+                data[i].label = '未营业'
+              } else if (this.$route.params.status === '1') {
+                data[i].label = '营业'
+              } else {
+                data[i].label = this.$route.params.status
+              }
             }
+          } else if (data[i].length > 0) {
+            this.changeStatus(data[i])
           }
-        } else if (data[i].length > 0) {
-          this.changeStatus(data[i])
+        }
+      }
+      for (const item in this.peopleCount) {
+        if (this.$route.params.day === this.peopleCount[item].day) {
+          this.peopleCount[item].status = this.$route.params.status
         }
       }
     }

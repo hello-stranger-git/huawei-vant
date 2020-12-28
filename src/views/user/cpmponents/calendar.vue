@@ -55,16 +55,15 @@
 <script>
 export default {
   props: {
-    // 每一天的访问总人数
-    peopleCount: {
-      type: Array,
-      default: function() {
-        return []
-      }
-    },
     status: {
       type: String,
       default: '1'
+    },
+    peopleCount: {
+      type: Array,
+      default: () => {
+        return []
+      }
     }
   },
   data() {
@@ -143,7 +142,7 @@ export default {
   methods: {
     changeDay(day) {
       // 如果不是当天，不能操作
-      if (day !== new Date().getDate()) return
+      // if (day !== new Date().getDate()) return
       this.$emit('getDay', {
         year: this.currentYear,
         month: this.currentMonth,
