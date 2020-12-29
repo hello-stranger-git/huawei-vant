@@ -87,7 +87,7 @@ export default {
   }
   // 点检截图区域样式
   .videoImage {
-    margin-top: 88px;
+    margin-top: 44px;
   }
   // 选项区域
   .van-tree-select {

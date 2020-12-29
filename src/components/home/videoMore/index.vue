@@ -6,11 +6,10 @@
       left-arrow
       @click-left="onClickLeft"
       :right-icon="quadrangle"
-      @click-right="onClickRight"
     >
-      <template #right>
+      <!-- <template #right>
         <img :src="quadrangle" width="24px" height="24px" />
-      </template>
+      </template> -->
     </van-nav-bar>
 
     <div class="videoItem" v-for="(item, index) in videoData" :key="index">
@@ -24,12 +23,12 @@
         </div>
       </div>
 
-      <div class="video">
+      <div class="video" @click="videoDetails(item.id)">
         <img :src="item.line ? video : videoOff" width="375px" height="205px" />
       </div>
       <div class="dataSelect">
         <!-- 日期选择区域 -->
-        <div
+        <!-- <div
           :class="`detaButton ${datestyle ? 'datestyle' : ''}`"
           @click="tade"
         >
@@ -39,24 +38,24 @@
           <van-button v-for="(item, i) of detas" :key="i" type="default">{{
             item
           }}</van-button>
-        </div>
+        </div> -->
         <!-- 日历开始 -->
-        <van-calendar
+        <!-- <van-calendar
           v-model="show"
           :show-confirm="false"
           @confirm="onConfirm"
-        />
+        /> -->
         <!-- 日历结束 -->
       </div>
-      <div class="timeAxisDiv">
+      <!-- <div class="timeAxisDiv">
         <TimeAxis></TimeAxis>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script>
-import TimeAxis from '@/components/check/timeAxis.vue' // 时间轴
+// import TimeAxis from '@/components/check/timeAxis.vue' // 时间轴
 export default {
   data() {
     return {
@@ -79,23 +78,27 @@ export default {
     onClickLeft() {
       this.$router.go(-1)
     },
-    onClickRight() {},
 
     // 清除时间默认选中属性
-    tade() {
-      this.datestyle = false
-    },
-    onConfirm(date) {
-      this.show = false
-      this.date = this.formatDate(date)
-    },
-    // 日历事件
-    formatDate(date) {
-      return `${date.getMonth() + 1}/${date.getDate()}`
+    // tade() {
+    //   this.datestyle = false
+    // },
+    // onConfirm(date) {
+    //   this.show = false
+    //   this.date = this.formatDate(date)
+    // },
+    // // 日历事件
+    // formatDate(date) {
+    //   return `${date.getMonth() + 1}/${date.getDate()}`
+    // },
+    // 触发跳转至视屏详情页
+    videoDetails(e) {
+      console.log('123' + e)
+      this.$router.push({ name: 'VideoDetails', query: { id: e } })
     }
   },
   components: {
-    TimeAxis
+    // TimeAxis
   },
   mounted() {
     this.videoData = this.$route.query
@@ -113,8 +116,8 @@ export default {
 }
 // 头部样式
 /deep/.van-nav-bar {
-  padding-top: 44px;
   border: 0;
+  padding: 5px 0;
   .van-nav-bar__content {
     height: auto;
     line-height: 25px;
@@ -171,59 +174,60 @@ export default {
 }
 .video {
   background-color: #fff;
+  height: 205px;
   padding-top: 10px;
 }
 
-// 日期选择样式
-.dataSelect {
-  background-color: #fff;
-}
-.detaButton {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 12px;
-  padding: 0 12px 0 9px;
-  .calendar > img {
-    width: 30px;
-    height: 30px;
-  }
-  .van-button {
-    border: 1px solid #959595;
-    font-size: 12px;
-    width: 42px;
-    height: 20px;
-    border-radius: 4px;
-    opacity: 0.7;
-    color: #959595;
-  }
-  .van-button--normal {
-    padding: 0;
-  }
-}
+// // 日期选择样式
+// .dataSelect {
+//   background-color: #fff;
+// }
+// .detaButton {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   padding-top: 12px;
+//   padding: 0 12px 0 9px;
+//   .calendar > img {
+//     width: 30px;
+//     height: 30px;
+//   }
+//   .van-button {
+//     border: 1px solid #959595;
+//     font-size: 12px;
+//     width: 42px;
+//     height: 20px;
+//     border-radius: 4px;
+//     opacity: 0.7;
+//     color: #959595;
+//   }
+//   .van-button--normal {
+//     padding: 0;
+//   }
+// }
 
-// 按钮点击效果
-.cameraButton,
-.detaButton {
-  .van-button:hover {
-    opacity: 1;
-    color: #fff;
-    background-color: #4a92ff;
-    border: none;
-  }
-}
-.defaultStyle > .van-button:first-child,
-.datestyle > .van-button:last-child {
-  opacity: 1;
-  color: #fff;
-  background-color: #4a92ff;
-  border: none;
-}
+// // 按钮点击效果
+// .cameraButton,
+// .detaButton {
+//   .van-button:hover {
+//     opacity: 1;
+//     color: #fff;
+//     background-color: #4a92ff;
+//     border: none;
+//   }
+// }
+// .defaultStyle > .van-button:first-child,
+// .datestyle > .van-button:last-child {
+//   opacity: 1;
+//   color: #fff;
+//   background-color: #4a92ff;
+//   border: none;
+// }
 
-// 时间轴样式
-.timeAxisDiv {
-  padding-top: 26px;
-  background-color: #fff;
-  padding-bottom: 16px;
-}
+// // 时间轴样式
+// .timeAxisDiv {
+//   padding-top: 26px;
+//   background-color: #fff;
+//   padding-bottom: 16px;
+// }
 </style>

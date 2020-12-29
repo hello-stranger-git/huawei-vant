@@ -44,10 +44,11 @@ export default {
   margin: 0 auto;
   background-color: #fff;
   padding-bottom: 46px;
+
   // height: 100%;
   // 头部样式
   /deep/.van-nav-bar {
-    padding-top: 55px;
+    padding-top: 11px;
     .van-nav-bar__content {
       height: auto;
       line-height: 25px;

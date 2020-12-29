@@ -233,7 +233,6 @@ export default {
   top: 0;
   z-index: 99;
   background-color: #fff;
-  padding-top: 44px;
   position: fixed;
   .van-nav-bar {
     /deep/.van-nav-bar__content {
@@ -259,7 +258,7 @@ export default {
   }
 }
 .details_content {
-  margin: 134px 12px 0;
+  margin: 90px 12px 0;
   padding-top: 12px;
   // 姓名区域样式
   .fullName {

@@ -103,7 +103,7 @@ export default {
   padding-bottom: 36px;
   // 点检截图区域样式
   .videoImage {
-    margin-top: 88px;
+    margin-top: 44px;
   }
 }
 // 影藏滚动条
