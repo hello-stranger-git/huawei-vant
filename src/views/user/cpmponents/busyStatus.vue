@@ -61,50 +61,20 @@ import Calendar from './calendar'
 export default {
   data() {
     return {
-      peopleCount: [
-        // 每天访问的总人数
-        { day: 1, status: '1' },
-        { day: 2, status: '1' },
-        { day: 3, status: '1' },
-        { day: 4, status: '1' },
-        { day: 5, status: '1' },
-        { day: 6, status: '1' },
-        { day: 7, status: '1' },
-        { day: 8, status: '1' },
-        { day: 9, status: '1' },
-        { day: 10, status: '1' },
-        { day: 11, status: '1' },
-        { day: 12, status: '1' },
-        { day: 13, status: '1' },
-        { day: 14, status: '1' },
-        { day: 15, status: '1' },
-        { day: 16, status: '1' },
-        { day: 17, status: '1' },
-        { day: 18, status: '1' },
-        { day: 19, status: '1' },
-        { day: 20, status: '1' },
-        { day: 21, status: '1' },
-        { day: 22, status: '1' },
-        { day: 23, status: '1' },
-        { day: 24, status: '1' },
-        { day: 25, status: '1' },
-        { day: 26, status: '1' },
-        { day: 27, status: '1' },
-        { day: 28, status: '1' },
-        { day: 29, status: '1' },
-        { day: 30, status: '1' },
-        { day: 31, status: '1' }
-      ],
-
       show: false,
       // 其它状态
       otherStatus: '',
       status: '1',
-      day: 0
+      day: 0,
+      data: {},
+      peopleCount: []
     }
   },
   components: {
     Calendar
+  },
+  mounted() {
+    this.peopleCount = this.$route.params.peopleCount
   },
   methods: {
     onClickLeft() {
@@ -116,6 +86,7 @@ export default {
     },
     getDay(data) {
       this.show = !this.show
+      this.data = data
       this.otherStatus = ''
       this.status = ''
       this.day = data.day
@@ -145,7 +116,10 @@ export default {
         }
       }
       this.show = false
-      this.$router.push({ name: 'User', params: { status: this.status } })
+      this.$router.push({
+        name: 'User',
+        params: { status: this.status, ...this.data }
+      })
     }
   }
 }
