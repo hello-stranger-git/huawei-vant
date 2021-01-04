@@ -156,6 +156,11 @@ const routes = [
     path: '/alarmDetail',
     name: 'AlarmDetail',
     component: () => import('../views/home/security/components/newAlarm/alarmDetail.vue')
+  },
+  {
+    path: '/EvaluationDetails',
+    name: 'EvaluationDetails',
+    component: () => import('../views/check/components/subpage/evaluationDetails.vue')
   }
 ]
 
