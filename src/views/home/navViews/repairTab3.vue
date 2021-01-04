@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 整改完成 -->
-    <div v-show="flag">
+    <div>
       <div class="box" v-for="(item, i) in repaire" :key="i">
         <div class="title">
           <div class="label">{{ item.title }}</div>
@@ -46,50 +46,6 @@
       </div>
     </div>
     <!-- 申诉完成 -->
-    <div v-show="!flag">
-      <div class="box" v-for="(item, i) in state" :key="i">
-        <div class="title">
-          <div class="label">{{ item.title }}</div>
-          <div class="score">{{ item.score }}</div>
-        </div>
-        <div class="ban">
-          <div class="detail">
-            禁止抱着胳膊、跷二郎腿、手插口袋
-          </div>
-          <div :class="['statu', item.statu.flag ? 'statuColor' : '']">
-            状态：{{ item.statu.value }}
-          </div>
-        </div>
-        <div class="img">
-          <img :src="img" alt="" />
-        </div>
-        <div class="main">
-          <div class="cell">
-            <div class="time">{{ item.check.time }} 开始整改</div>
-            <div class="role">监察人：{{ item.check.person }}</div>
-          </div>
-          <div class="cell">
-            <div class="time">{{ item.state.time }} 发起申诉</div>
-            <div class="role">申诉人：{{ item.state.person }}</div>
-            <div class="reason" v-if="item.more">
-              {{ item.state.reason }}
-            </div>
-          </div>
-          <div class="cell">
-            <div class="time">{{ item.result.time }} 驳回申诉</div>
-            <div class="role">处理人：{{ item.result.person }}</div>
-            <div class="reason" v-if="item.more">
-              {{ item.result.reason }}
-            </div>
-          </div>
-          <div class="more" @click="toggleStateMore(item.more, i)">
-            <!-- true显示收起，false显示更多 -->
-            {{ item.more ? moreValueArr[1] : moreValueArr[0] }}
-            <van-icon :name="item.more ? arrowArr[1] : arrowArr[0]" size="9" />
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -98,12 +54,6 @@ import img from '@/assets/screenImage/repairImage.png'
 import rightArrow from '@/assets/icon/home/navTabs/rightArrow.png'
 import bottomArrow from '@/assets/icon/home/navTabs/bottomArrow.png'
 export default {
-  props: {
-    flag: {
-      type: Number,
-      default: 0
-    }
-  },
   data() {
     return {
       state: [],
@@ -124,42 +74,6 @@ export default {
     }
   },
   created() {
-    this.state = [
-      {
-        title: '员工行为',
-        more: false,
-        score: '-3',
-        statu: { value: '申述驳回', flag: false },
-        check: { time: '11/30 12:35:16', person: '刘德华' },
-        state: {
-          time: '11/30 12:45:16',
-          person: '张鹏',
-          reason: '申诉理由：不是本店员工，没有产生以下行为'
-        },
-        result: {
-          time: '11/30 12:55:16',
-          person: '陈某某',
-          reason: '申诉理由：不是本店员工，没有产生以下行为'
-        }
-      },
-      {
-        title: '仓库卫生',
-        more: false,
-        score: '-3',
-        statu: { value: '申述成功', flag: true },
-        check: { time: '11/30 12:35:16', person: '张学友' },
-        state: {
-          time: '11/30 12:45:16',
-          person: '黎明',
-          reason: '申诉理由：不是本店员工，没有产生以下行为'
-        },
-        result: {
-          time: '11/30 12:55:16',
-          person: '郭富城',
-          reason: '申诉理由：不是本店员工，没有产生以下行为'
-        }
-      }
-    ]
     this.repaire = [
       {
         title: '员工行为',

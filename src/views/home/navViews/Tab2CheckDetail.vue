@@ -1,0 +1,189 @@
+<template>
+  <div class="contain">
+    <div class="header"></div>
+    <div class="statu">
+      审核详情
+      <div class="back" @click="$router.go(-1)"><img :src="goBack" /></div>
+      <div class="progress"><img :src="progress" /></div>
+    </div>
+    <div class="main">
+      <div class="date">
+        <div class="person"><img :src="person" /><span>刘德华</span></div>
+        <div class="time">{{ date }}</div>
+      </div>
+      <div class="camera">
+        <img :src="img" alt="" />
+      </div>
+      <div class="problem">
+        <img :src="protect" />
+        <div class="right">
+          <div>标杆店及购物中心店模板</div>
+          <div class="number">3个点检问题</div>
+          <div class="score">-6分</div>
+        </div>
+      </div>
+      <div class="detail"><div class="more">查看更多</div></div>
+      <textarea cols="30" rows="10" placeholder="请输入处理意见"></textarea>
+    </div>
+    <div class="appeal">申诉</div>
+    <div class="change">限制整改</div>
+  </div>
+</template>
+
+<script>
+import img from '@/assets/screenImage/repairImage.png' // 照片
+import person from '@/assets/icon/home/navTabs/person.png' // 照片
+import goBack from '@/assets/icon/home/navTabs/back.png' // 照片
+import progress from '@/assets/icon/home/navTabs/progress.png' // 照片
+import protect from '@/assets/icon/home/navTabs/protect.png' // 照片
+import { Toast } from 'vant'
+export default {
+  components: {},
+  data() {
+    return {
+      img,
+      person,
+      goBack,
+      progress,
+      protect,
+      date: new Date().toLocaleString()
+    }
+  },
+  created() {
+    // console.log(this.$route.params)
+  },
+  methods: {
+    submit() {
+      Toast('提交成功')
+      this.$router.go(-1)
+    }
+  }
+}
+</script>
+
+<style lang="less" scoped>
+.contain {
+  position: relative;
+  height: 100%;
+  background-color: #fff;
+  .appeal,
+  .change {
+    position: absolute;
+    bottom: 34px;
+    width: 100px;
+    height: 39px;
+    line-height: 39px;
+    border-radius: 23px;
+    font-size: 14px;
+    text-align: center;
+    background-color: #ff7b40;
+    color: #fff;
+  }
+  .appeal {
+    left: 70px;
+  }
+  .change {
+    right: 70px;
+    background-color: #4a92ff;
+  }
+}
+.header {
+  height: 44px;
+}
+.statu {
+  position: relative;
+  font-size: 18px;
+  font-weight: bold;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  .back {
+    position: absolute;
+    left: 12px;
+    top: 5px;
+  }
+  .progress {
+    position: absolute;
+    right: 12px;
+    top: 5px;
+  }
+}
+.main {
+  .date {
+    position: relative;
+    height: 46px;
+    .person {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      font-size: 14px;
+      img {
+        vertical-align: bottom;
+        margin-right: 6px;
+      }
+    }
+    .time {
+      position: absolute;
+      right: 13px;
+      bottom: 10px;
+      height: 17px;
+      line-height: 17px;
+      color: #959595;
+      font-size: 12px;
+    }
+  }
+  .camera {
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .problem {
+    position: relative;
+    display: flex;
+    font-size: 14px;
+    margin-top: 32px;
+    margin-left: 12px;
+    .right {
+      padding-left: 6px;
+      & > div {
+        height: 20px;
+      }
+      .number {
+        line-height: 24px;
+        font-size: 12px;
+        color: #e60012;
+        vertical-align: bottom;
+      }
+      .score {
+        position: absolute;
+        right: 12px;
+        top: 12px;
+        color: #e60012;
+      }
+    }
+  }
+  .detail {
+    height: 45px;
+    position: relative;
+    .more {
+      position: absolute;
+      right: 12px;
+      bottom: 0;
+      font-size: 12px;
+      color: #4a92ff;
+    }
+  }
+  textarea {
+    margin: 54px 12px 0;
+    padding: 10px 10px 0 12px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid #959595;
+    color: #141414;
+    width: 351px;
+    height: 143px;
+    font-size: 12px;
+  }
+}
+</style>
