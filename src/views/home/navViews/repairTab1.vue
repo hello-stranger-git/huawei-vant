@@ -193,7 +193,6 @@ export default {
       font-size: 12px;
       color: #fff;
       text-align: center;
-      background-color: lightgreen;
       border-radius: 16px;
     }
   }
