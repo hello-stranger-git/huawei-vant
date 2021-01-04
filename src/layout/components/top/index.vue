@@ -4,7 +4,9 @@
       <van-col :span="14">
         <div class="left">
           <img class="logo" :src="logoImage" />
-          <span class="l-title" @click="show = true">{{ currentStore }}</span>
+          <span :title="currentStore" class="l-title" @click="show = true">{{
+            currentStore
+          }}</span>
           <img :src="dropDown" @click="show = true" />
         </div>
       </van-col>
@@ -269,6 +271,10 @@ export default {
   }
   .l-title {
     padding: 0 3px 3px 4px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
