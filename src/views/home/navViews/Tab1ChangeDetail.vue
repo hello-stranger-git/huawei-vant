@@ -4,7 +4,16 @@
     <div class="statu">
       整改详情
       <div class="back" @click="$router.go(-1)"><img :src="goBack" /></div>
-      <div class="progress"><img :src="progress" /></div>
+      <div
+        class="process"
+        @click="
+          $router.push({
+            name: 'checkProcess'
+          })
+        "
+      >
+        <img :src="process" />
+      </div>
     </div>
     <div class="main">
       <div class="date">
@@ -51,7 +60,7 @@
 import img from '@/assets/screenImage/repairImage.png' // 照片
 import person from '@/assets/icon/home/navTabs/person.png' // 照片
 import goBack from '@/assets/icon/home/navTabs/back.png' // 照片
-import progress from '@/assets/icon/home/navTabs/progress.png' // 照片
+import process from '@/assets/icon/home/navTabs/process.png' // 照片
 import protect from '@/assets/icon/home/navTabs/protect.png' // 照片
 import { Toast } from 'vant'
 export default {
@@ -61,7 +70,7 @@ export default {
       img,
       person,
       goBack,
-      progress,
+      process,
       protect,
       date: new Date().toLocaleString()
     }
@@ -119,7 +128,7 @@ export default {
     left: 12px;
     top: 5px;
   }
-  .progress {
+  .process {
     position: absolute;
     right: 12px;
     top: 5px;

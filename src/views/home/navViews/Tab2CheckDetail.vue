@@ -2,9 +2,16 @@
   <div class="contain">
     <div class="header"></div>
     <div class="statu">
-      审核详情
-      <div class="back" @click="$router.go(-1)"><img :src="goBack" /></div>
-      <div class="progress"><img :src="progress" /></div>
+      {{ $route.query.appeal ? '申诉详情' : '整改详情' }}
+      <div
+        class="back"
+        @click="$router.push({ name: 'Repair', params: { index: 1 } })"
+      >
+        <img :src="goBack" />
+      </div>
+      <div class="process" @click="$router.push({ name: 'checkProcess' })">
+        <img :src="process" />
+      </div>
     </div>
     <div class="main">
       <div class="date">
@@ -32,8 +39,8 @@
       </div>
     </div>
     <div class="footer">
-      <div class="appeal">申诉</div>
-      <div class="change">限制整改</div>
+      <div class="appeal" @click="submit">不通过</div>
+      <div class="change" @click="submit">通过</div>
     </div>
   </div>
 </template>
@@ -42,7 +49,7 @@
 import img from '@/assets/screenImage/repairImage.png' // 照片
 import person from '@/assets/icon/home/navTabs/person.png' // 照片
 import goBack from '@/assets/icon/home/navTabs/back.png' // 照片
-import progress from '@/assets/icon/home/navTabs/progress.png' // 照片
+import process from '@/assets/icon/home/navTabs/process.png' // 照片
 import protect from '@/assets/icon/home/navTabs/protect.png' // 照片
 import { Toast } from 'vant'
 export default {
@@ -52,7 +59,7 @@ export default {
       img,
       person,
       goBack,
-      progress,
+      process,
       protect,
       date: new Date().toLocaleString()
     }
@@ -62,7 +69,7 @@ export default {
   },
   methods: {
     submit() {
-      Toast('提交成功')
+      Toast('操作成功')
       this.$router.go(-1)
     }
   }
@@ -113,7 +120,7 @@ export default {
     left: 12px;
     top: 5px;
   }
-  .progress {
+  .process {
     position: absolute;
     right: 12px;
     top: 5px;

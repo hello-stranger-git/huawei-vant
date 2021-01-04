@@ -83,9 +83,9 @@ export default {
   created() {
     this.data = [
       {
-        title: '员工行为',
+        title: '扣除总分',
         more: false,
-        score: '-3',
+        score: '-13',
         color: 0,
         statu: { value: '申述驳回', flag: false },
         check: { time: '11/30 12:35:16', person: '刘德华' },
@@ -101,9 +101,9 @@ export default {
         // }
       },
       {
-        title: '仓库卫生',
+        title: '扣除总分',
         more: false,
-        score: '-3',
+        score: '-23',
         color: 1,
         statu: { value: '申述成功', flag: true },
         check: { time: '11/30 12:35:16', person: '张学友' },
@@ -119,7 +119,7 @@ export default {
         // }
       },
       {
-        title: '仓库卫生',
+        title: '扣除总分',
         more: false,
         score: '-3',
         color: 2,

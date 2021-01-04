@@ -38,6 +38,7 @@ export default {
   methods: {
     upPage() {
       if (this.path) {
+        console.log(this.path)
         this.$router.push({
           name: this.path
         })
