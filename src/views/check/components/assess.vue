@@ -83,7 +83,7 @@ export default {
   .cameraOption {
     background-color: #fff;
     padding-top: 16px;
-    margin-top: 88px;
+    margin-top: 44px;
   }
 }
 .box {

@@ -1,5 +1,5 @@
 <template>
-  <div ref="notice" class="notice" style="padding-top:88px;">
+  <div ref="notice" class="notice" style="padding-top:44px;">
     <van-notice-bar
       color="#fff"
       background="#e60012"

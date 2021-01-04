@@ -248,13 +248,16 @@ export default {
 </script>
 <style lang="less" scoped>
 .van-row {
-  padding: 49px 21px 0 12px;
+  padding: 5px 21px 0 12px;
+  width: 100%;
 }
 .TopMessage {
   background-color: #fbfbfb;
-  height: 88px;
+  height: 44px;
   font-size: 14px;
   box-shadow: 0px 2px 6px #99999924;
+  display: flex;
+  align-items: center;
 }
 // 左侧样式
 .left {

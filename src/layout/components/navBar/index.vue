@@ -19,7 +19,7 @@ import alarm from '@/assets/icon/home/navbar/alarm.png'
 import repair from '@/assets/icon/home/navbar/repair.png'
 import absence from '@/assets/icon/home/navbar/absence.png'
 import shop from '@/assets/icon/home/navbar/shop.png'
-import order from '@/assets/icon/home/navbar/order.png'
+// import order from '@/assets/icon/home/navbar/order.png'
 export default {
   data() {
     return {
@@ -45,28 +45,28 @@ export default {
           icon: shop,
           title: '商城',
           menuCount: '0'
-        },
-        {
-          icon: order,
-          title: '工单',
-          menuCount: '2'
-        },
-
-        {
-          icon: order,
-          title: '工单',
-          menuCount: '2'
-        },
-        {
-          icon: order,
-          title: '工单',
-          menuCount: '2'
-        },
-        {
-          icon: order,
-          title: '工单',
-          menuCount: '2'
         }
+        // {
+        //   icon: order,
+        //   title: '工单',
+        //   menuCount: '2'
+        // },
+
+        // {
+        //   icon: order,
+        //   title: '工单',
+        //   menuCount: '2'
+        // },
+        // {
+        //   icon: order,
+        //   title: '工单',
+        //   menuCount: '2'
+        // },
+        // {
+        //   icon: order,
+        //   title: '工单',
+        //   menuCount: '2'
+        // }
       ]
     }
   },
@@ -83,6 +83,7 @@ export default {
   padding: 18px 10px 0px 10px;
   position: relative;
   overflow: auto;
+  justify-content: space-between;
 }
 //隐藏滚动条
 ::-webkit-scrollbar {

@@ -95,7 +95,7 @@ export default {
 }
 // 头部样式
 /deep/.van-nav-bar {
-  padding-top: 55px;
+  padding-top: 11px;
   .van-nav-bar__content {
     height: auto;
     line-height: 25px;

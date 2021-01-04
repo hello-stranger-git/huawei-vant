@@ -128,7 +128,7 @@ export default {
 <style lang="less" scoped>
 // 头部样式
 /deep/.van-nav-bar {
-  padding-top: 55px;
+  padding-top: 11px;
   margin-bottom: 12px;
   padding-bottom: 14px;
   .van-nav-bar__content {

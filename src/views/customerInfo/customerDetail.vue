@@ -149,7 +149,7 @@ export default {
 
 <style lang="less" scoped>
 .top {
-  height: 88px;
+  height: 44px;
   background-color: #fff;
   position: relative;
   .back {

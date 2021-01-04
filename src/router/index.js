@@ -125,6 +125,13 @@ const routes = [
     component: () => import('../components/home/videoMore/index.vue')
     // component: () => import('../views/home/components/news.vue')
   },
+  // 首页视频详情
+  {
+    path: '/VideoDetails',
+    name: 'VideoDetails',
+    component: () => import('../components/home/videoMore/videoDetails/index.vue')
+    // component: () => import('../views/home/components/news.vue')
+  },
   {
     path: '/Personal',
     name: 'Personal',

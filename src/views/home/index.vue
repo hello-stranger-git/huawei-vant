@@ -460,6 +460,7 @@ export default {
         nav: 'home',
         videoData: [
           {
+            id: 1,
             videoImage: require('@/assets/videoImage/homeVideo1.png'),
             videoTitle: '大厅1',
             time: '16:22:30',
@@ -467,18 +468,21 @@ export default {
             line: true
           },
           {
+            id: 2,
             videoImage: require('@/assets/videoImage/homeVideo2.png'),
             videoTitle: '大厅2',
             time: '16:22:30',
             line: true
           },
           {
+            id: 3,
             videoImage: require('@/assets/videoImage/homeVideo3.png'),
             videoTitle: '大厅3',
             time: '16:22:30',
             line: true
           },
           {
+            id: 4,
             videoImage: require('@/assets/videoImage/homeVideo1.png'),
             videoTitle: '人脸识别进门',
             status: 'offLine',

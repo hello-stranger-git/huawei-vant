@@ -110,14 +110,13 @@ export default {
   }
   /deep/.van-nav-bar__content {
     height: 44px;
-    margin-top: 44px;
   }
   /deep/.van-nav-bar__left > i {
     color: #141414;
     font-size: 18px;
   }
   .van-form {
-    margin: 116px 24px 18px;
+    margin: 72px 24px 18px;
     /deep/.van-cell {
       padding: 0px 12px;
       &:not(:first-child) {

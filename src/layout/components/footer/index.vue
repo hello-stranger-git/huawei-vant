@@ -87,7 +87,6 @@ export default {
   height: 25px;
 }
 .van-tabbar {
-  padding-bottom: 34px;
   height: 49px;
 }
 /deep/.van-tabbar-item__icon {

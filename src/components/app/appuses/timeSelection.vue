@@ -90,6 +90,7 @@ export default {
 .timeSelection {
   background-color: #fff;
   position: relative;
+  padding: 0 12px;
 }
 .dateSelect {
   margin: auto;
@@ -126,8 +127,9 @@ export default {
 .calendar {
   position: absolute;
   z-index: 4;
-  width: 100%;
-  left: 0;
+  width: 95%;
+  transform: translate(-50%, 32%);
+  left: 50%;
   border-radius: 8px;
   box-shadow: 0px 0px 10px 5px rgb(20 20 1.05%);
   opacity: 90%;

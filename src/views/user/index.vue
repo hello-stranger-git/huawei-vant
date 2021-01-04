@@ -10,7 +10,7 @@
         <span>店长：张鹏</span>
         <span>区域负责人：兰宇贵</span>
       </div>
-      <van-icon size="14" :name="arrow" class="arrow" />
+      <!-- <van-icon size="14" :name="arrow" class="arrow" /> -->
     </div>
     <!-- 单元格 -->
     <UserItem :data="cellData" :peopleCount="peopleCount"></UserItem>
