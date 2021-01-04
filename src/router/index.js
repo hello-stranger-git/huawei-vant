@@ -180,6 +180,11 @@ const routes = [
     path: '/EvaluationDetails',
     name: 'EvaluationDetails',
     component: () => import('../views/check/components/subpage/evaluationDetails.vue')
+  },
+  {
+    path: '/MissionDetails',
+    name: 'MissionDetails',
+    component: () => import('../views/check/components/subpage/missionDetails.vue')
   }
 ]
 
