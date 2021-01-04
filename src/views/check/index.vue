@@ -39,12 +39,12 @@ export default {
         {
           icon: require('@/assets/icon/check/kaoping.png'),
           name: '考评',
-          path: '/Assess'
+          path: '/AssessDetails'
         },
         {
           icon: require('@/assets/icon/check/dianjian.png'),
           name: '点检',
-          path: '/SpotCheck'
+          path: '/CheckItem'
         }
       ]
     }
@@ -57,7 +57,7 @@ export default {
 <style lang="less" scoped>
 .check {
   background-color: #fff;
-  padding: 149px 0 214px;
+  padding: 223px 0 214px;
 }
 .check_nav {
   width: 203px;

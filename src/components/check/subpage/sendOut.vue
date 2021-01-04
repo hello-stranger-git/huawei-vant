@@ -2,7 +2,12 @@
   <div class="sendOut">
     <!-- 抄送区域 -->
     <van-cell-group @click="showPopup">
-      <van-field v-model="value1" label="抄送" left-icon="smile-o" readonly>
+      <van-field
+        v-model="value1"
+        :label="SelectionBoxData.label"
+        left-icon="smile-o"
+        readonly
+      >
         <template #left-icon>
           <img :src="fiJiIcon" />
         </template>
@@ -21,12 +26,16 @@
       <!-- 弹出层头部 -->
       <div class="popup_top">
         <div @click="confirm" class="popup_confirm">确认</div>
-        <div class="popup_title">选择抄送人</div>
+        <div class="popup_title">{{ SelectionBoxData.text }}</div>
         <div @click="cancel" class="popup_cancel">取消</div>
       </div>
       <!-- 弹出层内容 -->
       <van-checkbox-group v-model="result">
-        <van-checkbox v-for="(item, i) of ccPerson" :key="i" :name="item.name">
+        <van-checkbox
+          v-for="(item, i) of SelectionBoxData.ccPerson"
+          :key="i"
+          :name="item.name"
+        >
           <template #default>
             <div>{{ item.name }}</div>
             <div class="post">{{ item.post }}</div>
@@ -38,47 +47,21 @@
 </template>
 <script>
 export default {
+  props: {
+    SelectionBoxData: {
+      type: Object
+    }
+  },
   data() {
     return {
       moreIcon: require('@/assets/icon/check/more.png'), // 更多图标
       fiJiIcon: require('@/assets/icon/check/feiji.png'), // 纸飞机图标
       // 默认抄送人
-      value1: '张某某；某某组',
+      value1: '张某某',
       // 是否显示弹出层
       show: false,
       // 弹出层选中值
-      result: [],
-      // 弹出层内容数据
-      ccPerson: [
-        {
-          name: '张鹏',
-          post: '店长'
-        },
-        {
-          name: '李某某',
-          post: '区域负责人'
-        },
-        {
-          name: '陈某某',
-          post: '客服中心'
-        },
-        {
-          name: '罗某',
-          post: '巡检主管'
-        },
-        {
-          name: '赵某某',
-          post: '客服主管'
-        },
-        {
-          name: '某某客服组',
-          post: ''
-        },
-        {
-          name: '某某巡检组',
-          post: ''
-        }
-      ]
+      result: []
     }
   },
   methods: {
@@ -162,7 +145,6 @@ export default {
     /deep/.van-checkbox__label {
       display: flex;
       width: 100%;
-      // border: 1px solid red;
       div {
         flex-basis: 50%;
         color: #000;
