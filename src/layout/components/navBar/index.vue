@@ -19,6 +19,7 @@ import alarm from '@/assets/icon/home/navbar/alarm.png'
 import repair from '@/assets/icon/home/navbar/repair.png'
 import absence from '@/assets/icon/home/navbar/absence.png'
 import shop from '@/assets/icon/home/navbar/shop.png'
+import checkCount from '@/assets/icon/home/navbar/checkCount.png'
 // import order from '@/assets/icon/home/navbar/order.png'
 export default {
   data() {
@@ -45,12 +46,13 @@ export default {
           icon: shop,
           title: '商城',
           menuCount: '0'
+        },
+        {
+          icon: checkCount,
+          title: '巡查统计',
+          menuCount: '2',
+          to: 'checkCount'
         }
-        // {
-        //   icon: order,
-        //   title: '工单',
-        //   menuCount: '2'
-        // },
 
         // {
         //   icon: order,

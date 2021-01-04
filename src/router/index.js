@@ -143,6 +143,13 @@ const routes = [
     name: 'Security',
     component: () => import('../views/home/security/index.vue')
   },
+  // 巡查统计
+  {
+    path: '/checkCount',
+    name: 'CheckCount',
+    component: () => import('../views/home/checkCount/index.vue')
+  },
+
   {
     path: '/CheckItem',
     name: 'CheckItem',
