@@ -22,10 +22,28 @@
           <div class="score">-6分</div>
         </div>
       </div>
-      <div class="detail"><div class="more">查看更多</div></div>
+      <div class="detail">
+        <div class="more" @click="$router.push({ name: 'lookDetails' })">
+          查看更多
+        </div>
+      </div>
     </div>
-    <div class="appeal">申诉</div>
-    <div class="change">限制整改</div>
+    <div
+      class="appeal"
+      @click="
+        $router.push({ name: 'lookDetails', query: { title: '申诉详情' } })
+      "
+    >
+      申诉
+    </div>
+    <div
+      class="change"
+      @click="
+        $router.push({ name: 'lookDetails', query: { title: '整改详情' } })
+      "
+    >
+      现在整改
+    </div>
   </div>
 </template>
 
@@ -49,7 +67,7 @@ export default {
     }
   },
   created() {
-    // console.log(this.$route.params)
+    console.log(this.$route.params)
   },
   methods: {
     submit() {
