@@ -63,7 +63,7 @@
     <!-- 提交按钮区域 -->
     <div class="Submit">
       <p>得分：<span>100</span>/100</p>
-      <van-button type="info">提交</van-button>
+      <van-button to="EvaluationDetails" type="info">提交</van-button>
     </div>
   </div>
 </template>

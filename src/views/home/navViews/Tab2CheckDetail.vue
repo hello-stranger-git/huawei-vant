@@ -22,11 +22,19 @@
           <div class="score">-6分</div>
         </div>
       </div>
-      <div class="detail"><div class="more">查看更多</div></div>
-      <textarea cols="30" rows="10" placeholder="请输入处理意见"></textarea>
+      <div class="detail">
+        <div class="more" @click="$router.push({ name: 'lookDetails' })">
+          查看更多
+        </div>
+      </div>
+      <div class="flex">
+        <textarea cols="30" rows="10" placeholder="请输入处理意见"></textarea>
+      </div>
     </div>
-    <div class="appeal">申诉</div>
-    <div class="change">限制整改</div>
+    <div class="footer">
+      <div class="appeal">申诉</div>
+      <div class="change">限制整改</div>
+    </div>
   </div>
 </template>
 
@@ -64,8 +72,11 @@ export default {
 <style lang="less" scoped>
 .contain {
   position: relative;
-  height: 100%;
+  // height: 100%;
   background-color: #fff;
+  .footer {
+    height: 140px;
+  }
   .appeal,
   .change {
     position: absolute;
@@ -174,16 +185,20 @@ export default {
       color: #4a92ff;
     }
   }
-  textarea {
-    margin: 54px 12px 0;
-    padding: 10px 10px 0 12px;
-    box-sizing: border-box;
-    border-radius: 10px;
-    border: 1px solid #959595;
-    color: #141414;
-    width: 351px;
-    height: 143px;
-    font-size: 12px;
+  .flex {
+    display: flex;
+    textarea {
+      flex: 1;
+      margin: 54px 12px 0;
+      padding: 10px 10px 0 12px;
+      box-sizing: border-box;
+      border-radius: 10px;
+      border: 1px solid #959595;
+      color: #141414;
+      height: 143px;
+      font-size: 12px;
+      line-height: 17px;
+    }
   }
 }
 </style>

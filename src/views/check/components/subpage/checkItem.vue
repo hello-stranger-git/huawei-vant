@@ -328,7 +328,7 @@ export default {
     margin-top: 12px;
   }
 
-  // 按钮样式
+  //  提交按钮区域样式
   .Submit {
     margin: 12px;
     border-radius: 10px;
