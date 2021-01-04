@@ -1,14 +1,8 @@
 <template>
   <div class="videoDetails">
     <div class="videoItem" v-for="(item, index) in videoData" :key="index">
-      <div class="video">
-        <!-- 返回箭头 -->
-        <span @click="onClickLeft">
-          <img :src="jiantou" />
-        </span>
-        <!-- 视屏 -->
-        <img :src="item.line ? video : videoOff" width="375px" height="205px" />
-      </div>
+      <!-- 视屏 -->
+      <Video :video="item.line ? video1 : videoOff" />
       <!--摄像头选择-->
       <van-action-sheet
         v-model="showVideo"
@@ -66,12 +60,15 @@
 </template>
 
 <script>
+import Video from '@/components/video' // 视屏区域
 import TimeAxis from '@/components/check/timeAxis.vue' // 时间轴
 export default {
+  components: {
+    TimeAxis,
+    Video
+  },
   data() {
     return {
-      quadrangle: require('@/assets/icon/home/video/quadrangle.png'),
-      jiantou: require('@/assets/icon/home/video/jiantou.png'), //  返回图标
       arrow: require('@/assets/icon/home/video/videoItem/arrow.png'),
       videoData: [
         {
@@ -83,7 +80,7 @@ export default {
         }
       ],
       // 视屏数据图片
-      video: require('@/assets/screenImage/video.png'),
+      video1: require('@/assets/videoImage/videoTest.png'),
       // 离线图片
       videoOff: require('@/assets/screenImage/videoOff.png'),
       // 日期选择数据
@@ -131,9 +128,6 @@ export default {
     formatDate(date) {
       return `${date.getMonth() + 1}/${date.getDate()}`
     }
-  },
-  components: {
-    TimeAxis
   }
 }
 </script>
