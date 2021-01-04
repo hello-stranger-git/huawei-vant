@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="bgc">
-      <TopMessage title="待整改123456" path="Home"></TopMessage>
+      <TopMessage title="待整改" path="Home"></TopMessage>
       <Notice></Notice>
       <div style="padding: 0 12px">
         <van-row type="flex" justify="space-between">
