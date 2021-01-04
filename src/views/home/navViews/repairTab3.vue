@@ -79,7 +79,7 @@ export default {
         title: '员工行为',
         more: false,
         score: '-3',
-        statu: { value: '整改驳回', flag: false },
+        statu: { value: '整改成功', flag: true },
         check: { time: '11/30 12:35:16', person: '刘德华' },
         state: {
           time: '11/30 12:45:16',

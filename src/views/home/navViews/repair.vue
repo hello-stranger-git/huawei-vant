@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="bgc">
-      <TopMessage title="待整改"></TopMessage>
+      <TopMessage title="待整改123456" path="Home"></TopMessage>
       <Notice></Notice>
       <div style="padding: 0 12px">
         <van-row type="flex" justify="space-between">
@@ -20,63 +20,6 @@
               </button>
             </div>
           </van-col>
-          <!-- 第二个button -->
-          <!-- <van-col>
-            <div class="navBox">
-              <button
-                @click="toggleTab(1)"
-                class="button"
-                :style="{
-                  background: activeTabIndex === 1 ? '#50a6ff' : '#fff',
-                  color: activeTabIndex === 1 ? '#fff' : ''
-                }"
-              >
-                {{ tabsArr[1].value }}
-                <van-icon
-                  :name="activeTabIndex === 1 ? tabArrow1 : tabArrow"
-                  size="10"
-                />
-              </button>
-            </div>
-          </van-col> -->
-          <!-- 第三个button -->
-          <!-- <van-col>
-            <div class="navBox">
-              <button
-                @click="open"
-                class="button"
-                :style="{
-                  background: activeTabIndex === 2 ? '#50a6ff' : '#fff',
-                  color: activeTabIndex === 2 ? '#fff' : ''
-                }"
-              >
-                {{ tabsArr[2].value }}
-                <van-icon
-                  :name="activeTabIndex === 2 ? tabArrow1 : tabArrow"
-                  size="10"
-                />
-                <div v-show="flag">
-                  <div class="already" @click="stated">申诉完成</div>
-                  <div class="already" @click="repaired">整改完成</div>
-                </div>
-              </button>
-            </div>
-          </van-col> -->
-          <!-- 第四个button -->
-          <!-- <van-col>
-            <div class="navBox">
-              <button
-                @click="toggleTab(3)"
-                class="button"
-                :style="{
-                  background: activeTabIndex === 3 ? '#50a6ff' : '#fff',
-                  color: activeTabIndex === 3 ? '#fff' : ''
-                }"
-              >
-                {{ tabsArr[3].value }}
-              </button>
-            </div>
-          </van-col>-->
         </van-row>
         <div class="navBarItem">
           <!-- 动态组件 -->
@@ -132,22 +75,25 @@ export default {
   methods: {
     toggleTab(index) {
       this.activeTabIndex = index
-    },
+    }
     // open() {
     //   this.flag = !this.flag
     // },
-    stated() {
-      this.tabsArr[2].value = '申诉完成'
-      this.activeTabIndex = 2
-      this.thirdIndex = 0
-    },
-    repaired() {
-      this.tabsArr[2].value = '整改完成'
-      this.activeTabIndex = 2
-      this.thirdIndex = 1
-    }
+    // stated() {
+    //   this.tabsArr[2].value = '申诉完成'
+    //   this.activeTabIndex = 2
+    //   this.thirdIndex = 0
+    // },
+    // repaired() {
+    //   this.tabsArr[2].value = '整改完成'
+    //   this.activeTabIndex = 2
+    //   this.thirdIndex = 1
+    // }
   },
-  created() {},
+  created() {
+    // console.log(this.$route.query)
+    if (this.$route.params.index) this.activeTabIndex = 1
+  },
   mounted() {}
 }
 </script>

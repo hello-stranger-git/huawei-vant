@@ -9,8 +9,17 @@
         <div class="detail">
           {{ item.value }}
         </div>
-        <div class="statuBox" @click="$router.push('checkDetail')">
-          待审核
+        <div
+          class="statuBox"
+          @click="
+            $router.push({
+              name: 'checkDetail',
+              query: { appeal: item.waitAppeal }
+            })
+          "
+          :style="{ backgroundColor: item.waitAppeal ? '#e60012' : '' }"
+        >
+          {{ item.waitAppeal ? '处理申诉' : '处理整改' }}
         </div>
       </div>
       <div class="img">
@@ -76,9 +85,10 @@ export default {
   created() {
     this.data = [
       {
-        title: '员工行为',
+        title: '扣除总分',
+        waitAppeal: true,
         more: false,
-        score: '-3',
+        score: '-9',
         color: 0,
         value: '禁止抱着胳膊、跷二郎腿、手插口袋',
         statu: { value: '申述驳回', flag: false },
@@ -90,9 +100,10 @@ export default {
         }
       },
       {
-        title: '仓库卫生',
+        title: '扣除总分',
+        waitAppeal: false,
         more: false,
-        score: '-3',
+        score: '-12',
         color: 1,
         value: '禁止抱着胳膊、跷二郎腿、手插口袋',
         statu: { value: '申述成功', flag: true },
