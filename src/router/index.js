@@ -101,6 +101,18 @@ const routes = [
     name: 'checkDetail',
     component: () => import('../views/home/navViews/Tab2CheckDetail.vue')
   },
+  // 待整改页-查看详情页
+  {
+    path: '/lookDetails',
+    name: 'lookDetails',
+    component: () => import('../views/home/navViews/lookDetails.vue')
+  },
+  // 待整改页-点检过程页
+  {
+    path: '/checkProcess',
+    name: 'checkProcess',
+    component: () => import('../views/home/navViews/checkProcess.vue')
+  },
   {
     path: '/Attendance',
     name: 'Attendance',
