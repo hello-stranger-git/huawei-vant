@@ -31,7 +31,7 @@
             {{ item }}
             <div class="screenshot">
               <span v-for="(item, i) of screenshotData[active]" :key="i">
-                <van-icon :name="cha" />
+                <van-icon :name="cha" @click="Delete(active, i)" />
                 <img :src="item" />
               </span>
               <span>
@@ -63,14 +63,14 @@
     <!-- 提交按钮区域 -->
     <div class="Submit">
       <p>得分：<span>100</span>/100</p>
-      <van-button type="info">提交</van-button>
+      <van-button to="EvaluationDetails" type="info">提交</van-button>
     </div>
   </div>
 </template>
 <script>
 import TopMessage from '@/components/top' // 顶部信息
 // import Notice from '@/layout/components/notice' // 通知栏
-import VideoRegion from '@/components/check/subpage/videoRegion.vue' // 点检截图
+import VideoRegion from '@/components/check/subpage/videoRegion.vue' // 视屏区域
 import SendOut from '@/components/check/subpage/sendOut.vue' // 抄送
 
 export default {
@@ -193,6 +193,10 @@ export default {
     // 清除默认选中属性
     camera() {
       this.defaultStyle = false
+    },
+    // 触发删除截图
+    Delete(active, i) {
+      this.screenshotData[active].splice(i, 1)
     }
   }
 }

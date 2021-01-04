@@ -155,6 +155,13 @@ const routes = [
     name: 'Security',
     component: () => import('../views/home/security/index.vue')
   },
+  // 巡查统计
+  {
+    path: '/checkCount',
+    name: 'CheckCount',
+    component: () => import('../views/home/checkCount/index.vue')
+  },
+
   {
     path: '/CheckItem',
     name: 'CheckItem',
@@ -168,6 +175,11 @@ const routes = [
     path: '/alarmDetail',
     name: 'AlarmDetail',
     component: () => import('../views/home/security/components/newAlarm/alarmDetail.vue')
+  },
+  {
+    path: '/EvaluationDetails',
+    name: 'EvaluationDetails',
+    component: () => import('../views/check/components/subpage/evaluationDetails.vue')
   }
 ]
 
