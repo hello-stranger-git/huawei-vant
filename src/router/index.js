@@ -156,14 +156,14 @@ const routes = [
     component: () => import('../views/home/security/index.vue')
   },
   {
-    path: '/SpotCheck',
-    name: 'SpotCheck',
-    component: () => import('../views/check/components/spotCheck.vue')
+    path: '/CheckItem',
+    name: 'CheckItem',
+    component: () => import('../views/check/components/subpage/checkItem.vue')
   },
   {
-    path: '/Assess',
-    name: 'Assess',
-    component: () => import('../views/check/components/assess.vue')
+    path: '/AssessDetails',
+    name: 'AssessDetails',
+    component: () => import('../views/check/components/subpage/assessDetails.vue')
   }, {
     path: '/alarmDetail',
     name: 'AlarmDetail',

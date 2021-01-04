@@ -9,6 +9,34 @@
         <!-- 视屏 -->
         <img :src="item.line ? video : videoOff" width="375px" height="205px" />
       </div>
+      <!--摄像头选择-->
+      <van-action-sheet
+        v-model="showVideo"
+        class="showSelectVideo"
+        title="选择摄像头"
+      >
+        <div
+          class="content"
+          v-for="(item, index) in videoNameArray"
+          :key="index"
+          @click="selectVideo(item)"
+        >
+          {{ item }}
+        </div>
+      </van-action-sheet>
+
+      <div class="selectVideo">
+        <span class="title">选择摄像头</span>
+        <div class="select" @click="openSelectVideo">
+          <span>{{ videoName }}</span>
+          <img
+            :src="arrow"
+            width="14px"
+            height="14px"
+            style="vertical-align: middle;"
+          />
+        </div>
+      </div>
       <div class="dataSelect">
         <!-- 日期选择区域 -->
         <div
@@ -44,7 +72,7 @@ export default {
     return {
       quadrangle: require('@/assets/icon/home/video/quadrangle.png'),
       jiantou: require('@/assets/icon/home/video/jiantou.png'), //  返回图标
-
+      arrow: require('@/assets/icon/home/video/videoItem/arrow.png'),
       videoData: [
         {
           videoImage: require('@/assets/videoImage/homeVideo1.png'),
@@ -62,16 +90,35 @@ export default {
       detas: ['11-22', '11-23', '前天', '昨天', '零时', '今天', '现在'],
       date: '', // 接收选择日期
       show: false,
+      showVideo: false,
       calendar: require('@/assets/icon/check/rili.png'),
       // 时间
-      datestyle: true
+      datestyle: true,
+      videoNameArray: [
+        '收银台左',
+        '进门右',
+        '收银台右',
+        '进门左',
+        '门外',
+        '库房',
+        '门洗手区'
+      ],
+      // 摄像头名称
+      videoName: '收银台左'
     }
   },
   methods: {
     onClickLeft() {
       this.$router.go(-1)
     },
-
+    // 摄像头选择
+    openSelectVideo() {
+      this.showVideo = true
+    },
+    selectVideo(data) {
+      this.videoName = data
+      this.showVideo = false
+    },
     // 清除时间默认选中属性
     tade() {
       this.datestyle = false
@@ -169,5 +216,45 @@ export default {
   padding-top: 26px;
   background-color: #fff;
   padding-bottom: 16px;
+}
+
+//摄像头选择
+.selectVideo {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 12px 16px 12px;
+  border-bottom: 12px solid #efefef;
+  .title {
+    font-size: 14px;
+    font-weight: 400;
+    color: #141414;
+  }
+  .select {
+    span {
+      font-size: 12px;
+      font-weight: 400;
+      color: #343434;
+      opacity: 0.5;
+    }
+  }
+}
+
+// 摄像头选择弹出框
+.showSelectVideo {
+  /deep/.van-action-sheet__header {
+    font-size: 18px;
+    font-weight: 800;
+    color: #000000;
+  }
+  .content {
+    text-align: center;
+    &:first-child {
+      margin-top: 40px;
+    }
+    &:last-child {
+      margin-bottom: 24px;
+    }
+    margin-top: 24px;
+  }
 }
 </style>
