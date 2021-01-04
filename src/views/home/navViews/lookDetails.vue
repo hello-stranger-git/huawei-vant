@@ -37,11 +37,12 @@
       </div>
     </div>
 
-    <div class="submit" v-if="title">提交</div>
+    <div class="submit" v-if="title" @click="submit">提交</div>
   </div>
 </template>
 
 <script>
+import { Toast } from 'vant'
 import goBack from '@/assets/icon/home/navTabs/back.png'
 import pic from '@/assets/icon/home/navTabs/lookDetail.png' // 照片
 
@@ -106,6 +107,12 @@ export default {
   },
   created() {
     this.title = this.$route.query.title
+  },
+  methods: {
+    submit() {
+      Toast('操作成功')
+      this.$router.push({ name: 'Repair' })
+    }
   }
 }
 </script>
