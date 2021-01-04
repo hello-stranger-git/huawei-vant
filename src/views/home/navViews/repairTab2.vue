@@ -9,8 +9,8 @@
         <div class="detail">
           {{ item.value }}
         </div>
-        <div class="statuBox">
-          状态：待整改
+        <div class="statuBox" @click="$router.push('checkDetail')">
+          待审核
         </div>
       </div>
       <div class="img">
@@ -156,13 +156,24 @@ export default {
       color: #65c466;
     }
     .statuBox {
+      // position: absolute;
+      // bottom: 0;
+      // right: 12px;
+      // height: 17px;
+      // line-height: 17px;
+      // font-size: 12px;
+      // color: #959595;
+      // border-radius: 16px;
       position: absolute;
       bottom: 0;
       right: 12px;
-      height: 17px;
-      line-height: 17px;
+      width: 106px;
+      height: 32px;
+      line-height: 32px;
       font-size: 12px;
-      color: #959595;
+      color: #fff;
+      text-align: center;
+      background-color: #4a92ff;
       border-radius: 16px;
     }
   }

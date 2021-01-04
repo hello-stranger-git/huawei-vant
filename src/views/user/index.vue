@@ -33,7 +33,7 @@ import iconTime from '@/assets/icon/user/userTime.png'
 import iconSale from '@/assets/icon/user/userSale.png'
 import iconAlarm from '@/assets/icon/user/userAlarm.png'
 import iconLock from '@/assets/icon/user/userLock.png'
-import iconOrder from '@/assets/icon/user/userOrder.png'
+// import iconOrder from '@/assets/icon/user/userOrder.png'
 import iconAbout from '@/assets/icon/user/userAbout.png'
 
 export default {
@@ -124,11 +124,11 @@ export default {
           arrow: true,
           to: 'Register'
         },
-        {
-          value: '工单',
-          icon: iconOrder,
-          arrow: true
-        },
+        // {
+        //   value: '工单',
+        //   icon: iconOrder,
+        //   arrow: true
+        // },
         {
           value: '关于',
           icon: iconAbout,

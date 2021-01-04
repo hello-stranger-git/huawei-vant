@@ -5,23 +5,23 @@
       <Notice></Notice>
       <div style="padding: 0 12px">
         <van-row type="flex" justify="space-between">
-          <!-- 第一个button -->
-          <van-col>
+          <!-- 第一个buttons -->
+          <van-col v-for="(item, i) in tabsArr" :key="i">
             <div class="navBox">
               <button
-                @click="toggleTab(0)"
+                @click="toggleTab(i)"
                 class="button"
                 :style="{
-                  background: activeTabIndex === 0 ? '#50a6ff' : '#fff',
-                  color: activeTabIndex === 0 ? '#fff' : ''
+                  background: activeTabIndex === i ? '#50a6ff' : '#fff',
+                  color: activeTabIndex === i ? '#fff' : ''
                 }"
               >
-                {{ tabsArr[0].value }}
+                {{ tabsArr[i].value }}
               </button>
             </div>
           </van-col>
           <!-- 第二个button -->
-          <van-col>
+          <!-- <van-col>
             <div class="navBox">
               <button
                 @click="toggleTab(1)"
@@ -38,9 +38,9 @@
                 />
               </button>
             </div>
-          </van-col>
+          </van-col> -->
           <!-- 第三个button -->
-          <van-col>
+          <!-- <van-col>
             <div class="navBox">
               <button
                 @click="open"
@@ -61,9 +61,9 @@
                 </div>
               </button>
             </div>
-          </van-col>
+          </van-col> -->
           <!-- 第四个button -->
-          <van-col>
+          <!-- <van-col>
             <div class="navBox">
               <button
                 @click="toggleTab(3)"
@@ -76,14 +76,11 @@
                 {{ tabsArr[3].value }}
               </button>
             </div>
-          </van-col>
+          </van-col>-->
         </van-row>
         <div class="navBarItem">
           <!-- 动态组件 -->
-          <component
-            :is="activeTabArr[activeTabIndex]"
-            :flag="thirdIndex"
-          ></component>
+          <component :is="activeTabArr[activeTabIndex]"></component>
         </div>
       </div>
     </div>
@@ -117,41 +114,37 @@ export default {
           value: '待整改'
         },
         {
-          value: '整改中'
+          value: '待审核'
         },
         {
-          value: '已关闭'
+          value: '整改完成'
         },
         {
-          value: '统计'
+          value: '申述完成'
         }
       ],
       activeTabIndex: 0,
-      activeTabArr: [Tab1, Tab2, Tab3, Tab4],
-      flag: false,
-      thirdIndex: 0
+      activeTabArr: [Tab1, Tab2, Tab3, Tab4]
+      // flag: false,
+      // thirdIndex: 0
     }
   },
   methods: {
     toggleTab(index) {
       this.activeTabIndex = index
     },
-    open() {
-      this.flag = !this.flag
-    },
+    // open() {
+    //   this.flag = !this.flag
+    // },
     stated() {
       this.tabsArr[2].value = '申诉完成'
       this.activeTabIndex = 2
       this.thirdIndex = 0
-      // this.$route.query.flag = 1
-      //
     },
     repaired() {
       this.tabsArr[2].value = '整改完成'
       this.activeTabIndex = 2
       this.thirdIndex = 1
-      // this.$route.query.flag = 2
-      //
     }
   },
   created() {},

@@ -89,11 +89,17 @@ const routes = [
     name: 'News',
     component: () => import('../views/home/components/news.vue')
   },
-  // 待整改操作页面
+  // 待整改页-tab1子页整改详情
   {
     path: '/Repairing',
     name: 'Repairing',
-    component: () => import('../views/home/navViews/repairTab1Son.vue')
+    component: () => import('../views/home/navViews/Tab1ChangeDetail.vue')
+  },
+  // 待整改页-tab2子页审核详情
+  {
+    path: '/checkDetail',
+    name: 'checkDetail',
+    component: () => import('../views/home/navViews/Tab2CheckDetail.vue')
   },
   {
     path: '/Attendance',
