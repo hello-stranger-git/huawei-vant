@@ -31,7 +31,7 @@
             {{ item }}
             <div class="screenshot">
               <span v-for="(item, i) of screenshotData[active]" :key="i">
-                <van-icon :name="cha" />
+                <van-icon :name="cha" @click="Delete(active, i)" />
                 <img :src="item" />
               </span>
               <span>
@@ -184,6 +184,10 @@ export default {
     // 清除横向导航默认选中
     camera() {
       this.defaultStyle = false
+    },
+    // 触发删除截图
+    Delete(active, i) {
+      this.screenshotData[active].splice(i, 1)
     }
   }
 }

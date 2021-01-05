@@ -13,7 +13,7 @@
     ></BarCharts> -->
     <PriceBar class="priceBar"></PriceBar>
 
-    <div style="text-align:center;margin-top:24px">
+    <!-- <div style="text-align:center;margin-top:24px">
       <span
         style="display:inline-block;width: 122px;
         height: 44px;line-height:44px;text-align:center;background: #4A92FF;
@@ -21,7 +21,7 @@
       >
         导出报表</span
       >
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -148,6 +148,7 @@ export default {
     background-color: #fff;
     margin-top: 16px;
     border-radius: 8px;
+    padding-bottom: 16px;
   }
   .module {
     background-color: #fff;

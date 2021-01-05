@@ -91,7 +91,6 @@ export default {
     // }
   },
   created() {
-    // console.log(this.$route.query)
     if (this.$route.params.index) this.activeTabIndex = 1
   },
   mounted() {}

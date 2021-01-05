@@ -74,7 +74,7 @@
         ></BarCharts>
       </template>
     </Module>
-    <div style="text-align:center;margin-top:24px">
+    <!-- <div style="text-align:center;margin-top:24px">
       <span
         style="display:inline-block;width: 122px;
         height: 44px;line-height:44px;text-align:center;background: #4A92FF;
@@ -82,7 +82,7 @@
       >
         导出报表</span
       >
-    </div>
+    </div> -->
   </div>
 </template>
 

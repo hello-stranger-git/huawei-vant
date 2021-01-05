@@ -34,7 +34,7 @@
     <!-- 页尾按钮区域 -->
     <div class="footer">
       <div>
-        <van-button>查看详情</van-button>
+        <van-button :to="{ name: 'MissionDetails' }">查看详情</van-button>
         <van-button :to="{ name: 'Check' }">继续巡店</van-button>
       </div>
     </div>
