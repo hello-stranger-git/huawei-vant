@@ -167,38 +167,38 @@ export default {
 .application {
   background-color: #fff;
   padding-bottom: 95px;
+  // 去除选中横条
+  /deep/.van-tabs__line {
+    height: 0;
+  }
+  /deep/.van-tabs__wrap {
+    height: 70px;
+  }
+  /deep/.van-tabs__content {
+    margin: 0 23px;
+  }
+  // 未选中样式
+  /deep/.van-tab {
+    background-color: #efefef;
+    .van-tab__text {
+      font-size: 16px;
+      color: #959595;
+    }
+  }
+  // 选中样式
+  /deep/.van-tab--active {
+    background-color: #fff;
+    .van-tab__text {
+      color: #4a92ff;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
 }
 .inUse {
   padding-top: 8px;
 }
 .notUsed {
   padding-top: 28px;
-}
-// 去除选中横条
-/deep/.van-tabs__line {
-  height: 0;
-}
-/deep/.van-tabs__wrap {
-  height: 70px;
-}
-/deep/.van-tabs__content {
-  margin: 0 23px;
-}
-// 未选中样式
-/deep/.van-tab {
-  background-color: #efefef;
-  .van-tab__text {
-    font-size: 16px;
-    color: #959595;
-  }
-}
-// 选中样式
-/deep/.van-tab--active {
-  background-color: #fff;
-  .van-tab__text {
-    color: #4a92ff;
-    font-size: 18px;
-    font-weight: bold;
-  }
 }
 </style>

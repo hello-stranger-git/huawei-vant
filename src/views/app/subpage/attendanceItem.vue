@@ -38,7 +38,7 @@
         :to="{ name: 'Personal', query: { id: item.id } }"
       >
         <template #icon>
-          <img :src="item.portrait" width="44px" />
+          <img :src="item.portrait" width="44px" height="44px" />
         </template>
         <template #default>
           <p>

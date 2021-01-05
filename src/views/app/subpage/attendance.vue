@@ -8,9 +8,9 @@
     <div class="tabOption">
       <van-tabs v-model="active" @click="Jump">
         <!-- 使用中 -->
-        <van-tab title="考勤" class="inUse "> </van-tab>
+        <van-tab title="考勤" class="inUse "></van-tab>
         <!-- 未使用 -->
-        <van-tab title="统计" class="notUsed"> </van-tab>
+        <van-tab title="统计" class="notUsed"></van-tab>
       </van-tabs>
     </div>
     <!-- 日期 -->
@@ -79,7 +79,7 @@ export default {
       }
     }
     // 选中样式
-    /deep/.van-tab--active {
+    .van-tab--active {
       background-color: #fff;
       .van-tab__text {
         color: #4a92ff;

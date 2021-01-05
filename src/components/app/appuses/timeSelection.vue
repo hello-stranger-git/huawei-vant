@@ -95,6 +95,7 @@ export default {
 .dateSelect {
   margin: auto;
   width: 100%;
+  position: relative;
   height: 50px;
   border-radius: 5px;
   line-height: 50px;
@@ -125,11 +126,12 @@ export default {
   transform: translateX(-50%);
 }
 .calendar {
-  position: absolute;
   z-index: 4;
   width: 95%;
-  transform: translate(-50%, 32%);
+  position: absolute;
   left: 50%;
+  transform: translate(-50%, 0);
+
   border-radius: 8px;
   box-shadow: 0px 0px 10px 5px rgb(20 20 1.05%);
   opacity: 90%;
