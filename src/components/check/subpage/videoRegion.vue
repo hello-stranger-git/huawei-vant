@@ -178,5 +178,8 @@ export default {
 }
 .van-cell__value {
   font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 </style>
