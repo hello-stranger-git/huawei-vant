@@ -138,7 +138,6 @@ export default class Bar {
       } else {
         price = i * this.data.yMaxMarkAverage1
       }
-      console.log(price)
       this.ctx.fillText(price, this.canvas.width - this.cpadding, this.originY - i * oneVal + 5)
       this.ctx.restore()
       this.ctx.beginPath()
@@ -199,7 +198,6 @@ export default class Bar {
     for (let i = 0; i < this.xAxisNum; i++) {
       const barH = this.data.data2[i] * this.yAxisH / yMaxMark1
 
-      console.log(barH)
       const x = this.originX + i * oneVal
       const y = this.originY - barH
       this.drawRect(x + this.ratio * 8 + this.ratio * 8, y, barW, barH, '', '#56BE9B')

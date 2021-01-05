@@ -64,9 +64,7 @@ export default {
       date: new Date().toLocaleString()
     }
   },
-  created() {
-    // console.log(this.$route.params)
-  },
+  created() {},
   methods: {
     submit() {
       Toast('操作成功')
