@@ -268,7 +268,7 @@ export default class Bar {
         this.ctx.textBaseline = 'bottom'
         this.ctx.textAlign = 'left'
         this.ctx.font = this.ratio * 9 + 'px MicrosoftYaHei'
-        this.ctx.fillText(text, x, y - 5)
+        this.ctx.fillText(text, x - 10, y - 5)
       }
     }
     this.ctx.restore()
