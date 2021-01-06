@@ -43,7 +43,7 @@
       </div>
       <Tree
         :data="data"
-        v-if="togger == 'tree'"
+        v-show="togger == 'tree'"
         @getTreeTitle="getTreeTitle"
       ></Tree>
       <template v-if="togger == 'index'">
