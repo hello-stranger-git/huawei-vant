@@ -90,7 +90,7 @@
     <!-- 提交按钮区域 -->
     <div class="Submit">
       <p>扣分：<span>10</span>/100</p>
-      <van-button type="info">提交</van-button>
+      <van-button type="info" :to="{ name: 'Check' }">提交</van-button>
     </div>
   </div>
 </template>
