@@ -1,32 +1,58 @@
+<!-- 考评 -->
 <template>
   <div class="assessDetails">
     <!-- 头部区域 -->
     <TopMessage :title="'考评'"></TopMessage>
     <!-- 视频区域 -->
-    <VideoRegion
-      :video="video"
-      :cameraData="cameraData"
-      :templateData="templateData"
-    ></VideoRegion>
-    <!-- 导航选项区域 -->
-    <ul
-      :class="`evaluationOption ${defaultStyle ? 'defaultStyle' : ''}`"
-      @click="camera"
-    >
-      <li>形象及陈列</li>
-      <li>产品展示</li>
-      <li>后方</li>
-      <li>安全要求</li>
-      <li>标准化服务流程</li>
+    <VideoRegion :video="video"></VideoRegion>
+    <!-- 摄像头、模板选择区域 -->
+    <!-- 摄像头选项 -->
+    <van-cell
+      is-link
+      title="选择摄像头"
+      :value="camera"
+      @click="show1 = true"
+    />
+    <van-action-sheet
+      v-model="show1"
+      :actions="cameraData"
+      @select="onSelect1"
+      title="选择摄像头"
+      :closeable="true"
+    />
+    <!-- 模板选项 -->
+    <van-cell
+      is-link
+      title="选择模板"
+      :value="template"
+      @click="show2 = true"
+    />
+    <van-action-sheet
+      v-model="show2"
+      :actions="templateData"
+      @select="onSelect2"
+      title="选择模板"
+      :closeable="true"
+    />
+    <!-- 横向导航选项区域 -->
+    <ul class="evaluationOption">
+      <li
+        v-for="(item, i) of transverseData"
+        :key="i"
+        @click="request(i)"
+        :class="defaultStyle == i ? 'defaultStyle' : ''"
+      >
+        {{ item }}
+      </li>
     </ul>
     <!-- 侧边导航区域 -->
     <van-tree-select
-      :items="sideData.items"
+      :items="sideitem.items"
       :main-active-index.sync="active"
       height="auto"
     >
       <template #content>
-        <div class="option" v-for="(item, i) of sideData.itemsData" :key="i">
+        <div class="option" v-for="(item, i) of sideitem.itemsData" :key="i">
           <div v-if="i === active">
             {{ item }}
             <div class="screenshot">
@@ -39,9 +65,21 @@
               </span>
             </div>
             <div class="buttonGroup">
-              <van-button plain>不适用</van-button>
-              <van-button plain>不合格</van-button>
-              <van-button color="#4A92FF" plain>合格</van-button>
+              <van-button
+                :class="trigger == 1 ? 'button_trigger' : ''"
+                @click="clickTrigger(1)"
+                >不适用</van-button
+              >
+              <van-button
+                :class="trigger == 2 ? 'button_trigger' : ''"
+                @click="clickTrigger(2)"
+                >不合格</van-button
+              >
+              <van-button
+                :class="trigger == 3 ? 'button_trigger' : ''"
+                @click="clickTrigger(3)"
+                >合格</van-button
+              >
             </div>
           </div>
         </div>
@@ -57,9 +95,9 @@
       show-word-limit
     />
     <!-- 整改人区域 -->
-    <SendOut :SelectionBoxData="RectificationData"></SendOut>
+    <SendOut @change="Rec" :SelectionBoxData="RectificationData"></SendOut>
     <!-- 抄送区域 -->
-    <SendOut :SelectionBoxData="sendOutData"></SendOut>
+    <SendOut @change="sen" :SelectionBoxData="sendOutData"></SendOut>
     <!-- 提交按钮区域 -->
     <div class="Submit">
       <p>得分：<span>100</span>/100</p>
@@ -73,6 +111,7 @@ import TopMessage from '@/components/top' // 顶部信息
 import VideoRegion from '@/components/check/subpage/videoRegion.vue' // 视屏区域
 import SendOut from '@/components/check/subpage/sendOut.vue' // 抄送
 
+import { Toast, Dialog } from 'vant'
 export default {
   components: {
     TopMessage,
@@ -85,12 +124,26 @@ export default {
       tianjia: require('@/assets/icon/check/checkItem/tianjia.png'), // 截图添加图标
       cha: require('@/assets/icon/check/checkItem/cha.png'), // 删除图标
 
-      // 横向导航默认选中
-      defaultStyle: true,
+      camera: '大厅摄像头', // 默认摄像头
+      template: '标准模板', // 默认模板
+      // 摄像头弹出框
+      show1: false,
+      // 模板弹出框
+      show2: false,
+      // 横向导航选中项
+      defaultStyle: 0,
+      // 侧边导航选项数据
+      sideitem: {},
       // 侧边导航默认选中项
       active: 0,
+      // 侧边栏内按钮触发项
+      trigger: '',
       // 备注输入值
       message: '',
+      // 整改人选择值
+      Rectification: '',
+      // 抄送人选择值
+      sendOut: '',
       // 视屏
       video: require('@/assets/videoImage/videoTest.png'),
       // 摄像头选项数据
@@ -110,21 +163,39 @@ export default {
         { name: '吉林省视频巡查模板1.0（吉林地区）' }
       ],
 
+      // 横向导航数据
+      transverseData: [
+        '形象及陈列',
+        '产品展示',
+        '后方',
+        '安全要求',
+        '标准化服务流程'
+      ],
+
       // 侧边导航选项数据
-      sideData: {
-        items: [
-          { text: '店内环境' },
-          { text: '员工衣着' },
-          { text: '商品摆放' },
-          { text: '宣传物料' }
-        ],
-        itemsData: [
-          '厅内地面/点面垃圾清理(城区厅和县城厅10分钟，乡镇厅30分钟) 1分',
-          '员工衣着',
-          '商品摆放',
-          '宣传物料'
-        ]
-      },
+      sideData: [
+        {
+          items: [
+            { text: '店内环境' },
+            { text: '员工衣着' },
+            { text: '商品摆放' },
+            { text: '宣传物料' }
+          ],
+          itemsData: [
+            '厅内地面/点面垃圾清理(城区厅和县城厅10分钟，乡镇厅30分钟) 1分',
+            '员工衣着',
+            '商品摆放',
+            '宣传物料'
+          ]
+        },
+        {
+          items: [{ text: '验机台' }, { text: '配件墙' }],
+          itemsData: [
+            '机器陈列位无空位，演示机按照规范陈列，体验台.上氛围物料不可超过2个;体验机屏幕常亮，播放演示画面;体验桌体验设备处于顾客可以立即体验状态;体验台陈列物品无积灰，无污渍。',
+            '配件墙'
+          ]
+        }
+      ],
       //  截图数据
       screenshotData: [
         [
@@ -133,7 +204,7 @@ export default {
         ],
         [require('@/assets/icon/screenshot/jietu.png')]
       ],
-      // 整改人数据
+      // 整改人可选数据
       RectificationData: {
         label: '整改人',
         text: '选择整改人',
@@ -189,19 +260,70 @@ export default {
       }
     }
   },
+  created() {
+    // 页面初始对侧边栏进行赋值
+    this.sideitem = this.sideData[this.defaultStyle]
+  },
   methods: {
-    // 清除默认选中属性
-    camera() {
-      this.defaultStyle = false
+    // 触发关闭弹出层
+    onSelect1(item) {
+      this.show1 = false
+      Dialog.confirm({
+        message: '是否清除当前考评内容'
+      })
+        .then(d => {
+          this.camera = item.name
+          location.reload() // 确认选择刷新页面，重置操作数据
+        })
+        .catch(d => {
+          console.log(d)
+        })
+    },
+    onSelect2(item) {
+      this.show2 = false
+      Dialog.confirm({
+        message: '是否清除当前考评内容'
+      })
+        .then(d => {
+          this.template = item.name
+          location.reload() // 确认选择刷新页面，重置操作数据
+        })
+        .catch(d => {})
     },
     // 触发删除截图
     Delete(active, i) {
       this.screenshotData[active].splice(i, 1)
+    },
+    // 触发请求数据
+    request(i) {
+      if (this.sideData[i]) {
+        this.sideitem = this.sideData[i]
+        this.defaultStyle = i
+      } else {
+        Toast('暂无此数据')
+      }
+    },
+    // 侧边栏内按钮触发项
+    clickTrigger(i) {
+      this.trigger = i
+    },
+    // 获取子组件整改人选择数据
+    Rec(i) {
+      console.log(i)
+      this.Rectification = i
+    },
+    // 获取子组件抄送人人数据
+    sen(i) {
+      console.log(i)
+      this.sendOut = i
     }
   }
 }
 </script>
 <style lang="less" scoped>
+.aa {
+  border: 1px solid red;
+}
 .assessDetails {
   background-color: #efefef;
   // border: 1px solid red;
@@ -210,13 +332,30 @@ export default {
   .videoRegion {
     margin-top: 44px;
   }
+  // 选项区域样式
+  .van-cell::after {
+    border: none;
+  }
+  .van-action-sheet__header {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .van-action-sheet__item {
+    font-size: 14px;
+  }
+  .van-cell__value {
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 // 影藏滚动条
 ::-webkit-scrollbar {
   display: none;
 }
-// 导航选项区域样式
-.defaultStyle > li:first-child {
+// 横向导航选项区域样式
+.defaultStyle {
   color: #4a92ff;
   font-weight: bold;
 }
@@ -232,10 +371,6 @@ export default {
     &:first-child {
       margin-left: 12px;
     }
-  }
-  li:hover {
-    color: #4a92ff;
-    font-weight: bold;
   }
 }
 
@@ -294,7 +429,16 @@ export default {
         color: #141414;
         border: 1px solid #707070;
         border-radius: 5px;
-        // margin: 32px 91px 0;
+        &:nth-child(3) {
+          color: #4a92ff;
+          border: 1px solid #4a92ff;
+        }
+      }
+      // 按钮触发样式
+      .button_trigger {
+        background-color: #4a92ff;
+        border: 1px solid #4a92ff;
+        color: #fff !important;
       }
     }
     .screenshot {
