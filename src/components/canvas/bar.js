@@ -106,7 +106,7 @@ export default class Bar {
       this.ctx.fillStyle = '#565656'
       this.ctx.textAlign = 'right'
       this.ctx.font = this.ratio * 10 + 'px MicrosoftYaHei'
-      this.ctx.fillText(i * this.data.yMaxMarkAverage, this.originX - 13, this.originY - i * oneVal + 5)
+      this.ctx.fillText(i * this.data.yMaxMarkAverage, this.originX - 20, this.originY - i * oneVal + 5)
       this.ctx.restore()
       this.ctx.beginPath()
       this.ctx.save()
@@ -138,7 +138,7 @@ export default class Bar {
       } else {
         price = i * this.data.yMaxMarkAverage1
       }
-      this.ctx.fillText(price, this.canvas.width - this.cpadding, this.originY - i * oneVal + 5)
+      this.ctx.fillText(price, this.canvas.width - this.cpadding + 10, this.originY - i * oneVal + 5)
       this.ctx.restore()
       this.ctx.beginPath()
       this.ctx.save()
