@@ -2,7 +2,7 @@
 <template>
   <div class="checkItem">
     <!-- 头部区域 -->
-    <TopMessage :title="'点检'"></TopMessage>
+    <!-- <TopMessage :title="'点检'"></TopMessage> -->
     <!-- 视频区域 -->
     <VideoRegion :video="video"></VideoRegion>
     <!-- 摄像头、模板选择区域 -->
@@ -95,14 +95,14 @@
   </div>
 </template>
 <script>
-import TopMessage from '@/components/top' // 顶部信息
-import VideoRegion from '@/components/check/subpage/videoRegion.vue' // 视屏区域
+// import TopMessage from '@/components/top' // 顶部信息
+import VideoRegion from '@/components/video' // 视屏区域
 import SendOut from '@/components/check/subpage/sendOut.vue' // 抄送
 
 import { Toast, Dialog } from 'vant'
 export default {
   components: {
-    TopMessage,
+    // TopMessage,
     VideoRegion,
     SendOut
   },
@@ -331,7 +331,7 @@ export default {
   }
   // 视频区域样式
   .videoRegion {
-    margin-top: 44px;
+    // margin-top: 44px;
   }
   // 影藏滚动条
   ::-webkit-scrollbar {
