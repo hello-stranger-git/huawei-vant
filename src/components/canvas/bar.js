@@ -106,7 +106,7 @@ export default class Bar {
       this.ctx.fillStyle = '#565656'
       this.ctx.textAlign = 'right'
       this.ctx.font = this.ratio * 10 + 'px MicrosoftYaHei'
-      this.ctx.fillText(i * this.data.yMaxMarkAverage, this.originX - 13, this.originY - i * oneVal + 5)
+      this.ctx.fillText(i * this.data.yMaxMarkAverage, this.originX - 20, this.originY - i * oneVal + 5)
       this.ctx.restore()
       this.ctx.beginPath()
       this.ctx.save()
@@ -138,7 +138,7 @@ export default class Bar {
       } else {
         price = i * this.data.yMaxMarkAverage1
       }
-      this.ctx.fillText(price, this.canvas.width - this.cpadding, this.originY - i * oneVal + 5)
+      this.ctx.fillText(price, this.canvas.width - this.cpadding + 10, this.originY - i * oneVal + 5)
       this.ctx.restore()
       this.ctx.beginPath()
       this.ctx.save()
@@ -169,13 +169,13 @@ export default class Bar {
       this.ctx.fillText(this.data.xLabel[i], this.originX + i * oneVal + 0 * this.ratio, this.originY + 10)
       this.ctx.restore()
       // 画x轴其他label
-      this.ctx.save()
-      this.ctx.fillStyle = '#141414'
-      this.ctx.textBaseline = 'top'
-      this.ctx.textAlign = 'center'
-      this.ctx.font = this.ratio * 10 + 'px MicrosoftYaHei'
-      this.ctx.fillText('人数' + this.data.otherLabel[i], this.originX + i * oneVal + 15 * this.ratio, this.originY + this.ratio * 20)
-      this.ctx.restore()
+      // this.ctx.save()
+      // this.ctx.fillStyle = '#141414'
+      // this.ctx.textBaseline = 'top'
+      // this.ctx.textAlign = 'center'
+      // this.ctx.font = this.ratio * 10 + 'px MicrosoftYaHei'
+      // this.ctx.fillText('人数' + this.data.otherLabel[i], this.originX + i * oneVal + 15 * this.ratio, this.originY + this.ratio * 20)
+      // this.ctx.restore()
     }
   }
 
@@ -184,23 +184,24 @@ export default class Bar {
     const oneVal = this.xAxisW / this.xAxisNum
     const barW = this.ratio * 8
     // y轴的最大刻度
-    const yMaxMark = this.data.yMaxMark + this.data.yMaxMarkAverage
-    // 画第一个柱状图
+    const yMaxMark1 = this.data.yMaxMark1 + this.data.yMaxMarkAverage1
+    // 画第一个柱状图(销售额)
     for (let i = 0; i < this.xAxisNum; i++) {
-      const barH = this.data.data1[i] * this.yAxisH / yMaxMark
+      const barH = this.data.data1[i] * this.yAxisH / yMaxMark1
       const x = this.originX + i * oneVal
       const y = this.originY - barH
-      this.drawRect(x + this.ratio * 8, y, barW, barH, this.data.data1[i], '#F8C498')
+      this.drawRect(x + this.ratio * 8, y, barW, barH, this.data.data1[i], 'money', '#f8c49880')
     }
 
     // y2轴的最大刻度
-    const yMaxMark1 = this.data.yMaxMark1 + this.data.yMaxMarkAverage1
+    const yMaxMark = this.data.yMaxMark + this.data.yMaxMarkAverage
+    // 画第二个柱状图(客流)
     for (let i = 0; i < this.xAxisNum; i++) {
-      const barH = this.data.data2[i] * this.yAxisH / yMaxMark1
+      const barH = this.data.data2[i] * this.yAxisH / yMaxMark
 
       const x = this.originX + i * oneVal
       const y = this.originY - barH
-      this.drawRect(x + this.ratio * 8 + this.ratio * 8, y, barW, barH, '', '#56BE9B')
+      this.drawRect(x + this.ratio * 8 + this.ratio * 8, y, barW, barH, this.data.data2[i], 'people', '#56be9b80')
     }
 
     // 画第三条虚线
@@ -241,7 +242,7 @@ export default class Bar {
   }
 
   // 画矩形
-  drawRect(x, y, w, h, text, color) {
+  drawRect(x, y, w, h, text, type, color) {
     text = text || ''
     this.ctx.beginPath()
     this.ctx.fillStyle = color
@@ -251,13 +252,24 @@ export default class Bar {
     this.ctx.stroke()
     this.ctx.closePath()
     this.ctx.save()
-    this.ctx.fillStyle = '#F8C498'
-    this.ctx.textBaseline = 'bottom'
-    this.ctx.textAlign = 'left'
-    this.ctx.font = this.ratio * 9 + 'px MicrosoftYaHei'
     // 画数值
     if (text) {
-      this.ctx.fillText('￥' + text, x - 10, y - 5)
+      if (text >= 1000000) {
+        text = (text / 10000).toFixed(2) + 'w'
+      }
+      if (type === 'money') {
+        this.ctx.fillStyle = '#F1835B'
+        this.ctx.textBaseline = 'bottom'
+        this.ctx.textAlign = 'left'
+        this.ctx.font = this.ratio * 9 + 'px MicrosoftYaHei'
+        this.ctx.fillText('￥' + text, x - 30, y - 5)
+      } else if (type === 'people') {
+        this.ctx.fillStyle = '#18A274'
+        this.ctx.textBaseline = 'bottom'
+        this.ctx.textAlign = 'left'
+        this.ctx.font = this.ratio * 9 + 'px MicrosoftYaHei'
+        this.ctx.fillText(text, x - 10, y - 5)
+      }
     }
     this.ctx.restore()
   }

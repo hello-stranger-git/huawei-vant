@@ -1,6 +1,6 @@
 <template>
   <div class="sendOut">
-    <!-- 抄送区域 -->
+    <!-- 选择 -->
     <van-cell-group @click="showPopup">
       <van-field
         v-model="value1"
@@ -16,7 +16,7 @@
         </template>
       </van-field>
     </van-cell-group>
-    <!-- 下方弹出层 -->
+    <!-- 弹出层 -->
     <van-popup
       v-model="show"
       round
@@ -76,6 +76,7 @@ export default {
     confirm() {
       this.value1 = this.result.join('；')
       this.show = false
+      this.$emit('change', this.value1)
     }
   }
 }

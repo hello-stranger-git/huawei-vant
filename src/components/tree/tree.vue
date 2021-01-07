@@ -57,6 +57,7 @@ export default {
     togger(data, treeId) {
       for (let i = 0; i < data.length; i++) {
         if (data[i].id === treeId) {
+          console.log(data[i].id, treeId, data[i].expand)
           data[i].expand = !data[i].expand
           return
         } else {
