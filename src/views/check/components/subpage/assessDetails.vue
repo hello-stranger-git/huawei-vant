@@ -2,7 +2,7 @@
 <template>
   <div class="assessDetails">
     <!-- 头部区域 -->
-    <TopMessage :title="'考评'"></TopMessage>
+    <!-- <TopMessage :title="'考评'"></TopMessage> -->
     <!-- 视频区域 -->
     <VideoRegion :video="video"></VideoRegion>
     <!-- 摄像头、模板选择区域 -->
@@ -66,18 +66,30 @@
             </div>
             <div class="buttonGroup">
               <van-button
-                :class="trigger == 1 ? 'button_trigger' : ''"
-                @click="clickTrigger(1)"
+                :class="
+                  assessDetails[defaultStyle].items[active].qualified == 1
+                    ? 'button_trigger'
+                    : ''
+                "
+                @click="assessDetails[defaultStyle].items[active].qualified = 1"
                 >不适用</van-button
               >
               <van-button
-                :class="trigger == 2 ? 'button_trigger' : ''"
-                @click="clickTrigger(2)"
+                :class="
+                  assessDetails[defaultStyle].items[active].qualified == 2
+                    ? 'button_trigger'
+                    : ''
+                "
+                @click="assessDetails[defaultStyle].items[active].qualified = 2"
                 >不合格</van-button
               >
               <van-button
-                :class="trigger == 3 ? 'button_trigger' : ''"
-                @click="clickTrigger(3)"
+                :class="
+                  assessDetails[defaultStyle].items[active].qualified == 3
+                    ? 'button_trigger'
+                    : ''
+                "
+                @click="assessDetails[defaultStyle].items[active].qualified = 3"
                 >合格</van-button
               >
             </div>
@@ -101,20 +113,22 @@
     <!-- 提交按钮区域 -->
     <div class="Submit">
       <p>得分：<span>100</span>/100</p>
-      <van-button to="EvaluationDetails" type="info">提交</van-button>
+      <van-button to="EvaluationDetails" type="info" @click="Submit"
+        >提交</van-button
+      >
     </div>
   </div>
 </template>
 <script>
-import TopMessage from '@/components/top' // 顶部信息
+// import TopMessage from '@/components/top' // 顶部信息
 // import Notice from '@/layout/components/notice' // 通知栏
-import VideoRegion from '@/components/check/subpage/videoRegion.vue' // 视屏区域
+import VideoRegion from '@/components/video' // 视屏区域
 import SendOut from '@/components/check/subpage/sendOut.vue' // 抄送
 
 import { Toast, Dialog } from 'vant'
 export default {
   components: {
-    TopMessage,
+    // TopMessage,
     // Notice,
     VideoRegion,
     SendOut
@@ -144,6 +158,42 @@ export default {
       Rectification: '',
       // 抄送人选择值
       sendOut: '',
+
+      // 店内考评数据
+      assessDetails: [
+        {
+          items: [
+            {
+              text: '店内环境',
+              qualified: ''
+            },
+            {
+              text: '员工衣着',
+              qualified: ''
+            },
+            {
+              text: '商品摆放',
+              qualified: ''
+            },
+            {
+              text: '宣传物料',
+              qualified: ''
+            }
+          ]
+        },
+        {
+          items: [
+            {
+              text: '验机台',
+              qualified: ''
+            },
+            {
+              text: '配件墙',
+              qualified: ''
+            }
+          ]
+        }
+      ],
       // 视屏
       video: require('@/assets/videoImage/videoTest.png'),
       // 摄像头选项数据
@@ -316,21 +366,22 @@ export default {
     sen(i) {
       console.log(i)
       this.sendOut = i
+    },
+    // 触发按钮提交信息
+    Submit() {
+      console.log(this.assessDetails)
     }
   }
 }
 </script>
 <style lang="less" scoped>
-.aa {
-  border: 1px solid red;
-}
 .assessDetails {
   background-color: #efefef;
   // border: 1px solid red;
   padding-bottom: 36px;
   // 视频区域样式
   .videoRegion {
-    margin-top: 44px;
+    // margin-top: 44px;
   }
   // 选项区域样式
   .van-cell::after {
