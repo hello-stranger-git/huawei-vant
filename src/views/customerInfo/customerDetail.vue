@@ -1,3 +1,4 @@
+<!-- 顾客详情 -->
 <template>
   <div>
     <!-- 顶部 -->
@@ -20,6 +21,7 @@
           :class="['tag', item.active ? 'activeTag' : '']"
           v-for="(item, i) in tags"
           :key="i"
+          @click="item.active = !item.active"
         >
           {{ item.value }}
         </div>
@@ -28,12 +30,19 @@
     <!-- 顾客信息 -->
     <div class="info">
       <!-- 称呼 -->
-      <div class="cell">
+      <div class="cell" @click="inputShow = true">
         <div class="attr">称呼</div>
         <div class="flexBox">
-          <div class="value">
-            <span>刘总</span>
+          <div class="value" v-if="!inputShow">
+            <span>{{ customerName }}</span>
           </div>
+          <input
+            v-focus
+            v-model="customerName"
+            class="changeName"
+            @blur="inputShow = false"
+            v-if="inputShow"
+          />
         </div>
       </div>
       <!-- 性别 -->
@@ -76,15 +85,15 @@
           <div class="value">
             <div style="display:flex">
               <div
-                :class="['infoTag', !huiyuan ? 'activeTag' : '']"
+                :class="['infoTag', !vip ? 'activeTag' : '']"
                 style="margin:0 8px 0 0"
-                @click="huiyuan = false"
+                @click="vip = false"
               >
                 顾客
               </div>
               <div
-                :class="['infoTag', huiyuan ? 'activeTag' : '']"
-                @click="huiyuan = true"
+                :class="['infoTag', vip ? 'activeTag' : '']"
+                @click="vip = true"
               >
                 会员
               </div>
@@ -93,25 +102,46 @@
         </div>
       </div>
       <!-- 年龄 -->
-      <div class="cell">
+      <div class="cell" @click="agePickerShow = true">
         <div class="attr">年龄</div>
         <div class="flexBox">
           <div class="value">
-            <span>23岁</span>
+            <span>{{ customerAge }}</span>
           </div>
         </div>
       </div>
       <!-- 生日 -->
-      <div class="cell">
+      <div class="cell" @click="brithdayShow = true">
         <div class="attr">生日</div>
         <div :class="['flexBox', 'noBorder']">
           <div class="value">
-            <span>1998-08-07</span>
+            <span>{{ date }}</span>
             <van-icon :name="arrow" size="11" class="arrow" />
           </div>
         </div>
       </div>
     </div>
+    <!-- 选择生日 -->
+
+    <van-datetime-picker
+      v-if="brithdayShow"
+      v-model="date"
+      type="date"
+      title="选择生日"
+      :min-date="minDate"
+      :max-date="maxDate"
+      @confirm="confirmBrithday"
+      @cancel="cancelBrithday"
+    />
+    <!-- 选择年龄 -->
+    <van-picker
+      title="年龄"
+      show-toolbar
+      :columns="columns"
+      @confirm="confirmAge"
+      @cancel="cancelAge"
+      v-if="agePickerShow"
+    />
   </div>
 </template>
 
@@ -126,8 +156,7 @@ export default {
         { value: '消费水平高', active: true },
         { value: '待人随和', active: false },
         { value: '经常退货', active: false },
-        { value: '虚假消费', active: false },
-        { value: '添加自定义', active: false }
+        { value: '虚假消费', active: false }
       ],
       arrow: require('@/assets/icon/customerInfo/arrow.png'),
       man: require('@/assets/icon/customerInfo/man.png'),
@@ -135,13 +164,55 @@ export default {
       activeMan: require('@/assets/icon/customerInfo/activeMan.png'),
       activeWoman: require('@/assets/icon/customerInfo/activeWoman.png'),
       back: require('@/assets/icon/customerInfo/back.png'),
-      huiyuan: true,
-      sex: 'woman'
+      vip: false,
+      sex: 'man',
+      customerName: '刘德华',
+      customerAge: 30,
+      date: '',
+      show: false,
+      columns: [],
+      agePickerShow: false,
+      inputShow: false,
+      brithdayShow: false,
+      minDate: new Date(1970, 0, 1),
+      maxDate: new Date()
+    }
+  },
+  created() {
+    for (let i = 1; i < 150; i++) {
+      this.columns.push(i)
     }
   },
   methods: {
     goback() {
       this.$router.push('/')
+    },
+    confirmBrithday(piker, value) {
+      // new Date().getDate
+      this.brithdayShow = false
+      this.date =
+        piker.getFullYear() +
+        '/' +
+        (piker.getMonth() + 1) +
+        '/' +
+        piker.getDate()
+    },
+    cancelBrithday() {
+      this.brithdayShow = false
+    },
+    confirmAge(value, index) {
+      this.customerAge = value
+      this.agePickerShow = false
+    },
+    cancelAge() {
+      this.agePickerShow = false
+    }
+  },
+  directives: {
+    focus: {
+      inserted: function(el, { value }) {
+        el.focus()
+      }
     }
   }
 }
@@ -242,6 +313,13 @@ export default {
     .flexBox {
       flex: 1;
       position: relative;
+      .changeName {
+        color: #141414;
+        font-size: 14px;
+        width: 100px;
+        height: 45px;
+        border: none;
+      }
       .value {
         position: absolute;
         right: 12px;
@@ -305,5 +383,11 @@ export default {
       height: 0;
     }
   }
+}
+.van-picker {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
 }
 </style>
