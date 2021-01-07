@@ -50,7 +50,7 @@ export default {
         {
           icon: checkCount,
           title: '巡查统计',
-          menuCount: '2',
+          menuCount: '0',
           to: 'checkCount'
         }
 
