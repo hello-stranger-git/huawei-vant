@@ -41,11 +41,30 @@
           >取消</span
         >
       </div>
-      <Tree
+      <!-- <Tree
         :data="data"
         v-show="togger == 'tree'"
         @getTreeTitle="getTreeTitle"
-      ></Tree>
+      ></Tree> -->
+
+      <!-- <van-popup
+        v-show="togger == 'tree'"
+        v-model="showCascader"
+        round
+        position="bottom"
+      > -->
+      <template>
+        <van-cascader
+          v-show="togger == 'tree'"
+          v-model="cascaderValue"
+          :options="options"
+          active-color="#1989fa"
+          @close="showCascader = false"
+          @finish="onFinish"
+        />
+      </template>
+      <!-- </van-popup> -->
+
       <template v-if="togger == 'index'">
         <div class="search">
           <input
@@ -87,7 +106,7 @@
   </div>
 </template>
 <script>
-import Tree from '@/components/tree/tree'
+// import Tree from '@/components/tree/tree'
 export default {
   data() {
     return {
@@ -213,7 +232,81 @@ export default {
             }
           ]
         }
-      ]
+      ],
+      cascaderValue: '', // 级联选择器值
+      // 选项列表，children 代表子选项，支持多级嵌套
+      options: [
+        {
+          text: '华北区',
+          value: '华北区',
+          children: [
+            {
+              text: '北京',
+              value: '北京',
+              children: [
+                { text: '朝阳区华为体验店', value: '朝阳区华为体验店' },
+                { text: '西城区华为体验店', value: '西城区华为体验店' },
+                { text: '丰台华为体验店', value: '丰台华为体验店' },
+                { text: '石景山华为体验店', value: '石景山华为体验店' },
+                { text: '门头沟华为体验店', value: '门头沟华为体验店' }
+              ]
+            },
+            {
+              text: '天津',
+              value: '天津',
+
+              children: [
+                { text: '和平区华为体验店', value: '和平区华为体验店' }
+              ]
+            }
+            // { text: '河北', value: '330300' },
+            // { text: '山西', value: '330400' },
+            // { text: '内蒙古', value: '330500' }
+          ]
+        },
+        {
+          text: '东北区',
+          value: '东北区',
+          children: [
+            {
+              text: '黑龙江',
+              value: '黑龙江',
+
+              children: [
+                { text: '哈尔滨华为体验店', value: '哈尔滨华为体验店' }
+              ]
+            }
+          ]
+        },
+        {
+          text: '华东区',
+          value: '华东区',
+          children: [
+            {
+              text: '浙江',
+              value: '浙江',
+              children: [{ text: '浙江华为体验店', value: '浙江华为体验店' }]
+            }
+          ]
+        },
+        {
+          text: '中南区',
+          value: '中南区',
+          children: [
+            {
+              text: '广东',
+              value: '广东',
+
+              children: [
+                { text: '深圳体验店', value: '深圳体验店' },
+                { text: '广州体验店', value: '广州体验店' },
+                { text: '佛山体验店', value: '佛山体验店' }
+              ]
+            }
+          ]
+        }
+      ],
+      showCascader: true // 级联选择器显示隐藏
     }
   },
   methods: {
@@ -241,10 +334,16 @@ export default {
     // 点击跳转至消息页面
     news() {
       this.$router.push('/News')
+    },
+    // 全部选项选择完毕后，会触发 finish 事件
+    onFinish({ value, selectedOptions, tabIndex }) {
+      this.show = false
+      this.fieldValue = selectedOptions.map(option => option.text).join('/')
+      this.currentStore = value
     }
   },
   components: {
-    Tree
+    // Tree
   }
 }
 </script>
@@ -381,5 +480,11 @@ export default {
     top: 8px;
     left: 35px;
   }
+}
+
+//级联选择器
+/deep/.van-cascader__header {
+  display: none;
+  height: 0;
 }
 </style>
