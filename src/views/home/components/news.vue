@@ -10,7 +10,11 @@
     />
     <!-- 消息区域 -->
     <div class="newsBody">
-      <div v-for="(item, i) of newsData" :key="i" @click="getMessage(item)">
+      <div
+        v-for="(item, i) of newsData"
+        :key="i"
+        @click="getMessage(item, item.checkWork, item.read)"
+      >
         <van-cell :title="item.text" :value="item.time">
           <template #icon>
             <!-- 已读图标 -->
@@ -50,46 +54,60 @@ export default {
       // 消息数据
       newsData: [
         {
+          id: 7,
+          icon: require('@/assets/icon/home/news/touxiang.png'),
+          text: '张某某考勤成功',
+          time: '2020/12/17 16:04',
+          read: false,
+          checkWork: true
+        },
+        {
           id: 1,
           icon: require('@/assets/icon/home/news/xiaoxi.png'),
           text: '店长张鹏登录成功',
           time: '2020/12/17 16:04',
-          read: true
+          read: true,
+          checkWork: false
         },
         {
           id: 2,
           icon: require('@/assets/icon/home/news/touxiang.png'),
           text: '有新客进入门店，请注意接待！',
           time: '2020/12/17 16:04',
-          read: false
+          read: false,
+          checkWork: false
         },
         {
           id: 3,
           icon: require('@/assets/icon/home/news/touxiang.png'),
           text: '有新客进入门店，请注意接待！',
           time: '2020/12/17 16:04',
-          read: false
+          read: false,
+          checkWork: false
         },
         {
           id: 4,
           icon: require('@/assets/icon/home/news/touxiang.png'),
           text: '张某某进入门店，请注意接待！',
           time: '2020/12/17 16:04',
-          read: true
+          read: true,
+          checkWork: false
         },
         {
           id: 5,
           icon: require('@/assets/icon/home/news/xiaoxi.png'),
           text: '密码修改成功',
           time: '2020/12/17 16:04',
-          read: false
+          read: false,
+          checkWork: false
         },
         {
           id: 6,
           icon: require('@/assets/icon/home/news/touxiang.png'),
           text: '有新款进入门店，请注意接待！',
           time: '2020/12/17 16:04',
-          read: false
+          read: false,
+          checkWork: false
         }
       ],
       userMessage: { icon: require('@/assets/icon/home/news/touxiang.png') },
@@ -103,8 +121,11 @@ export default {
     onClickRight() {
       console.log('已读')
     },
-    getMessage(data) {
-      this.show = true
+    getMessage(data, checkWork, read) {
+      // 为打卡消息并且没有读
+      if (checkWork) {
+        this.show = true
+      }
       // this.userMessage = data
     },
     close() {
