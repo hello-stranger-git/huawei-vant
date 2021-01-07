@@ -52,11 +52,15 @@
       height="auto"
     >
       <template #content>
-        <div class="option" v-for="(item1, i) of sideitem.itemsData" :key="i">
+        <div class="option" v-for="(item, i) of sideitem.itemsData" :key="i">
           <div v-if="i === active">
-            {{ item1.text }}
+            {{ item }}
             <div class="screenshot">
-              <span v-for="(item, i) of screenshotData[active]" :key="i">
+              <span
+                v-for="(item, i) of checkItem[defaultStyle].items[active]
+                  .screenshotData"
+                :key="i"
+              >
                 <van-icon :name="cha" @click="Delete(active, i)" />
                 <img :src="item" />
               </span>
@@ -65,9 +69,16 @@
               </span>
             </div>
             <van-button
-              plain
-              @click="item1.button = !item1.button"
-              :class="item1.button ? 'button_trigger' : ''"
+              :class="
+                checkItem[defaultStyle].items[active].qualified
+                  ? 'button_trigger'
+                  : ''
+              "
+              @click="
+                checkItem[defaultStyle].items[active].qualified = !checkItem[
+                  defaultStyle
+                ].items[active].qualified
+              "
               >不合格</van-button
             >
           </div>
@@ -90,7 +101,9 @@
     <!-- 提交按钮区域 -->
     <div class="Submit">
       <p>扣分：<span>10</span>/100</p>
-      <van-button type="info" :to="{ name: 'Check' }">提交</van-button>
+      <van-button type="info" :to="{ name: 'Check' }" @click="Submit"
+        >提交</van-button
+      >
     </div>
   </div>
 </template>
@@ -121,7 +134,6 @@ export default {
       sideitem: {},
       // 整改人选择值
       Rectification: '',
-
       // 侧边栏内按钮触发
       trigger: false,
       // 抄送人选择值
@@ -130,6 +142,7 @@ export default {
       active: 0, // 侧边导航默认选中项
       checked: [], // 侧边导航选中项选中值
       message: '', // 备注输入值
+
       // 视屏
       video: require('@/assets/videoImage/videoTest.png'),
       // 摄像头选项数据
@@ -166,23 +179,10 @@ export default {
             { text: '宣传物料' }
           ],
           itemsData: [
-            {
-              text:
-                '厅内地面/点面垃圾清理(城区厅和县城厅10分钟，乡镇厅30分钟) 1分',
-              button: false
-            },
-            {
-              text: '员工衣着',
-              button: false
-            },
-            {
-              text: '商品摆放',
-              button: false
-            },
-            {
-              text: '宣传物料',
-              button: false
-            }
+            '厅内地面/点面垃圾清理(城区厅和县城厅10分钟，乡镇厅30分钟) 1分',
+            '员工衣着',
+            '商品摆放',
+            '宣传物料'
           ]
         },
         {
@@ -194,13 +194,13 @@ export default {
         }
       ],
       //  截图数据
-      screenshotData: [
-        [
-          require('@/assets/icon/screenshot/jietu.png'),
-          require('@/assets/icon/screenshot/jietu.png')
-        ],
-        [require('@/assets/icon/screenshot/jietu.png')]
-      ],
+      // screenshotData: [
+      //   [
+      //     require('@/assets/icon/screenshot/jietu.png'),
+      //     require('@/assets/icon/screenshot/jietu.png')
+      //   ],
+      //   [require('@/assets/icon/screenshot/jietu.png')]
+      // ],
       // 整改人数据
       RectificationData: {
         label: '整改人',
@@ -254,7 +254,52 @@ export default {
             post: ''
           }
         ]
-      }
+      },
+      // 点检数据
+      checkItem: [
+        {
+          items: [
+            {
+              text: '店内环境',
+              qualified: '',
+              //  截图数据
+              screenshotData: [require('@/assets/icon/screenshot/jietu.png')]
+            },
+            {
+              text: '员工衣着',
+              qualified: false,
+              screenshotData: [
+                require('@/assets/icon/screenshot/jietu.png'),
+                require('@/assets/icon/screenshot/jietu.png')
+              ]
+            },
+            {
+              text: '商品摆放',
+              qualified: false,
+              screenshotData: []
+            },
+            {
+              text: '宣传物料',
+              qualified: false,
+              screenshotData: [require('@/assets/icon/screenshot/jietu.png')]
+            }
+          ]
+        },
+        {
+          items: [
+            {
+              text: '验机台',
+              qualified: false,
+              screenshotData: []
+            },
+            {
+              text: '配件墙',
+              qualified: false,
+              screenshotData: [require('@/assets/icon/screenshot/jietu.png')]
+            }
+          ]
+        }
+      ]
     }
   },
   created() {
@@ -293,13 +338,17 @@ export default {
     },
     // 触发删除截图
     Delete(active, i) {
-      this.screenshotData[active].splice(i, 1)
+      this.checkItem[this.defaultStyle].items[active].screenshotData.splice(
+        i,
+        1
+      )
     },
     // 触发请求数据
     request(i) {
       if (this.sideData[i]) {
         this.sideitem = this.sideData[i]
         this.defaultStyle = i
+        this.active = 0
       } else {
         Toast('暂无此数据')
       }
@@ -317,6 +366,10 @@ export default {
     sen(i) {
       console.log(i)
       this.sendOut = i
+    },
+    // 触发按钮提交信息
+    Submit() {
+      console.log(this.checkItem)
     }
   }
 }

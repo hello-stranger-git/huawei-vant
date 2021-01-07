@@ -56,7 +56,11 @@
           <div v-if="i === active">
             {{ item }}
             <div class="screenshot">
-              <span v-for="(item, i) of screenshotData[active]" :key="i">
+              <span
+                v-for="(item, i) of assessDetails[defaultStyle].items[active]
+                  .screenshotData"
+                :key="i"
+              >
                 <van-icon :name="cha" @click="Delete(active, i)" />
                 <img :src="item" />
               </span>
@@ -159,41 +163,6 @@ export default {
       // 抄送人选择值
       sendOut: '',
 
-      // 店内考评数据
-      assessDetails: [
-        {
-          items: [
-            {
-              text: '店内环境',
-              qualified: ''
-            },
-            {
-              text: '员工衣着',
-              qualified: ''
-            },
-            {
-              text: '商品摆放',
-              qualified: ''
-            },
-            {
-              text: '宣传物料',
-              qualified: ''
-            }
-          ]
-        },
-        {
-          items: [
-            {
-              text: '验机台',
-              qualified: ''
-            },
-            {
-              text: '配件墙',
-              qualified: ''
-            }
-          ]
-        }
-      ],
       // 视屏
       video: require('@/assets/videoImage/videoTest.png'),
       // 摄像头选项数据
@@ -247,13 +216,13 @@ export default {
         }
       ],
       //  截图数据
-      screenshotData: [
-        [
-          require('@/assets/icon/screenshot/jietu.png'),
-          require('@/assets/icon/screenshot/jietu.png')
-        ],
-        [require('@/assets/icon/screenshot/jietu.png')]
-      ],
+      // screenshotData: [
+      //   [
+      //     require('@/assets/icon/screenshot/jietu.png'),
+      //     require('@/assets/icon/screenshot/jietu.png')
+      //   ],
+      //   [require('@/assets/icon/screenshot/jietu.png')]
+      // ],
       // 整改人可选数据
       RectificationData: {
         label: '整改人',
@@ -307,7 +276,52 @@ export default {
             post: ''
           }
         ]
-      }
+      },
+      // 店内考评数据
+      assessDetails: [
+        {
+          items: [
+            {
+              text: '店内环境',
+              qualified: '',
+              //  截图数据
+              screenshotData: [require('@/assets/icon/screenshot/jietu.png')]
+            },
+            {
+              text: '员工衣着',
+              qualified: '',
+              screenshotData: [
+                require('@/assets/icon/screenshot/jietu.png'),
+                require('@/assets/icon/screenshot/jietu.png')
+              ]
+            },
+            {
+              text: '商品摆放',
+              qualified: '',
+              screenshotData: [require('@/assets/icon/screenshot/jietu.png')]
+            },
+            {
+              text: '宣传物料',
+              qualified: '',
+              screenshotData: [require('@/assets/icon/screenshot/jietu.png')]
+            }
+          ]
+        },
+        {
+          items: [
+            {
+              text: '验机台',
+              qualified: '',
+              screenshotData: []
+            },
+            {
+              text: '配件墙',
+              qualified: '',
+              screenshotData: []
+            }
+          ]
+        }
+      ]
     }
   },
   created() {
@@ -342,13 +356,17 @@ export default {
     },
     // 触发删除截图
     Delete(active, i) {
-      this.screenshotData[active].splice(i, 1)
+      this.assessDetails[this.defaultStyle].items[active].screenshotData.splice(
+        i,
+        1
+      )
     },
     // 触发请求数据
     request(i) {
       if (this.sideData[i]) {
         this.sideitem = this.sideData[i]
         this.defaultStyle = i
+        this.active = 0
       } else {
         Toast('暂无此数据')
       }
