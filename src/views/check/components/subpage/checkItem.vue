@@ -54,7 +54,11 @@
       <template #content>
         <div class="option" v-for="(item, i) of sideitem.itemsData" :key="i">
           <div v-if="i === active">
-            <div v-for="(item1, index1) of item" :key="index1">
+            <div
+              class="optionItem"
+              v-for="(item1, index1) of item"
+              :key="index1"
+            >
               {{ item1.text }}
               <div class="screenshot">
                 <span
@@ -76,20 +80,20 @@
                 @click="item1.qualified = !item1.qualified"
                 >不合格</van-button
               >
+              <!-- 备注 -->
+              <van-field
+                class="remarks"
+                v-model="item1.message"
+                rows="2"
+                type="textarea"
+                placeholder="备注"
+                show-word-limit
+              />
             </div>
           </div>
         </div>
       </template>
     </van-tree-select>
-    <!-- 备注 -->
-    <van-field
-      class="remarks"
-      v-model="message"
-      rows="2"
-      type="textarea"
-      placeholder="备注"
-      show-word-limit
-    />
     <!-- 整改人区域 -->
     <SendOut :SelectionBoxData="RectificationData"></SendOut>
     <!-- 抄送区域 -->
@@ -182,28 +186,32 @@ export default {
                   require('@/assets/icon/screenshot/jietu.png'),
                   require('@/assets/icon/screenshot/jietu.png')
                 ],
-                qualified: false
+                qualified: false,
+                message: '' // 备注
               }
             ],
             [
               {
                 text: ' 员工衣着',
                 screenshotData: [],
-                qualified: false
+                qualified: false,
+                message: ''
               }
             ],
             [
               {
                 text: ' 商品摆放',
                 screenshotData: [],
-                qualified: false
+                qualified: false,
+                message: ''
               }
             ],
             [
               {
                 text: ' 宣传物料',
                 screenshotData: [],
-                qualified: false
+                qualified: false,
+                message: ''
               }
             ]
           ]
@@ -216,10 +224,18 @@ export default {
                 text:
                   '机器陈列位无空位，演示机按照规范陈列，体验台.上氛围物料不可超过2个;体验机屏幕常亮，播放演示画面;体验桌体验设备处于顾客可以立即体验状态;体验台陈列物品无积灰，无污渍。',
                 screenshotData: [require('@/assets/icon/screenshot/jietu.png')],
-                qualified: false
+                qualified: false,
+                message: ''
               }
             ],
-            [{ text: '配件墙', screenshotData: [], qualified: false }]
+            [
+              {
+                text: '配件墙',
+                screenshotData: [],
+                qualified: false,
+                message: ''
+              }
+            ]
           ]
         }
       ],
@@ -309,7 +325,7 @@ export default {
       })
         .then(d => {
           this.template = item.name
-          location.reload() // 确认选择刷新页面，重置操作数据
+          // location.reload() // 确认选择刷新页面，重置操作数据
         })
         .catch(d => {})
     },
@@ -342,9 +358,7 @@ export default {
       this.sendOut = i
     },
     // 触发按钮提交信息
-    Submit() {
-      console.log(this.checkItem)
-    }
+    Submit() {}
   }
 }
 </script>
@@ -420,8 +434,13 @@ export default {
       color: #141414;
       min-height: 240px;
       overflow: hidden;
+      background: #efefef;
       .option > div {
-        padding: 17px 12px;
+        & > .optionItem {
+          background: #fff;
+          padding: 17px 12px;
+        }
+
         .van-button {
           width: 70px;
           height: 27px;
@@ -466,21 +485,16 @@ export default {
         }
       }
     }
-    // .van-checkbox {
-    //   margin-bottom: 30px;
-    //   font-size: 12px;
-    // }
-    // .van-checkbox-group {
-    //   padding: 17px 10px 16px 16px;
-    // }
   }
 
   // 备注样式
   .remarks {
-    margin: 12px 12px 12px 112px;
+    margin-top: 12px;
     width: auto;
     height: 42px;
     border-radius: 7px;
+    width: 100%;
+    background: #efefef;
   }
 
   .sendOut {

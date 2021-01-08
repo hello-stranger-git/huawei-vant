@@ -58,7 +58,7 @@
               {{ item1.text }}
               <div class="screenshot">
                 <span
-                  v-for="(item2, index2) of item.screenshotData"
+                  v-for="(item2, index2) of item1.screenshotData"
                   :key="index2"
                 >
                   <van-icon
@@ -88,20 +88,21 @@
                   >合格</van-button
                 >
               </div>
+              <!-- 备注区域 -->
+              <van-field
+                class="remarks"
+                v-model="item1.message"
+                rows="2"
+                type="textarea"
+                placeholder="备注"
+                show-word-limit
+              />
             </div>
           </div>
         </div>
       </template>
     </van-tree-select>
-    <!-- 备注区域 -->
-    <van-field
-      class="remarks"
-      v-model="message"
-      rows="2"
-      type="textarea"
-      placeholder="备注"
-      show-word-limit
-    />
+
     <!-- 整改人区域 -->
     <SendOut @change="Rec" :SelectionBoxData="RectificationData"></SendOut>
     <!-- 抄送区域 -->
@@ -197,7 +198,8 @@ export default {
                 text:
                   '厅内地面/点面垃圾清理(城区厅和县城厅10分钟，乡镇厅30分钟) 1分',
                 screenshotData: [require('@/assets/icon/screenshot/jietu.png')],
-                qualified: '' // 按钮选中项  1合适 2不合格 3合格
+                qualified: '', // 按钮选中项  1合适 2不合格 3合格
+                message: '' // 备注
               }
             ],
             [
@@ -207,21 +209,24 @@ export default {
                   require('@/assets/icon/screenshot/jietu.png'),
                   require('@/assets/icon/screenshot/jietu.png')
                 ],
-                qualified: ''
+                qualified: '',
+                message: ''
               }
             ],
             [
               {
                 text: ' 商品摆放',
                 screenshotData: [],
-                qualified: ''
+                qualified: '',
+                message: ''
               }
             ],
             [
               {
                 text: ' 宣传物料',
                 screenshotData: [],
-                qualified: ''
+                qualified: '',
+                message: ''
               }
             ]
           ]
@@ -234,14 +239,16 @@ export default {
                 text:
                   '机器陈列位无空位，演示机按照规范陈列，体验台.上氛围物料不可超过2个;体验机屏幕常亮，播放演示画面;体验桌体验设备处于顾客可以立即体验状态;体验台陈列物品无积灰，无污渍。',
                 screenshotData: [],
-                qualified: ''
+                qualified: '',
+                message: ''
               }
             ],
             [
               {
                 text: '配件墙',
                 screenshotData: [require('@/assets/icon/screenshot/jietu.png')],
-                qualified: ''
+                qualified: '',
+                message: ''
               }
             ]
           ]
@@ -329,7 +336,7 @@ export default {
       })
         .then(d => {
           this.template = item.name
-          location.reload() // 确认选择刷新页面，重置操作数据
+          // location.reload() // 确认选择刷新页面，重置操作数据
         })
         .catch(d => {})
     },
@@ -362,9 +369,7 @@ export default {
       this.sendOut = i
     },
     // 触发按钮提交信息
-    Submit() {
-      console.log(this.assessDetails)
-    }
+    Submit() {}
   }
 }
 </script>
@@ -512,10 +517,11 @@ export default {
 }
 // 备注样式
 .remarks {
-  margin: 12px 12px 12px 112px;
   width: auto;
   height: 42px;
   border-radius: 7px;
+  width: 100%;
+  background: #efefef;
 }
 
 .sendOut {
