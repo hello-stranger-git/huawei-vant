@@ -54,33 +54,29 @@
       <template #content>
         <div class="option" v-for="(item, i) of sideitem.itemsData" :key="i">
           <div v-if="i === active">
-            {{ item }}
-            <div class="screenshot">
-              <span
-                v-for="(item, i) of checkItem[defaultStyle].items[active]
-                  .screenshotData"
-                :key="i"
+            <div v-for="(item1, index1) of item" :key="index1">
+              {{ item1.text }}
+              <div class="screenshot">
+                <span
+                  v-for="(item2, index2) of item1.screenshotData"
+                  :key="index2"
+                >
+                  <van-icon
+                    :name="cha"
+                    @click="Delete(active, index1, index2)"
+                  />
+                  <img :src="item2" />
+                </span>
+                <span>
+                  <img :src="tianjia" />
+                </span>
+              </div>
+              <van-button
+                :class="item1.qualified ? 'button_trigger' : ''"
+                @click="item1.qualified = !item1.qualified"
+                >不合格</van-button
               >
-                <van-icon :name="cha" @click="Delete(active, i)" />
-                <img :src="item" />
-              </span>
-              <span>
-                <img :src="tianjia" />
-              </span>
             </div>
-            <van-button
-              :class="
-                checkItem[defaultStyle].items[active].qualified
-                  ? 'button_trigger'
-                  : ''
-              "
-              @click="
-                checkItem[defaultStyle].items[active].qualified = !checkItem[
-                  defaultStyle
-                ].items[active].qualified
-              "
-              >不合格</van-button
-            >
           </div>
         </div>
       </template>
@@ -108,7 +104,6 @@
   </div>
 </template>
 <script>
-// import TopMessage from '@/components/top' // 顶部信息
 import VideoRegion from '@/components/video' // 视屏区域
 import SendOut from '@/components/check/subpage/sendOut.vue' // 抄送
 
@@ -179,28 +174,55 @@ export default {
             { text: '宣传物料' }
           ],
           itemsData: [
-            '厅内地面/点面垃圾清理(城区厅和县城厅10分钟，乡镇厅30分钟) 1分',
-            '员工衣着',
-            '商品摆放',
-            '宣传物料'
+            [
+              {
+                text:
+                  '厅内地面/点面垃圾清理(城区厅和县城厅10分钟，乡镇厅30分钟) 1分',
+                screenshotData: [
+                  require('@/assets/icon/screenshot/jietu.png'),
+                  require('@/assets/icon/screenshot/jietu.png')
+                ],
+                qualified: false
+              }
+            ],
+            [
+              {
+                text: ' 员工衣着',
+                screenshotData: [],
+                qualified: false
+              }
+            ],
+            [
+              {
+                text: ' 商品摆放',
+                screenshotData: [],
+                qualified: false
+              }
+            ],
+            [
+              {
+                text: ' 宣传物料',
+                screenshotData: [],
+                qualified: false
+              }
+            ]
           ]
         },
         {
           items: [{ text: '验机台' }, { text: '配件墙' }],
           itemsData: [
-            '机器陈列位无空位，演示机按照规范陈列，体验台.上氛围物料不可超过2个;体验机屏幕常亮，播放演示画面;体验桌体验设备处于顾客可以立即体验状态;体验台陈列物品无积灰，无污渍。',
-            '配件墙'
+            [
+              {
+                text:
+                  '机器陈列位无空位，演示机按照规范陈列，体验台.上氛围物料不可超过2个;体验机屏幕常亮，播放演示画面;体验桌体验设备处于顾客可以立即体验状态;体验台陈列物品无积灰，无污渍。',
+                screenshotData: [require('@/assets/icon/screenshot/jietu.png')],
+                qualified: false
+              }
+            ],
+            [{ text: '配件墙', screenshotData: [], qualified: false }]
           ]
         }
       ],
-      //  截图数据
-      // screenshotData: [
-      //   [
-      //     require('@/assets/icon/screenshot/jietu.png'),
-      //     require('@/assets/icon/screenshot/jietu.png')
-      //   ],
-      //   [require('@/assets/icon/screenshot/jietu.png')]
-      // ],
       // 整改人数据
       RectificationData: {
         label: '整改人',
@@ -254,52 +276,7 @@ export default {
             post: ''
           }
         ]
-      },
-      // 点检数据
-      checkItem: [
-        {
-          items: [
-            {
-              text: '店内环境',
-              qualified: '',
-              //  截图数据
-              screenshotData: [require('@/assets/icon/screenshot/jietu.png')]
-            },
-            {
-              text: '员工衣着',
-              qualified: false,
-              screenshotData: [
-                require('@/assets/icon/screenshot/jietu.png'),
-                require('@/assets/icon/screenshot/jietu.png')
-              ]
-            },
-            {
-              text: '商品摆放',
-              qualified: false,
-              screenshotData: []
-            },
-            {
-              text: '宣传物料',
-              qualified: false,
-              screenshotData: [require('@/assets/icon/screenshot/jietu.png')]
-            }
-          ]
-        },
-        {
-          items: [
-            {
-              text: '验机台',
-              qualified: false,
-              screenshotData: []
-            },
-            {
-              text: '配件墙',
-              qualified: false,
-              screenshotData: [require('@/assets/icon/screenshot/jietu.png')]
-            }
-          ]
-        }
-      ]
+      }
     }
   },
   created() {
@@ -337,11 +314,8 @@ export default {
         .catch(d => {})
     },
     // 触发删除截图
-    Delete(active, i) {
-      this.checkItem[this.defaultStyle].items[active].screenshotData.splice(
-        i,
-        1
-      )
+    Delete(active, index1, index2) {
+      this.sideitem.itemsData[active][index1].screenshotData.splice(index2, 1)
     },
     // 触发请求数据
     request(i) {
@@ -381,10 +355,6 @@ export default {
   // 头部样式
   .TopMessage {
     top: 0;
-  }
-  // 视频区域样式
-  .videoRegion {
-    // margin-top: 44px;
   }
   // 影藏滚动条
   ::-webkit-scrollbar {
@@ -461,6 +431,7 @@ export default {
           border: 1px solid #707070;
           border-radius: 5px;
           margin: 32px 91px 0;
+          margin-bottom: 20px;
         }
         // 按钮触发样式
         .button_trigger {
