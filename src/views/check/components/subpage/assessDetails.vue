@@ -54,48 +54,40 @@
       <template #content>
         <div class="option" v-for="(item, i) of sideitem.itemsData" :key="i">
           <div v-if="i === active">
-            {{ item }}
-            <div class="screenshot">
-              <span
-                v-for="(item, i) of assessDetails[defaultStyle].items[active]
-                  .screenshotData"
-                :key="i"
-              >
-                <van-icon :name="cha" @click="Delete(active, i)" />
-                <img :src="item" />
-              </span>
-              <span>
-                <img :src="tianjia" />
-              </span>
-            </div>
-            <div class="buttonGroup">
-              <van-button
-                :class="
-                  assessDetails[defaultStyle].items[active].qualified == 1
-                    ? 'button_trigger'
-                    : ''
-                "
-                @click="assessDetails[defaultStyle].items[active].qualified = 1"
-                >不适用</van-button
-              >
-              <van-button
-                :class="
-                  assessDetails[defaultStyle].items[active].qualified == 2
-                    ? 'button_trigger'
-                    : ''
-                "
-                @click="assessDetails[defaultStyle].items[active].qualified = 2"
-                >不合格</van-button
-              >
-              <van-button
-                :class="
-                  assessDetails[defaultStyle].items[active].qualified == 3
-                    ? 'button_trigger'
-                    : ''
-                "
-                @click="assessDetails[defaultStyle].items[active].qualified = 3"
-                >合格</van-button
-              >
+            <div v-for="(item1, index1) of item" :key="index1">
+              {{ item1.text }}
+              <div class="screenshot">
+                <span
+                  v-for="(item2, index2) of item.screenshotData"
+                  :key="index2"
+                >
+                  <van-icon
+                    :name="cha"
+                    @click="Delete(active, index1, index2)"
+                  />
+                  <img :src="item2" />
+                </span>
+                <span>
+                  <img :src="tianjia" />
+                </span>
+              </div>
+              <div class="buttonGroup">
+                <van-button
+                  :class="item1.qualified == 1 ? 'button_trigger' : ''"
+                  @click="item1.qualified = 1"
+                  >不适用</van-button
+                >
+                <van-button
+                  :class="item1.qualified == 2 ? 'button_trigger' : ''"
+                  @click="item1.qualified = 2"
+                  >不合格</van-button
+                >
+                <van-button
+                  :class="item1.qualified == 3 ? 'button_trigger' : ''"
+                  @click="item1.qualified = 3"
+                  >合格</van-button
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -190,7 +182,6 @@ export default {
         '安全要求',
         '标准化服务流程'
       ],
-
       // 侧边导航选项数据
       sideData: [
         {
@@ -201,28 +192,61 @@ export default {
             { text: '宣传物料' }
           ],
           itemsData: [
-            '厅内地面/点面垃圾清理(城区厅和县城厅10分钟，乡镇厅30分钟) 1分',
-            '员工衣着',
-            '商品摆放',
-            '宣传物料'
+            [
+              {
+                text:
+                  '厅内地面/点面垃圾清理(城区厅和县城厅10分钟，乡镇厅30分钟) 1分',
+                screenshotData: [require('@/assets/icon/screenshot/jietu.png')],
+                qualified: '' // 按钮选中项  1合适 2不合格 3合格
+              }
+            ],
+            [
+              {
+                text: ' 员工衣着',
+                screenshotData: [
+                  require('@/assets/icon/screenshot/jietu.png'),
+                  require('@/assets/icon/screenshot/jietu.png')
+                ],
+                qualified: ''
+              }
+            ],
+            [
+              {
+                text: ' 商品摆放',
+                screenshotData: [],
+                qualified: ''
+              }
+            ],
+            [
+              {
+                text: ' 宣传物料',
+                screenshotData: [],
+                qualified: ''
+              }
+            ]
           ]
         },
         {
           items: [{ text: '验机台' }, { text: '配件墙' }],
           itemsData: [
-            '机器陈列位无空位，演示机按照规范陈列，体验台.上氛围物料不可超过2个;体验机屏幕常亮，播放演示画面;体验桌体验设备处于顾客可以立即体验状态;体验台陈列物品无积灰，无污渍。',
-            '配件墙'
+            [
+              {
+                text:
+                  '机器陈列位无空位，演示机按照规范陈列，体验台.上氛围物料不可超过2个;体验机屏幕常亮，播放演示画面;体验桌体验设备处于顾客可以立即体验状态;体验台陈列物品无积灰，无污渍。',
+                screenshotData: [],
+                qualified: ''
+              }
+            ],
+            [
+              {
+                text: '配件墙',
+                screenshotData: [require('@/assets/icon/screenshot/jietu.png')],
+                qualified: ''
+              }
+            ]
           ]
         }
       ],
-      //  截图数据
-      // screenshotData: [
-      //   [
-      //     require('@/assets/icon/screenshot/jietu.png'),
-      //     require('@/assets/icon/screenshot/jietu.png')
-      //   ],
-      //   [require('@/assets/icon/screenshot/jietu.png')]
-      // ],
       // 整改人可选数据
       RectificationData: {
         label: '整改人',
@@ -276,52 +300,7 @@ export default {
             post: ''
           }
         ]
-      },
-      // 店内考评数据
-      assessDetails: [
-        {
-          items: [
-            {
-              text: '店内环境',
-              qualified: '',
-              //  截图数据
-              screenshotData: [require('@/assets/icon/screenshot/jietu.png')]
-            },
-            {
-              text: '员工衣着',
-              qualified: '',
-              screenshotData: [
-                require('@/assets/icon/screenshot/jietu.png'),
-                require('@/assets/icon/screenshot/jietu.png')
-              ]
-            },
-            {
-              text: '商品摆放',
-              qualified: '',
-              screenshotData: [require('@/assets/icon/screenshot/jietu.png')]
-            },
-            {
-              text: '宣传物料',
-              qualified: '',
-              screenshotData: [require('@/assets/icon/screenshot/jietu.png')]
-            }
-          ]
-        },
-        {
-          items: [
-            {
-              text: '验机台',
-              qualified: '',
-              screenshotData: []
-            },
-            {
-              text: '配件墙',
-              qualified: '',
-              screenshotData: []
-            }
-          ]
-        }
-      ]
+      }
     }
   },
   created() {
@@ -355,11 +334,8 @@ export default {
         .catch(d => {})
     },
     // 触发删除截图
-    Delete(active, i) {
-      this.assessDetails[this.defaultStyle].items[active].screenshotData.splice(
-        i,
-        1
-      )
+    Delete(active, index1, index2) {
+      this.itemsData.itemsData[active][index1].screenshotData.splice(index2, 1)
     },
     // 触发请求数据
     request(i) {
@@ -380,7 +356,7 @@ export default {
       console.log(i)
       this.Rectification = i
     },
-    // 获取子组件抄送人人数据
+    // 获取子组件抄送人数据
     sen(i) {
       console.log(i)
       this.sendOut = i
@@ -397,10 +373,6 @@ export default {
   background-color: #efefef;
   // border: 1px solid red;
   padding-bottom: 36px;
-  // 视频区域样式
-  .videoRegion {
-    // margin-top: 44px;
-  }
   // 选项区域样式
   .van-cell::after {
     border: none;
@@ -498,6 +470,7 @@ export default {
         color: #141414;
         border: 1px solid #707070;
         border-radius: 5px;
+        margin-bottom: 20px;
         &:nth-child(3) {
           color: #4a92ff;
           border: 1px solid #4a92ff;
