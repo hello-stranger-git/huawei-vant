@@ -95,9 +95,17 @@
       </template>
     </van-tree-select>
     <!-- 整改人区域 -->
-    <SendOut :SelectionBoxData="RectificationData"></SendOut>
+    <SendOut
+      @change="Rec"
+      :SelectionBoxData="RectificationData"
+      :selectValues="Rectification"
+    ></SendOut>
     <!-- 抄送区域 -->
-    <SendOut :SelectionBoxData="sendOutData"></SendOut>
+    <SendOut
+      @change="sen"
+      :SelectionBoxData="sendOutData"
+      :selectValues="sendOut"
+    ></SendOut>
     <!-- 提交按钮区域 -->
     <div class="Submit">
       <p>扣分：<span>10</span>/100</p>
@@ -132,11 +140,11 @@ export default {
       // 侧边导航选项数据
       sideitem: {},
       // 整改人选择值
-      Rectification: '',
+      Rectification: [],
       // 侧边栏内按钮触发
       trigger: false,
       // 抄送人选择值
-      sendOut: '',
+      sendOut: [],
       defaultStyle: 0, // 横向导航默认选中
       active: 0, // 侧边导航默认选中项
       checked: [], // 侧边导航选中项选中值
@@ -245,14 +253,17 @@ export default {
         text: '选择整改人',
         ccPerson: [
           {
+            id: 1,
             name: '张鹏',
             post: '店长'
           },
           {
+            id: 2,
             name: '李某某',
             post: '区域负责人'
           },
           {
+            id: 3,
             name: '陈某某',
             post: '客服中心'
           }
@@ -264,30 +275,37 @@ export default {
         text: '选择抄送人',
         ccPerson: [
           {
+            id: 1,
             name: '张鹏',
             post: '店长'
           },
           {
+            id: 2,
             name: '李某某',
             post: '区域负责人'
           },
           {
+            id: 3,
             name: '陈某某',
             post: '客服中心'
           },
           {
+            id: 4,
             name: '罗某',
             post: '巡检主管'
           },
           {
+            id: 5,
             name: '赵某某',
             post: '客服主管'
           },
           {
+            id: 6,
             name: '某某客服组',
             post: ''
           },
           {
+            id: 7,
             name: '某某巡检组',
             post: ''
           }
@@ -349,16 +367,18 @@ export default {
     },
     // 获取子组件整改人选择数据
     Rec(i) {
-      console.log(i)
       this.Rectification = i
+      console.log(i)
     },
     // 获取子组件抄送人人数据
     sen(i) {
-      console.log(i)
       this.sendOut = i
+      console.log(i)
     },
     // 触发按钮提交信息
-    Submit() {}
+    Submit() {
+      // console.log(this.Rectification)
+    }
   }
 }
 </script>
