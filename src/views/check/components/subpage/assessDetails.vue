@@ -104,9 +104,17 @@
     </van-tree-select>
 
     <!-- 整改人区域 -->
-    <SendOut @change="Rec" :SelectionBoxData="RectificationData"></SendOut>
+    <SendOut
+      @change="Rec"
+      :SelectionBoxData="RectificationData"
+      :selectValues="Rectification"
+    ></SendOut>
     <!-- 抄送区域 -->
-    <SendOut @change="sen" :SelectionBoxData="sendOutData"></SendOut>
+    <SendOut
+      @change="sen"
+      :SelectionBoxData="sendOutData"
+      :selectValues="sendOut"
+    ></SendOut>
     <!-- 提交按钮区域 -->
     <div class="Submit">
       <p>得分：<span>100</span>/100</p>
@@ -152,9 +160,9 @@ export default {
       // 备注输入值
       message: '',
       // 整改人选择值
-      Rectification: '',
+      Rectification: [],
       // 抄送人选择值
-      sendOut: '',
+      sendOut: [],
 
       // 视屏
       video: require('@/assets/videoImage/videoTest.png'),

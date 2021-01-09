@@ -3,7 +3,7 @@
     <!-- 选择 -->
     <van-cell-group @click="showPopup">
       <van-field
-        v-model="value1"
+        v-model="selectedValue"
         :label="SelectionBoxData.label"
         left-icon="smile-o"
         readonly
@@ -34,7 +34,7 @@
         <van-checkbox
           v-for="(item, i) of SelectionBoxData.ccPerson"
           :key="i"
-          :name="item.name"
+          :name="item"
         >
           <template #default>
             <div>{{ item.name }}</div>
@@ -50,14 +50,16 @@ export default {
   props: {
     SelectionBoxData: {
       type: Object
+    },
+    selectValues: {
+      type: Array
     }
   },
   data() {
     return {
+      selectedValue: '',
       moreIcon: require('@/assets/icon/check/more.png'), // 更多图标
       fiJiIcon: require('@/assets/icon/check/feiji.png'), // 纸飞机图标
-      // 默认抄送人
-      value1: '张某某',
       // 是否显示弹出层
       show: false,
       // 弹出层选中值
@@ -74,9 +76,18 @@ export default {
       this.show = false
     },
     confirm() {
-      this.value1 = this.result.join('；')
       this.show = false
-      this.$emit('change', this.value1)
+      this.$emit('change', this.result)
+    }
+  },
+  watch: {
+    selectValues: function(newVal, oldVal) {
+      this.selectedValue = ''
+      var obj = []
+      for (var item of newVal) {
+        obj.push(item.name)
+      }
+      this.selectedValue = obj.join('；')
     }
   }
 }
