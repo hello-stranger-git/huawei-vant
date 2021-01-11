@@ -21,7 +21,12 @@
         <div class="time">{{ date }}</div>
       </div>
       <div class="camera">
-        <img :src="img" alt="" />
+        <van-swipe :autoplay="0" indicator-color="#4a92ff">
+          <van-swipe-item><img :src="img"/></van-swipe-item>
+          <van-swipe-item><img :src="process1"/></van-swipe-item>
+          <van-swipe-item><img :src="process2"/></van-swipe-item>
+          <van-swipe-item><img :src="process3"/></van-swipe-item>
+        </van-swipe>
       </div>
       <div class="problem">
         <img :src="protect" />
@@ -72,7 +77,10 @@ export default {
       goBack,
       process,
       protect,
-      date: new Date().toLocaleString()
+      date: new Date().toLocaleString(),
+      process1: require('@/assets/screenImage/repairImage.png'),
+      process2: require('@/assets/screenImage/video.png'),
+      process3: require('@/assets/screenImage/screen1.png')
     }
   },
   created() {
@@ -159,9 +167,11 @@ export default {
     }
   }
   .camera {
+    overflow: hidden;
+    height: 250px;
     img {
       width: 100%;
-      height: 100%;
+      height: 250px;
     }
   }
   .problem {
