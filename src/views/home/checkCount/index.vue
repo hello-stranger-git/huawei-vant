@@ -65,31 +65,31 @@
             <div class="left">
               <van-circle
                 v-model="evaluationRate"
-                :rate="5"
+                :rate="80"
                 :speed="100"
                 :text="evaluationRateText"
                 class="circle"
                 color="#F1835B"
                 layer-color="#E2E2E2"
               />
-              <p>考评覆盖率</p>
+              <p>整改完成率</p>
             </div>
           </van-col>
 
           <van-col span="12">
             <div class="right">
               <div style="margin-top:14px">
-                <span>考评门店数</span><span style="margin-left:20px">361</span>
+                <span>整改完成数</span><span style="margin-left:20px">111</span>
               </div>
               <div style="margin-top:12px">
-                <span>考评平均分</span
-                ><span style="margin-left:20px">6901</span>
+                <span>需整改考评数</span
+                ><span style="margin-left:20px">10</span>
               </div>
             </div>
           </van-col>
         </div>
 
-        <div class="contextDiv">
+        <!-- <div class="contextDiv">
           <van-col span="12">
             <div class="left">
               <van-circle
@@ -116,7 +116,7 @@
               </div>
             </div>
           </van-col>
-        </div>
+        </div> -->
       </div>
     </div>
 
