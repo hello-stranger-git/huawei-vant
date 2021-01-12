@@ -530,6 +530,7 @@ export default {
   border-radius: 7px;
   width: 100%;
   background: #efefef;
+  margin-bottom: 20px;
 }
 
 .sendOut {
