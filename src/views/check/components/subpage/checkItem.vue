@@ -80,20 +80,20 @@
                 @click="item1.qualified = !item1.qualified"
                 >不合格</van-button
               >
-              <!-- 备注 -->
-              <van-field
-                class="remarks"
-                v-model="item1.message"
-                rows="2"
-                type="textarea"
-                placeholder="备注"
-                show-word-limit
-              />
             </div>
           </div>
         </div>
       </template>
     </van-tree-select>
+    <!-- 备注 -->
+    <van-field
+      class="remarks"
+      v-model="message"
+      rows="2"
+      type="textarea"
+      placeholder="备注"
+      show-word-limit
+    />
     <!-- 整改人区域 -->
     <SendOut
       @change="Rec"
@@ -194,32 +194,28 @@ export default {
                   require('@/assets/icon/screenshot/jietu.png'),
                   require('@/assets/icon/screenshot/jietu.png')
                 ],
-                qualified: false,
-                message: '' // 备注
+                qualified: false
               }
             ],
             [
               {
                 text: ' 员工衣着',
                 screenshotData: [],
-                qualified: false,
-                message: ''
+                qualified: false
               }
             ],
             [
               {
                 text: ' 商品摆放',
                 screenshotData: [],
-                qualified: false,
-                message: ''
+                qualified: false
               }
             ],
             [
               {
                 text: ' 宣传物料',
                 screenshotData: [],
-                qualified: false,
-                message: ''
+                qualified: false
               }
             ]
           ]
@@ -232,16 +228,14 @@ export default {
                 text:
                   '机器陈列位无空位，演示机按照规范陈列，体验台.上氛围物料不可超过2个;体验机屏幕常亮，播放演示画面;体验桌体验设备处于顾客可以立即体验状态;体验台陈列物品无积灰，无污渍。',
                 screenshotData: [require('@/assets/icon/screenshot/jietu.png')],
-                qualified: false,
-                message: ''
+                qualified: false
               }
             ],
             [
               {
                 text: '配件墙',
                 screenshotData: [],
-                qualified: false,
-                message: ''
+                qualified: false
               }
             ]
           ]
@@ -506,21 +500,16 @@ export default {
       }
     }
   }
-
   // 备注样式
   .remarks {
-    margin-top: 12px;
+    margin: 12px 12px 12px 112px;
     width: auto;
     height: 42px;
     border-radius: 7px;
-    width: 100%;
-    background: #efefef;
   }
-
   .sendOut {
     margin-top: 12px;
   }
-
   //  提交按钮区域样式
   .Submit {
     margin: 12px;
