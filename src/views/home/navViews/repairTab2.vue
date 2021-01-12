@@ -7,7 +7,7 @@
       </div>
       <div class="ban">
         <div class="detail">
-          {{ item.value }}
+          {{ item.text }}
         </div>
         <div
           class="statuBox"
@@ -27,30 +27,15 @@
       </div>
       <div class="main">
         <div class="cell">
-          <div class="time">{{ item.check.time }} 开始整改</div>
-          <div class="role">监察人：{{ item.check.person }}</div>
+          <div class="time">{{ item.check.time }} 整改通知</div>
+          <div class="role">点检人：{{ item.check.person }}</div>
         </div>
-        <div class="cell" v-if="item.state">
-          <div class="time">{{ item.state.time }} 发起申诉</div>
-          <div class="role">申诉人：{{ item.state.person }}</div>
-          <div class="reason" v-show="item.more">
-            {{ item.state.reason }}
+        <div class="cell">
+          <div class="time">
+            {{ item.state.time }}
+            {{ item.waitAppeal ? '申诉提交' : '整改提交' }}
           </div>
-        </div>
-        <div class="cell" v-if="item.result">
-          <div class="time">{{ item.result.time }} 驳回申诉</div>
-          <div class="role">处理人：{{ item.result.person }}</div>
-          <div class="reason" v-show="item.more">
-            {{ item.result.reason }}
-          </div>
-        </div>
-        <div
-          class="more"
-          @click="toggleMore(item.more, i)"
-          v-if="item.check.reason"
-        >
-          {{ item.more ? moreValueArr[1] : moreValueArr[0] }}
-          <van-icon :name="item.more ? arrowArr[1] : arrowArr[0]" size="9" />
+          <div class="role">提交人：{{ item.state.person }}</div>
         </div>
       </div>
     </div>
@@ -59,39 +44,37 @@
 
 <script>
 import img from '@/assets/screenImage/repairImage.png'
-import rightArrow from '@/assets/icon/home/navTabs/rightArrow.png'
-import bottomArrow from '@/assets/icon/home/navTabs/bottomArrow.png'
+// import rightArrow from '@/assets/icon/home/navTabs/rightArrow.png'
+// import bottomArrow from '@/assets/icon/home/navTabs/bottomArrow.png'
 export default {
   data() {
     return {
       data: [],
       img,
-      arrowIndex: 1,
-      arrowArr: [rightArrow, bottomArrow],
-      moreValueArr: ['查看更多', '收起更多'],
-      showMore: true,
+      // arrowIndex: 1,
+      // arrowArr: [rightArrow, bottomArrow],
+      // moreValueArr: ['查看更多', '收起更多'],
+      // showMore: true,
       colorArr: ['#e60012', '#ff7b40', '#4a92ff']
     }
   },
   methods: {
-    toggleMore(more, i) {
-      if (more) {
-        this.data[i].more = false
-      } else {
-        this.data[i].more = true
-      }
-    }
+    // toggleMore(more, i) {
+    //   if (more) {
+    //     this.data[i].more = false
+    //   } else {
+    //     this.data[i].more = true
+    //   }
+    // }
   },
   created() {
     this.data = [
       {
         title: '扣除总分',
-        waitAppeal: true,
-        more: false,
+        waitAppeal: true, // 待申诉
         score: '-9',
         color: 0,
-        value: '禁止抱着胳膊、跷二郎腿、手插口袋',
-        statu: { value: '申述驳回', flag: false },
+        text: '禁止抱着胳膊、跷二郎腿、手插口袋',
         check: { time: '11/30 12:35:16', person: '刘德华' },
         state: {
           time: '11/30 12:45:16',
@@ -101,12 +84,10 @@ export default {
       },
       {
         title: '扣除总分',
-        waitAppeal: false,
-        more: false,
+        waitAppeal: false, // 待整改
         score: '-12',
         color: 1,
-        value: '禁止抱着胳膊、跷二郎腿、手插口袋',
-        statu: { value: '申述成功', flag: true },
+        text: '禁止抱着胳膊、跷二郎腿、手插口袋',
         check: { time: '11/30 12:35:16', person: '张学友' },
         state: {
           time: '11/30 12:45:16',

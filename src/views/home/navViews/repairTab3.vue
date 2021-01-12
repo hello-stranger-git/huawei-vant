@@ -9,7 +9,7 @@
         </div>
         <div class="ban">
           <div class="detail">
-            禁止抱着胳膊、跷二郎腿、手插口袋
+            {{ item.text }}
           </div>
           <div :class="['statu', item.statu.flag ? 'statuColor' : '']">
             状态：{{ item.statu.value }}
@@ -20,64 +20,64 @@
         </div>
         <div class="main">
           <div class="cell">
-            <div class="time">{{ item.check.time }} 开始整改</div>
-            <div class="role">监察人：{{ item.check.person }}</div>
+            <div class="time">{{ item.check.time }} 整改通知</div>
+            <div class="role">点检人：{{ item.check.person }}</div>
           </div>
           <div class="cell">
-            <div class="time">{{ item.state.time }} 发起申诉</div>
-            <div class="role">申诉人：{{ item.state.person }}</div>
+            <div class="time">{{ item.state.time }} 整改提交</div>
+            <div class="role">提交人：{{ item.state.person }}</div>
             <div class="reason" v-if="item.more">
               {{ item.state.reason }}
             </div>
           </div>
           <div class="cell">
-            <div class="time">{{ item.result.time }} 驳回申诉</div>
-            <div class="role">处理人：{{ item.result.person }}</div>
+            <div class="time">{{ item.result.time }} 审核通过</div>
+            <div class="role">审核人：{{ item.result.person }}</div>
             <div class="reason" v-if="item.more">
               {{ item.result.reason }}
             </div>
           </div>
-          <div class="more" @click="toggleRepairMore(item.more, i)">
-            <!-- true显示收起，false显示更多 -->
+          <!-- <div class="more" @click="toggleRepairMore(item.more, i)">
+            true显示收起，false显示更多
             {{ item.more ? moreValueArr[1] : moreValueArr[0] }}
             <van-icon :name="item.more ? arrowArr[1] : arrowArr[0]" size="9" />
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
-    <!-- 申诉完成 -->
   </div>
 </template>
 
 <script>
 import img from '@/assets/screenImage/repairImage.png'
-import rightArrow from '@/assets/icon/home/navTabs/rightArrow.png'
-import bottomArrow from '@/assets/icon/home/navTabs/bottomArrow.png'
+// import rightArrow from '@/assets/icon/home/navTabs/rightArrow.png'
+// import bottomArrow from '@/assets/icon/home/navTabs/bottomArrow.png'
 export default {
   data() {
     return {
-      state: [],
+      // state: [],
       repaire: [],
-      img,
-      arrowIndex: 1,
-      arrowArr: [rightArrow, bottomArrow],
-      moreValueArr: ['查看更多', '收起更多'],
-      showMore: true
+      img
+      // arrowIndex: 1,
+      // arrowArr: [rightArrow, bottomArrow]
+      // moreValueArr: ['查看更多', '收起更多'],
+      // showMore: true
     }
   },
   methods: {
-    toggleStateMore(more, i) {
-      this.state[i].more = !more
-    },
-    toggleRepairMore(more, i) {
-      this.repaire[i].more = !more
-    }
+    // toggleStateMore(more, i) {
+    //   this.state[i].more = !more
+    // },
+    // toggleRepairMore(more, i) {
+    //   this.repaire[i].more = !more
+    // }
   },
   created() {
     this.repaire = [
       {
         title: '员工行为',
-        more: false,
+        text: '禁止抱着胳膊、跷二郎腿、手插口袋',
+        // more: false,
         score: '-3',
         statu: { value: '整改成功', flag: true },
         check: { time: '11/30 12:35:16', person: '刘德华' },
@@ -94,7 +94,8 @@ export default {
       },
       {
         title: '仓库卫生',
-        more: false,
+        text: '禁止抱着胳膊、跷二郎腿、手插口袋',
+        // more: false,
         score: '-3',
         statu: { value: '整改成功', flag: true },
         check: { time: '11/30 12:35:16', person: '张学友' },
