@@ -1,7 +1,7 @@
 <template>
   <div class="contain">
     <!-- 头部 -->
-    <div class="header"></div>
+    <!-- <div class="header"></div> -->
     <div class="statu">
       点检过程
       <div class="back" @click="$router.go(-1)"><img :src="goBack" /></div>

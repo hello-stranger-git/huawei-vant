@@ -7,7 +7,7 @@
     }"
   >
     <!-- 头部 -->
-    <div class="header"></div>
+    <!-- <div class="header"></div> -->
     <!-- 没有query就选择默认值 -->
     <div class="statu">
       {{ title ? title : '查看详情' }}

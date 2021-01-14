@@ -1,6 +1,6 @@
 <template>
   <div class="contain">
-    <div class="header"></div>
+    <!-- <div class="header"></div> -->
     <div class="statu">
       {{ $route.query.appeal ? '申诉详情' : '整改详情' }}
       <div

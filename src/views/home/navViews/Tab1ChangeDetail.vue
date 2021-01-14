@@ -1,6 +1,6 @@
 <template>
   <div class="contain">
-    <div class="header"></div>
+    <!-- <div class="header"></div> -->
     <div class="statu">
       整改详情
       <div class="back" @click="$router.go(-1)"><img :src="goBack" /></div>
