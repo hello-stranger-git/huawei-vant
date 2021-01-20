@@ -111,7 +111,7 @@ export default {
   .timeSpan {
     width: 99px;
     height: 25px;
-    background: #ffffff;
+    background: rgba(255, 255, 255,0.5);
     box-shadow: 0px 0px 6px rgba(74, 146, 255, 0.36);
     opacity: 1;
     border-radius: 5px;
@@ -124,7 +124,7 @@ export default {
     color: #4a92ff;
     left: 50%;
     transform: translateX(-50%);
-    top: -12px;
+    // top: -12px;
     font-size: 16px;
   }
 }
