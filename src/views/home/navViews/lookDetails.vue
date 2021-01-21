@@ -111,7 +111,8 @@ export default {
   methods: {
     submit() {
       Toast('操作成功')
-      this.$router.push({ name: 'Repair' })
+      // this.$router.push({ name: 'Repair' })
+      this.$router.go(-2)
     }
   }
 }
